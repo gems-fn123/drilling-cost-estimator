@@ -10,6 +10,7 @@ MASTER = ROOT / "data" / "processed" / "wbs_lv5_master.csv"
 CLASSIFICATION = ROOT / "data" / "processed" / "wbs_lv5_classification.csv"
 REVIEW = ROOT / "data" / "processed" / "wbs_lv5_review_queue.csv"
 SUMMARY = ROOT / "data" / "processed" / "wbs_lv5_cost_summary_by_classification.csv"
+HYBRID_RECOMMEND = ROOT / "data" / "processed" / "wbs_lv5_hybrid_tag_recommendation.csv"
 
 
 class TestWbsLv5Classification(unittest.TestCase):
@@ -22,7 +23,7 @@ class TestWbsLv5Classification(unittest.TestCase):
             return list(csv.DictReader(fh))
 
     def test_outputs_generated(self) -> None:
-        for path in [MASTER, CLASSIFICATION, REVIEW, SUMMARY]:
+        for path in [MASTER, CLASSIFICATION, REVIEW, SUMMARY, HYBRID_RECOMMEND]:
             self.assertTrue(path.exists(), f"Missing expected output: {path}")
 
     def test_required_columns_exist(self) -> None:
@@ -72,6 +73,14 @@ class TestWbsLv5Classification(unittest.TestCase):
         expected = sorted([r["classification_key"] for r in classification if r["review_status"] != "approved_auto"])
         actual = sorted([r["classification_key"] for r in review])
         self.assertEqual(expected, actual)
+
+    def test_hybrid_recommendation_coverage(self) -> None:
+        classification = self.read_csv(CLASSIFICATION)
+        hybrid_expected = sorted([r["classification_key"] for r in classification if r["classification"] == "hybrid"])
+        hybrid_rows = self.read_csv(HYBRID_RECOMMEND)
+        hybrid_actual = sorted([r["classification_key"] for r in hybrid_rows])
+        self.assertEqual(hybrid_expected, hybrid_actual)
+        self.assertTrue(all(r["suggested_tag"] in {"well", "pad", "campaign"} for r in hybrid_rows))
 
 
 if __name__ == "__main__":

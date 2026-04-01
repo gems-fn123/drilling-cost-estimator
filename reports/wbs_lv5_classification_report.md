@@ -31,3 +31,15 @@
 ## Notes on Inconsistent Behavior
 - In this phase, inconsistency is proxied by absence of deterministic tag evidence, routed to `needs_review`.
 - No hidden allocations were applied for campaign/hybrid classes.
+
+## Top Hybrid Spend with Potential Tag Recommendation
+- `SALAK|E540-30101-D245401|E540-3010169-D245401|E540-301016903-D245401|E540-30101690306-D245401` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 2,472,778.98
+- `DARAJAT|E530-30101-D235301|E530-3010169-D235301|E530-301016903-D235301|E530-30101690306-D235301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 2,443,898.79
+- `DARAJAT|E530-30101-D225301|E530-3010169-D225301|E530-301016966-D225301|E530-30101696623-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 2,200,569.61
+- `DARAJAT|E530-30101-D235301|E530-3010169-D235301|E530-301016967-D235301|E530-30101696706-D235301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 1,041,966.78
+- `DARAJAT|E530-30101-D225301|E530-3010104-D225301|E530-301010402-D225301|E530-30101040205-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 1,033,044.74
+- `DARAJAT|E530-30101-D225301|E530-3010105-D225301|E530-301010502-D225301|E530-30101050205-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 867,517.38
+- `DARAJAT|E530-30101-D225301|E530-3010103-D225301|E530-301010302-D225301|E530-30101030205-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 838,855.14
+- `SALAK|E540-30101-D245401|E540-3010156-D245401|E540-301015601-D245401|E540-30101560123-D245401` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 830,091.90
+- `DARAJAT|E530-30101-D225301|E530-3010101-D225301|E530-301010102-D225301|E530-30101010205-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 821,879.00
+- `DARAJAT|E530-30101-D225301|E530-3010105-D225301|E530-301010502-D225301|E530-30101050209-D225301` | potential `campaign` | basis `default_for_shared_or_unknown_scope` | USD 798,979.46

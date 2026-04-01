@@ -18,6 +18,7 @@ CLASSIFICATION_PATH = PROCESSED_DIR / "wbs_lv5_classification.csv"
 REVIEW_QUEUE_PATH = PROCESSED_DIR / "wbs_lv5_review_queue.csv"
 COST_SUMMARY_PATH = PROCESSED_DIR / "wbs_lv5_cost_summary_by_classification.csv"
 RULE_COVERAGE_PATH = PROCESSED_DIR / "wbs_lv5_rule_coverage.csv"
+HYBRID_TAG_REVIEW_PATH = PROCESSED_DIR / "wbs_lv5_hybrid_tag_recommendation.csv"
 
 INVENTORY_REPORT = REPORTS_DIR / "wbs_lv5_source_inventory.md"
 RULEBOOK_REPORT = REPORTS_DIR / "wbs_lv5_classification_rulebook.md"
@@ -378,6 +379,12 @@ def main() -> None:
         cls_key = "|".join([rec["field"], rec["wbs_lvl2"], rec["wbs_lvl3"], rec["wbs_lvl4"], rec["wbs_lvl5"]])
         grouped[cls_key].append(rec)
 
+    lvl4_tag_votes: dict[tuple[str, str], Counter[str]] = defaultdict(Counter)
+    for rec in master_rows:
+        tag = clean_text(rec.get("tag_well_or_pad", ""))
+        if tag in {"Well", "Pad"}:
+            lvl4_tag_votes[(rec["field"], rec["wbs_lvl4"])][tag] += 1
+
     class_rows: list[dict[str, str]] = []
     for key, recs in sorted(grouped.items()):
         spend = sum(parse_float(r["cost_actual"]) for r in recs)
@@ -485,6 +492,44 @@ def main() -> None:
     rule_rows = [{"classification_rule_id": k, "key_count": str(v)} for k, v in sorted(rule_coverage.items())]
     write_csv(RULE_COVERAGE_PATH, rule_rows, ["classification_rule_id", "key_count"])
 
+    hybrid_tag_rows: list[dict[str, str]] = []
+    for row in class_rows:
+        if row["classification"] != "hybrid":
+            continue
+        lvl4_counter = lvl4_tag_votes.get((row["field"], row["wbs_lvl4"]), Counter())
+        suggestion = "campaign"
+        basis = "default_for_shared_or_unknown_scope"
+        if lvl4_counter:
+            top_tag, votes = lvl4_counter.most_common(1)[0]
+            suggestion = "well" if top_tag == "Well" else "pad"
+            basis = f"inferred_from_lvl4_siblings:{top_tag}({votes})"
+
+        label_text = clean_text(row["wbs_lvl5"]).lower()
+        if any(word in label_text for word in ["mobil", "demobil", "contingency", "camp", "support"]):
+            suggestion = "campaign"
+            basis = "keyword_campaign_shared_scope"
+        elif any(word in label_text for word in ["drilling", "sidetrack", "service", "completion"]):
+            suggestion = "well"
+            basis = "keyword_well_operation_scope"
+
+        hybrid_tag_rows.append(
+            {
+                "classification_key": row["classification_key"],
+                "field": row["field"],
+                "wbs_lvl4": row["wbs_lvl4"],
+                "wbs_lvl5": row["wbs_lvl5"],
+                "supporting_cost_total": row["supporting_cost_total"],
+                "suggested_tag": suggestion,
+                "suggestion_basis": basis,
+            }
+        )
+
+    write_csv(
+        HYBRID_TAG_REVIEW_PATH,
+        sorted(hybrid_tag_rows, key=lambda r: parse_float(r["supporting_cost_total"]), reverse=True),
+        ["classification_key", "field", "wbs_lvl4", "wbs_lvl5", "supporting_cost_total", "suggested_tag", "suggestion_basis"],
+    )
+
     unmapped_campaigns = sum(1 for row in master_rows if row["mapping_status_campaign"] != "mapped")
 
     rulebook_lines = [
@@ -505,6 +550,7 @@ def main() -> None:
     RULEBOOK_REPORT.write_text("\n".join(rulebook_lines) + "\n")
 
     top_review = sorted(review_rows, key=lambda r: parse_float(r["supporting_cost_total"]), reverse=True)[:10]
+    top_hybrid_tag = sorted(hybrid_tag_rows, key=lambda r: parse_float(r["supporting_cost_total"]), reverse=True)[:10]
     report_lines = [
         "# WBS Lv.5 Classification QA Report",
         "",
@@ -547,8 +593,15 @@ def main() -> None:
             "## Notes on Inconsistent Behavior",
             "- In this phase, inconsistency is proxied by absence of deterministic tag evidence, routed to `needs_review`.",
             "- No hidden allocations were applied for campaign/hybrid classes.",
+            "",
+            "## Top Hybrid Spend with Potential Tag Recommendation",
         ]
     )
+    for item in top_hybrid_tag:
+        report_lines.append(
+            f"- `{item['classification_key']}` | potential `{item['suggested_tag']}` | "
+            f"basis `{item['suggestion_basis']}` | USD {parse_float(item['supporting_cost_total']):,.2f}"
+        )
     CLASSIFICATION_REPORT.write_text("\n".join(report_lines) + "\n")
 
 
