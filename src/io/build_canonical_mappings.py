@@ -3,8 +3,6 @@ from __future__ import annotations
 import csv
 import re
 import zipfile
-from collections import defaultdict
-from dataclasses import dataclass
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -16,52 +14,44 @@ REPORT_PATH = ROOT / "reports" / "campaign_well_mapping_report.md"
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 
+OFFICIAL_CAMPAIGNS = {
+    "E530-30101-D225301": {"campaign_id": "DARAJAT_2022", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
+    "E530-30101-D235301": {"campaign_id": "DARAJAT_2023_2024", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
+    "E540-30101-D245401": {"campaign_id": "SALAK_2025_2026", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
+    "E530-30101-D19001": {"campaign_id": "DARAJAT_2019", "estimator_scope": "legacy_reference", "scope_note": "Legacy reference only"},
+    "E540-30101-D20001": {"campaign_id": "SALAK_2021", "estimator_scope": "legacy_reference", "scope_note": "Legacy reference only"},
+}
 
-@dataclass(frozen=True)
-class CampaignRecord:
-    source_file: str
-    source_sheet: str
-    asset_raw: str
-    campaign_raw: str
-    campaign_code_raw: str
+WELL_ALIAS_PAIRS = [
+    ("14-1", "DRJ-51"),
+    ("14-2", "DRJ-52"),
+    ("20-1", "DRJ-50"),
+    ("SF-1", "DRJ-49"),
+    ("SF-ML", "DRJ-38"),
+    ("DRJ-STEAM 6", "DRJ-53"),
+    ("DRJ-STEAM 2", "DRJ-54"),
+    ("DRJ-STEAM 3", "DRJ-55"),
+    ("DRJ-STEAM 4", "DRJ-56"),
+    ("DRJ-STEAM 5", "DRJ-57"),
+    ("AWI 9-10RD", "AWI 9-10"),
+]
 
 
-def _col_index(cell_ref: str) -> int:
+def clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value.replace("\n", " ")).strip()
+
+
+def normalize_well(name: str) -> str:
+    text = clean_text(name).upper()
+    return re.sub(r"\s*-\s*", "-", text)
+
+
+def col_index(cell_ref: str) -> int:
     letters = "".join(ch for ch in cell_ref if ch.isalpha())
     idx = 0
     for ch in letters:
         idx = idx * 26 + (ord(ch) - 64)
     return idx - 1
-
-
-def _clean_text(value: str) -> str:
-    return re.sub(r"\s+", " ", value.replace("\n", " ")).strip()
-
-
-def normalize_asset(asset: str) -> str:
-    text = _clean_text(asset).upper()
-    mapping = {
-        "DARAJAT": "DARAJAT",
-        "DRJ": "DARAJAT",
-        "SALAK": "SALAK",
-        "SLK": "SALAK",
-        "WAYANG WINDU": "WAYANG WINDU",
-    }
-    return mapping.get(text, text)
-
-
-def normalize_campaign(name: str) -> str:
-    text = _clean_text(name).upper()
-    text = text.replace("DRJ", "DARAJAT").replace("SLK", "SALAK")
-    text = re.sub(r"\s+", " ", text)
-    return text
-
-
-def normalize_well(name: str) -> str:
-    text = _clean_text(name).upper()
-    text = re.sub(r"\s*-\s*", "-", text)
-    text = re.sub(r"\s+", " ", text)
-    return text
 
 
 def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
@@ -71,349 +61,312 @@ def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
         if "xl/sharedStrings.xml" in zf.namelist():
             root = ET.fromstring(zf.read("xl/sharedStrings.xml"))
             for item in root.findall("a:si", NS_MAIN):
-                text = "".join(node.text or "" for node in item.findall(".//a:t", NS_MAIN))
-                shared_strings.append(text)
+                shared_strings.append("".join(node.text or "" for node in item.findall(".//a:t", NS_MAIN)))
 
-        workbook = ET.fromstring(zf.read("xl/workbook.xml"))
+        wb = ET.fromstring(zf.read("xl/workbook.xml"))
         rels = ET.fromstring(zf.read("xl/_rels/workbook.xml.rels"))
-        rel_by_id = {
-            rel.attrib["Id"]: rel.attrib["Target"]
-            for rel in rels.findall("p:Relationship", NS_PKG)
-        }
+        rel_map = {rel.attrib["Id"]: rel.attrib["Target"] for rel in rels.findall("p:Relationship", NS_PKG)}
 
-        for sheet in workbook.findall("a:sheets/a:sheet", NS_MAIN):
-            name = sheet.attrib["name"]
-            rel_id = sheet.attrib["{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"]
-            target = "xl/" + rel_by_id[rel_id].lstrip("/")
-            sheet_xml = ET.fromstring(zf.read(target))
+        for sh in wb.findall("a:sheets/a:sheet", NS_MAIN):
+            name = sh.attrib["name"]
+            rel_id = sh.attrib["{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"]
+            target = "xl/" + rel_map[rel_id].lstrip("/")
+            root = ET.fromstring(zf.read(target))
             rows: list[list[str]] = []
-            for row in sheet_xml.findall("a:sheetData/a:row", NS_MAIN):
+            for row in root.findall("a:sheetData/a:row", NS_MAIN):
                 values: dict[int, str] = {}
-                for cell in row.findall("a:c", NS_MAIN):
-                    value_node = cell.find("a:v", NS_MAIN)
-                    if value_node is None:
+                for c in row.findall("a:c", NS_MAIN):
+                    v = c.find("a:v", NS_MAIN)
+                    if v is None:
                         continue
-                    value = value_node.text or ""
-                    if cell.attrib.get("t") == "s":
-                        value = shared_strings[int(value)] if value else ""
-                    values[_col_index(cell.attrib["r"])] = _clean_text(value)
+                    txt = v.text or ""
+                    if c.attrib.get("t") == "s":
+                        txt = shared_strings[int(txt)] if txt else ""
+                    values[col_index(c.attrib["r"])] = clean_text(txt)
                 if not values:
                     rows.append([])
                     continue
-                max_col = max(values)
-                dense = [""] * (max_col + 1)
-                for idx, value in values.items():
-                    dense[idx] = value
+                dense = [""] * (max(values) + 1)
+                for i, value in values.items():
+                    dense[i] = value
                 rows.append(dense)
             sheets[name] = rows
     return sheets
 
 
-def _norm_header(text: str) -> str:
+def norm_header(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", text.lower())
 
 
-def extract_table(rows: list[list[str]], required_headers: dict[str, str]) -> list[dict[str, str]]:
-    required_norm = {key: _norm_header(value) for key, value in required_headers.items()}
-    header_idx = None
-    header_map: dict[str, int] = {}
-
+def extract_table(rows: list[list[str]], headers: dict[str, str]) -> list[dict[str, str]]:
+    target = {k: norm_header(v) for k, v in headers.items()}
+    idx = -1
+    cols: dict[str, int] = {}
     for i, row in enumerate(rows[:40]):
-        norm_to_col = {_norm_header(cell): idx for idx, cell in enumerate(row) if _norm_header(cell)}
-        if all(val in norm_to_col for val in required_norm.values()):
-            header_idx = i
-            header_map = {key: norm_to_col[val] for key, val in required_norm.items()}
+        norm = {norm_header(c): j for j, c in enumerate(row) if norm_header(c)}
+        if all(v in norm for v in target.values()):
+            idx = i
+            cols = {k: norm[v] for k, v in target.items()}
             break
-
-    if header_idx is None:
+    if idx < 0:
         return []
 
-    extracted: list[dict[str, str]] = []
-    for row in rows[header_idx + 1 :]:
-        if not any(_clean_text(cell) for cell in row):
+    out: list[dict[str, str]] = []
+    for row in rows[idx + 1 :]:
+        if not any(clean_text(c) for c in row):
             continue
-        record: dict[str, str] = {}
-        for key, col in header_map.items():
-            record[key] = _clean_text(row[col]) if col < len(row) else ""
-        if any(record.values()):
-            extracted.append(record)
-    return extracted
+        item = {k: clean_text(row[c]) if c < len(row) else "" for k, c in cols.items()}
+        if any(item.values()):
+            out.append(item)
+    return out
 
 
-def build_mappings() -> None:
-    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-
-    campaign_records: list[CampaignRecord] = []
-    well_records: list[dict[str, str]] = []
-
-    for xlsx in sorted(RAW_DIR.glob("*.xlsx")):
-        sheets = read_xlsx(xlsx)
-
-        for sheet_name, rows in sheets.items():
-            # Campaign + well dictionary table
-            for rec in extract_table(
-                rows,
-                {
-                    "asset": "Asset",
-                    "campaign": "Campaign",
-                    "campaign_code": "WBS CODE",
-                    "well_sap": "Well Name SAP",
-                    "well_wv": "Well Name WellView",
-                    "well_other": "Well Name Others",
-                },
-            ):
-                campaign_records.append(
-                    CampaignRecord(xlsx.name, sheet_name, rec["asset"], rec["campaign"], rec["campaign_code"])
-                )
-                for col in ["well_sap", "well_wv", "well_other"]:
-                    if rec[col] and rec[col].upper() != "XXXX":
-                        well_records.append(
-                            {
-                                "source_file": xlsx.name,
-                                "source_sheet": sheet_name,
-                                "asset_raw": rec["asset"],
-                                "campaign_raw": rec["campaign"],
-                                "campaign_code_raw": rec["campaign_code"],
-                                "well_raw": rec[col],
-                                "well_source_column": col,
-                            }
-                        )
-
-            # Campaign reference table
-            for rec in extract_table(
-                rows,
-                {
-                    "campaign_code": "WBS Drilling Campaign",
-                    "campaign": "Campaign",
-                },
-            ):
-                campaign_records.append(CampaignRecord(xlsx.name, sheet_name, "", rec["campaign"], rec["campaign_code"]))
-
-            # Cost technical table
-            for rec in extract_table(
-                rows,
-                {
-                    "asset": "Asset",
-                    "campaign": "Campaign",
-                    "well": "Well Name",
-                },
-            ):
-                campaign_records.append(CampaignRecord(xlsx.name, sheet_name, rec["asset"], rec["campaign"], ""))
-                if rec["well"]:
-                    well_records.append(
+def campaign_rows_from_sources() -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for workbook in sorted(RAW_DIR.glob("*.xlsx")):
+        sheets = read_xlsx(workbook)
+        for sheet, data in sheets.items():
+            for rec in extract_table(data, {"campaign_code": "WBS Drilling Campaign", "campaign_name": "Campaign"}):
+                code = rec["campaign_code"].upper()
+                if not code:
+                    continue
+                scope = OFFICIAL_CAMPAIGNS.get(code)
+                if scope:
+                    rows.append(
                         {
-                            "source_file": xlsx.name,
-                            "source_sheet": sheet_name,
-                            "asset_raw": rec["asset"],
-                            "campaign_raw": rec["campaign"],
-                            "campaign_code_raw": "",
-                            "well_raw": rec["well"],
-                            "well_source_column": "well",
+                            "campaign_code": code,
+                            "campaign_id": scope["campaign_id"],
+                            "campaign_name_raw": rec["campaign_name"],
+                            "estimator_scope": scope["estimator_scope"],
+                            "include_for_estimator": "yes" if scope["estimator_scope"] == "in_scope" else "no",
+                            "source_file": workbook.name,
+                            "source_sheet": sheet,
+                            "scope_note": scope["scope_note"],
+                        }
+                    )
+                else:
+                    rows.append(
+                        {
+                            "campaign_code": code,
+                            "campaign_id": "EXCLUDED",
+                            "campaign_name_raw": rec["campaign_name"],
+                            "estimator_scope": "excluded",
+                            "include_for_estimator": "no",
+                            "source_file": workbook.name,
+                            "source_sheet": sheet,
+                            "scope_note": "Excluded from estimator (Wayang Windu / Hamiding / unknown category)",
                         }
                     )
 
-            # WellView adjusted table
-            for rec in extract_table(
-                rows,
-                {
-                    "asset": "Asset",
-                    "campaign": "Drilling Campaign",
-                    "well_sap": "Well Name SAP",
-                    "well_wv": "Well Name Well View",
-                },
-            ):
-                campaign_records.append(CampaignRecord(xlsx.name, sheet_name, rec["asset"], rec["campaign"], ""))
-                for col in ["well_sap", "well_wv"]:
-                    if rec[col]:
-                        well_records.append(
-                            {
-                                "source_file": xlsx.name,
-                                "source_sheet": sheet_name,
-                                "asset_raw": rec["asset"],
-                                "campaign_raw": rec["campaign"],
-                                "campaign_code_raw": "",
-                                "well_raw": rec[col],
-                                "well_source_column": col,
-                            }
-                        )
+    dedup: dict[str, dict[str, str]] = {}
+    for row in rows:
+        if row["campaign_code"] not in dedup:
+            dedup[row["campaign_code"]] = row
 
-            # Historical drilling table
-            for rec in extract_table(
-                rows,
-                {
-                    "asset": "Asset",
-                    "campaign": "Drilling Campaign",
-                    "well": "Well Name (WellView Version)",
-                },
-            ):
-                if rec["campaign"]:
-                    campaign_records.append(CampaignRecord(xlsx.name, sheet_name, rec["asset"], rec["campaign"], ""))
-                if rec["well"]:
-                    well_records.append(
-                        {
-                            "source_file": xlsx.name,
-                            "source_sheet": sheet_name,
-                            "asset_raw": rec["asset"],
-                            "campaign_raw": rec["campaign"],
-                            "campaign_code_raw": "",
-                            "well_raw": rec["well"],
-                            "well_source_column": "well",
-                        }
-                    )
-
-    # Explode multiline wells from drilled well reference entries
-    exploded_well_records: list[dict[str, str]] = []
-    for record in well_records:
-        chunks = [chunk.strip() for chunk in record["well_raw"].split("\n") if chunk.strip()]
-        if not chunks:
-            chunks = [record["well_raw"]]
-        for chunk in chunks:
-            cloned = dict(record)
-            cloned["well_raw"] = chunk
-            exploded_well_records.append(cloned)
-
-    # Campaign mapping
-    campaign_seen: set[tuple[str, str, str]] = set()
-    campaign_rows: list[dict[str, str]] = []
-    for rec in campaign_records:
-        if not rec.campaign_raw and not rec.campaign_code_raw:
-            continue
-        campaign_canonical = normalize_campaign(rec.campaign_raw)
-        if campaign_canonical in {"", "X"} and not rec.campaign_code_raw:
-            continue
-        asset_canonical = normalize_asset(rec.asset_raw)
-        code_canonical = _clean_text(rec.campaign_code_raw).upper()
-        dedupe_key = (campaign_canonical, code_canonical, asset_canonical)
-        if dedupe_key in campaign_seen:
-            continue
-        campaign_seen.add(dedupe_key)
-        campaign_rows.append(
-            {
-                "campaign_canonical": campaign_canonical,
-                "campaign_raw": rec.campaign_raw,
-                "campaign_code_canonical": code_canonical,
-                "campaign_code_raw": rec.campaign_code_raw,
-                "asset_canonical": asset_canonical,
-                "asset_raw": rec.asset_raw,
-                "source_file": rec.source_file,
-                "source_sheet": rec.source_sheet,
+    for code, meta in OFFICIAL_CAMPAIGNS.items():
+        if code not in dedup:
+            dedup[code] = {
+                "campaign_code": code,
+                "campaign_id": meta["campaign_id"],
+                "campaign_name_raw": "",
+                "estimator_scope": meta["estimator_scope"],
+                "include_for_estimator": "yes" if meta["estimator_scope"] == "in_scope" else "no",
+                "source_file": "",
+                "source_sheet": "",
+                "scope_note": meta["scope_note"],
             }
-        )
 
-    campaigns_by_name: dict[str, set[str]] = defaultdict(set)
-    for row in campaign_rows:
-        if row["campaign_canonical"]:
-            if row["campaign_code_canonical"]:
-                campaigns_by_name[row["campaign_canonical"]].add(row["campaign_code_canonical"])
+    return [dedup[k] for k in sorted(dedup)]
 
-    for row in campaign_rows:
-        codes = campaigns_by_name.get(row["campaign_canonical"], set())
-        row["ambiguity_flag"] = "yes" if len(codes) > 1 else "no"
-        row["ambiguity_note"] = (
-            f"Multiple campaign codes for canonical name: {', '.join(sorted(codes))}" if len(codes) > 1 else ""
-        )
 
-    # Well mapping
-    well_rows_raw: list[dict[str, str]] = []
-    for rec in exploded_well_records:
-        campaign_canonical = normalize_campaign(rec["campaign_raw"])
-        matching_codes = sorted(campaigns_by_name.get(campaign_canonical, set()))
-        well_rows_raw.append(
-            {
-                "well_canonical": normalize_well(rec["well_raw"]),
-                "well_raw": rec["well_raw"],
-                "campaign_canonical": campaign_canonical,
-                "campaign_raw": rec["campaign_raw"],
-                "campaign_code_inferred": matching_codes[0] if len(matching_codes) == 1 else "",
-                "asset_canonical": normalize_asset(rec["asset_raw"]),
-                "asset_raw": rec["asset_raw"],
-                "source_file": rec["source_file"],
-                "source_sheet": rec["source_sheet"],
-                "well_source_column": rec["well_source_column"],
-                "ambiguity_flag": "yes" if len(matching_codes) > 1 else "no",
-                "ambiguity_note": (
-                    f"Campaign name maps to multiple codes: {', '.join(matching_codes)}" if len(matching_codes) > 1 else ""
-                ),
-            }
-        )
+def build_alias_index() -> dict[str, str]:
+    alias_to_canonical: dict[str, str] = {}
+    for a, b in WELL_ALIAS_PAIRS:
+        a_n, b_n = normalize_well(a), normalize_well(b)
+        alias_to_canonical[a_n] = b_n
+        alias_to_canonical[b_n] = b_n
+    return alias_to_canonical
 
-    # Keep unique provenance-aware rows only.
-    seen_well_keys: set[tuple[str, str, str, str, str, str]] = set()
+
+def collect_observed_wells() -> list[dict[str, str]]:
+    records: list[dict[str, str]] = []
+    workbook = RAW_DIR / "20260327_WBS_Data.xlsx"
+    sheets = read_xlsx(workbook)
+    for sheet in ["Data.Summary", "Cost & Technical Data", "WellView.Data", "2. Drilling.Data.History"]:
+        data = sheets.get(sheet, [])
+        if sheet == "WellView.Data":
+            table = extract_table(data, {"campaign": "Drilling Campaign", "well": "Well Name SAP"})
+            for row in table:
+                if row["well"]:
+                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
+        elif sheet == "2. Drilling.Data.History":
+            table = extract_table(data, {"campaign": "Drilling Campaign", "well": "Well Name (WellView Version)"})
+            for row in table:
+                if row["well"]:
+                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
+        else:
+            table = extract_table(data, {"campaign": "Campaign", "well": "Well Name"})
+            for row in table:
+                if row["well"]:
+                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
+    return records
+
+
+def build_well_mapping() -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    alias_index = build_alias_index()
+    observed = collect_observed_wells()
+
     well_rows: list[dict[str, str]] = []
-    for row in well_rows_raw:
-        key = (
-            row["well_canonical"],
-            row["campaign_canonical"],
-            row["campaign_code_inferred"],
-            row["asset_canonical"],
-            row["source_sheet"],
-            row["well_source_column"],
-        )
-        if key in seen_well_keys:
+    anomalies: list[dict[str, str]] = []
+    anomaly_seen: set[tuple[str, str, str, str]] = set()
+    seen: set[tuple[str, str, str]] = set()
+
+    campaign_map = {
+        "DRJ 2022": "E530-30101-D225301",
+        "DRJ 2023": "E530-30101-D235301",
+        "SLK 2025": "E540-30101-D245401",
+        "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
+        "SALAK CAMPAIGN 2021": "E540-30101-D20001",
+    }
+
+    for rec in observed:
+        well_norm = normalize_well(rec["well_raw"])
+        campaign_norm = clean_text(rec["campaign_raw"]).upper()
+        code = campaign_map.get(campaign_norm, "")
+
+        if campaign_norm in {"DRJ 2023", "DARAJAT 2023", "DARAJAT_2023_2024"} and well_norm == "20-1":
+            a_key = ("posting_exception", rec["campaign_raw"], rec["well_raw"], rec["source_sheet"])
+            if a_key not in anomaly_seen:
+                anomaly_seen.add(a_key)
+                anomalies.append(
+                    {
+                        "anomaly_type": "posting_exception",
+                        "campaign_raw": rec["campaign_raw"],
+                        "well_raw": rec["well_raw"],
+                        "source_sheet": rec["source_sheet"],
+                        "note": "20-1 under DRJ 2023 treated as posting exception; not remapped to DARAJAT_2023_2024 well roster.",
+                    }
+                )
             continue
-        seen_well_keys.add(key)
-        well_rows.append(row)
 
-    campaign_out = PROCESSED_DIR / "canonical_campaign_mapping.csv"
-    with campaign_out.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(fh, fieldnames=list(campaign_rows[0].keys()))
+        canonical_well = alias_index.get(well_norm, well_norm)
+        include_training = "no" if well_norm == normalize_well("DRJ-Steam 1") else "yes"
+        note = ""
+        if well_norm == normalize_well("DRJ-Steam 1"):
+            note = "Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed."
+
+        campaign_scope = OFFICIAL_CAMPAIGNS.get(code, {}).get("estimator_scope", "excluded")
+        include_estimator = "yes" if campaign_scope == "in_scope" else "no"
+
+        key = (well_norm, code, rec["source_sheet"])
+        if key in seen:
+            continue
+        seen.add(key)
+
+        well_rows.append(
+            {
+                "well_alias": well_norm,
+                "well_canonical": canonical_well,
+                "campaign_code": code,
+                "campaign_id": OFFICIAL_CAMPAIGNS.get(code, {}).get("campaign_id", "EXCLUDED"),
+                "estimator_scope": campaign_scope,
+                "include_for_estimator": include_estimator,
+                "include_for_well_training": include_training if include_estimator == "yes" else "no",
+                "source_sheet": rec["source_sheet"],
+                "note": note,
+            }
+        )
+
+    # Ensure explicit alias catalog is always present for auditable mapping.
+    for left, right in WELL_ALIAS_PAIRS:
+        l_norm, r_norm = normalize_well(left), normalize_well(right)
+        for alias in [l_norm, r_norm]:
+            key = (alias, "", "alias_catalog")
+            if key in seen:
+                continue
+            seen.add(key)
+            well_rows.append(
+                {
+                    "well_alias": alias,
+                    "well_canonical": r_norm,
+                    "campaign_code": "",
+                    "campaign_id": "",
+                    "estimator_scope": "reference",
+                    "include_for_estimator": "no",
+                    "include_for_well_training": "no",
+                    "source_sheet": "alias_catalog",
+                    "note": "Configured alias mapping",
+                }
+            )
+
+    return sorted(well_rows, key=lambda x: (x["well_alias"], x["campaign_code"], x["source_sheet"])), anomalies
+
+
+def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    headers = list(rows[0].keys()) if rows else []
+    with path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
         writer.writeheader()
-        writer.writerows(campaign_rows)
+        writer.writerows(rows)
 
-    well_out = PROCESSED_DIR / "canonical_well_mapping.csv"
-    with well_out.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(fh, fieldnames=list(well_rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(well_rows)
 
-    unresolved_campaigns = [r for r in campaign_rows if r["ambiguity_flag"] == "yes"]
-    unresolved_wells = [r for r in well_rows if r["ambiguity_flag"] == "yes" or not r["campaign_code_inferred"]]
-    unresolved_samples = unresolved_wells[:10]
+def write_report(campaign_rows: list[dict[str, str]], well_rows: list[dict[str, str]], anomalies: list[dict[str, str]]) -> None:
+    excluded_campaigns = [r for r in campaign_rows if r["estimator_scope"] == "excluded"]
+    legacy_campaigns = [r for r in campaign_rows if r["estimator_scope"] == "legacy_reference"]
+    in_scope_wells = [r for r in well_rows if r["include_for_estimator"] == "yes"]
+    excluded_wells = [r for r in well_rows if r["include_for_estimator"] == "no" and r["source_sheet"] != "alias_catalog"]
 
-    unresolved_table = "\n".join(
+    lines = [
+        "# Canonical Campaign and Well Mapping Report",
+        "",
+        "## Simplified mapping rules applied",
+        "1. Campaign source of truth uses official campaign codes.",
+        "2. Estimator scope is strictly limited to:",
+        "   - DARAJAT_2022 (`E530-30101-D225301`)",
+        "   - DARAJAT_2023_2024 (`E530-30101-D235301`)",
+        "   - SALAK_2025_2026 (`E540-30101-D245401`)",
+        "3. Legacy reference only: DARAJAT_2019 and SALAK_2021.",
+        "4. Wayang Windu, Hamiding, and unknown categories are excluded from estimator modeling.",
+        "5. Explicit well alias crosswalk is enforced from the provided canonical pairs.",
+        "",
+        "## Excluded records and unresolved anomalies",
+        f"- Excluded campaign codes: **{len(excluded_campaigns)}**.",
+        f"- Legacy-only campaign codes: **{len(legacy_campaigns)}**.",
+        f"- In-scope well mapping rows: **{len(in_scope_wells)}**.",
+        f"- Well rows excluded from estimator: **{len(excluded_wells)}**.",
+        f"- Detected posting exceptions / anomalies: **{len(anomalies)}**.",
+        "",
+        "### Anomaly detail",
+        "| anomaly_type | campaign_raw | well_raw | source_sheet | note |",
+        "|---|---|---|---|---|",
+    ]
+    if anomalies:
+        for a in anomalies[:20]:
+            lines.append(f"| {a['anomaly_type']} | {a['campaign_raw']} | {a['well_raw']} | {a['source_sheet']} | {a['note']} |")
+    else:
+        lines.append("| - | - | - | - | - |")
+
+    lines.extend(
         [
-            f"| {r['well_canonical']} | {r['campaign_canonical']} | {r['source_sheet']} | {r['ambiguity_note'] or 'No campaign code could be inferred'} |"
-            for r in unresolved_samples
+            "",
+            "### Training holdout rule",
+            "- `DRJ-Steam 1` is kept under `DARAJAT_2023_2024` campaign context but excluded from well-level training until confirmed.",
         ]
     )
-    if not unresolved_table:
-        unresolved_table = "| - | - | - | - |"
 
-    report = f"""# Canonical Campaign and Well Mapping Report
+    REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-## Scope
-This milestone only builds canonical campaign + well mapping from raw Excel files. No modeling or app work is included.
 
-## Join Rules
-1. **Campaign canonicalization**
-   - `campaign_canonical` is uppercase, whitespace-normalized, with aliases normalized (`DRJ -> DARAJAT`, `SLK -> SALAK`).
-   - `asset_canonical` is normalized to `DARAJAT`, `SALAK`, or `WAYANG WINDU` where applicable.
-2. **Campaign key precedence**
-   - Primary key candidate: `campaign_code_canonical` from `WBS CODE` or `WBS Drilling Campaign`.
-   - Fallback key candidate: `(campaign_canonical, asset_canonical)` when code is absent.
-3. **Well canonicalization**
-   - `well_canonical` is uppercase, whitespace-normalized, and dash-spacing normalized.
-   - Multi-line cells (e.g., Drilled.Well) are split into one row per well.
-4. **Well-to-campaign assignment**
-   - If a canonical campaign name maps to exactly one campaign code, that code is assigned as `campaign_code_inferred`.
-   - If the campaign maps to multiple codes, mapping is marked ambiguous.
+def main() -> None:
+    campaign_rows = campaign_rows_from_sources()
+    well_rows, anomalies = build_well_mapping()
 
-## Unresolved ambiguities
-- Campaign rows with multiple campaign codes for a single `campaign_canonical`: **{len(unresolved_campaigns)}**.
-- Well rows unresolved (missing inferred code or ambiguous campaign mapping): **{len(unresolved_wells)}**.
-
-### Notes
-- Empty campaign in source rows remains unresolved by design at this milestone.
-- `canonical_well_mapping.csv` preserves source provenance (`source_file`, `source_sheet`, and source well column).
-
-### Unresolved sample (first 10 rows)
-| well_canonical | campaign_canonical | source_sheet | note |
-|---|---|---|---|
-{unresolved_table}
-"""
-    REPORT_PATH.write_text(report, encoding="utf-8")
+    write_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv", campaign_rows)
+    write_csv(PROCESSED_DIR / "canonical_well_mapping.csv", well_rows)
+    write_report(campaign_rows, well_rows, anomalies)
+    print("Simplified canonical campaign/well mapping generated.")
 
 
 if __name__ == "__main__":
-    build_mappings()
-    print("Wrote canonical mapping outputs to data/processed and report to reports/.")
+    main()
