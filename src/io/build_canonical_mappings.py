@@ -9,17 +9,17 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"
-REPORT_PATH = ROOT / "reports" / "campaign_well_mapping_report.md"
+REPORT_PATH = ROOT / "reports" / "well_master_build_report.md"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 
 OFFICIAL_CAMPAIGNS = {
-    "E530-30101-D225301": {"campaign_id": "DARAJAT_2022", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
-    "E530-30101-D235301": {"campaign_id": "DARAJAT_2023_2024", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
-    "E540-30101-D245401": {"campaign_id": "SALAK_2025_2026", "estimator_scope": "in_scope", "scope_note": "Estimator scope"},
-    "E530-30101-D19001": {"campaign_id": "DARAJAT_2019", "estimator_scope": "legacy_reference", "scope_note": "Legacy reference only"},
-    "E540-30101-D20001": {"campaign_id": "SALAK_2021", "estimator_scope": "legacy_reference", "scope_note": "Legacy reference only"},
+    "E530-30101-D225301": {"campaign_id": "DARAJAT_2022", "field": "DARAJAT", "scope": "in_scope"},
+    "E530-30101-D235301": {"campaign_id": "DARAJAT_2023_2024", "field": "DARAJAT", "scope": "in_scope"},
+    "E540-30101-D245401": {"campaign_id": "SALAK_2025_2026", "field": "SALAK", "scope": "in_scope"},
+    "E530-30101-D19001": {"campaign_id": "DARAJAT_2019", "field": "DARAJAT", "scope": "legacy_reference"},
+    "E540-30101-D20001": {"campaign_id": "SALAK_2021", "field": "SALAK", "scope": "legacy_reference"},
 }
 
 WELL_ALIAS_PAIRS = [
@@ -28,13 +28,21 @@ WELL_ALIAS_PAIRS = [
     ("20-1", "DRJ-50"),
     ("SF-1", "DRJ-49"),
     ("SF-ML", "DRJ-38"),
-    ("DRJ-STEAM 6", "DRJ-53"),
-    ("DRJ-STEAM 2", "DRJ-54"),
-    ("DRJ-STEAM 3", "DRJ-55"),
-    ("DRJ-STEAM 4", "DRJ-56"),
-    ("DRJ-STEAM 5", "DRJ-57"),
+    ("DRJ-Steam 6", "DRJ-53"),
+    ("DRJ-Steam 2", "DRJ-54"),
+    ("DRJ-Steam 3", "DRJ-55"),
+    ("DRJ-Steam 4", "DRJ-56"),
+    ("DRJ-Steam 5", "DRJ-57"),
     ("AWI 9-10RD", "AWI 9-10"),
 ]
+
+CAMPAIGN_LABEL_TO_CODE = {
+    "DRJ 2022": "E530-30101-D225301",
+    "DRJ 2023": "E530-30101-D235301",
+    "SLK 2025": "E540-30101-D245401",
+    "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
+    "SALAK CAMPAIGN 2021": "E540-30101-D20001",
+}
 
 
 def clean_text(value: str) -> str:
@@ -42,8 +50,7 @@ def clean_text(value: str) -> str:
 
 
 def normalize_well(name: str) -> str:
-    text = clean_text(name).upper()
-    return re.sub(r"\s*-\s*", "-", text)
+    return re.sub(r"\s*-\s*", "-", clean_text(name).upper())
 
 
 def col_index(cell_ref: str) -> int:
@@ -103,10 +110,10 @@ def extract_table(rows: list[list[str]], headers: dict[str, str]) -> list[dict[s
     idx = -1
     cols: dict[str, int] = {}
     for i, row in enumerate(rows[:40]):
-        norm = {norm_header(c): j for j, c in enumerate(row) if norm_header(c)}
-        if all(v in norm for v in target.values()):
+        normalized = {norm_header(c): j for j, c in enumerate(row) if norm_header(c)}
+        if all(v in normalized for v in target.values()):
             idx = i
-            cols = {k: norm[v] for k, v in target.items()}
+            cols = {k: normalized[v] for k, v in target.items()}
             break
     if idx < 0:
         return []
@@ -130,18 +137,17 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
                 code = rec["campaign_code"].upper()
                 if not code:
                     continue
-                scope = OFFICIAL_CAMPAIGNS.get(code)
-                if scope:
+                meta = OFFICIAL_CAMPAIGNS.get(code)
+                if meta:
                     rows.append(
                         {
                             "campaign_code": code,
-                            "campaign_id": scope["campaign_id"],
+                            "campaign_id": meta["campaign_id"],
                             "campaign_name_raw": rec["campaign_name"],
-                            "estimator_scope": scope["estimator_scope"],
-                            "include_for_estimator": "yes" if scope["estimator_scope"] == "in_scope" else "no",
+                            "estimator_scope": meta["scope"],
+                            "include_for_estimator": "yes" if meta["scope"] == "in_scope" else "no",
                             "source_file": workbook.name,
                             "source_sheet": sheet,
-                            "scope_note": scope["scope_note"],
                         }
                     )
                 else:
@@ -154,7 +160,6 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
                             "include_for_estimator": "no",
                             "source_file": workbook.name,
                             "source_sheet": sheet,
-                            "scope_note": "Excluded from estimator (Wayang Windu / Hamiding / unknown category)",
                         }
                     )
 
@@ -162,210 +167,228 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
     for row in rows:
         if row["campaign_code"] not in dedup:
             dedup[row["campaign_code"]] = row
-
     for code, meta in OFFICIAL_CAMPAIGNS.items():
         if code not in dedup:
             dedup[code] = {
                 "campaign_code": code,
                 "campaign_id": meta["campaign_id"],
                 "campaign_name_raw": "",
-                "estimator_scope": meta["estimator_scope"],
-                "include_for_estimator": "yes" if meta["estimator_scope"] == "in_scope" else "no",
+                "estimator_scope": meta["scope"],
+                "include_for_estimator": "yes" if meta["scope"] == "in_scope" else "no",
                 "source_file": "",
                 "source_sheet": "",
-                "scope_note": meta["scope_note"],
             }
 
     return [dedup[k] for k in sorted(dedup)]
 
 
 def build_alias_index() -> dict[str, str]:
-    alias_to_canonical: dict[str, str] = {}
-    for a, b in WELL_ALIAS_PAIRS:
-        a_n, b_n = normalize_well(a), normalize_well(b)
-        alias_to_canonical[a_n] = b_n
-        alias_to_canonical[b_n] = b_n
-    return alias_to_canonical
+    mapping: dict[str, str] = {}
+    for left, right in WELL_ALIAS_PAIRS:
+        l_norm, r_norm = normalize_well(left), normalize_well(right)
+        mapping[l_norm] = r_norm
+        mapping[r_norm] = r_norm
+    return mapping
 
 
-def collect_observed_wells() -> list[dict[str, str]]:
-    records: list[dict[str, str]] = []
-    workbook = RAW_DIR / "20260327_WBS_Data.xlsx"
-    sheets = read_xlsx(workbook)
-    for sheet in ["Data.Summary", "Cost & Technical Data", "WellView.Data", "2. Drilling.Data.History"]:
-        data = sheets.get(sheet, [])
-        if sheet == "WellView.Data":
-            table = extract_table(data, {"campaign": "Drilling Campaign", "well": "Well Name SAP"})
-            for row in table:
-                if row["well"]:
-                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
-        elif sheet == "2. Drilling.Data.History":
-            table = extract_table(data, {"campaign": "Drilling Campaign", "well": "Well Name (WellView Version)"})
-            for row in table:
-                if row["well"]:
-                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
-        else:
-            table = extract_table(data, {"campaign": "Campaign", "well": "Well Name"})
-            for row in table:
-                if row["well"]:
-                    records.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_raw": row["well"]})
-    return records
+def collect_observations() -> list[dict[str, str]]:
+    observations: list[dict[str, str]] = []
+    wb = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
+
+    for sheet in ["Data.Summary", "Cost & Technical Data"]:
+        for row in extract_table(wb.get(sheet, []), {"campaign": "Campaign", "well": "Well Name"}):
+            if row["well"]:
+                observations.append({"source_sheet": sheet, "campaign_raw": row["campaign"], "well_alias": normalize_well(row["well"])})
+
+    for row in extract_table(wb.get("WellView.Data", []), {"campaign": "Drilling Campaign", "well": "Well Name SAP"}):
+        if row["well"]:
+            observations.append({"source_sheet": "WellView.Data", "campaign_raw": row["campaign"], "well_alias": normalize_well(row["well"])})
+
+    for row in extract_table(wb.get("2. Drilling.Data.History", []), {"campaign": "Drilling Campaign", "well": "Well Name (WellView Version)"}):
+        if row["well"]:
+            observations.append({"source_sheet": "2. Drilling.Data.History", "campaign_raw": row["campaign"], "well_alias": normalize_well(row["well"])})
+
+    return observations
 
 
-def build_well_mapping() -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+def build_master_and_lookup() -> tuple[list[dict[str, str]], list[dict[str, str]], dict[str, int]]:
     alias_index = build_alias_index()
-    observed = collect_observed_wells()
+    observations = collect_observations()
 
-    well_rows: list[dict[str, str]] = []
-    anomalies: list[dict[str, str]] = []
-    anomaly_seen: set[tuple[str, str, str, str]] = set()
-    seen: set[tuple[str, str, str]] = set()
+    # Step 1: establish in-scope master roster from non-history operational sheets.
+    master_by_key: dict[tuple[str, str], dict[str, str]] = {}
+    lookup_rows: list[dict[str, str]] = []
 
-    campaign_map = {
-        "DRJ 2022": "E530-30101-D225301",
-        "DRJ 2023": "E530-30101-D235301",
-        "SLK 2025": "E540-30101-D245401",
-        "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
-        "SALAK CAMPAIGN 2021": "E540-30101-D20001",
-    }
+    for obs in observations:
+        campaign_label = clean_text(obs["campaign_raw"]).upper()
+        campaign_code = CAMPAIGN_LABEL_TO_CODE.get(campaign_label, "")
+        canonical = alias_index.get(obs["well_alias"], obs["well_alias"])
 
-    for rec in observed:
-        well_norm = normalize_well(rec["well_raw"])
-        campaign_norm = clean_text(rec["campaign_raw"]).upper()
-        code = campaign_map.get(campaign_norm, "")
+        if campaign_label == "DRJ 2023" and canonical == "DRJ-50":
+            lookup_rows.append(
+                {
+                    "well_alias": obs["well_alias"],
+                    "well_canonical": canonical,
+                    "source_sheet": obs["source_sheet"],
+                    "alias_type": "source_observation",
+                    "resolution_method": "posting_exception",
+                    "is_modeling_master": "no",
+                }
+            )
+            continue
 
-        if campaign_norm in {"DRJ 2023", "DARAJAT 2023", "DARAJAT_2023_2024"} and well_norm == "20-1":
-            a_key = ("posting_exception", rec["campaign_raw"], rec["well_raw"], rec["source_sheet"])
-            if a_key not in anomaly_seen:
-                anomaly_seen.add(a_key)
-                anomalies.append(
-                    {
-                        "anomaly_type": "posting_exception",
-                        "campaign_raw": rec["campaign_raw"],
-                        "well_raw": rec["well_raw"],
-                        "source_sheet": rec["source_sheet"],
-                        "note": "20-1 under DRJ 2023 treated as posting exception; not remapped to DARAJAT_2023_2024 well roster.",
+        if obs["source_sheet"] in {"Data.Summary", "Cost & Technical Data", "WellView.Data"} and campaign_code in OFFICIAL_CAMPAIGNS:
+            meta = OFFICIAL_CAMPAIGNS[campaign_code]
+            if meta["scope"] == "in_scope":
+                key = (canonical, campaign_code)
+                if key not in master_by_key:
+                    training_note = ""
+                    include_training = "yes"
+                    if canonical == "DRJ-STEAM 1" and campaign_code == "E530-30101-D235301":
+                        include_training = "no"
+                        training_note = "Keep in scope, exclude from well-level training until confirmed"
+                    master_by_key[key] = {
+                        "well_canonical": canonical,
+                        "field": meta["field"],
+                        "campaign_code": campaign_code,
+                        "campaign_id": meta["campaign_id"],
+                        "include_for_estimator": "yes",
+                        "include_for_well_training": include_training,
+                        "training_note": training_note,
                     }
-                )
-            continue
 
-        canonical_well = alias_index.get(well_norm, well_norm)
-        include_training = "no" if well_norm == normalize_well("DRJ-Steam 1") else "yes"
-        note = ""
-        if well_norm == normalize_well("DRJ-Steam 1"):
-            note = "Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed."
+    # helper for history reassignment rule
+    campaigns_by_well: dict[str, set[str]] = {}
+    for well_canonical, campaign_code in master_by_key.keys():
+        campaigns_by_well.setdefault(well_canonical, set()).add(campaign_code)
 
-        campaign_scope = OFFICIAL_CAMPAIGNS.get(code, {}).get("estimator_scope", "excluded")
-        include_estimator = "yes" if campaign_scope == "in_scope" else "no"
+    reassigned_history_rows = 0
+    unresolved_rows = 0
+    remaining_exclusions = 0
 
-        key = (well_norm, code, rec["source_sheet"])
-        if key in seen:
-            continue
-        seen.add(key)
+    for obs in observations:
+        canonical = alias_index.get(obs["well_alias"], obs["well_alias"])
+        campaign_label = clean_text(obs["campaign_raw"]).upper()
+        campaign_code = CAMPAIGN_LABEL_TO_CODE.get(campaign_label, "")
 
-        well_rows.append(
+        alias_type = "history_observation" if obs["source_sheet"] == "2. Drilling.Data.History" else "source_observation"
+        resolution_method = "direct_match"
+        is_modeling_master = "no"
+
+        if campaign_label == "DRJ 2023" and canonical == "DRJ-50":
+            resolution_method = "posting_exception"
+            remaining_exclusions += 1
+        elif obs["source_sheet"] == "2. Drilling.Data.History":
+            matches = sorted(campaigns_by_well.get(canonical, set()))
+            if len(matches) == 1:
+                campaign_code = matches[0]
+                reassigned_history_rows += 1
+                resolution_method = "history_reassigned_unique_master"
+                is_modeling_master = "yes"
+            elif len(matches) == 0:
+                resolution_method = "out_of_scope"
+                unresolved_rows += 1
+                remaining_exclusions += 1
+            else:
+                resolution_method = "ambiguous_master_match"
+                unresolved_rows += 1
+                remaining_exclusions += 1
+        else:
+            if campaign_code in OFFICIAL_CAMPAIGNS and OFFICIAL_CAMPAIGNS[campaign_code]["scope"] == "in_scope":
+                is_modeling_master = "yes"
+            elif campaign_code in OFFICIAL_CAMPAIGNS:
+                resolution_method = "legacy_reference"
+                remaining_exclusions += 1
+            else:
+                resolution_method = "out_of_scope"
+                remaining_exclusions += 1
+
+        lookup_rows.append(
             {
-                "well_alias": well_norm,
-                "well_canonical": canonical_well,
-                "campaign_code": code,
-                "campaign_id": OFFICIAL_CAMPAIGNS.get(code, {}).get("campaign_id", "EXCLUDED"),
-                "estimator_scope": campaign_scope,
-                "include_for_estimator": include_estimator,
-                "include_for_well_training": include_training if include_estimator == "yes" else "no",
-                "source_sheet": rec["source_sheet"],
-                "note": note,
+                "well_alias": obs["well_alias"],
+                "well_canonical": canonical,
+                "source_sheet": obs["source_sheet"],
+                "alias_type": alias_type,
+                "resolution_method": resolution_method,
+                "is_modeling_master": is_modeling_master,
             }
         )
 
-    # Ensure explicit alias catalog is always present for auditable mapping.
+    # Add explicit alias catalog rows.
     for left, right in WELL_ALIAS_PAIRS:
         l_norm, r_norm = normalize_well(left), normalize_well(right)
         for alias in [l_norm, r_norm]:
-            key = (alias, "", "alias_catalog")
-            if key in seen:
-                continue
-            seen.add(key)
-            well_rows.append(
+            lookup_rows.append(
                 {
                     "well_alias": alias,
                     "well_canonical": r_norm,
-                    "campaign_code": "",
-                    "campaign_id": "",
-                    "estimator_scope": "reference",
-                    "include_for_estimator": "no",
-                    "include_for_well_training": "no",
                     "source_sheet": "alias_catalog",
-                    "note": "Configured alias mapping",
+                    "alias_type": "manual_alias",
+                    "resolution_method": "manual_alias_map",
+                    "is_modeling_master": "yes" if r_norm in campaigns_by_well else "no",
                 }
             )
 
-    return sorted(well_rows, key=lambda x: (x["well_alias"], x["campaign_code"], x["source_sheet"])), anomalies
+    # De-duplicate lookup rows
+    dedup_lookup: dict[tuple[str, str, str, str, str], dict[str, str]] = {}
+    for row in lookup_rows:
+        key = (row["well_alias"], row["well_canonical"], row["source_sheet"], row["alias_type"], row["resolution_method"])
+        if key not in dedup_lookup:
+            dedup_lookup[key] = row
+
+    stats = {
+        "reassigned_history_rows": reassigned_history_rows,
+        "unresolved_rows": unresolved_rows,
+        "remaining_exclusions": remaining_exclusions,
+    }
+
+    master_rows = sorted(master_by_key.values(), key=lambda r: (r["campaign_code"], r["well_canonical"]))
+    lookup_final = sorted(dedup_lookup.values(), key=lambda r: (r["well_alias"], r["source_sheet"], r["resolution_method"]))
+    return master_rows, lookup_final, stats
 
 
 def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    headers = list(rows[0].keys()) if rows else []
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=headers)
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
 
 
-def write_report(campaign_rows: list[dict[str, str]], well_rows: list[dict[str, str]], anomalies: list[dict[str, str]]) -> None:
-    excluded_campaigns = [r for r in campaign_rows if r["estimator_scope"] == "excluded"]
-    legacy_campaigns = [r for r in campaign_rows if r["estimator_scope"] == "legacy_reference"]
-    in_scope_wells = [r for r in well_rows if r["include_for_estimator"] == "yes"]
-    excluded_wells = [r for r in well_rows if r["include_for_estimator"] == "no" and r["source_sheet"] != "alias_catalog"]
+def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], lookup_rows: list[dict[str, str]]) -> None:
+    in_scope_master = len(master_rows)
+    alias_catalog_rows = sum(1 for r in lookup_rows if r["source_sheet"] == "alias_catalog")
+    report = f"""# Well Master Build Report
 
-    lines = [
-        "# Canonical Campaign and Well Mapping Report",
-        "",
-        "## Simplified mapping rules applied",
-        "1. Campaign source of truth uses official campaign codes.",
-        "2. Estimator scope is strictly limited to:",
-        "   - DARAJAT_2022 (`E530-30101-D225301`)",
-        "   - DARAJAT_2023_2024 (`E530-30101-D235301`)",
-        "   - SALAK_2025_2026 (`E540-30101-D245401`)",
-        "3. Legacy reference only: DARAJAT_2019 and SALAK_2021.",
-        "4. Wayang Windu, Hamiding, and unknown categories are excluded from estimator modeling.",
-        "5. Explicit well alias crosswalk is enforced from the provided canonical pairs.",
-        "",
-        "## Excluded records and unresolved anomalies",
-        f"- Excluded campaign codes: **{len(excluded_campaigns)}**.",
-        f"- Legacy-only campaign codes: **{len(legacy_campaigns)}**.",
-        f"- In-scope well mapping rows: **{len(in_scope_wells)}**.",
-        f"- Well rows excluded from estimator: **{len(excluded_wells)}**.",
-        f"- Detected posting exceptions / anomalies: **{len(anomalies)}**.",
-        "",
-        "### Anomaly detail",
-        "| anomaly_type | campaign_raw | well_raw | source_sheet | note |",
-        "|---|---|---|---|---|",
-    ]
-    if anomalies:
-        for a in anomalies[:20]:
-            lines.append(f"| {a['anomaly_type']} | {a['campaign_raw']} | {a['well_raw']} | {a['source_sheet']} | {a['note']} |")
-    else:
-        lines.append("| - | - | - | - | - |")
+## Build outcome
+- In-scope well master rows: **{in_scope_master}**
+- Alias lookup rows: **{len(lookup_rows)}**
+- Alias catalog rows: **{alias_catalog_rows}**
 
-    lines.extend(
-        [
-            "",
-            "### Training holdout rule",
-            "- `DRJ-Steam 1` is kept under `DARAJAT_2023_2024` campaign context but excluded from well-level training until confirmed.",
-        ]
-    )
+## Required counts
+- Reassigned history rows: **{stats['reassigned_history_rows']}**
+- Unresolved rows: **{stats['unresolved_rows']}**
+- Remaining exclusions: **{stats['remaining_exclusions']}**
 
-    REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+## Rules enforced
+1. Campaign scope unchanged from current definition (3 in-scope, 2 legacy, others excluded).
+2. `DRJ-Steam 1` kept in scope and excluded from well-level training.
+3. `20-1` under DRJ 2023 treated as posting exception only.
+4. History rows (`2. Drilling.Data.History`) are reassigned to campaign when canonical well maps to exactly one in-scope master well.
+"""
+    REPORT_PATH.write_text(report, encoding="utf-8")
 
 
 def main() -> None:
+    # Keep campaign scope artifact unchanged for audit continuity.
     campaign_rows = campaign_rows_from_sources()
-    well_rows, anomalies = build_well_mapping()
-
     write_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv", campaign_rows)
-    write_csv(PROCESSED_DIR / "canonical_well_mapping.csv", well_rows)
-    write_report(campaign_rows, well_rows, anomalies)
-    print("Simplified canonical campaign/well mapping generated.")
+
+    master_rows, lookup_rows, stats = build_master_and_lookup()
+    write_csv(PROCESSED_DIR / "well_master.csv", master_rows)
+    write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows)
+    write_report(stats, master_rows, lookup_rows)
+    print("Wrote well_master, well_alias_lookup, and well_master_build_report.")
 
 
 if __name__ == "__main__":

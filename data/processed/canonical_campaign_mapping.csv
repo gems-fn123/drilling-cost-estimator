@@ -1,8 +1,8 @@
-campaign_code,campaign_id,campaign_name_raw,estimator_scope,include_for_estimator,source_file,source_sheet,scope_note
-E500-2-0-8501-185003,EXCLUDED,Wayang Windu Campaign 2018/2019,excluded,no,20260327_WBS_Data.xlsx,Drilled.Well,Excluded from estimator (Wayang Windu / Hamiding / unknown category)
-E500-30101-D205011,EXCLUDED,Wayang Windu Campaign 2020/2021,excluded,no,20260327_WBS_Data.xlsx,Drilled.Well,Excluded from estimator (Wayang Windu / Hamiding / unknown category)
-E530-30101-D19001,DARAJAT_2019,Darajat Campaign 2019,legacy_reference,no,20260327_WBS_Data.xlsx,Drilled.Well,Legacy reference only
-E530-30101-D225301,DARAJAT_2022,Darajat Campaign 2022,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well,Estimator scope
-E530-30101-D235301,DARAJAT_2023_2024,Darajat Campaign 2023/2024,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well,Estimator scope
-E540-30101-D20001,SALAK_2021,Salak Campaign 2021,legacy_reference,no,20260327_WBS_Data.xlsx,Drilled.Well,Legacy reference only
-E540-30101-D245401,SALAK_2025_2026,Salak Campaign 2025/2026,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well,Estimator scope
+campaign_code,campaign_id,campaign_name_raw,estimator_scope,include_for_estimator,source_file,source_sheet
+E500-2-0-8501-185003,EXCLUDED,Wayang Windu Campaign 2018/2019,excluded,no,20260327_WBS_Data.xlsx,Drilled.Well
+E500-30101-D205011,EXCLUDED,Wayang Windu Campaign 2020/2021,excluded,no,20260327_WBS_Data.xlsx,Drilled.Well
+E530-30101-D19001,DARAJAT_2019,Darajat Campaign 2019,legacy_reference,no,20260327_WBS_Data.xlsx,Drilled.Well
+E530-30101-D225301,DARAJAT_2022,Darajat Campaign 2022,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well
+E530-30101-D235301,DARAJAT_2023_2024,Darajat Campaign 2023/2024,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well
+E540-30101-D20001,SALAK_2021,Salak Campaign 2021,legacy_reference,no,20260327_WBS_Data.xlsx,Drilled.Well
+E540-30101-D245401,SALAK_2025_2026,Salak Campaign 2025/2026,in_scope,yes,20260327_WBS_Data.xlsx,Drilled.Well
