@@ -1,0 +1,7 @@
+synthetic_campaign_id,field,synthetic_target_year,synthetic_base_campaign,synthetic_base_campaign_code,synthetic_macro_factor,synthetic_cpi_ratio,synthetic_brent_ratio,is_synthetic,synthetic_purpose,placeholder_confidence,include_for_training,include_for_validation
+SLK_2020,SALAK,2020,SALAK_2025_2026,E540-30101-D245401,0.728420,0.813836,0.529114,yes,placeholder_campaign_integration,low,no,no
+DRJ_2019,DARAJAT,2019,DARAJAT_2022,E530-30101-D225301,0.802693,0.873591,0.637265,yes,placeholder_campaign_integration,low,no,no
+SLK_2012,SALAK,2012,SALAK_2025_2026,E540-30101-D245401,0.929206,0.722013,1.412658,yes,placeholder_campaign_integration,low,no,no
+DRJ_2011,DARAJAT,2011,DARAJAT_2022,E530-30101-D225301,0.868776,0.768364,1.103072,yes,placeholder_campaign_integration,low,no,no
+SLK_2026,SALAK,2026,SALAK_2025_2026,E540-30101-D245401,1.017005,1.018868,1.012658,yes,placeholder_campaign_integration,low,no,no
+DRJ_2027,DARAJAT,2027,DARAJAT_2023_2024,E530-30101-D235301,1.052253,1.080904,0.985401,yes,placeholder_campaign_integration,low,no,no

@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"
 REPORT_PATH = ROOT / "reports" / "well_master_build_report.md"
+SYNTH_REPORT_PATH = ROOT / "reports" / "synthetic_placeholder_method.md"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
@@ -42,6 +43,39 @@ CAMPAIGN_LABEL_TO_CODE = {
     "SLK 2025": "E540-30101-D245401",
     "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
     "SALAK CAMPAIGN 2021": "E540-30101-D20001",
+}
+
+SYNTHETIC_CAMPAIGNS = [
+    {"synthetic_campaign_id": "SLK_2020", "field": "SALAK", "target_year": 2020},
+    {"synthetic_campaign_id": "DRJ_2019", "field": "DARAJAT", "target_year": 2019},
+    {"synthetic_campaign_id": "SLK_2012", "field": "SALAK", "target_year": 2012},
+    {"synthetic_campaign_id": "DRJ_2011", "field": "DARAJAT", "target_year": 2011},
+    {"synthetic_campaign_id": "SLK_2026", "field": "SALAK", "target_year": 2026},
+    {"synthetic_campaign_id": "DRJ_2027", "field": "DARAJAT", "target_year": 2027},
+]
+
+# Local macro lookup (replaceable later with external official data source pulls).
+CPI_INDEX_BY_YEAR = {
+    2011: 224.9,
+    2012: 229.6,
+    2019: 255.7,
+    2020: 258.8,
+    2022: 292.7,
+    2023: 305.3,
+    2025: 318.0,
+    2026: 324.0,
+    2027: 330.0,
+}
+BRENT_BY_YEAR = {
+    2011: 111.3,
+    2012: 111.6,
+    2019: 64.3,
+    2020: 41.8,
+    2022: 100.9,
+    2023: 82.2,
+    2025: 79.0,
+    2026: 80.0,
+    2027: 81.0,
 }
 
 
@@ -126,6 +160,29 @@ def extract_table(rows: list[list[str]], headers: dict[str, str]) -> list[dict[s
         if any(item.values()):
             out.append(item)
     return out
+
+
+def extract_full_table(rows: list[list[str]], required_headers: list[str]) -> list[dict[str, str]]:
+    normalized_required = [norm_header(h) for h in required_headers]
+    header_idx = -1
+    headers: list[str] = []
+    for i, row in enumerate(rows[:50]):
+        norm_row = [norm_header(c) for c in row]
+        if all(req in norm_row for req in normalized_required):
+            header_idx = i
+            headers = [clean_text(c) if clean_text(c) else f"col_{j}" for j, c in enumerate(row)]
+            break
+    if header_idx < 0:
+        return []
+    output: list[dict[str, str]] = []
+    for row in rows[header_idx + 1 :]:
+        if not any(clean_text(c) for c in row):
+            continue
+        item = {}
+        for j, h in enumerate(headers):
+            item[h] = clean_text(row[j]) if j < len(row) else ""
+        output.append(item)
+    return output
 
 
 def campaign_rows_from_sources() -> list[dict[str, str]]:
@@ -379,6 +436,129 @@ def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], looku
     REPORT_PATH.write_text(report, encoding="utf-8")
 
 
+def _to_float(value: str) -> float | None:
+    try:
+        if value is None or value == "":
+            return None
+        return float(str(value).replace(",", ""))
+    except ValueError:
+        return None
+
+
+def build_synthetic_placeholders() -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    wb = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
+    summary_rows = extract_full_table(wb.get("Data.Summary", []), ["Asset", "Campaign", "WBS_Level", "WBS_ID"])
+
+    template_candidates = {
+        "SALAK": [
+            {"campaign_label": "SLK 2025", "campaign_code": "E540-30101-D245401", "campaign_id": "SALAK_2025_2026", "year": 2025}
+        ],
+        "DARAJAT": [
+            {"campaign_label": "DRJ 2022", "campaign_code": "E530-30101-D225301", "campaign_id": "DARAJAT_2022", "year": 2022},
+            {"campaign_label": "DRJ 2023", "campaign_code": "E530-30101-D235301", "campaign_id": "DARAJAT_2023_2024", "year": 2023},
+        ],
+    }
+
+    campaign_rows: list[dict[str, str]] = []
+    lv5_rows: list[dict[str, str]] = []
+
+    for spec in SYNTHETIC_CAMPAIGNS:
+        candidates = template_candidates[spec["field"]]
+        template = min(candidates, key=lambda c: abs(c["year"] - spec["target_year"]))
+        cpi_ratio = CPI_INDEX_BY_YEAR[spec["target_year"]] / CPI_INDEX_BY_YEAR[template["year"]]
+        brent_ratio = BRENT_BY_YEAR[spec["target_year"]] / BRENT_BY_YEAR[template["year"]]
+        macro_factor = 0.7 * cpi_ratio + 0.3 * brent_ratio
+
+        campaign_rows.append(
+            {
+                "synthetic_campaign_id": spec["synthetic_campaign_id"],
+                "field": spec["field"],
+                "synthetic_target_year": str(spec["target_year"]),
+                "synthetic_base_campaign": template["campaign_id"],
+                "synthetic_base_campaign_code": template["campaign_code"],
+                "synthetic_macro_factor": f"{macro_factor:.6f}",
+                "synthetic_cpi_ratio": f"{cpi_ratio:.6f}",
+                "synthetic_brent_ratio": f"{brent_ratio:.6f}",
+                "is_synthetic": "yes",
+                "synthetic_purpose": "placeholder_campaign_integration",
+                "placeholder_confidence": "low",
+                "include_for_training": "no",
+                "include_for_validation": "no",
+            }
+        )
+
+        template_rows = [
+            r for r in summary_rows
+            if clean_text(r.get("Campaign", "")).upper() == template["campaign_label"].upper()
+            and clean_text(r.get("WBS_Level", "")) == "05"
+        ]
+
+        for row in template_rows:
+            out = dict(row)
+            out["Campaign"] = spec["synthetic_campaign_id"]
+            out["Asset"] = spec["field"]
+
+            for key, value in list(out.items()):
+                key_upper = key.upper()
+                numeric = _to_float(value)
+                if numeric is None:
+                    continue
+                if any(token in key_upper for token in ["BUDGET", "ACTUAL", "COST", "USD"]):
+                    out[key] = f"{numeric * macro_factor:.6f}"
+
+            out["is_synthetic"] = "yes"
+            out["synthetic_purpose"] = "placeholder_wbs_lv5_integration"
+            out["synthetic_base_campaign"] = template["campaign_id"]
+            out["synthetic_target_year"] = str(spec["target_year"])
+            out["synthetic_macro_factor"] = f"{macro_factor:.6f}"
+            out["synthetic_cpi_ratio"] = f"{cpi_ratio:.6f}"
+            out["synthetic_brent_ratio"] = f"{brent_ratio:.6f}"
+            out["placeholder_confidence"] = "low"
+            out["include_for_training"] = "no"
+            out["include_for_validation"] = "no"
+            lv5_rows.append(out)
+
+    return campaign_rows, lv5_rows
+
+
+def write_synthetic_report(campaign_rows: list[dict[str, str]], lv5_rows: list[dict[str, str]]) -> None:
+    by_campaign = {}
+    for row in lv5_rows:
+        by_campaign[row["Campaign"]] = by_campaign.get(row["Campaign"], 0) + 1
+
+    lines = [
+        "# Synthetic Placeholder Method",
+        "",
+        "This staging layer is placeholder-only for future old/new campaign integration and is **excluded from training and validation**.",
+        "",
+        "## Macro factor",
+        "`synthetic_cost = base_cost * macro_factor`",
+        "`macro_factor = 0.7 * (CPI_target / CPI_base) + 0.3 * (Brent_target / Brent_base)`",
+        "",
+        "## Generated synthetic campaigns",
+        "| synthetic_campaign_id | base_campaign | target_year | macro_factor |",
+        "|---|---|---:|---:|",
+    ]
+    for row in campaign_rows:
+        lines.append(
+            f"| {row['synthetic_campaign_id']} | {row['synthetic_base_campaign']} | {row['synthetic_target_year']} | {row['synthetic_macro_factor']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Output counts",
+            f"- synthetic campaign rows: **{len(campaign_rows)}**",
+            f"- synthetic WBS Lv.5 placeholder rows: **{len(lv5_rows)}**",
+            "",
+            "## Notes",
+            "- Non-cost structural fields are copied from nearest same-field real campaign templates.",
+            "- Only cost-like numeric fields are scaled by macro factor.",
+            "- All synthetic rows set `include_for_training = no` and `include_for_validation = no`.",
+        ]
+    )
+    SYNTH_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     # Keep campaign scope artifact unchanged for audit continuity.
     campaign_rows = campaign_rows_from_sources()
@@ -388,6 +568,11 @@ def main() -> None:
     write_csv(PROCESSED_DIR / "well_master.csv", master_rows)
     write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows)
     write_report(stats, master_rows, lookup_rows)
+
+    synth_campaign_rows, synth_lv5_rows = build_synthetic_placeholders()
+    write_csv(PROCESSED_DIR / "synthetic_campaign_placeholders.csv", synth_campaign_rows)
+    write_csv(PROCESSED_DIR / "synthetic_wbs_lv5_placeholders.csv", synth_lv5_rows)
+    write_synthetic_report(synth_campaign_rows, synth_lv5_rows)
     print("Wrote well_master, well_alias_lookup, and well_master_build_report.")
 
 
