@@ -29,6 +29,7 @@ INVENTORY_REPORT = REPORTS_DIR / "wbs_lv5_source_inventory.md"
 RULEBOOK_REPORT = REPORTS_DIR / "wbs_lv5_classification_rulebook.md"
 CLASSIFICATION_REPORT = REPORTS_DIR / "wbs_lv5_classification_report.md"
 ALIGNMENT_REPORT = REPORTS_DIR / "wbs_lv5_driver_alignment_report.md"
+DEFINE_QUALITY_REPORT = REPORTS_DIR / "phase2_define_quality_thresholds.md"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
@@ -165,6 +166,11 @@ def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) -> 
 def write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+
+
+def read_csv_rows(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
 
 
 def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> None:
@@ -800,6 +806,116 @@ def build_alignment_report(
     return "\n".join(lines) + "\n"
 
 
+def pct_str(part: int, total: int) -> str:
+    if total <= 0:
+        return "0.00%"
+    return f"{(100.0 * part / total):.2f}%"
+
+
+def build_define_quality_report(master_rows: list[dict[str, str]], class_rows: list[dict[str, str]]) -> str:
+    campaign_rows = read_csv_rows(PROCESSED_DIR / "canonical_campaign_mapping.csv")
+    well_rows = read_csv_rows(PROCESSED_DIR / "well_master.csv")
+
+    total_rows = len(master_rows)
+    hierarchy_blank = sum(
+        1
+        for row in master_rows
+        if any(not clean_text(row.get(col, "")) for col in ["wbs_lvl1", "wbs_lvl2", "wbs_lvl3", "wbs_lvl4", "wbs_lvl5"])
+    )
+    campaign_blank = sum(
+        1 for row in master_rows if not clean_text(row.get("campaign_code", "")) or not clean_text(row.get("campaign_canonical", ""))
+    )
+    cost_blank = sum(1 for row in master_rows if not clean_text(row.get("cost_actual", "")))
+    well_coverage = sum(1 for row in master_rows if clean_text(row.get("well_canonical", "")))
+    event_coverage = sum(1 for row in master_rows if clean_text(row.get("event_code_raw", "")))
+    in_scope_rows = [row for row in master_rows if clean_text(row.get("campaign_raw", "")).upper() in IN_SCOPE_CAMPAIGN_LABELS]
+    in_scope_mapped = sum(
+        1 for row in in_scope_rows if clean_text(row.get("mapping_status_campaign", "")) == "mapped" and clean_text(row.get("campaign_code", ""))
+    )
+
+    duplicate_classification_keys = len(class_rows) - len({clean_text(row.get("classification_key", "")) for row in class_rows})
+    duplicate_campaign_codes = len(campaign_rows) - len({clean_text(row.get("campaign_code", "")) for row in campaign_rows if clean_text(row.get("campaign_code", ""))})
+    duplicate_well_master_keys = len(well_rows) - len(
+        {
+            f"{clean_text(row.get('well_id', ''))}|{clean_text(row.get('campaign_code', ''))}"
+            for row in well_rows
+            if clean_text(row.get("well_id", "")) and clean_text(row.get("campaign_code", ""))
+        }
+    )
+
+    gate_failures = [
+        hierarchy_blank != 0,
+        campaign_blank != 0,
+        in_scope_mapped != len(in_scope_rows),
+        duplicate_classification_keys != 0,
+        duplicate_campaign_codes != 0,
+        duplicate_well_master_keys != 0,
+    ]
+    gate_status = "READY FOR PHASE 3 DESIGN" if not any(gate_failures) else "HOLD PHASE 2 DEFINE"
+
+    threshold_rows = [
+        ("Hierarchy completeness", "0 rows with blank `wbs_lvl1..wbs_lvl5`", f"{hierarchy_blank} / {total_rows} blank", "PASS" if hierarchy_blank == 0 else "FAIL", "Required for L1->L5 auditability."),
+        ("Campaign mapping completeness", "0 rows with blank campaign mapping fields", f"{campaign_blank} / {total_rows} blank", "PASS" if campaign_blank == 0 else "FAIL", "Requires both `campaign_code` and `campaign_canonical`."),
+        ("In-scope campaign alias mapping", "All in-scope labels mapped", f"{in_scope_mapped} / {len(in_scope_rows)} mapped", "PASS" if in_scope_mapped == len(in_scope_rows) else "FAIL", "Checks `DRJ 2022`, `DRJ 2023`, and `SLK 2025`."),
+        ("Duplicate classification keys", "0 duplicate `classification_key` values", str(duplicate_classification_keys), "PASS" if duplicate_classification_keys == 0 else "FAIL", "Classification grain is the implemented Lv5 canonical key."),
+        ("Duplicate campaign master codes", "0 duplicate `campaign_code` values", str(duplicate_campaign_codes), "PASS" if duplicate_campaign_codes == 0 else "FAIL", "Campaign master must remain one row per canonical campaign code."),
+        ("Duplicate well master keys", "0 duplicate (`well_id`, `campaign_code`) pairs", str(duplicate_well_master_keys), "PASS" if duplicate_well_master_keys == 0 else "FAIL", "Well master is one row per canonical well within a campaign."),
+        ("Well attribution coverage", "Report coverage; not a Phase 2 blocker at campaign/WBS grain", f"{well_coverage} / {total_rows} ({pct_str(well_coverage, total_rows)})", "KNOWN LIMITATION", "Current `Data.Summary` grain does not carry direct well attribution for Lv5 rows."),
+        ("Event-code coverage", "Report coverage; not a Phase 2 blocker at campaign/WBS grain", f"{event_coverage} / {total_rows} ({pct_str(event_coverage, total_rows)})", "KNOWN LIMITATION", "Event-code family is defined, but row-addressable values are not present in the current Lv5 build."),
+    ]
+
+    null_snapshot = [
+        ("wbs_lvl1", sum(1 for row in master_rows if not clean_text(row.get("wbs_lvl1", "")))),
+        ("wbs_lvl2", sum(1 for row in master_rows if not clean_text(row.get("wbs_lvl2", "")))),
+        ("wbs_lvl3", sum(1 for row in master_rows if not clean_text(row.get("wbs_lvl3", "")))),
+        ("wbs_lvl4", sum(1 for row in master_rows if not clean_text(row.get("wbs_lvl4", "")))),
+        ("wbs_lvl5", sum(1 for row in master_rows if not clean_text(row.get("wbs_lvl5", "")))),
+        ("campaign_code", sum(1 for row in master_rows if not clean_text(row.get("campaign_code", "")))),
+        ("campaign_canonical", sum(1 for row in master_rows if not clean_text(row.get("campaign_canonical", "")))),
+        ("cost_actual", cost_blank),
+        ("well_canonical", total_rows - well_coverage),
+        ("event_code_raw", total_rows - event_coverage),
+    ]
+
+    lines = [
+        "# Phase 2 Define Quality Thresholds",
+        "",
+        "## Gate Authority",
+        "- `docs/PROJECT_INSTRUCTION.md` is the authoritative Phase 2 gate reference.",
+        f"- Gate recommendation: **{gate_status}**.",
+        "- Material review flags are informational only when unresolved keys remain at zero.",
+        "",
+        "## Threshold Results",
+        "| check | threshold | observed | status | notes |",
+        "|---|---|---|---|---|",
+    ]
+
+    for check, threshold, observed, status, notes in threshold_rows:
+        lines.append(f"| {check} | {threshold} | {observed} | {status} | {notes} |")
+
+    lines.extend(
+        [
+            "",
+            "## Null Coverage Snapshot",
+            "| field | blank_rows | blank_pct |",
+            "|---|---:|---:|",
+        ]
+    )
+    for field_name, blank_count in null_snapshot:
+        lines.append(f"| {field_name} | {blank_count} | {pct_str(blank_count, total_rows)} |")
+
+    lines.extend(
+        [
+            "",
+            "## Current Grain Limitation",
+            "- `wbs_lv5_master.csv` is complete for hierarchy and campaign mapping, but the current source grain does not populate direct well attribution for Lv5 rows.",
+            "- `event_code_raw` and `event_code_desc` remain blank in this Define layer because the unscheduled-event workbook is not row-addressable to `Data.Summary` Lv5 cost rows.",
+            "- These limitations do not block Phase 3 design, but they do constrain later well-level driver validation until a richer source grain is introduced.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     wb_data = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
     wb_dict = read_xlsx(RAW_DIR / "20260318_WBS_Dictionary.xlsx")
@@ -956,6 +1072,7 @@ def main() -> None:
     alignment_report = build_alignment_report(master_rows, driver_rows, global_summary_rows, field_summary_rows)
     write_text(ALIGNMENT_REPORT, alignment_report)
     write_text(CLASSIFICATION_REPORT, alignment_report)
+    write_text(DEFINE_QUALITY_REPORT, build_define_quality_report(master_rows, class_rows))
     print("Wrote WBS Lv.5 driver alignment artifacts.")
 
 

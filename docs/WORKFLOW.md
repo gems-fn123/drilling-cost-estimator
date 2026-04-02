@@ -34,6 +34,12 @@ Inventory data sources, align naming, confirm hierarchy integrity.
 - Canonical schema specification (column mapping, naming rules)
 - Assumption register seed: `docs/assumptions_register.md`
 
+Additional Phase 2 gate artifacts:
+- `data/processed/wbs_lv5_master.csv` - implemented Lv.5 row-grain canonical table
+- `data/processed/wbs_lv5_classification.csv` - implemented Lv.5 classification contract
+- `docs/feature_families.md` - feature families and lineage
+- `reports/phase2_define_quality_thresholds.md` - gate thresholds with pass/fail and accepted limitations
+
 ### Success Criteria
 - [ ] All source workbooks profiled (sheets, rows, nulls documented)
 - [ ] WBS hierarchy validated (no orphan L5 entries identified)
@@ -46,6 +52,8 @@ Inventory data sources, align naming, confirm hierarchy integrity.
 
 ### Goal
 Standardize schema, canonicalize names, generate master reference tables.
+
+Implemented contract note: this repository now treats `data/processed/wbs_lv5_master.csv` as the row-grain canonical table and `data/processed/wbs_lv5_classification.csv` as the classification contract for the Phase 2 to 3 handoff.
 
 ### Input
 - Profiled source workbooks
@@ -82,7 +90,7 @@ Standardize schema, canonicalize names, generate master reference tables.
 - [ ] Zero orphan Level-5 entries
 - [ ] Well and campaign names canonicalized with 1-to-many deduplication
 - [ ] Unscheduled events mapped to controlled vocabulary
-- [ ] Data quality thresholds met (nulls, duplicates, hierarchy)
+- [ ] Data quality thresholds met (nulls, duplicates, hierarchy) and current grain limitations are published explicitly
 
 ---
 

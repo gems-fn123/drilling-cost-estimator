@@ -23,25 +23,28 @@ Build a **drilling cost estimator that produces statistically valid Level-5 WBS 
 - Identify data gaps and quality issues
 
 **Deliverables:**
-- Data inventory report (`reports/source_inventory.md`)
+- Data inventory report (`reports/wbs_lv5_source_inventory.md`)
 - Canonical schema contract (column mapping, naming rules)
 - Assumption register seed (`docs/assumptions_register.md`)
 
 ---
 
 ### Phase 2: Define
-**Goal:** Lock canonical data contracts and feature families  
+**Goal:** Lock canonical data contracts, feature families, and gate thresholds for the current Lv.5 alignment layer  
 **Key Activities:**
-- Define canonical columns: `wbs_level_1..5`, `wbs_code`, `activity`, `cost`, `duration`, `well`, `campaign`, `event_code`, `classification`
-- Create well-name crosswalk and campaign-name canonicalization rules
-- Define feature families: depth, section, operation type, NPT/unscheduled events, campaign context
-- Establish data quality thresholds (null %, duplicate keys, hierarchy violations)
+- Publish the implemented row-grain contract in `data/processed/wbs_lv5_master.csv` and the implemented classification contract in `data/processed/wbs_lv5_classification.csv`
+- Finalize supporting master/reference tables: `well_master.csv`, `well_alias_lookup.csv`, `canonical_campaign_mapping.csv`, and `canonical_well_mapping.csv`
+- Define feature families: depth, section, operation type, NPT/unscheduled events, campaign context, including source-sheet/column lineage
+- Establish gate thresholds for hierarchy completeness, campaign mapping completeness, duplicate canonical keys, and reported coverage for well attribution and event codes
+- Record current grain limitations explicitly when a feature family is defined but not yet populated at Lv.5 source-row grain
 
 **Deliverables:**
 - Well master reference (`data/processed/well_master.csv`)
 - Campaign master reference (`data/processed/canonical_campaign_mapping.csv`)
+- Canonical Lv.5 row master (`data/processed/wbs_lv5_master.csv`)
+- Canonical Lv.5 classification contract (`data/processed/wbs_lv5_classification.csv`)
 - Feature family specification (`docs/feature_families.md`)
-- Quality thresholds document
+- Quality thresholds document (`reports/phase2_define_quality_thresholds.md`)
 
 ---
 
@@ -135,6 +138,8 @@ Build a **drilling cost estimator that produces statistically valid Level-5 WBS 
 ---
 
 ## Success Criteria
+
+Gate note: for the current repository state, the authoritative Phase 2 to 3 gate is satisfied only when well/campaign masters are finalized, feature families are defined, quality thresholds are published, and current grain limitations are documented.
 
 ### Phase Completion Gates
 - [ ] **Phase 1→2:** Canonical schema contract approved, data inventory complete

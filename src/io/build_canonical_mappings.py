@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import re
 import zipfile
 from pathlib import Path
@@ -11,6 +12,47 @@ RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"
 REPORT_PATH = ROOT / "reports" / "well_master_build_report.md"
 SYNTH_REPORT_PATH = ROOT / "reports" / "synthetic_placeholder_method.md"
+
+CAMPAIGN_MAPPING_FIELDS = [
+    "campaign_code",
+    "campaign_id",
+    "campaign_name",
+    "campaign_name_raw",
+    "field",
+    "campaign_wbs_code",
+    "estimator_scope",
+    "include_for_estimator",
+    "start_date",
+    "end_date",
+    "actual_cost_total",
+    "source_file",
+    "source_sheet",
+]
+
+WELL_MASTER_FIELDS = [
+    "well_id",
+    "well_name",
+    "well_canonical",
+    "well_aliases",
+    "field",
+    "campaign_code",
+    "campaign_id",
+    "status",
+    "region",
+    "operator",
+    "include_for_estimator",
+    "include_for_well_training",
+    "training_note",
+]
+
+LOOKUP_FIELDS = [
+    "well_alias",
+    "well_canonical",
+    "source_sheet",
+    "alias_type",
+    "resolution_method",
+    "is_modeling_master",
+]
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
@@ -239,6 +281,31 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
     return [dedup[k] for k in sorted(dedup)]
 
 
+def enrich_campaign_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    enriched_rows: list[dict[str, str]] = []
+    for row in rows:
+        meta = OFFICIAL_CAMPAIGNS.get(row["campaign_code"])
+        campaign_name = row["campaign_id"] if row["campaign_id"] != "EXCLUDED" else clean_text(row["campaign_name_raw"])
+        enriched_rows.append(
+            {
+                "campaign_code": row["campaign_code"],
+                "campaign_id": row["campaign_id"],
+                "campaign_name": campaign_name,
+                "campaign_name_raw": row["campaign_name_raw"],
+                "field": meta["field"] if meta else "",
+                "campaign_wbs_code": row["campaign_code"] if meta else "",
+                "estimator_scope": row["estimator_scope"],
+                "include_for_estimator": row["include_for_estimator"],
+                "start_date": "",
+                "end_date": "",
+                "actual_cost_total": "",
+                "source_file": row["source_file"],
+                "source_sheet": row["source_sheet"],
+            }
+        )
+    return enriched_rows
+
+
 def build_alias_index() -> dict[str, str]:
     mapping: dict[str, str] = {}
     for left, right in WELL_ALIAS_PAIRS:
@@ -404,10 +471,44 @@ def build_master_and_lookup() -> tuple[list[dict[str, str]], list[dict[str, str]
     return master_rows, lookup_final, stats
 
 
-def write_csv(path: Path, rows: list[dict[str, str]]) -> None:
+def enrich_master_rows(master_rows: list[dict[str, str]], lookup_rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    aliases_by_canonical: dict[str, set[str]] = {}
+    for row in lookup_rows:
+        canonical = clean_text(row.get("well_canonical", ""))
+        alias = clean_text(row.get("well_alias", ""))
+        if not canonical:
+            continue
+        aliases_by_canonical.setdefault(canonical, set()).add(canonical)
+        if alias:
+            aliases_by_canonical[canonical].add(alias)
+
+    enriched_rows: list[dict[str, str]] = []
+    for row in master_rows:
+        well_canonical = row["well_canonical"]
+        enriched_rows.append(
+            {
+                "well_id": well_canonical,
+                "well_name": well_canonical,
+                "well_canonical": well_canonical,
+                "well_aliases": json.dumps(sorted(aliases_by_canonical.get(well_canonical, {well_canonical}))),
+                "field": row["field"],
+                "campaign_code": row["campaign_code"],
+                "campaign_id": row["campaign_id"],
+                "status": "in_scope_estimator",
+                "region": "",
+                "operator": "",
+                "include_for_estimator": row["include_for_estimator"],
+                "include_for_well_training": row["include_for_well_training"],
+                "training_note": row["training_note"],
+            }
+        )
+    return enriched_rows
+
+
+def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str] | None = None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=fieldnames or list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
 
@@ -432,6 +533,11 @@ def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], looku
 2. `DRJ-Steam 1` kept in scope and excluded from well-level training.
 3. `20-1` under DRJ 2023 treated as posting exception only.
 4. History rows (`2. Drilling.Data.History`) are reassigned to campaign when canonical well maps to exactly one in-scope master well.
+
+## Exported contract
+- `well_master.csv` now carries both estimator roster fields (`campaign_code`, `campaign_id`, training flags) and stable master keys (`well_id`, `well_name`, `well_aliases`).
+- `status` is scoped to estimator roster membership (`in_scope_estimator`) rather than real-world well lifecycle.
+- `region` and `operator` remain blank in this Define layer because the current source package does not provide a reliable authoritative value for every in-scope well.
 """
     REPORT_PATH.write_text(report, encoding="utf-8")
 
@@ -561,12 +667,13 @@ def write_synthetic_report(campaign_rows: list[dict[str, str]], lv5_rows: list[d
 
 def main() -> None:
     # Keep campaign scope artifact unchanged for audit continuity.
-    campaign_rows = campaign_rows_from_sources()
-    write_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv", campaign_rows)
+    campaign_rows = enrich_campaign_rows(campaign_rows_from_sources())
+    write_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv", campaign_rows, CAMPAIGN_MAPPING_FIELDS)
 
-    master_rows, lookup_rows, stats = build_master_and_lookup()
-    write_csv(PROCESSED_DIR / "well_master.csv", master_rows)
-    write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows)
+    master_rows_base, lookup_rows, stats = build_master_and_lookup()
+    master_rows = enrich_master_rows(master_rows_base, lookup_rows)
+    write_csv(PROCESSED_DIR / "well_master.csv", master_rows, WELL_MASTER_FIELDS)
+    write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows, LOOKUP_FIELDS)
     write_report(stats, master_rows, lookup_rows)
 
     synth_campaign_rows, synth_lv5_rows = build_synthetic_placeholders()

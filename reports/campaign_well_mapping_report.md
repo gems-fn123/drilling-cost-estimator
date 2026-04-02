@@ -10,6 +10,10 @@
 4. Wayang Windu, Hamiding, and unknown categories are excluded from estimator modeling.
 5. Explicit well alias crosswalk is enforced from the provided canonical pairs.
 
+## Exported campaign contract
+- `canonical_campaign_mapping.csv` carries the canonical campaign key fields `campaign_code`, `campaign_id`, `campaign_name`, `field`, and `campaign_wbs_code`.
+- `start_date`, `end_date`, and `actual_cost_total` remain intentionally blank in the Define layer because the current source package does not support an auditable canonical fill.
+
 ## Excluded records and unresolved anomalies
 - Excluded campaign codes: **2**.
 - Legacy-only campaign codes: **2**.

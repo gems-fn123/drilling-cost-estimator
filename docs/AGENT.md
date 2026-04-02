@@ -48,6 +48,7 @@ AI agents, automation specialists, and Phase 2–4 engineers.
      ```
    - Standardize naming conventions (remove special chars, whitespace)
    - Create well-name and campaign-name canonicalization crosswalks
+   - Treat `data/processed/wbs_lv5_master.csv` as the implemented row-grain contract and `data/processed/wbs_lv5_classification.csv` as the implemented classification contract for the Phase 2 to 3 handoff
 
 3. **Validate Hierarchy** (Phase 3)
    - Every Level-5 entry must have valid L1–L4 parents
@@ -70,6 +71,8 @@ AI agents, automation specialists, and Phase 2–4 engineers.
    - **DO NOT model or estimate yet**
 
 ## Data Contracts
+
+Implemented gate note: the conceptual schema above is distributed across the current Phase 2 artifacts. Use `wbs_lv5_master.csv`, `wbs_lv5_classification.csv`, `well_master.csv`, and `canonical_campaign_mapping.csv` as the authoritative implemented interfaces in this repository.
 
 ### Canonical Columns (Required)
 ```
@@ -102,6 +105,8 @@ region (string)
 operator (string)
 ```
 
+Current export note: `well_master.csv` also carries `well_canonical`, `campaign_code`, `campaign_id`, `include_for_estimator`, `include_for_well_training`, and `training_note`. `status` is scoped to estimator-roster membership; `region` and `operator` are intentionally blank until a reliable source is added.
+
 ### Campaign Master
 ```
 campaign_id (string, primary key)
@@ -112,6 +117,8 @@ start_date (date)
 end_date (date)
 actual_cost_total (numeric)
 ```
+
+Current export note: `canonical_campaign_mapping.csv` also carries `campaign_code`, `campaign_name_raw`, `estimator_scope`, `include_for_estimator`, and source lineage columns. `start_date`, `end_date`, and `actual_cost_total` are intentionally blank in the Define layer because the current source package does not support an auditable canonical fill for those fields.
 
 ## Execution Guardrails
 

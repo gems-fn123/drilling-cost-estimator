@@ -224,6 +224,8 @@ model_version, assumptions_applied
 
 ## Example: Well Master Integration
 
+Current Define-layer note: the checked-in `data/processed/well_master.csv` is a lean estimator roster contract, not yet the fully enriched lifecycle master illustrated below.
+
 **File: `data/processed/well_master.csv`**
 
 ```
@@ -239,6 +241,8 @@ A002, DARAJAT-0002, DARAJAT, 2950, 2600, North, PertaminaEP, drilled, 2025-02-01
 ---
 
 ## Example: Campaign Master Integration
+
+Current Define-layer note: the checked-in `data/processed/canonical_campaign_mapping.csv` is a lean canonical campaign mapping contract, not yet the fully enriched lifecycle master illustrated below.
 
 **File: `data/processed/canonical_campaign_mapping.csv`**
 
