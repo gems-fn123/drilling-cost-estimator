@@ -1,6 +1,11 @@
 # Phase 4 Gate Preflight Report
 
-Generated at: 2026-04-02T08:37:52.076480+00:00
+Generated at: 2026-04-02T09:17:59.855719+00:00
+
+## Runtime Toggles
+- group_by: `family`
+- use_synthetic: `False`
+- synthetic_policy: `not_applied`
 
 ## Snapshot
 - `wbs_lv5_master.csv` rows: **822**

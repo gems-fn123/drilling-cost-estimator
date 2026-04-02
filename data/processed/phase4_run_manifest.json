@@ -1,5 +1,10 @@
 {
-  "run_timestamp_utc": "2026-04-02T08:37:52.100974+00:00",
+  "run_timestamp_utc": "2026-04-02T09:17:59.867153+00:00",
+  "runtime_toggles": {
+    "group_by": "family",
+    "use_synthetic": false,
+    "synthetic_policy": "not_applied"
+  },
   "inputs": {
     "wbs_lv5_master": {
       "path": "data/processed/wbs_lv5_master.csv",
@@ -10,16 +15,22 @@
       "path": "data/processed/wbs_lv5_classification.csv",
       "sha256": "d847e8dec5182140b6321964f160427f5a796276fd74736833ec8912cb2e2a71",
       "row_count": 822
+    },
+    "synthetic_wbs_lv5_placeholders": {
+      "path": "data/processed/synthetic_wbs_lv5_placeholders.csv",
+      "sha256": "1194c2b31ccd65d6fe91c56cd9ac6021915b658d25f9b48b98b6447250d183f1",
+      "rows_used": 0
     }
   },
   "outputs": {
     "phase4_gate_results": "data/processed/phase4_gate_results.csv",
     "baseline_estimates_darajat": "data/processed/baseline_estimates_darajat.csv",
     "baseline_estimates_salak": "data/processed/baseline_estimates_salak.csv",
-    "phase4_gate_report": "reports/phase4_gate_preflight_report.md"
+    "phase4_gate_report": "reports/phase4_gate_preflight_report.md",
+    "phase4_driver_analysis_report": "reports/phase4_driver_analysis.md"
   },
   "notes": [
-    "Phase 4 kickoff run includes deterministic baselines only.",
-    "Statistical training/validation artifacts are intentionally out of scope for this step."
+    "This run remains deterministic and does not fit predictive statistical models.",
+    "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field."
   ]
 }
