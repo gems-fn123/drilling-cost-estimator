@@ -72,10 +72,10 @@ Planned rules:
 3. Keep hybrid class handling campaign-scope in design until data supports defensible per-well allocation.
 
 ## Deliverables to Complete Phase 3
-- [ ] `reports/phase3_pipeline_architecture.md`
-- [ ] `reports/phase3_validation_gates.md`
-- [ ] `reports/phase3_field_separation_strategy.md`
-- [ ] Update `docs/assumptions_register.md` with any architecture-level assumptions/overrides
+- [x] `reports/phase3_pipeline_architecture.md`
+- [x] `reports/phase3_validation_gates.md`
+- [x] `reports/phase3_field_separation_strategy.md`
+- [x] Update `docs/assumptions_register.md` with any architecture-level assumptions/overrides
 - [ ] Phase 3 exit memo with Phase 4 readiness recommendation
 
 ## Immediate Next Actions (Execution Order)
