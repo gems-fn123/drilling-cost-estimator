@@ -9,6 +9,7 @@ Current active artifacts:
 - `phase4_implementation_tracker.md`
 - `phase4_interconnection_model_design.md`
 - `phase4_driver_analysis.md`
+- `phase4_plus_readiness_plan.md`
 
 ## Archived / Processed Docs
 - `reports/processed-docs/phase1-3/` contains completed phase decisions, gate outputs, and historical deliverables.
