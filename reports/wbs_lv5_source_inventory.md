@@ -1,7 +1,11 @@
 # WBS Lv.5 Source Inventory
 
 ## Scope
-Reviewed workbook structure and headers for classification-layer build.
+Reviewed workbook structure and headers for the driver-alignment build.
+
+## Snapshot Freeze
+- This alignment run treats the current `data/raw/*.xlsx` workbook set as the frozen source snapshot.
+- Driver alignment remains a classification/reference task only; no statistical driver validation is performed in this layer.
 
 ## Workbook / Sheet Inventory
 ### `20260327_WBS_Data.xlsx`
@@ -42,19 +46,17 @@ Reviewed workbook structure and headers for classification-layer build.
 - `Sheet1`: 7 rows
 
 ## Authoritative Sources Used
-- **WBS hierarchy:** `20260318_WBS_Dictionary.xlsx` → `WBS_Dictionary` (LEVEL/LVL 1..5, WBS CODE, tags).
-- **Cost rows:** `20260327_WBS_Data.xlsx` → `Data.Summary` (`ACTUAL, USD`, WBS path fields).
-- **Campaign mapping:** `data/processed/canonical_campaign_mapping.csv` + `Campaign` in `Data.Summary`.
-- **Well naming context:** `data/processed/canonical_well_mapping.csv` + `1. WellName.Dictionary` for coverage checks.
-- **Unscheduled/NPT reference:** `UNSCHEDULED EVENT CODE.xlsx` `Sheet1`; NPT classes are not row-addressable from `Data.Summary`, so left explicit-null in master table.
+- **WBS hierarchy:** `20260318_WBS_Dictionary.xlsx` -> `WBS_Dictionary` (`LEVEL`, `LVL 1..5`, WBS tags).
+- **Cost rows:** `20260327_WBS_Data.xlsx` -> `Data.Summary` (`ACTUAL, USD`, WBS path fields).
+- **Campaign scope:** `data/processed/canonical_campaign_mapping.csv` plus explicit label aliases for `DRJ 2022`, `DRJ 2023`, and `SLK 2025`.
+- **Curated driver policy:** `src/cleaning/wbs_lv5_family_policy.csv`.
 
 ## Data Quality Observations
-- `Data.Summary` has hierarchy rows across multiple WBS levels; only rows with populated `L5` are used for Lv.5 classification.
-- Several workbook sheets contain explanatory header rows before tabular headers; parser identifies header row dynamically.
-- `WBS_Dictionary` contains mixed sections; only rows where `LEVEL == 05` and `WBS CODE` is present are used as Lv.5 dictionary records.
-- `Campaign` in cost rows is a label (e.g., `DRJ 2022`), requiring canonical mapping lookup by campaign label.
+- `Data.Summary` contains multiple WBS levels; only rows with populated `L5` are used in this build.
+- Campaign labels in `Data.Summary` are short labels (`DRJ 2022`, `DRJ 2023`, `SLK 2025`), so driver alignment resolves them through explicit alias mapping before class assignment.
+- `hybrid` is reserved for non-well scope that is estimable from structured campaign design/scope drivers. Missing evidence no longer defaults to `hybrid`.
 
 ## Join Candidates
-- Cost rows ↔ WBS dictionary via exact `WBS_ID` (`Data.Summary`) to `WBS CODE` (`WBS_Dictionary`).
-- Cost rows ↔ canonical campaign via normalized `Campaign` label.
-- Well-level context retained as nullable fields because `Data.Summary` is mostly campaign/WBS-grain, not explicit well-grain.
+- Cost rows -> WBS dictionary via exact `WBS_ID` (`Data.Summary`) to `WBS CODE` (`WBS_Dictionary`).
+- Cost rows -> canonical campaign via label alias to official campaign code.
+- Well-level context remains nullable because `Data.Summary` is still campaign/WBS grain rather than row-level well attribution.

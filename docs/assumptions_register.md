@@ -1,0 +1,11 @@
+# Assumptions Register
+
+| date | component | assumption | rationale | impact/status |
+|---|---|---|---|---|
+| 2026-04-02 | Source snapshot | The current `data/raw/*.xlsx` files are treated as the frozen source snapshot for Lv.5 driver alignment. | Driver alignment must be auditable against a stable source layer before cost-driver validation starts. | Active for this alignment run. |
+| 2026-04-02 | Campaign mapping | `DRJ 2022`, `DRJ 2023`, and `SLK 2025` in `Data.Summary` map to official campaign codes `E530-30101-D225301`, `E530-30101-D235301`, and `E540-30101-D245401`. | `Data.Summary` uses short labels rather than official campaign names. | Approved mapping alias; hard gate for alignment. |
+| 2026-04-02 | Taxonomy semantics | `hybrid` is reserved for non-well scope that is estimable from structured campaign design/scope drivers, and is no longer used as a placeholder for unknown scope. | The prior fallback blurred ambiguity with business semantics and blocked clear driver determination. | Active design rule. |
+| 2026-04-02 | Material review | `supporting_cost_total >= 500000 USD` is the materiality threshold for the review queue. | High-spend keys require explicit visibility even when covered by deterministic policy. | Active review threshold. |
+| 2026-04-02 | Pad scope policy | Pad-tagged road/pad, tie-in, hook-up, and new-rig-pavement families are treated as `hybrid` and routed to `pad_expansion_flag`, `tie_in_flag`, `interpad_move_count`, or `rig_skid_count` driver families as applicable. | These are not direct well costs, but they are estimable from campaign design/scope structure. | Approved curated policy. |
+| 2026-04-02 | Shared support policy | Security, permits, environmental support, facilities support, water support, project management, and similar campaign-support families are treated as `campaign_tied`. | These costs are needed in campaign totals but should not be allocated to single wells in this layer. | Approved curated policy. |
+| 2026-04-02 | Well-scope policy | Rig services, mud/logging/casing/cement operations, transportation, supervision, and similar operational families are treated as `well_tied` even when posted at campaign grain. | These are still conceptually direct well-cost components and should remain eligible for well-level driver validation later. | Approved curated policy. |

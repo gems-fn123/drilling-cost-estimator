@@ -1,5 +1,18 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path as _BootstrapPath
+
+_ROOT = _BootstrapPath(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from src.cleaning.wbs_lv5_driver_alignment import main as _driver_alignment_main
+
+if __name__ == "__main__":
+    _driver_alignment_main()
+    raise SystemExit(0)
+
 import csv
 import hashlib
 import re

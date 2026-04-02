@@ -1,0 +1,56 @@
+policy_id,policy_priority,tag_well_or_pad,tag_lvl5,label_contains,estimation_class,driver_family,approval_basis,approval_notes
+P001,10,Pad,Engineering,Tie In,hybrid,tie_in_flag,curated_pad_tie_in,Pad engineering tied to tie-in scope scales with tie-in requirement.
+P002,11,Pad,Material - LL,Tie In,hybrid,tie_in_flag,curated_pad_tie_in,Pad LL material tied to tie-in scope scales with tie-in requirement.
+P003,12,Pad,Material - Non LL,Tie In,hybrid,tie_in_flag,curated_pad_tie_in,Pad non-LL material tied to tie-in scope scales with tie-in requirement.
+P004,13,Pad,"Installation, Hook Up & Pre-Commisioning",,hybrid,tie_in_flag,curated_pad_tie_in,Pad installation and pre-commissioning is treated as tie-in scope rather than shared support.
+P005,20,Pad,Construction,,hybrid,pad_expansion_flag,curated_pad_expansion,Pad construction is modeled through pad expansion scope.
+P006,21,Pad,Engineering,,hybrid,pad_expansion_flag,curated_pad_expansion,Pad engineering is modeled through pad expansion scope when not matched to tie-in.
+P007,22,Pad,Material - LL,,hybrid,pad_expansion_flag,curated_pad_expansion,Pad LL material is modeled through pad expansion scope when not matched to tie-in.
+P008,23,Pad,Material - Non LL,,hybrid,pad_expansion_flag,curated_pad_expansion,Pad non-LL material is modeled through pad expansion scope when not matched to tie-in.
+P009,24,*,New Rig Pavement,,hybrid,pad_expansion_flag,curated_pad_expansion,New rig pavement is treated as pad expansion scope.
+P010,30,*,Rig Move,,hybrid,interpad_move_count,curated_scope_move,Interpad rig moves are campaign-scope costs estimable from move count and well sequence.
+P011,31,*,Rig Skid,,hybrid,rig_skid_count,curated_scope_move,Rig skid costs are campaign-scope costs estimable from skid count and pad layout.
+P012,40,*,Rig Mobilization,,campaign_tied,campaign_logistics,curated_campaign_logistics,Rig mobilization and demobilization stay campaign-only logistics costs.
+P013,50,*,Andalalin,,campaign_tied,campaign_compliance,curated_campaign_compliance,Permitting and compliance costs stay campaign-only.
+P014,51,*,Contingency,,campaign_tied,shared_support,curated_campaign_support,Contingency is treated as campaign-only shared support.
+P015,52,*,Drill Cutting - Transport & Process,,campaign_tied,waste_support,curated_campaign_support,Drill cutting transport and process is treated as campaign support rather than direct well cost.
+P016,53,*,Drilling Facilities Support,,campaign_tied,shared_support,curated_campaign_support,Facilities support is treated as campaign-only shared support.
+P017,54,*,Drilling Operation Water Support,,campaign_tied,shared_support,curated_campaign_support,Water support is treated as campaign-only shared support.
+P018,55,*,Environment Permit,,campaign_tied,campaign_compliance,curated_campaign_compliance,Environmental permits stay campaign-only.
+P019,56,*,Environmental Monitoring,,campaign_tied,campaign_compliance,curated_campaign_compliance,Environmental monitoring stays campaign-only.
+P020,57,*,Hardware Supply,,campaign_tied,shared_support,curated_campaign_support,Hardware supply is treated as campaign support.
+P021,58,*,Hazardous Waste,,campaign_tied,waste_support,curated_campaign_support,Hazardous waste handling is treated as campaign support.
+P022,59,*,Heavy Equipment for Drill Cutting,,campaign_tied,waste_support,curated_campaign_support,Heavy equipment for drill cutting is treated as campaign support.
+P023,60,*,Internet and IT Support Service,,campaign_tied,shared_support,curated_campaign_support,IT support stays campaign-only.
+P024,61,*,IPAL,,campaign_tied,campaign_compliance,curated_campaign_compliance,IPAL stays campaign-only compliance scope.
+P025,62,*,LIH,,campaign_tied,campaign_compliance,curated_campaign_compliance,LIH stays campaign-only compliance scope.
+P026,63,*,Permitting,,campaign_tied,campaign_compliance,curated_campaign_compliance,Permitting stays campaign-only.
+P027,64,*,PGPA,,campaign_tied,campaign_compliance,curated_campaign_compliance,PGPA stays campaign-only compliance scope.
+P028,65,*,Project Management Cost,,campaign_tied,shared_support,curated_campaign_support,Project management stays campaign-only shared support.
+P029,66,*,Sampling and Lab Analysis,,campaign_tied,campaign_compliance,curated_campaign_compliance,Sampling and lab analysis stays campaign-only compliance scope.
+P030,67,*,Security,,campaign_tied,shared_support,curated_campaign_support,Security stays campaign-only shared support.
+P031,80,*,API non API Machine Shop Service,,well_tied,well_scope,curated_well_scope,Machine shop service is treated as direct well scope.
+P032,81,*,"Bits, Reamer and Core heads",,well_tied,well_scope,curated_well_scope,Bits and reamers are treated as direct well scope.
+P033,82,*,Casing Installation,,well_tied,well_scope,curated_well_scope,Casing installation is treated as direct well scope.
+P034,83,*,"Cement, Cementing & Pump Fees",,well_tied,well_scope,curated_well_scope,Cementing cost is treated as direct well scope.
+P035,84,*,Contract Rig,,well_tied,well_scope,curated_well_scope,Contract rig cost is treated as direct well scope.
+P036,85,*,Coring,,well_tied,well_scope,curated_well_scope,Coring cost is treated as direct well scope.
+P037,86,*,Directional Drilling & Surveys,,well_tied,well_scope,curated_well_scope,Directional drilling cost is treated as direct well scope.
+P038,87,*,"Drilling Safety, Health & Environment",,well_tied,well_scope,curated_well_scope,Operational SHE cost is treated as direct well scope.
+P039,88,*,Equipment Rental,,well_tied,well_scope,curated_well_scope,Equipment rental is treated as direct well scope.
+P040,89,*,Explosive,,well_tied,well_scope,curated_well_scope,Explosive usage is treated as well-driven operational scope.
+P041,90,*,Explosive Handling & Permitting,,well_tied,well_scope,curated_well_scope,Explosive handling and permitting is treated as direct well scope.
+P042,91,*,Land Transportation,,well_tied,well_scope,curated_well_scope,Operational land transportation is treated as direct well scope.
+P043,92,*,Logging Cost,,well_tied,well_scope,curated_well_scope,Logging cost is treated as direct well scope.
+P044,93,*,Material,,well_tied,well_scope,curated_well_scope,Well material cost is treated as direct well scope.
+P045,94,*,Mud Logging Service,,well_tied,well_scope,curated_well_scope,Mud logging service is treated as direct well scope.
+P046,95,*,"Mud, Chemical and Engineering Service",,well_tied,well_scope,curated_well_scope,Mud and chemical service is treated as direct well scope.
+P047,96,*,NDT Inspection,,well_tied,well_scope,curated_well_scope,NDT inspection is treated as direct well scope.
+P048,97,*,Open Hole Electrical Logging Service,,well_tied,well_scope,curated_well_scope,Open hole logging is treated as direct well scope.
+P049,98,*,Other Transportation,,well_tied,well_scope,curated_well_scope,Other transportation is treated as direct well scope.
+P050,99,*,Rig Inspection,,well_tied,well_scope,curated_well_scope,Rig inspection is treated as direct well scope.
+P051,100,*,Service,,well_tied,well_scope,curated_well_scope,Well service posting is treated as direct well scope.
+P052,101,*,Service Lines & Communication,,well_tied,well_scope,curated_well_scope,Service lines and communication are treated as direct well scope.
+P053,102,*,Supervision,,well_tied,well_scope,curated_well_scope,Supervision is treated as direct well scope.
+P054,103,*,Vehicle Inspection,,well_tied,well_scope,curated_well_scope,Vehicle inspection is treated as direct well scope.
+P055,104,*,Welding Service,,well_tied,well_scope,curated_well_scope,Welding service is treated as direct well scope.
