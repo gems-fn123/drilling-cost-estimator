@@ -5,6 +5,9 @@ Only active-phase artifacts should remain directly under `reports/`.
 
 Current active artifacts:
 - `phase4_execution_kickoff.md`
+- `phase4_gate_preflight_report.md`
+- `phase4_implementation_tracker.md`
+- `phase4_interconnection_model_design.md`
 
 ## Archived / Processed Docs
 - `reports/processed-docs/phase1-3/` contains completed phase decisions, gate outputs, and historical deliverables.

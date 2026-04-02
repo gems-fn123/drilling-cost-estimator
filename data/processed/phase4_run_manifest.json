@@ -1,0 +1,25 @@
+{
+  "run_timestamp_utc": "2026-04-02T08:37:52.100974+00:00",
+  "inputs": {
+    "wbs_lv5_master": {
+      "path": "data/processed/wbs_lv5_master.csv",
+      "sha256": "3eeb16a37dd46dc2bc7e0a0c3331373005ab509d1e4a8717da0ee5d663f884a9",
+      "row_count": 822
+    },
+    "wbs_lv5_classification": {
+      "path": "data/processed/wbs_lv5_classification.csv",
+      "sha256": "d847e8dec5182140b6321964f160427f5a796276fd74736833ec8912cb2e2a71",
+      "row_count": 822
+    }
+  },
+  "outputs": {
+    "phase4_gate_results": "data/processed/phase4_gate_results.csv",
+    "baseline_estimates_darajat": "data/processed/baseline_estimates_darajat.csv",
+    "baseline_estimates_salak": "data/processed/baseline_estimates_salak.csv",
+    "phase4_gate_report": "reports/phase4_gate_preflight_report.md"
+  },
+  "notes": [
+    "Phase 4 kickoff run includes deterministic baselines only.",
+    "Statistical training/validation artifacts are intentionally out of scope for this step."
+  ]
+}
