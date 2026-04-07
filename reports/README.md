@@ -11,6 +11,7 @@ Current active artifacts:
 - `phase4_driver_analysis.md`
 - `phase4_plus_readiness_plan.md`
 - `phase4_plus_coverage_summary.md`
+- `phase5_kickoff_decision.md`
 - `salak_2021_scope_investigation.md`
 
 ## Archived / Processed Docs

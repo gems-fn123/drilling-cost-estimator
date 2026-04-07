@@ -15,9 +15,9 @@
 - low: **232**
 
 ## Deviation type counts (well context)
-- standard: **16**
+- standard: **14**
 - redrill: **1**
-- sidetrack: **0**
+- sidetrack: **2**
 - multileg: **2**
 - LIH_affected: **0**
 - stuck_related: **0**

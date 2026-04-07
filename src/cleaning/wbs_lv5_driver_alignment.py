@@ -317,7 +317,7 @@ def classify_deviation_type(well_text: str, note_text: str = "") -> str:
     combined = f"{clean_text(well_text)} {clean_text(note_text)}".upper()
     if "RD" in combined:
         return "redrill"
-    if "SIDETRACK" in combined:
+    if "SIDETRACK" in combined or "SIDE-TRACK" in combined:
         return "sidetrack"
     if "ML" in combined:
         return "multileg"
@@ -328,6 +328,23 @@ def classify_deviation_type(well_text: str, note_text: str = "") -> str:
     if clean_text(combined):
         return "standard"
     return "unknown"
+
+
+def normalize_deviation_type(value: str) -> str:
+    text = clean_text(value).lower().replace("-", "").replace("_", "").replace(" ", "")
+    if text in {"sidetrack", "sidetracked"}:
+        return "sidetrack"
+    if text in {"redrill", "re drill", "redrilled"}:
+        return "redrill"
+    if text in {"multileg", "multilateral"}:
+        return "multileg"
+    if text in {"lihaffected", "lih"}:
+        return "LIH_affected"
+    if text in {"stuckrelated", "stuck"}:
+        return "stuck_related"
+    if text in {"standard", "normal"}:
+        return "standard"
+    return clean_text(value)
 
 
 def candidate_aliases_from_text(text: str) -> list[str]:
@@ -1281,6 +1298,16 @@ def build_well_instance_context_rows(
         required=["Asset", "Drilling Campaign", "Well Name SAP", "Actual Depth (ft MD)", "Actual Days (days)", "NPT (days)"],
         optional=["Well Name Well View"],
     )
+    manual_deviation_override: dict[str, str] = {}
+    if WELL_INSTANCE_CONTEXT_PATH.exists():
+        for existing in read_csv_rows(WELL_INSTANCE_CONTEXT_PATH):
+            canonical = normalize_well_alias(existing.get("well_canonical", ""))
+            if not canonical:
+                continue
+            normalized = normalize_deviation_type(existing.get("deviation_type", ""))
+            if normalized and normalized != "standard":
+                manual_deviation_override[canonical] = existing.get("deviation_type", "")
+
     out: list[dict[str, str]] = []
     for row in rows:
         field = map_field(row.get("Asset", ""))
@@ -1297,6 +1324,8 @@ def build_well_instance_context_rows(
         well_base = base_well_canonical(canonical)
         well_instance_id = build_well_instance_id(campaign_canonical, well_base)
         deviation = classify_deviation_type(alias, row.get("Well Name Well View", ""))
+        if canonical in manual_deviation_override:
+            deviation = manual_deviation_override[canonical]
         out.append(
             {
                 "field": field,
@@ -1339,6 +1368,17 @@ def build_well_instance_event_context_rows(
         if campaign:
             field_by_campaign[campaign] = clean_text(wm.get("field", ""))
 
+    # allow manual context updates to flow into NPT event context mapping
+    deviation_by_well: dict[str, str] = {}
+    if WELL_INSTANCE_CONTEXT_PATH.exists():
+        for context_row in read_csv_rows(WELL_INSTANCE_CONTEXT_PATH):
+            canonical = normalize_well_alias(context_row.get("well_canonical", ""))
+            if not canonical:
+                continue
+            normalized = normalize_deviation_type(context_row.get("deviation_type", ""))
+            if normalized:
+                deviation_by_well[canonical] = normalized
+
     out: list[dict[str, str]] = []
     for row in rows:
         alias = normalize_well_alias(row.get("Well Name", ""))
@@ -1355,6 +1395,9 @@ def build_well_instance_event_context_rows(
         well_instance_id = build_well_instance_id(campaign_canonical, well_base)
         detail = clean_text(row.get("Unscheduled Detail", ""))
         deviation = classify_deviation_type(alias, detail)
+        well_context_deviation = deviation_by_well.get(canonical, "")
+        if well_context_deviation == "sidetrack":
+            deviation = "sidetrack"
 
         confidence = "low"
         if canonical and campaign_canonical and clean_text(row.get("Event Reference No.", "")):
@@ -1394,7 +1437,7 @@ def write_phase4_plus_coverage_summary(
     well_canon_after = sum(1 for r in master_rows if clean_text(r.get("well_canonical", "")))
     direct_well_name = sum(1 for r in master_rows if clean_text(r.get("mapping_status_well", "")) == "mapped_from_well_name")
     confidence_counts = Counter(clean_text(r.get("confidence", "")).lower() or "unknown" for r in event_rows)
-    deviation_counts = Counter(clean_text(r.get("deviation_type", "")) or "unknown" for r in context_rows)
+    deviation_counts = Counter(normalize_deviation_type(r.get("deviation_type", "")) or "unknown" for r in context_rows)
 
     lines = [
         "# Phase 4 Plus Coverage Summary",

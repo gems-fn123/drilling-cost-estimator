@@ -1,7 +1,7 @@
 # Phase 4 Implementation Tracker
 
-Date: 2026-04-02
-Status: In Progress
+Date: 2026-04-07
+Status: Phase 4 Released; Sprint 1 & Sprint 2 Approved
 
 ## Scope
 Implements the kickoff actions from `reports/phase4_execution_kickoff.md` and user feedback:
@@ -36,3 +36,14 @@ Implements the kickoff actions from `reports/phase4_execution_kickoff.md` and us
 - `data/processed/baseline_estimates_salak.csv`
 - `reports/phase4_driver_analysis.md`
 - `data/processed/phase4_run_manifest.json`
+
+## Release and Sprint Approval Log
+- **Release decision (2026-04-07): APPROVED for Phase 4 execution.**
+- **Sprint 1: APPROVED** (A1, A2, A3, B1).
+- **Sprint 2: APPROVED** (B2, B3, C1, C2, C3, D1).
+- **Phase 5 kickoff: GO** (D2 and D3 approved to proceed immediately with control conditions).
+
+### Approval guardrails
+1. Maintain field-specific execution (DARAJAT and SALAK separated).
+2. Treat G7/G8 as declared limitations; do not overstate well/event-level validity.
+3. Keep synthetic usage opt-in and disclosed in `phase4_run_manifest.json`.

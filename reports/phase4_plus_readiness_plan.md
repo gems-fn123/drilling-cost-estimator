@@ -1,7 +1,7 @@
 # Phase 4+ Readiness Plan and QA/Review Feedback
 
-Date: 2026-04-02  
-Status: Draft for execution approval
+Date: 2026-04-07  
+Status: Released for Phase 4 execution and sprint approval
 
 ## 1) Purpose
 Define a practical execution plan to reach **full Phase 4 readiness** (validation + explainability artifacts) and establish a controlled bridge into **Phase 5 operationalization** without violating current guardrails.
@@ -186,7 +186,19 @@ Phase 4 is considered execution-ready when all below are satisfied:
 
 ---
 
-## 9) Approval Needed
-Please confirm whether to execute Sprint 1 immediately with:
-1. **Strict real-data mode only**, or
-2. **Hybrid mode** (real-data plus synthetic placeholders for sensitivity-only diagnostics).
+## 9) Release Decision and Sprint Approval
+Based on the latest gate preflight (G1-G6 PASS; G7/G8 tracked as known limitations), Phase 4 is released for execution under controlled scope.
+
+### Approved operating mode
+1. **Strict real-data mode only** is approved as default for production-facing Phase 4 outputs.
+2. **Hybrid mode** remains allowed only for sensitivity diagnostics and must stay explicitly flagged in the run manifest.
+
+### Sprint approvals
+- **Sprint 1 approved**: Track A (A1, A2, A3) + B1.
+- **Sprint 2 approved**: Track B (B2, B3) + Track C (C1, C2, C3) + D1.
+- **Phase 5 kickoff approved (GO)**: D2 and D3 can proceed now under the guardrails below; no additional blocking gate is open.
+
+### Control conditions (mandatory)
+- Keep DARAJAT and SALAK separated in all validation and reporting outputs.
+- Do not claim well-level/event-level predictive validity until G7/G8 limitations are remediated or explicitly accepted per release note.
+- Publish assumptions register updates with each sprint closeout.
