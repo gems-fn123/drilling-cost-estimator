@@ -1,0 +1,823 @@
+source_row_id,field,campaign_canonical,well_raw,well_canonical,mapping_method,confidence,source_text_used
+6b141e8c0262e5d2,SALAK,SALAK_2025_2026,,,none,low,Contingency | Contingency | Contingency
+9063c89c751d123f,SALAK,SALAK_2025_2026,,,none,low,New Rig Pavement | New Rig Pavement | New Rig Pavement
+4081b267ba8f50ed,SALAK,SALAK_2025_2026,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad AWI3 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad AWI3"
+61ad12a6dca200b7,SALAK,SALAK_2025_2026,,,none,low,Tie In-Material Non LL Pad AWI3 | Tie-in | Tie In-Material Non LL Pad AWI3
+436d7e11af4bf201,SALAK,SALAK_2025_2026,,,none,low,Tie In-Material LL Pad AWI3 | Tie-in | Tie In-Material LL Pad AWI3
+4b6f73b1244b893a,SALAK,SALAK_2025_2026,,,none,low,Tie In-Eng Pad AWI3 | Tie-in | Tie In-Eng Pad AWI3
+4c8a5410ea861673,SALAK,SALAK_2025_2026,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad AWI9 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad AWI9"
+b09fe6aac2cb5986,SALAK,SALAK_2025_2026,,,none,low,Tie In-Material Non LL Pad AWI9 | Tie-in | Tie In-Material Non LL Pad AWI9
+34c240028562d1e0,SALAK,SALAK_2025_2026,,,none,low,Tie In-Material LL Pad AWI9 | Tie-in | Tie In-Material LL Pad AWI9
+b714f1dd66f9f955,SALAK,SALAK_2025_2026,,,none,low,Tie In-Eng Pad AWI9 | Tie-in | Tie In-Eng Pad AWI9
+98534b2782ddfe6b,SALAK,SALAK_2025_2026,,,none,low,Spec Req - Const Pad AWI3 | Special Requirement Existing Pad | Spec Req - Const Pad AWI3
+db7b460149006e97,SALAK,SALAK_2025_2026,,,none,low,Spec Req - Eng Pad AWI3 | Special Requirement Existing Pad | Spec Req - Eng Pad AWI3
+a627bfa8a66f0523,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Const Pad AWI9 | Road and Pad | Road & Pad Const Pad AWI9
+d6199b2a1c7a21d3,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Eng Pad AWI9 | Road and Pad | Road & Pad Eng Pad AWI9
+b853c2d9eb969017,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Const Pad AWI3 | Road and Pad | Road & Pad Const Pad AWI3
+347e7ceffe56a856,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Eng Pad AWI3 | Road and Pad | Road & Pad Eng Pad AWI3
+b8b7dd42ef564761,SALAK,SALAK_2025_2026,,,none,low,"Tie In - Inst,HookUp&Pre-Comm AWI23 | Tie-in | Tie In - Inst,HookUp&Pre-Comm AWI23"
+040054f525d837b0,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material Non LL AWI23 | Tie-in | Tie In - Material Non LL AWI23
+e212cad996274b64,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material LL AWI23 | Tie-in | Tie In - Material LL AWI23
+637bb248e260c19f,SALAK,SALAK_2025_2026,,,none,low,Tie In - Eng AWI23 | Tie-in | Tie In - Eng AWI23
+c5887442b82c14c7,SALAK,SALAK_2025_2026,,,none,low,"Tie In - Inst,HookUp&Pre-Comm Pad AWI21 | Tie-in | Tie In - Inst,HookUp&Pre-Comm Pad AWI21"
+25637daec875ecab,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material Non LL Pad AWI21 | Tie-in | Tie In - Material Non LL Pad AWI21
+23becbd551cd7d47,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material LL Pad AWI21 | Tie-in | Tie In - Material LL Pad AWI21
+17a5c7a6215bd9a9,SALAK,SALAK_2025_2026,,,none,low,Tie In - Eng Pad AWI21 | Tie-in | Tie In - Eng Pad AWI21
+95ad7423a81e6c5d,SALAK,SALAK_2025_2026,,,none,low,"Tie In - Inst,HookUp&Pre-Comm Pad AWI2 | Tie-in | Tie In - Inst,HookUp&Pre-Comm Pad AWI2"
+eceef48b626badd7,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material Non LL Pad AWI2 | Tie-in | Tie In - Material Non LL Pad AWI2
+d45f2290158c52cb,SALAK,SALAK_2025_2026,,,none,low,Tie In - Material LL Pad AWI2 | Tie-in | Tie In - Material LL Pad AWI2
+e8eade7a86f25d77,SALAK,SALAK_2025_2026,,,none,low,Tie In - Eng Pad AWI2 | Tie-in | Tie In - Eng Pad AWI2
+b1620117dd85d7b6,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Const Pad AWI21 | Road and Pad | Road & Pad Const Pad AWI21
+041537d4c9eeb283,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Eng Pad AWI21 | Road and Pad | Road & Pad Eng Pad AWI21
+e3d7968923100012,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Const Pad AWI2 | Road and Pad | Road & Pad Const Pad AWI2
+7e62be60683ba05c,SALAK,SALAK_2025_2026,,,none,low,Road & Pad Eng Pad AWI2 | Road and Pad | Road & Pad Eng Pad AWI2
+519fbba7b5265313,SALAK,SALAK_2025_2026,well_9,AWI 9-10,ordered_label_map,high,Cdtr Csg Material Well 9 | Conductor casing installation & material | Cdtr Csg Material Well 9
+aa11938743df9ef4,SALAK,SALAK_2025_2026,well_9,AWI 9-10,ordered_label_map,high,Cdtr Csg Service Well 9 | Conductor casing installation & material | Cdtr Csg Service Well 9
+be73129ed9e51130,SALAK,SALAK_2025_2026,well_8,AWI 9-11,ordered_label_map,high,Cdtr Csg Material Well 8 | Conductor casing installation & material | Cdtr Csg Material Well 8
+3664ae21b332f18e,SALAK,SALAK_2025_2026,well_8,AWI 9-11,ordered_label_map,high,Cdtr Csg Service Well 8 | Conductor casing installation & material | Cdtr Csg Service Well 8
+20d5629d534b145a,SALAK,SALAK_2025_2026,well_7,AWI 2-6,ordered_label_map,high,Cdtr Csg Material Well 7 | Conductor casing installation & material | Cdtr Csg Material Well 7
+c6a6a9e56568d60a,SALAK,SALAK_2025_2026,well_7,AWI 2-6,ordered_label_map,high,Cdtr Csg Service Well 7 | Conductor casing installation & material | Cdtr Csg Service Well 7
+2beb94ea30072008,SALAK,SALAK_2025_2026,well_6,AWI 2-7 ML,ordered_label_map,high,Cdtr Csg Material Well 6 | Conductor casing installation & material | Cdtr Csg Material Well 6
+b731ee7747eb419c,SALAK,SALAK_2025_2026,well_6,AWI 2-7 ML,ordered_label_map,high,Cdtr Csg Service Well 6 | Conductor casing installation & material | Cdtr Csg Service Well 6
+a79eec22651f4f7c,SALAK,SALAK_2025_2026,well_5,AWI 23-2,ordered_label_map,high,Cdtr Csg Material Well 5 | Conductor casing installation & material | Cdtr Csg Material Well 5
+5f1d6eac6bf4ece4,SALAK,SALAK_2025_2026,well_5,AWI 23-2,ordered_label_map,high,Cdtr Csg Service Well 5 | Conductor casing installation & material | Cdtr Csg Service Well 5
+ad0a5c95a630855b,SALAK,SALAK_2025_2026,well_4,AWI 23-1,ordered_label_map,high,Cdtr Csg Material Well 4 | Conductor casing installation & material | Cdtr Csg Material Well 4
+a7e30c029e3b76f6,SALAK,SALAK_2025_2026,well_4,AWI 23-1,ordered_label_map,high,Cdtr Csg Service Well 4 | Conductor casing installation & material | Cdtr Csg Service Well 4
+e1f8ffffb982fa2e,SALAK,SALAK_2025_2026,well_3,AWI 3-9,ordered_label_map,high,Cdtr Csg Material Well 3 | Conductor casing installation & material | Cdtr Csg Material Well 3
+1603ccd3de09e4e9,SALAK,SALAK_2025_2026,well_3,AWI 3-9,ordered_label_map,high,Cdtr Csg Service Well 3 | Conductor casing installation & material | Cdtr Csg Service Well 3
+a78ea4a5e2d77e9e,SALAK,SALAK_2025_2026,well_2,AWI 21-7,ordered_label_map,high,Cdtr Csg Material Well 2 | Conductor casing installation & material | Cdtr Csg Material Well 2
+15d0ed0f52e00108,SALAK,SALAK_2025_2026,well_2,AWI 21-7,ordered_label_map,high,Cdtr Csg Service Well 2 | Conductor casing installation & material | Cdtr Csg Service Well 2
+d715f6ec24ad0590,SALAK,SALAK_2025_2026,well_1,AWI 21-8,ordered_label_map,high,Cdtr Csg Material Well 1 | Conductor casing installation & material | Cdtr Csg Material Well 1
+0eadd811fa68b247,SALAK,SALAK_2025_2026,well_1,AWI 21-8,ordered_label_map,high,Cdtr Csg Service Well 1 | Conductor casing installation & material | Cdtr Csg Service Well 1
+f811a7481e5cda02,SALAK,SALAK_2025_2026,,,none,low,Project Management Cost | Project Management Cost | Project Management Cost
+0b77b13601079144,SALAK,SALAK_2025_2026,,,none,low,Internet and IT Support Service | IT+ Communication | Internet and IT Support Service
+787acd1207bf8631,SALAK,SALAK_2025_2026,,,none,low,Hardware Supply | IT+ Communication | Hardware Supply
+e9610dee688ebdda,SALAK,SALAK_2025_2026,,,none,low,Drilling Facilities Support | Drilling Facilities Support | Drilling Facilities Support
+8485f188bc044ba0,SALAK,SALAK_2025_2026,,,none,low,Drilling Operation water support | Drilling Operation water support | Drilling Operation water support
+e48d165490a380a7,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Insurance AWI 9-10RD | Well Insurance | Insurance AWI 9-10RD
+87ec1069bcda7c96,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Insurance AWI 23-2 | Well Insurance | Insurance AWI 23-2
+55f2a894ef2b0095,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Insurance AWI 21-8 | Well Insurance | Insurance AWI 21-8
+f9294e81d5eabe3d,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Insurance AWI 3-9 | Well Insurance | Insurance AWI 3-9
+094748c31b077310,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Insurance AWI 9-11 | Well Insurance | Insurance AWI 9-11
+cfe2f132ec8cae13,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Insurance AWI 23-1 | Well Insurance | Insurance AWI 23-1
+e454a18995bd270f,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Insurance AWI 21-7 | Well Insurance | Insurance AWI 21-7
+6eecae8bc916fdee,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Insurance AWI 2-7 ML | Well Insurance | Insurance AWI 2-7 ML
+98edbea722b58903,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Insurance AWI 2-6 | Well Insurance | Insurance AWI 2-6
+8f52e606fd2da0b6,SALAK,SALAK_2025_2026,,,none,low,Security | PGPA + security | Security
+6c3704cccf78b320,SALAK,SALAK_2025_2026,,,none,low,PGPA | PGPA + security | PGPA
+b3e3dbe8b5e06c28,SALAK,SALAK_2025_2026,,,none,low,Sampling and Lab Analysis | SHE | Sampling and Lab Analysis
+7965644760512910,SALAK,SALAK_2025_2026,,,none,low,Hazardous Waste | SHE | Hazardous Waste
+cf07c0e450ee19d2,SALAK,SALAK_2025_2026,,,none,low,Transportation | SHE | Transportation
+ab1f0b5295af7076,SALAK,SALAK_2025_2026,,,none,low,Processs Cost | SHE | Processs Cost
+3aeccd72286522dc,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,WSG AWI 9-10RD | Wellsite Geologist (WSG) | WSG AWI 9-10RD
+91fe31561102a91a,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,WSG AWI 23-2 | Wellsite Geologist (WSG) | WSG AWI 23-2
+6f881315b7c09065,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,WSG AWI 21-8 | Wellsite Geologist (WSG) | WSG AWI 21-8
+e62f2bb63b87afc0,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,WSG AWI 3-9 | Wellsite Geologist (WSG) | WSG AWI 3-9
+4633db882e6d77b8,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,WSG AWI 9-11 | Wellsite Geologist (WSG) | WSG AWI 9-11
+398dead57bd1e668,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,WSG AWI 23-1 | Wellsite Geologist (WSG) | WSG AWI 23-1
+ae55e2cfe450b62a,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,WSG AWI 21-7 | Wellsite Geologist (WSG) | WSG AWI 21-7
+2338d4a507488ce2,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,WSG AWI 2-7 ML | Wellsite Geologist (WSG) | WSG AWI 2-7 ML
+37bb8194c2f1dd0e,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,WSG AWI 2-6 | Wellsite Geologist (WSG) | WSG AWI 2-6
+897ae4c034b77d9a,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Well testing AWI 9-10RD | Well testing | Well testing AWI 9-10RD
+31d2285deb2d3ddf,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Well testing AWI 23-2 | Well testing | Well testing AWI 23-2
+bbb278330dfa5068,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Well testing AWI 21-8 | Well testing | Well testing AWI 21-8
+2a3e419ceb2ccf9b,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Well testing AWI 3-9 | Well testing | Well testing AWI 3-9
+2722cfea820d6da8,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Well testing AWI 9-11 | Well testing | Well testing AWI 9-11
+bd27d4d69c741a85,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Well testing AWI 23-1 | Well testing | Well testing AWI 23-1
+9b7ff7d6b17a0182,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Well testing AWI 21-7 | Well testing | Well testing AWI 21-7
+e53bf1123e698356,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Well testing AWI 2-7 ML | Well testing | Well testing AWI 2-7 ML
+9d27f86bb34c599b,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Well testing AWI 2-6 | Well testing | Well testing AWI 2-6
+df54bbc48a4d1df2,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Drilling Rig O&M AWI 9-10RD | Services | Drilling Rig O&M AWI 9-10RD
+eb1621d3f5a6b3cf,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Explosive Handling & Permittingting AWI 9-10RD | Services | Explosive Handling & Permittingting AWI 9-10RD
+6cd69206a95f3adf,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,API non API Machine Shop Serv AWI 9-10RD | Services | API non API Machine Shop Serv AWI 9-10RD
+c3f6a2123bf4935d,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Welding Services AWI 9-10RD | Services | Welding Services AWI 9-10RD
+35f069aac3a7bcbc,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Vehicle Inspection AWI 9-10RD | Services | Vehicle Inspection AWI 9-10RD
+f851fad33831e2b5,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Rig Inspection AWI 9-10RD | Services | Rig Inspection AWI 9-10RD
+a32b5f98a27801d1,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,NDT Inspection AWI 9-10RD | Services | NDT Inspection AWI 9-10RD
+785af77f31a1f9ea,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 9-1 | Services | Drilling Safety, Health & Enviro AWI 9-1"
+d033dfa5c42588bb,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Other Transportation AWI 9-10RD | Services | Other Transportation AWI 9-10RD
+2757d1dc9de2ba26,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Land Transportation AWI 9-10RD | Services | Land Transportation AWI 9-10RD
+4899ee0c72d2f51c,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Supervision AWI 9-10RD | Services | Supervision AWI 9-10RD
+00fa0a3b8881247c,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 9- | Services | Open Hole Electrical Logging Serv AWI 9-
+b37387c52f764f3c,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Mud Logging Service AWI 9-10RD | Services | Mud Logging Service AWI 9-10RD
+529c039c4b93a8af,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Coring AWI 9-10RD | Services | Coring AWI 9-10RD
+a30abd8a8c22020e,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 9-10RD | Services | Cement, Cementing & Pump Fees AWI 9-10RD"
+a8952e631fe839be,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Casing Installation AWI 9-10RD | Services | Casing Installation AWI 9-10RD
+4a71b4d6f4385730,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Directional Drilling & Surveys AWI 9-10RD | Services | Directional Drilling & Surveys AWI 9-10RD
+d65d0c804182d976,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Equipment Rental AWI 9-10RD | Services | Equipment Rental AWI 9-10RD
+bca3090c9426cc64,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 9-10RD | Services | Bits, Reamer and Core heads AWI 9-10RD"
+1fa32080d576794b,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 9-10RD | Services | Mud, Chemical and Eng Serv AWI 9-10RD"
+4cf05d86ea4b0d05,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Contract Rig AWI 9-10RD | Services | Contract Rig AWI 9-10RD
+ef80938a4db07960,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Service Lines & Comm AWI 9-10RD | Services | Service Lines & Comm AWI 9-10RD
+49083c6af64b1548,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Consumables AWI 9-10RD | Material | Consumables AWI 9-10RD
+80fce25220cdcfbf,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Casing Repair & Modif AWI 9-10RD | Material | Casing Repair & Modif AWI 9-10RD
+ae147b1a035aef07,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Asset Transfer AWI 9-10RD | Material | Asset Transfer AWI 9-10RD
+2ab233aefdd093d4,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Fuel & Lubricants AWI 9-10RD | Material | Fuel & Lubricants AWI 9-10RD
+f6609c6e0f389252,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Well Equip. Surface AWI 9-10RD | Material | Well Equip. Surface AWI 9-10RD
+2a4e6163ab1a970b,SALAK,SALAK_2025_2026,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,Casing AWI 9-10RD | Material | Casing AWI 9-10RD
+82c6be3b68fde65e,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Drilling Rig O&M AWI 23-2 | Services | Drilling Rig O&M AWI 23-2
+b0448dfb51067bd3,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Explosive Handling & Permittingting AWI 23-2 | Services | Explosive Handling & Permittingting AWI 23-2
+ac273ae4e4933c00,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,API non API Machine Shop Serv AWI 23-2 | Services | API non API Machine Shop Serv AWI 23-2
+2f6f04b5b6e64dc6,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Welding Services AWI 23-2 | Services | Welding Services AWI 23-2
+c7cfc1b9e075ba40,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Vehicle Inspection AWI 23-2 | Services | Vehicle Inspection AWI 23-2
+3dc4f8632e5ed185,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Rig Inspection AWI 23-2 | Services | Rig Inspection AWI 23-2
+935501a2976fe032,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,NDT Inspection AWI 23-2 | Services | NDT Inspection AWI 23-2
+dba6f4fde87affea,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 23- | Services | Drilling Safety, Health & Enviro AWI 23-"
+23f8b0b05b50f9cc,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Other Transportation AWI 23-2 | Services | Other Transportation AWI 23-2
+d25f4cc3ba8ca504,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Land Transportation AWI 23-2 | Services | Land Transportation AWI 23-2
+ba99c195b09dd609,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Supervision AWI 23-2 | Services | Supervision AWI 23-2
+6c88e8ba6d01c5d1,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 23 | Services | Open Hole Electrical Logging Serv AWI 23
+f90a70f20181fd46,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Mud Logging Service AWI 23-2 | Services | Mud Logging Service AWI 23-2
+667181f1e3938bed,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Coring AWI 23-2 | Services | Coring AWI 23-2
+6440d79c3319e4a3,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 23-2 | Services | Cement, Cementing & Pump Fees AWI 23-2"
+da457e798bb3d6e0,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Casing Installation AWI 23-2 | Services | Casing Installation AWI 23-2
+fe38a61c5d3c2e81,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Directional Drilling & Surveys AWI 23-2 | Services | Directional Drilling & Surveys AWI 23-2
+9ded9ff558fa3413,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Equipment Rental AWI 23-2 | Services | Equipment Rental AWI 23-2
+66ef5ae18addaa80,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 23-2 | Services | Bits, Reamer and Core heads AWI 23-2"
+4805cfdbf2037f44,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 23-2 | Services | Mud, Chemical and Eng Serv AWI 23-2"
+db6a9d923089b36e,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Contract Rig AWI 23-2 | Services | Contract Rig AWI 23-2
+7d1be1238c69ccde,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Service Lines & Comm AWI 23-2 | Services | Service Lines & Comm AWI 23-2
+0f083a33715bdf34,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Consumables AWI 23-2 | Material | Consumables AWI 23-2
+61f8db1b806deaa9,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Casing Repair & Modif AWI 23-2 | Material | Casing Repair & Modif AWI 23-2
+5e61a85a1dfb55d5,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Asset Transfer AWI 23-2 | Material | Asset Transfer AWI 23-2
+60f14aa9b617ae13,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Fuel & Lubricants AWI 23-2 | Material | Fuel & Lubricants AWI 23-2
+705a5d807f5950fd,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Well Equip. Surface AWI 23-2 | Material | Well Equip. Surface AWI 23-2
+43bb737c985b374d,SALAK,SALAK_2025_2026,AWI 23-2,AWI 23-2,campaign_alias_match,high,Casing AWI 23-2 | Material | Casing AWI 23-2
+5f1f4c1e7a603546,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Drilling Rig O&M AWI 21-8 | Services | Drilling Rig O&M AWI 21-8
+83359dc40549e32a,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Explosive Handling & Permittingting AWI 21-8 | Services | Explosive Handling & Permittingting AWI 21-8
+17ce744629ada959,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,API non API Machine Shop Serv AWI 21-8 | Services | API non API Machine Shop Serv AWI 21-8
+e4cb404b3e3cf124,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Welding Services AWI 21-8 | Services | Welding Services AWI 21-8
+e3b6f5930d110381,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Vehicle Inspection AWI 21-8 | Services | Vehicle Inspection AWI 21-8
+d7b9f0bff9245e2d,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Rig Inspection AWI 21-8 | Services | Rig Inspection AWI 21-8
+ca68e5161ef51b63,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,NDT Inspection AWI 21-8 | Services | NDT Inspection AWI 21-8
+544ad4efc8ac4cac,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 21- | Services | Drilling Safety, Health & Enviro AWI 21-"
+36026d9ed307150d,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Other Transportation AWI 21-8 | Services | Other Transportation AWI 21-8
+20906f254baac969,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Land Transportation AWI 21-8 | Services | Land Transportation AWI 21-8
+24948a9334fcfcb6,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Supervision AWI 21-8 | Services | Supervision AWI 21-8
+4e5d970553ca8213,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 21 | Services | Open Hole Electrical Logging Serv AWI 21
+435ddfd364c985f1,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Mud Logging Service AWI 21-8 | Services | Mud Logging Service AWI 21-8
+ea9a9e7602296b2b,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Coring AWI 21-8 | Services | Coring AWI 21-8
+c8f23c3a5a003358,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 21-8 | Services | Cement, Cementing & Pump Fees AWI 21-8"
+88c857f7a503c8d8,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Casing Installation AWI 21-8 | Services | Casing Installation AWI 21-8
+95358c5126005455,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Directional Drilling & Surveys AWI 21-8 | Services | Directional Drilling & Surveys AWI 21-8
+07dab00784cd51eb,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Equipment Rental AWI 21-8 | Services | Equipment Rental AWI 21-8
+8f2365f3a9515d53,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 21-8 | Services | Bits, Reamer and Core heads AWI 21-8"
+62d31ae6f32193d0,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 21-8 | Services | Mud, Chemical and Eng Serv AWI 21-8"
+fa29344884181bc2,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Contract Rig AWI 21-8 | Services | Contract Rig AWI 21-8
+00a8449f618eb29b,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Service Lines & Comm AWI 21-8 | Services | Service Lines & Comm AWI 21-8
+9e5c3477bea1068b,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Consumables AWI 21-8 | Material | Consumables AWI 21-8
+51ae5993d29324ed,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Asset Transfer AWI 21-8 | Material | Asset Transfer AWI 21-8
+b56ef7663a3e55d8,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Fuel & Lubricants AWI 21-8 | Material | Fuel & Lubricants AWI 21-8
+5c117e6a89d13c37,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Casing Repair & Modif AWI 21-8 | Material | Casing Repair & Modif AWI 21-8
+bc4fc48442b24001,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Well Equip. Surface AWI 21-8 | Material | Well Equip. Surface AWI 21-8
+88188ab837bf0041,SALAK,SALAK_2025_2026,AWI 21-8,AWI 21-8,campaign_alias_match,high,Casing AWI 21-8 | Material | Casing AWI 21-8
+041d9d7730f9e6b8,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Drilling Rig O&M AWI 3-9 | Services | Drilling Rig O&M AWI 3-9
+fe15432a4032f767,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Explosive Handling & Permittingting AWI 3-9 | Services | Explosive Handling & Permittingting AWI 3-9
+559ba470408b5a86,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,API non API Machine Shop Serv AWI 3-9 | Services | API non API Machine Shop Serv AWI 3-9
+f0f0a7f5401ce76d,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Welding Services AWI 3-9 | Services | Welding Services AWI 3-9
+d8af77df9d546792,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Vehicle Inspection AWI 3-9 | Services | Vehicle Inspection AWI 3-9
+85b46a935e01bd3c,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Rig Inspection AWI 3-9 | Services | Rig Inspection AWI 3-9
+c3bcaf5d73066023,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,NDT Inspection AWI 3-9 | Services | NDT Inspection AWI 3-9
+feed89960d1bde66,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 3-9 | Services | Drilling Safety, Health & Enviro AWI 3-9"
+8f6b513b8d4db59f,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Other Transportation AWI 3-9 | Services | Other Transportation AWI 3-9
+f22bd754897466a4,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Land Transportation AWI 3-9 | Services | Land Transportation AWI 3-9
+af865c1959f28961,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Supervision AWI 3-9 | Services | Supervision AWI 3-9
+26832665a010e0b2,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 3- | Services | Open Hole Electrical Logging Serv AWI 3-
+922de604f23f744f,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Mud Logging Service AWI 3-9 | Services | Mud Logging Service AWI 3-9
+0e3d38415101c5ad,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Coring AWI 3-9 | Services | Coring AWI 3-9
+0bee126540612d71,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 3-9 | Services | Cement, Cementing & Pump Fees AWI 3-9"
+794267222bf307e5,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Casing Installation AWI 3-9 | Services | Casing Installation AWI 3-9
+3bdbcc6ff9570c73,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Directional Drilling & Surveys AWI 3-9 | Services | Directional Drilling & Surveys AWI 3-9
+96f480bd9fde8c35,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Equipment Rental AWI 3-9 | Services | Equipment Rental AWI 3-9
+a30296788d0225bf,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 3-9 | Services | Bits, Reamer and Core heads AWI 3-9"
+d5d251d42368d593,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 3-9 | Services | Mud, Chemical and Eng Serv AWI 3-9"
+64050153e586f2ef,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Contract Rig AWI 3-9 | Services | Contract Rig AWI 3-9
+ad2b7f75677cff53,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Service Lines & Comm AWI 3-9 | Services | Service Lines & Comm AWI 3-9
+41c959cb88492732,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Consumables AWI 3-9 | Material | Consumables AWI 3-9
+7089bdb5bdfc7a14,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Casing Repair & Modif AWI 3-9 | Material | Casing Repair & Modif AWI 3-9
+b8361396f07b9dea,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Asset Transfer AWI 3-9 | Material | Asset Transfer AWI 3-9
+4a774fed707dfd5e,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Fuel & Lubricants AWI 3-9 | Material | Fuel & Lubricants AWI 3-9
+556cde89f2e5be90,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Well Equip. Surface AWI 3-9 | Material | Well Equip. Surface AWI 3-9
+ff25a2cc53749bb4,SALAK,SALAK_2025_2026,AWI 3-9,AWI 3-9,campaign_alias_match,high,Casing AWI 3-9 | Material | Casing AWI 3-9
+8fb23efe59cafe1d,SALAK,SALAK_2025_2026,,,none,low,Logging Cost | Logging Cost | Logging Cost
+622e6eee3b9e5979,SALAK,SALAK_2025_2026,,,none,low,Explosive | Explosive | Explosive
+7d602ba69d642ec2,SALAK,SALAK_2025_2026,,,none,low,LIH | LIH | LIH
+29b79aa765e88e2e,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Drilling Rig O&M AWI 9-11 | Services | Drilling Rig O&M AWI 9-11
+cfe36af0913796f0,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Explosive Handling & Permittingting AWI 9-11 | Services | Explosive Handling & Permittingting AWI 9-11
+74ebfae299b04f52,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,API non API Machine Shop Serv AWI 9-11 | Services | API non API Machine Shop Serv AWI 9-11
+1f6647caee70a34e,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Welding Services AWI 9-11 | Services | Welding Services AWI 9-11
+cb60b91a09001fd1,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Vehicle Inspection AWI 9-11 | Services | Vehicle Inspection AWI 9-11
+e85af90e5fd2e6f3,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Rig Inspection AWI 9-11 | Services | Rig Inspection AWI 9-11
+e33b8c31b1eb1842,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,NDT Inspection AWI 9-11 | Services | NDT Inspection AWI 9-11
+11693e2a36eafb66,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 9-11 | Services | Drilling Safety, Health & Enviro AWI 9-11"
+b2fbfde104b07ac2,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Other Transportation AWI 9-11 | Services | Other Transportation AWI 9-11
+d9bfd8908775d7f7,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Land Transportation AWI 9-11 | Services | Land Transportation AWI 9-11
+e4973721e24653c8,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Supervision AWI 9-11 | Services | Supervision AWI 9-11
+f5370c1f3bc13c27,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 9-11 | Services | Open Hole Electrical Logging Serv AWI 9-11
+73585e9ecaac2228,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Mud Logging Service AWI 9-11 | Services | Mud Logging Service AWI 9-11
+a17fe9bd8917ef65,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Coring AWI 9-11 | Services | Coring AWI 9-11
+06a85a9840e8118b,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 9-11 | Services | Cement, Cementing & Pump Fees AWI 9-11"
+2670cfc9091eeb47,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Casing Installation AWI 9-11 | Services | Casing Installation AWI 9-11
+98ad41163f6185b4,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Directional Drilling & Surveys AWI 9-11 | Services | Directional Drilling & Surveys AWI 9-11
+b4a280ae5f704838,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Equipment Rental AWI 9-11 | Services | Equipment Rental AWI 9-11
+0c95f373177f4d9b,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 9-11 | Services | Bits, Reamer and Core heads AWI 9-11"
+bbeaae4f0def3b56,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 9-11 | Services | Mud, Chemical and Eng Serv AWI 9-11"
+ce6a937cf36289c9,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Contract Rig AWI 9-11 | Services | Contract Rig AWI 9-11
+5e4b98a09e509ecb,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Service Lines & Comm AWI 9-11 | Services | Service Lines & Comm AWI 9-11
+c1e8193e42168326,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Consumables AWI 9-11 | Material | Consumables AWI 9-11
+2016e482ae4a55e4,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Casing Repair & Modif AWI 9-11 | Material | Casing Repair & Modif AWI 9-11
+656c8d5d69cda367,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Asset Transfer AWI 9-11 | Material | Asset Transfer AWI 9-11
+8d97dee2857ab443,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Fuel & Lubricants AWI 9-11 | Material | Fuel & Lubricants AWI 9-11
+5fa0939e033a9550,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Well Equip. Surface AWI 9-11 | Material | Well Equip. Surface AWI 9-11
+08e5b2eb8926cb09,SALAK,SALAK_2025_2026,AWI 9-11,AWI 9-11,campaign_alias_match,high,Casing AWI 9-11 | Material | Casing AWI 9-11
+75cc2103dc1b63bc,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Drilling Rig O&M AWI 23-1 | Services | Drilling Rig O&M AWI 23-1
+e5877336a66e24cb,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Explosive Handling & Permittingting AWI 23-1 | Services | Explosive Handling & Permittingting AWI 23-1
+b42bfc272d4296ae,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,API non API Machine Shop Serv AWI 23-1 | Services | API non API Machine Shop Serv AWI 23-1
+466ae469e46e17f7,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Welding Services AWI 23-1 | Services | Welding Services AWI 23-1
+1e2ef85ab0e104c4,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Vehicle Inspection AWI 23-1 | Services | Vehicle Inspection AWI 23-1
+7e4327de8a4a560d,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Rig Inspection AWI 23-1 | Services | Rig Inspection AWI 23-1
+412dc4f348101b94,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,NDT Inspection AWI 23-1 | Services | NDT Inspection AWI 23-1
+7837e868c7f9b4ab,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 23-1 | Services | Drilling Safety, Health & Enviro AWI 23-1"
+c53f78b765a39974,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Other Transportation AWI 23-1 | Services | Other Transportation AWI 23-1
+3fc9775a9ed2ddfa,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Land Transportation AWI 23-1 | Services | Land Transportation AWI 23-1
+b49f6f29e0231ff5,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Supervision AWI 23-1 | Services | Supervision AWI 23-1
+bfae14ab3ba1cf22,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 23-1 | Services | Open Hole Electrical Logging Serv AWI 23-1
+0c1dd06109407ef6,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Mud Logging Service AWI 23-1 | Services | Mud Logging Service AWI 23-1
+fd9a37253be9e046,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Coring AWI 23-1 | Services | Coring AWI 23-1
+a8dd1b91d30d045f,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 23-1 | Services | Cement, Cementing & Pump Fees AWI 23-1"
+9654f2346dab0053,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Casing Installation AWI 23-1 | Services | Casing Installation AWI 23-1
+38b2d0826ebee10c,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Directional Drilling & Surveys AWI 23-1 | Services | Directional Drilling & Surveys AWI 23-1
+2088c70abbdc452a,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Equipment Rental AWI 23-1 | Services | Equipment Rental AWI 23-1
+558984c7368e4666,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 23-1 | Services | Bits, Reamer and Core heads AWI 23-1"
+591c3a7ae7fea8d2,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 23-1 | Services | Mud, Chemical and Eng Serv AWI 23-1"
+0f249a900031ce32,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Contract Rig AWI 23-1 | Services | Contract Rig AWI 23-1
+7720dc9ad158b80b,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Service Lines & Comm AWI 23-1 | Services | Service Lines & Comm AWI 23-1
+b4c5808002b441cf,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Consumables AWI 23-1 | Material | Consumables AWI 23-1
+635a3f4a8ab936cd,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Casing Repair & Modif AWI 23-1 | Material | Casing Repair & Modif AWI 23-1
+c1218ac17da3865f,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Asset Transfer AWI 23-1 | Material | Asset Transfer AWI 23-1
+2413c4db41fd2c08,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Fuel & Lubricants AWI 23-1 | Material | Fuel & Lubricants AWI 23-1
+f3d5d92f89df761c,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Well Equip. Surface AWI 23-1 | Material | Well Equip. Surface AWI 23-1
+856cb615989e753d,SALAK,SALAK_2025_2026,AWI 23-1,AWI 23-1,campaign_alias_match,high,Casing AWI 23-1 | Material | Casing AWI 23-1
+3ecc5262bc1216ba,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Drilling Rig O&M AWI 21-7 | Services | Drilling Rig O&M AWI 21-7
+aac0dc92f5430fe2,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Explosive Handling & Permittingting AWI 21-7 | Services | Explosive Handling & Permittingting AWI 21-7
+085096f82d9f4e5d,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,API non API Machine Shop Serv AWI 21-7 | Services | API non API Machine Shop Serv AWI 21-7
+6fde651ff54d979a,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Welding Services AWI 21-7 | Services | Welding Services AWI 21-7
+0f7ed14c0f0f7f9a,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Vehicle Inspection AWI 21-7 | Services | Vehicle Inspection AWI 21-7
+3a083731e690e277,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Rig Inspection AWI 21-7 | Services | Rig Inspection AWI 21-7
+c0d8a7849053efa3,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,NDT Inspection AWI 21-7 | Services | NDT Inspection AWI 21-7
+b1f8819035860f16,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 21-7 | Services | Drilling Safety, Health & Enviro AWI 21-7"
+eff36191063895cd,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Other Transportation AWI 21-7 | Services | Other Transportation AWI 21-7
+a6204db5d87fcf96,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Land Transportation AWI 21-7 | Services | Land Transportation AWI 21-7
+528500468e6909ae,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Supervision AWI 21-7 | Services | Supervision AWI 21-7
+8c89f4a8912fb7da,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 21-7 | Services | Open Hole Electrical Logging Serv AWI 21-7
+6dc1495a9b56e4d1,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Mud Logging Service AWI 21-7 | Services | Mud Logging Service AWI 21-7
+e13b50ee56cc0e7f,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Coring AWI 21-7 | Services | Coring AWI 21-7
+679e1e4e19a3bbbc,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 21-7 | Services | Cement, Cementing & Pump Fees AWI 21-7"
+6dba271142714e68,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Casing Installation AWI 21-7 | Services | Casing Installation AWI 21-7
+e5b705a25cf22309,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Directional Drilling & Surveys AWI 21-7 | Services | Directional Drilling & Surveys AWI 21-7
+7b14478b25dcf498,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Equipment Rental AWI 21-7 | Services | Equipment Rental AWI 21-7
+b8d02c476ae52924,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 21-7 | Services | Bits, Reamer and Core heads AWI 21-7"
+b882ad03dab2e38c,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 21-7 | Services | Mud, Chemical and Eng Serv AWI 21-7"
+ed9721a5279df341,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Contract Rig AWI 21-7 | Services | Contract Rig AWI 21-7
+07e49d52be777e13,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Service Lines & Comm AWI 21-7 | Services | Service Lines & Comm AWI 21-7
+9818eb24ec25dd0b,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Consumables AWI 21-7 | Material | Consumables AWI 21-7
+7c12cebde085c5e3,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Casing Repair & Modif AWI 21-7 | Material | Casing Repair & Modif AWI 21-7
+9cc572ac65d96570,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Asset Transfer AWI 21-7 | Material | Asset Transfer AWI 21-7
+3450ec378535c146,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Fuel & Lubricants AWI 21-7 | Material | Fuel & Lubricants AWI 21-7
+f481ce3139fd07e4,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Well Equip. Surface AWI 21-7 | Material | Well Equip. Surface AWI 21-7
+63650d1a743a2486,SALAK,SALAK_2025_2026,AWI 21-7,AWI 21-7,campaign_alias_match,high,Casing AWI 21-7 | Material | Casing AWI 21-7
+62bb577cf7444da3,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Skid Moving 4 | Rig Skid | Contract Rig Skid Moving 4
+6c28dff699b0f165,SALAK,SALAK_2025_2026,,,none,low,Skid Moving 4 | Rig Skid | Skid Moving 4
+e2d008e967c2c7b5,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Skid Moving 3 | Rig Skid | Contract Rig Skid Moving 3
+38c91d14f957db76,SALAK,SALAK_2025_2026,,,none,low,Skid Moving 3 | Rig Skid | Skid Moving 3
+9c0a594d14512e6d,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Skid Moving 2 | Rig Skid | Contract Rig Skid Moving 2
+1bddab6d940898cf,SALAK,SALAK_2025_2026,,,none,low,Skid Moving 2 | Rig Skid | Skid Moving 2
+b969ece1f3186d3d,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Skid Moving 1 | Rig Skid | Contract Rig Skid Moving 1
+de4eee0f4917ee85,SALAK,SALAK_2025_2026,,,none,low,Skid Moving 1 | Rig Skid | Skid Moving 1
+c86b2254b22192df,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Interpad Moving 4 | Rig Move | Contract Rig Interpad Moving 4
+f3a9ef45c0471e40,SALAK,SALAK_2025_2026,,,none,low,Interpad Moving 4 | Rig Move | Interpad Moving 4
+8e33b7c35901cbb7,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Interpad Moving 3 | Rig Move | Contract Rig Interpad Moving 3
+c3bb5fd3b58a14eb,SALAK,SALAK_2025_2026,,,none,low,Interpad Moving 3 | Rig Move | Interpad Moving 3
+fdec5631a1254cab,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Interpad Moving 2 | Rig Move | Contract Rig Interpad Moving 2
+bac2a43a9dcabc7e,SALAK,SALAK_2025_2026,,,none,low,Interpad Moving 2 | Rig Move | Interpad Moving 2
+d6b1e61ffec33019,SALAK,SALAK_2025_2026,,,none,low,Contract Rig Interpad Moving 1 | Rig Move | Contract Rig Interpad Moving 1
+20b9a66f0240b42d,SALAK,SALAK_2025_2026,,,none,low,Interpad Moving 1 | Rig Move | Interpad Moving 1
+6a7477df590d5a64,SALAK,SALAK_2025_2026,,,none,low,Mobilization to Salak | Mobilization (incl. inter-field move) | Mobilization to Salak
+9c09865644f2c167,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Drilling Rig O&M AWI 2-6 | Services | Drilling Rig O&M AWI 2-6
+9a773022f9d375f4,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Explosive Handling & Permittingting AWI 2-6 | Services | Explosive Handling & Permittingting AWI 2-6
+69c2c0a9442ad842,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,API non API Machine Shop Serv AWI 2-6 | Services | API non API Machine Shop Serv AWI 2-6
+52cad447112d351d,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Welding Services AWI 2-6 | Services | Welding Services AWI 2-6
+607671defa0abdd3,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Vehicle Inspection AWI 2-6 | Services | Vehicle Inspection AWI 2-6
+8df9fe2ec7e594ed,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Rig Inspection AWI 2-6 | Services | Rig Inspection AWI 2-6
+ff60ce2c19671580,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,NDT Inspection AWI 2-6 | Services | NDT Inspection AWI 2-6
+78e12a95ada0116c,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 2-6 | Services | Drilling Safety, Health & Enviro AWI 2-6"
+6d382efca8f4fb02,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Other Transportation AWI 2-6 | Services | Other Transportation AWI 2-6
+7eaf88328c1017d9,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Land Transportation AWI 2-6 | Services | Land Transportation AWI 2-6
+8984b8c07e63e975,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Supervision AWI 2-6 | Services | Supervision AWI 2-6
+dd9dde83d191cfa6,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 2- | Services | Open Hole Electrical Logging Serv AWI 2-
+143bffb9e56c7e23,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Mud Logging Service AWI 2-6 | Services | Mud Logging Service AWI 2-6
+de0d3436ec2c2f6d,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Coring AWI 2-6 | Services | Coring AWI 2-6
+d12d1e1a9602922d,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 2-6 | Services | Cement, Cementing & Pump Fees AWI 2-6"
+9636920deaa459ac,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Casing Installation AWI 2-6 | Services | Casing Installation AWI 2-6
+ecfd63746bea4ae7,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Directional Drilling & Surveys AWI 2-6 | Services | Directional Drilling & Surveys AWI 2-6
+97eca59a8a7e1bf8,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Equipment Rental AWI 2-6 | Services | Equipment Rental AWI 2-6
+31605ef6071412ff,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 2-6 | Services | Bits, Reamer and Core heads AWI 2-6"
+84ae705942ff9db7,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 2-6 | Services | Mud, Chemical and Eng Serv AWI 2-6"
+4bee8431beb2c37d,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Contract Rig AWI 2-6 | Services | Contract Rig AWI 2-6
+ed5d1084b3561c27,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Service Lines & Comm AWI 2-6 | Services | Service Lines & Comm AWI 2-6
+72268d2ebb4826b4,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Consumables AWI 2-6 | Material | Consumables AWI 2-6
+096b784a7b3a7b5f,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Casing Repair & Modif AWI 2-6 | Material | Casing Repair & Modif AWI 2-6
+94b882e6abcf79f6,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Asset Transfer AWI 2-6 | Material | Asset Transfer AWI 2-6
+19ece6a9cf06f5e7,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Fuel & Lubricants AWI 2-6 | Material | Fuel & Lubricants AWI 2-6
+9e7cf4221f07e284,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Well Equip. Surface AWI 2-6 | Material | Well Equip. Surface AWI 2-6
+33ceca576e3a6b5a,SALAK,SALAK_2025_2026,AWI 2-6,AWI 2-6,campaign_alias_match,high,Casing AWI 2-6 | Material | Casing AWI 2-6
+58d6cfcc9ed8743c,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Drilling Rig O&M AWI 2-7 ML | Services | Drilling Rig O&M AWI 2-7 ML
+0949eb3ada27a8a6,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Explosive Handling & Permitting AWI 2-7 ML | Services | Explosive Handling & Permitting AWI 2-7 ML
+6e4bade546bc2d08,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,API non API Machine Shop Serv AWI 2-7 ML | Services | API non API Machine Shop Serv AWI 2-7 ML
+e13f4b995dc1303e,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Welding Services AWI 2-7 ML | Services | Welding Services AWI 2-7 ML
+22087e67fed9b95c,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Vehicle Inspection AWI 2-7 ML | Services | Vehicle Inspection AWI 2-7 ML
+42b8c32fff0409f6,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Rig Inspection AWI 2-7 ML | Services | Rig Inspection AWI 2-7 ML
+e93a8705b2f656ff,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,NDT Inspection AWI 2-7 ML | Services | NDT Inspection AWI 2-7 ML
+d4f67b8fb67d770c,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,"Drilling Safety, Health & Enviro AWI 2-7 ML | Services | Drilling Safety, Health & Enviro AWI 2-7 ML"
+fa615f99790b7f9a,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Other Transportation AWI 2-7 ML | Services | Other Transportation AWI 2-7 ML
+9dc3be5f05413b77,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Land Transportation AWI 2-7 ML | Services | Land Transportation AWI 2-7 ML
+0234b0c7e4dd58ad,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Supervision AWI 2-7 ML | Services | Supervision AWI 2-7 ML
+0bbfe6c8616983b0,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Open Hole Electrical Logging Serv AWI 2-7 ML | Services | Open Hole Electrical Logging Serv AWI 2-7 ML
+255ccf9918ea5a85,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Mud Logging Service AWI 2-7 ML | Services | Mud Logging Service AWI 2-7 ML
+50052a07cf5638f8,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Coring AWI 2-7 ML | Services | Coring AWI 2-7 ML
+76fab8cb78cc04a0,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,"Cement, Cementing & Pump Fees AWI 2-7 ML | Services | Cement, Cementing & Pump Fees AWI 2-7 ML"
+4bcf0d3a2c6d0224,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Casing Installation AWI 2-7 ML | Services | Casing Installation AWI 2-7 ML
+94ab570e77c636e6,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Directional Drilling & Surveys AWI 2-7 ML | Services | Directional Drilling & Surveys AWI 2-7 ML
+b4133e3d49a05475,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Equipment Rental AWI 2-7 ML | Services | Equipment Rental AWI 2-7 ML
+4731b053573b8a0a,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,"Bits, Reamer and Core heads AWI 2-7 ML | Services | Bits, Reamer and Core heads AWI 2-7 ML"
+2d8cda8d237deb8a,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,"Mud, Chemical and Eng Serv AWI 2-7 ML | Services | Mud, Chemical and Eng Serv AWI 2-7 ML"
+a0e699a29de6ba34,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Contract Rig AWI 2-7 ML | Services | Contract Rig AWI 2-7 ML
+74d3297134cf1aec,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Service Lines & Comm AWI 2-7 ML | Services | Service Lines & Comm AWI 2-7 ML
+46371bf13ce01224,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Consumables AWI 2-7 ML | Material | Consumables AWI 2-7 ML
+b9f215ea2eb2c466,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Casing Repair & Modif AWI 2-7 ML | Material | Casing Repair & Modif AWI 2-7 ML
+e646771241187d12,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Asset Transfer AWI 2-7 ML | Material | Asset Transfer AWI 2-7 ML
+131339e010aeea7e,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Fuel & Lubricants AWI 2-7 ML | Material | Fuel & Lubricants AWI 2-7 ML
+eab0a1ad1c329201,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Well Equip. Surface AWI 2-7 ML | Material | Well Equip. Surface AWI 2-7 ML
+bc161a6f6d84cab1,SALAK,SALAK_2025_2026,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,Casing AWI 2-7 ML | Material | Casing AWI 2-7 ML
+e9ca88f9a17a5b02,DARAJAT,DARAJAT_2022,,,none,low,Internet and IT Support Service | IT+ Communication | Internet and IT Support Service
+47358f4f07a0a40b,DARAJAT,DARAJAT_2022,,,none,low,Hardware Supply | IT+ Communication | Hardware Supply
+7968890c415a94e0,DARAJAT,DARAJAT_2022,,,none,low,Drilling Facilities Support | Drilling Facilities Support | Drilling Facilities Support
+9a33b42e2378a2eb,DARAJAT,DARAJAT_2022,,,none,low,Drilling Operation water support | Drilling Operation water support | Drilling Operation water support
+6cc4143d88aa8573,DARAJAT,DARAJAT_2022,,,none,low,Project Management Cost | Project Management Cost | Project Management Cost
+83a79ed1ee8a7249,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Insurance Well SF-ML | Well Insurance | Insurance Well SF-ML
+7eabd78eafb11817,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Insurance Well SF-1 | Well Insurance | Insurance Well SF-1
+cd69bc35e4e73830,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Insurance Well 20-1 | Well Insurance | Insurance Well 20-1
+1d5888010c1810c7,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Insurance Well 14-2 | Well Insurance | Insurance Well 14-2
+af52669206f42463,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Insurance Well 14-1 | Well Insurance | Insurance Well 14-1
+4b2e1487f67320f6,DARAJAT,DARAJAT_2022,,,none,low,Security | PGPA + security | Security
+eaf71af92f2f8cdb,DARAJAT,DARAJAT_2022,,,none,low,PGPA | PGPA + security | PGPA
+f3a37b985a815b3e,DARAJAT,DARAJAT_2022,,,none,low,Andalalin | SHE | Andalalin
+0edf710ce60ff01c,DARAJAT,DARAJAT_2022,,,none,low,Environment Permit | SHE | Environment Permit
+c518ffa211219d1b,DARAJAT,DARAJAT_2022,,,none,low,IPAL | SHE | IPAL
+62dfced3de7ea9c8,DARAJAT,DARAJAT_2022,,,none,low,Environmental Monitoring | SHE | Environmental Monitoring
+955dc045ba712e6e,DARAJAT,DARAJAT_2022,,,none,low,TPS B3 | SHE | TPS B3
+545ff9cdf0b7edd5,DARAJAT,DARAJAT_2022,,,none,low,Hazardous Waste | SHE | Hazardous Waste
+e08f639f924a5094,DARAJAT,DARAJAT_2022,,,none,low,Heavy Equipment for Drill Cutting | SHE | Heavy Equipment for Drill Cutting
+397f230697a94179,DARAJAT,DARAJAT_2022,,,none,low,Drill Cutting transport and process | SHE | Drill Cutting transport and process
+d121cc017e051077,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,WSG Well SF-ML | Wellsite Geologist (WSG) | WSG Well SF-ML
+a9d6f1320c80f8dc,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,WSG Well SF-1 | Wellsite Geologist (WSG) | WSG Well SF-1
+08024626fd10dcac,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,WSG Well 20-1 | Wellsite Geologist (WSG) | WSG Well 20-1
+b464aeb76ac778d2,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,WSG Well 14-2 | Wellsite Geologist (WSG) | WSG Well 14-2
+63bc6f80ba21b8ae,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,WSG Well 14-1 | Wellsite Geologist (WSG) | WSG Well 14-1
+2f4ac888a899f84a,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Well testing Well SF-ML | Well testing | Well testing Well SF-ML
+2188ff411aacaa2d,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Well testing Well SF-1 | Well testing | Well testing Well SF-1
+0c5ab36057f7c148,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Well testing Well 20-1 | Well testing | Well testing Well 20-1
+5c95b74944757725,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Well testing Well 14-2 | Well testing | Well testing Well 14-2
+5666feec283f20b3,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Well testing Well 14-1 | Well testing | Well testing Well 14-1
+b6a2fede956e5259,DARAJAT,DARAJAT_2022,,,none,low,Explosive | Explosive | Explosive
+bc951499d74e8687,DARAJAT,DARAJAT_2022,,,none,low,LIH | LIH | LIH
+561f55f618e1e9c8,DARAJAT,DARAJAT_2022,,,none,low,Skid Moving 1 | Rig Skid | Skid Moving 1
+a84b7042a55db519,DARAJAT,DARAJAT_2022,,,none,low,Interpad Moving 3 | Rig Move | Interpad Moving 3
+5db7de959c46aa55,DARAJAT,DARAJAT_2022,,,none,low,Interpad Moving 2 | Rig Move | Interpad Moving 2
+5a1866cfdaaf00dd,DARAJAT,DARAJAT_2022,,,none,low,Interpad Moving 1 | Rig Move | Interpad Moving 1
+947d95cab25a6b09,DARAJAT,DARAJAT_2022,,,none,low,Interfield Move Darajat | Mobilization (incl. inter-field move) | Interfield Move Darajat
+692ab7562b6a6f07,DARAJAT,DARAJAT_2022,,,none,low,Demobilization from Darajat | Mobilization (incl. inter-field move) | Demobilization from Darajat
+8f3e5f8020066aa4,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Explosive Handling & Permitting | Services | Explosive Handling & Permitting
+c0c3eb3601c944ff,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,API non API Machine Shop Services | Services | API non API Machine Shop Services
+5d2c8cc15fbbbd81,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Welding Services | Services | Welding Services
+d6c3ca18226c68f9,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Vehicle Inspection | Services | Vehicle Inspection
+de6682f2a406a102,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Rig Inspection | Services | Rig Inspection
+ccaab2497ae585e8,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,NDT Inspection | Services | NDT Inspection
+b241a9b9c5bf4802,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,"Drilling Safety, Health & Enviro | Services | Drilling Safety, Health & Enviro"
+860ad915e5d50d59,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Other Transportation | Services | Other Transportation
+2c8abfd6992dbc92,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Land Transportation | Services | Land Transportation
+420a052bfbe67d29,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Supervision | Services | Supervision
+428df549ba4edd2b,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Open Hole Electrical Logging Services | Services | Open Hole Electrical Logging Services
+f264010d7d9897eb,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Mud Logging Service | Services | Mud Logging Service
+10cc5565b19314e2,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Coring | Services | Coring
+51356a5984488d8e,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,"Cement, Cementing & Pump Fees | Services | Cement, Cementing & Pump Fees"
+346873e741919d9a,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Casing Installation | Services | Casing Installation
+7db4e6ad4c589752,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Directional Drilling & Surveys | Services | Directional Drilling & Surveys
+44084c6fe421fda5,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Equipment Rental | Services | Equipment Rental
+399f5a2020ab5e05,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,"Bits, Reamer and Core heads | Services | Bits, Reamer and Core heads"
+f822d23a8434f7cf,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,"Mud, Chemical and Eng Serv | Services | Mud, Chemical and Eng Serv"
+0a1db56484a57ad0,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Contract Rig | Services | Contract Rig
+d635fcf303c0130b,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Service Lines & Comm | Services | Service Lines & Comm
+4cef057f7477e39d,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Consumables SF-ML | Material | Consumables SF-ML
+3c88b85be168f842,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Asset Transfer SF-ML | Material | Asset Transfer SF-ML
+1cb00e1e03dc45d9,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Fuel & Lubricants SF-ML | Material | Fuel & Lubricants SF-ML
+9207e412906a7216,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Well Equip. Surface SF-ML | Material | Well Equipment Surface SF - ML
+13207560c150b57e,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,Casing SF-ML | Material | Casing SF-ML
+e23faca012e45b66,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Explosive Handling & Permitting | Services | Explosive Handling & Permitting
+79da9137009c8c62,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,API non API Machine Shop Services | Services | API non API Machine Shop Services
+a08f6f4cfa9cbaa2,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Welding Services | Services | Welding Services
+b2b4e3bc7bcefedc,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Vehicle Inspection | Services | Vehicle Inspection
+11d146b2ea737f90,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Rig Inspection | Services | Rig Inspection
+e0ad293810d11b81,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,NDT Inspection | Services | NDT Inspection
+c763e388a26f3f6f,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,"Drilling Safety, Health & Enviro | Services | Drilling Safety, Health & Enviro"
+b86a914bf59a41c2,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Other Transportation | Services | Other Transportation
+fc9e73829c884931,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Land Transportation | Services | Land Transportation
+236331070ada2770,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Supervision | Services | Supervision
+f806c959f4771b4c,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Open Hole Electrical Logging Services | Services | Open Hole Electrical Logging Services
+b874dc9244f7bcbb,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Mud Logging Service | Services | Mud Logging Service
+dc7cdf16ae3f55f5,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Coring | Services | Coring
+b445f08d366661e2,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,"Cement, Cementing & Pump Fees | Services | Cement, Cementing & Pump Fees"
+be22ad657e278f34,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Casing Installation | Services | Casing Installation
+ca516b1f9025be34,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Directional Drilling & Surveys | Services | Directional Drilling & Surveys
+f57894322d51d420,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Equipment Rental | Services | Equipment Rental
+00d471ab530afdc9,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,"Bits, Reamer and Core heads | Services | Bits, Reamer and Core heads"
+ca9616fad923f19b,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,"Mud, Chemical and Eng Serv | Services | Mud, Chemical and Eng Serv"
+44fac203aaa1d5d2,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Contract Rig | Services | Contract Rig
+32dc043ee5af25e8,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Service Lines & Comm | Services | Service Lines & Comm
+d212584a5df1638d,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Consumables SF-1 | Material | Consumables SF-1
+8bb2af9740199ced,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Asset Transfer SF-1 | Material | Asset Transfer SF-1
+5c17ef9223e905e7,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Fuel & Lubricants SF-1 | Material | Fuel & Lubricants SF-1
+877f429b8728d607,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Well Equip. Surface SF-1 | Material | Well Equipment Surface SF-1
+1e3a4ce32a1b2d17,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Casing SF-1 | Material | Casing SF-1
+d70188a5a5b74f13,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Explosive Handling & Permitting | Services | Explosive Handling & Permitting
+3b69548fab03ea95,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,API non API Machine Shop Services | Services | API non API Machine Shop Services
+72ecfc4aea323ff7,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Welding Services | Services | Welding Services
+7c3cbdc91aeb51ce,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Vehicle Inspection | Services | Vehicle Inspection
+cf18e34dae182c64,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Rig Inspection | Services | Rig Inspection
+841e1be443adb2fd,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,NDT Inspection | Services | NDT Inspection
+5c05d29a3147978c,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,"Drilling Safety, Health & Enviro | Services | Drilling Safety, Health & Enviro"
+c451279833c4f36f,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Other Transportation | Services | Other Transportation
+665681ff009fe937,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Land Transportation | Services | Land Transportation
+db25f59875fa3ab7,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Supervision | Services | Supervision
+6944e1b43207f716,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Open Hole Electrical Logging Services | Services | Open Hole Electrical Logging Services
+c617a3847b42daf5,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Mud Logging Service | Services | Mud Logging Service
+d76d7106b736d2ab,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Coring | Services | Coring
+397087b297af4405,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,"Cement, Cementing & Pump Fees | Services | Cement, Cementing & Pump Fees"
+e08239c5b80e8ee4,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Casing Installation | Services | Casing Installation
+06f94392ac9fc6ae,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Directional Drilling & Surveys | Services | Directional Drilling & Surveys
+147189bb0d8f8f22,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Equipment Rental | Services | Equipment Rental
+268b2d1f4abeff1e,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,"Bits, Reamer and Core heads | Services | Bits, Reamer and Core heads"
+26f1b49ecd39ab61,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,"Mud, Chemical and Eng Serv | Services | Mud, Chemical and Eng Serv"
+cc9b843dc3d50633,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Contract Rig | Services | Contract Rig
+b6ae39f95d3ad3aa,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Service Lines & Comm | Services | Service Lines & Comm
+31c85e9f780da709,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Consumables 20-1 | Material | Consumables 20-1
+91ef87dee1c8db75,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Asset Transfer 20-1 | Material | Asset Transfer 20-1
+ee04a288fb3f7ec0,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Fuel & Lubricants 20-1 | Material | Fuel & Lubricants 20-1
+1c2c19572cbc3488,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Well Equip. Surface 20-1 | Material | Well Equipment Surface 20-1
+b8a2c62d4fa8298b,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Casing 20-1 | Material | Casing 20-1
+41abbe7d20db9f12,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Explosive Handling & Permitting | Services | Explosive Handling & Permitting
+d9b4d23ede71e723,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,API non API Machine Shop Services | Services | API non API Machine Shop Services
+8803fcc9a1c20a4e,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Welding Services | Services | Welding Services
+0cda524fadc8dbcc,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Vehicle Inspection | Services | Vehicle Inspection
+9159b455f0e8f439,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Rig Inspection | Services | Rig Inspection
+a968faae2363d19d,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,NDT Inspection | Services | NDT Inspection
+19b10d6d4162a591,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,"Drilling Safety, Health & Enviro | Services | Drilling Safety, Health & Enviro"
+b07caed7ab452d5b,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Other Transportation | Services | Other Transportation
+3b038d480b5e4eb5,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Land Transportation | Services | Land Transportation
+96b12b5bde63e40c,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Supervision | Services | Supervision
+05b5c4b7bc8cb799,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Open Hole Electrical Logging Services | Services | Open Hole Electrical Logging Services
+cf189eab7754a2df,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Mud Logging Service | Services | Mud Logging Service
+596fa98253f51871,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Coring | Services | Coring
+2bd0cd2c753b7ec9,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,"Cement, Cementing & Pump Fees | Services | Cement, Cementing & Pump Fees"
+edac1f65402e2805,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Casing Installation | Services | Casing Installation
+46f97ef6ef6ce903,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Directional Drilling & Surveys | Services | Directional Drilling & Surveys
+0803619e559aa70c,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Equipment Rental | Services | Equipment Rental
+58c61f5b8215188d,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,"Bits, Reamer and Core heads | Services | Bits, Reamer and Core heads"
+4ece6132f5e2dd2f,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,"Mud, Chemical and Eng Serv | Services | Mud, Chemical and Eng Serv"
+aee1a2534dbe998e,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Contract Rig | Services | Contract Rig
+89afabcd1785d286,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Service Lines & Comm | Services | Service Lines & Comm
+ce765db1d903ab04,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Consumables 14-2 | Material | Consumables 14-2
+491368fa6ff60938,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Asset Transfer 14-2 | Material | Asset Transfer 14-2
+691d2f84244d2ad6,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Fuel & Lubricants 14-2 | Material | Fuel & Lubricants 14-2
+8428b3fdd67bfb37,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Well Equip. Surface 14-2 | Material | Well Equipment Surface 14-2
+7a2899c4d61d134c,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Casing 14-2 | Material | Casing 14-2
+87bd6db798ed45f6,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Explosive Handling & Permitting | Services | Explosive Handling & Permitting
+9ae08d9dc522f3dc,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,API non API Machine Shop Services | Services | API non API Machine Shop Services
+c73c7a6e415cbb07,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Welding Services | Services | Welding Services
+fca5c59f6919f393,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Vehicle Inspection | Services | Vehicle Inspection
+80065f86c1265c99,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Rig Inspection | Services | Rig Inspection
+d9ba7e0feaeb4684,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,NDT Inspection | Services | NDT Inspection
+f9f90b509c796d43,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,"Drilling Safety, Health & Enviro | Services | Drilling Safety, Health & Enviro"
+ad6568ebaaebe32a,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Other Transportation | Services | Other Transportation
+994150dffc5c9b9c,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Land Transportation | Services | Land Transportation
+53bc7eaaa21148d5,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Supervision | Services | Supervision
+ac14974d257d84a6,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Open Hole Electrical Logging Services | Services | Open Hole Electrical Logging Services
+e78749524d7b8517,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Mud Logging Service | Services | Mud Logging Service
+e23ae2fde28ab918,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Coring | Services | Coring
+9dba519237859de0,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,"Cement, Cementing & Pump Fees | Services | Cement, Cementing & Pump Fees"
+c19747a5a9ffa7c4,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Casing Installation | Services | Casing Installation
+489ddd5ed605c28f,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Directional Drilling & Surveys | Services | Directional Drilling & Surveys
+6ec984aad4e9d102,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Equipment Rental | Services | Equipment Rental
+cbcdfd212a8d3104,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,"Bits, Reamer and Core heads | Services | Bits, Reamer and Core heads"
+db3ac73eb314ae71,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,"Mud, Chemical and Eng Serv | Services | Mud, Chemical and Eng Serv"
+3483f6ec3c1006d0,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Contract Rig | Services | Contract Rig
+97c375ff4f2700e6,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Service Lines & Comm | Services | Service Lines & Comm
+79324d8e8004b0d4,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Consumables 14-1 | Material | Consumables 14-1
+c56718e05ae24f4d,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Asset Transfer 14-1 | Material | Asset Transfer 14-1
+67d704f7d7369ea2,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Fuel & Lubricants 14-1 | Material | Fuel & Lubricants 14-1
+10a4a1b78eeb6dd7,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Well Equip. Surface 14-1 | Material | Well Equipment Surface 14-1
+8f4bc5ecc177ef2b,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Casing 14-1 | Material | Casing 14-1
+cd675e3cc6c02037,DARAJAT,DARAJAT_2022,SF-ML,DRJ-38,campaign_alias_match,high,"Inst,HookUp&Pre-Comm SF-ML | Tie-in | Inst,HookUp&Pre-Comm SF-ML"
+2a749f7255c03bb8,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,"Inst,HookUp&Pre-Comm SF-1 | Tie-in | Inst,HookUp&Pre-Comm SF-1"
+f97aea2391c66ed4,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad SF Material Non LL | Tie-in | Tie-in Pad SF Material Non LL
+d30d79eb0fadfc87,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad SF Material LL | Tie-in | Tie-in Pad SF Material LL
+b77a9070ed986c40,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad SF Engineering | Tie-in | Tie-in Pad SF Engineering
+6f691e1bd0f81928,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,"Inst,HookUp&Pre-Comm 20-1 | Tie-in | Inst,HookUp&Pre-Comm 20-1"
+2e6fcbfd9e22f84c,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 20 Material Non LL | Tie-in | Tie-in Pad 20 Material Non LL
+8d013430cf6edfa4,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 20 Material LL | Tie-in | Tie-in Pad 20 Material LL
+2739368996fb75d0,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 20 Engineering | Tie-in | Tie-in Pad 20 Engineering
+ddd3bab487df0a31,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,"Inst,HookUp&Pre-Comm 14-2 | Tie-in | Inst,HookUp&Pre-Comm 14-2"
+2e477446225bb9cf,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,"Inst,HookUp&Pre-Comm 14-1 | Tie-in | Inst,HookUp&Pre-Comm 14-1"
+be1523e1e57a1022,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 14 Material Non LL | Tie-in | Tie-in Pad 14 Material Non LL
+86da8c006c28cc81,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 14 Material LL | Tie-in | Tie-in Pad 14 Material LL
+c8b9d5d1643a1c3d,DARAJAT,DARAJAT_2022,,,none,low,Tie-in Pad 14 Engineering | Tie-in | Tie-in Pad 14 Engineering
+4f00f907d5a29e5f,DARAJAT,DARAJAT_2022,,,none,low,Spec Req Pipeline Pad 14 Construction | Spec Req Pipeline Pad 14 | Spec Req Pipeline Pad 14 Construction
+d76f7cfa3a4f9d03,DARAJAT,DARAJAT_2022,,,none,low,Spec Req Pipeline Pad 14 Material Non LL | Spec Req Pipeline Pad 14 | Spec Req Pipeline Pad 14 Material Non LL
+5be2f4af5daff902,DARAJAT,DARAJAT_2022,,,none,low,Spec Req Pipeline Pad 14 Material LL | Spec Req Pipeline Pad 14 | Spec Req Pipeline Pad 14 Material LL
+f38d3e4ddf0e4fb8,DARAJAT,DARAJAT_2022,,,none,low,Spec Req Pipeline Pad 14 Engineering | Spec Req Pipeline Pad 14 | Spec Req Pipeline Pad 14 Engineering
+7f57edf927d19db0,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad SF Construction | Road and Pad | Road and Pad SF Construction
+48b4f3d0f5c939cd,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad SF Material Non LL | Road and Pad | Road and Pad SF Material Non LL
+814c1911f583e0a8,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad SF Material LL | Road and Pad | Road and Pad SF Material LL
+49db40481c385d0e,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad SF Engineering | Road and Pad | Road and Pad SF Engineering
+bd39be1d8a7a82b9,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 20 Construction | Road and Pad | Road and Pad 20 Construction
+7ee3dff6743140fe,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 20 Material Non LL | Road and Pad | Road and Pad 20 Material Non LL
+447e80d5e04e9372,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 20 Material LL | Road and Pad | Road and Pad 20 Material LL
+ec7b9c26a5b33efb,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 20 Engineering | Road and Pad | Road and Pad 20 Engineering
+56e06641422b1b11,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 14 Construction | Road and Pad | Road and Pad 14 Construction
+963216b7eeb46962,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 14 Material Non LL | Road and Pad | Road and Pad 14 Material Non LL
+1e1d99be6d0d1c02,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 14 Material LL | Road and Pad | Road and Pad 14 Material LL
+aeaefdc28cf5ccbf,DARAJAT,DARAJAT_2022,,,none,low,Road and Pad 14 Engineering | Road and Pad | Road and Pad 14 Engineering
+66368f0fcf05ec6d,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Cdtr Csg Material SF-1 | Conductor Casing Installation & Material | Cdtr Csg Material SF-1
+dcf4e6d8d69070ff,DARAJAT,DARAJAT_2022,SF-1,DRJ-49,campaign_alias_match,high,Cdtr Csg Service SF-1 | Conductor Casing Installation & Material | Cdtr Csg Service SF-1
+cd6319872c4d76bf,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Cdtr Csg Material 20-1 | Conductor Casing Installation & Material | Cdtr Csg Material 20-1
+d95cdda1cb8217b7,DARAJAT,DARAJAT_2022,20-1,DRJ-50,campaign_alias_match,high,Cdtr Csg Service 20-1 | Conductor Casing Installation & Material | Cdtr Csg Service 20-1
+0150c85809ed3baf,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Cdtr Csg Material 14-2 | Conductor Casing Installation & Material | Cdtr Csg Material 14-2
+f92bd2858437b9ae,DARAJAT,DARAJAT_2022,14-2,DRJ-52,campaign_alias_match,high,Cdtr Csg Service 14-2 | Conductor Casing Installation & Material | Cdtr Csg Service 14-2
+2fa39f8d321ee8a5,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Cdtr Csg Service 14-1 | Conductor Casing Installation & Material | Cdtr Csg Service 14-1
+84236bceb42d2f9c,DARAJAT,DARAJAT_2022,14-1,DRJ-51,campaign_alias_match,high,Cdtr Csg Material 14-1 | Conductor Casing Installation & Material | Cdtr Csg Material 14-1
+1d2abcf253b1f13e,DARAJAT,DARAJAT_2023_2024,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad 20 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad 20"
+e08e6da7a142a419,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material Non LL Pad 20 | Tie-in | Tie In-Material Non LL Pad 20
+7673510e41bc9773,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material LL Pad 20 | Tie-in | Tie In-Material LL Pad 20
+a338bc248357db91,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Eng Pad 20 | Tie-in | Tie In-Eng Pad 20
+b1935ddd53a7d2f1,DARAJAT,DARAJAT_2023_2024,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad 14 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad 14"
+d1f1af5904e892a4,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material Non LL Pad 14 | Tie-in | Tie In-Material Non LL Pad 14
+0eb691353e3e1988,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material LL Pad 14 | Tie-in | Tie In-Material LL Pad 14
+307dba715fc2ac32,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Eng Pad 14 | Tie-in | Tie In-Eng Pad 14
+0891a6e7bb7058d6,DARAJAT,DARAJAT_2023_2024,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad 18 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad 18"
+8a4039e383e9632b,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material Non LL Pad 18 | Tie-in | Tie In-Material Non LL Pad 18
+f7cd7925de79c4ed,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material LL Pad 18 | Tie-in | Tie In-Material LL Pad 18
+d89b8b5327ccf1ca,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Eng Pad 18 | Tie-in | Tie In-Eng Pad 18
+541e2d6a0a380b87,DARAJAT,DARAJAT_2023_2024,,,none,low,"Tie In-Inst,HookUp&Pre-Comm Pad 15 | Tie-in | Tie In-Inst,HookUp&Pre-Comm Pad 15"
+db5e18181f1fcc53,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material Non LL Pad 15 | Tie-in | Tie In-Material Non LL Pad 15
+71d6d63be9c86c76,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Material LL Pad 15 | Tie-in | Tie In-Material LL Pad 15
+e64644c8318a99f0,DARAJAT,DARAJAT_2023_2024,,,none,low,Tie In-Eng Pad 15 | Tie-in | Tie In-Eng Pad 15
+e85afa54583fec84,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Const Pad 20 | Special Requirement Existing Pad | Spec Req Const Pad 20
+1c328a1a6b3c8f04,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material Non LL Pad 20 | Special Requirement Existing Pad | Spec Req Material Non LL Pad 20
+d6bd4a98d5dadf85,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material LL Pad 20 | Special Requirement Existing Pad | Spec Req Material LL Pad 20
+353400f1e60d0ff8,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Eng Pad 20 | Special Requirement Existing Pad | Spec Req Eng Pad 20
+d1f1765e0d178625,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Const Pad 14 | Special Requirement Existing Pad | Spec Req Const Pad 14
+8f7b42f59b254618,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material Non LL Pad 14 | Special Requirement Existing Pad | Spec Req Material Non LL Pad 14
+5677f81822d6462e,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material LL Pad 14 | Special Requirement Existing Pad | Spec Req Material LL Pad 14
+1cb17463cd584d19,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Eng Pad 14 | Special Requirement Existing Pad | Spec Req Eng Pad 14
+7d7b3a2ef6e52959,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Const Pad 18 | Special Requirement Existing Pad | Spec Req Const Pad 18
+5f80f01d2f521e21,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material Non LL Pad 18 | Special Requirement Existing Pad | Spec Req Material Non LL Pad 18
+36457b51414da5f2,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Material LL Pad 18 | Special Requirement Existing Pad | Spec Req Material LL Pad 18
+a38efb2f95135552,DARAJAT,DARAJAT_2023_2024,,,none,low,Spec Req Eng Pad 18 | Special Requirement Existing Pad | Spec Req Eng Pad 18
+952233873dfa48d7,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Const Pad 20 | Road and Pad | Road & Pad Const Pad 20
+64a357b60e6b8964,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material Non LL Pad 20 | Road and Pad | Road & Pad Material Non LL Pad 20
+1151bd68f5928e87,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material LL Pad 20 | Road and Pad | Road & Pad Material LL Pad 20
+ac248ddf160d2b21,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Eng Pad 20 | Road and Pad | Road & Pad Eng Pad 20
+48f5bfc628c4ed20,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Const Pad 14 | Road and Pad | Road & Pad Const Pad 14
+c83a9992a261549f,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material Non LL Pad 14 | Road and Pad | Road & Pad Material Non LL Pad 14
+850f02d3af1ab4e3,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material LL Pad 14 | Road and Pad | Road & Pad Material LL Pad 14
+a7d1d345f7747c2d,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Eng Pad 14 | Road and Pad | Road & Pad Eng Pad 14
+c1c4f13590274c15,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Const Pad 18 | Road and Pad | Road & Pad Const Pad 18
+3a3a2af3b20d7f2f,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material Non LL Pad 18 | Road and Pad | Road & Pad Material Non LL Pad 18
+fbc7609a156f1d76,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material LL Pad 18 | Road and Pad | Road & Pad Material LL Pad 18
+ea6996ffb4a55a31,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Eng Pad 18 | Road and Pad | Road & Pad Eng Pad 18
+ae062c67b8fabd96,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Const Pad 15 | Road and Pad | Road & Pad Const Pad 15
+1ed195b20b193595,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material Non LL Pad 15 | Road and Pad | Road & Pad Material Non LL Pad 15
+627ea325c482f81f,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Material LL Pad 15 | Road and Pad | Road & Pad Material LL Pad 15
+dc971d2af26f527b,DARAJAT,DARAJAT_2023_2024,,,none,low,Road & Pad Eng Pad 15 | Road and Pad | Road & Pad Eng Pad 15
+cf614435fb498b71,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 6 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 6 (Pad 20)
+574f0dcdba92e9c9,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 6 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 6 (Pad 20)
+86bb6332b8aff34f,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 5 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 5 (Pad 20)
+388db746eb5879c7,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 5 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 5 (Pad 20)
+42f3737064a712f7,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 4 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 4 (Pad 20)
+0db64a3e1e18c92c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 4 (Pad 20) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 4 (Pad 20)
+5422e3d12297d79a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 3 (Pad 18) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 3 (Pad 18)
+3b76ffe208d9b0bb,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 3 (Pad 18) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 3 (Pad 18)
+5a0c4cd540afc3a2,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 2 (Pad 14) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 2 (Pad 14)
+1679a96f6c799ec8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 2 (Pad 14) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 2 (Pad 14)
+a0d2ffbf8bbf3e28,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Cdtr Csg Material DRJ-Steam 1 (Pad 15) | Conductor Casing Installation & Material | Cdtr Csg Material DRJ-Steam 1 (Pad 15)
+765d8dbdbaf59d1d,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Cdtr Csg Service DRJ-Steam 1 (Pad 15) | Conductor Casing Installation & Material | Cdtr Csg Service DRJ-Steam 1 (Pad 15)
+dba3a70920091a9b,DARAJAT,DARAJAT_2023_2024,,,none,low,Permitting (IPPKH/IPJLPB) | Permitting (IPPKH/IPJLPB) | Permitting (IPPKH/IPJLPB)
+e23feb17a746ccae,DARAJAT,DARAJAT_2023_2024,,,none,low,Hardware Supply | IT+ Communication | Hardware Supply
+f1b9ae67696dfa6a,DARAJAT,DARAJAT_2023_2024,,,none,low,Drilling Facilities Support | Drilling Facilities Support | Drilling Facilities Support
+2c9f1ced4271bef8,DARAJAT,DARAJAT_2023_2024,,,none,low,Drilling Operation water support | Drilling Operation water support | Drilling Operation water support
+28872086e810391b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Insurance DRJ-Steam 6 | Well Insurance | Insurance DRJ-Steam 6
+3a8860c742b29fa1,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Insurance DRJ-Steam 5 | Well Insurance | Insurance DRJ-Steam 5
+363b6a85e3b4fe49,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Insurance DRJ-Steam 4 | Well Insurance | Insurance DRJ-Steam 4
+676a2533f16f40a6,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Insurance DRJ-Steam 3 | Well Insurance | Insurance DRJ-Steam 3
+12e87d7a7433767d,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Insurance DRJ-Steam 2 | Well Insurance | Insurance DRJ-Steam 2
+6553861890ba44d8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Insurance DRJ-Steam 1 | Well Insurance | Insurance DRJ-Steam 1
+0d82b2af3c99e97f,DARAJAT,DARAJAT_2023_2024,,,none,low,Security | PGPA + security | Security
+39931051a5137fbf,DARAJAT,DARAJAT_2023_2024,,,none,low,PGPA | PGPA + security | PGPA
+6623e4d107d36954,DARAJAT,DARAJAT_2023_2024,,,none,low,Environment Permit | SHE | Environment Permit
+0a4855f4326d9a0f,DARAJAT,DARAJAT_2023_2024,,,none,low,Environmental Monitoring | SHE | Environmental Monitoring
+85fbe3e46176cc28,DARAJAT,DARAJAT_2023_2024,,,none,low,Hazardous Waste | SHE | Hazardous Waste
+ec5a9f9fc925c656,DARAJAT,DARAJAT_2023_2024,,,none,low,Heavy Equipment for Drill Cutting | SHE | Heavy Equipment for Drill Cutting
+73356686346ba149,DARAJAT,DARAJAT_2023_2024,,,none,low,Drill Cutting transport and process | SHE | Drill Cutting transport and process
+7d0995dd8f935747,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,WSG DRJ-Steam 6 | Wellsite Geologist (WSG) | WSG DRJ-Steam 6
+df28ab3407348932,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,WSG DRJ-Steam 5 | Wellsite Geologist (WSG) | WSG DRJ-Steam 5
+8aec3068b17d52ee,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,WSG DRJ-Steam 4 | Wellsite Geologist (WSG) | WSG DRJ-Steam 4
+68df4a2fcba0f1c2,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,WSG DRJ-Steam 3 | Wellsite Geologist (WSG) | WSG DRJ-Steam 3
+2dc036642cd12c6d,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,WSG DRJ-Steam 2 | Wellsite Geologist (WSG) | WSG DRJ-Steam 2
+1c0d55d889589172,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,WSG DRJ-Steam 1 | Wellsite Geologist (WSG) | WSG DRJ-Steam 1
+d4b71a13d2a37190,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Well testing DRJ-Steam 6 | Well testing | Well testing DRJ-Steam 6
+92e1897bece8cfa4,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Well testing DRJ-Steam 5 | Well testing | Well testing DRJ-Steam 5
+e4483a0a1e393ef1,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Well testing DRJ-Steam 4 | Well testing | Well testing DRJ-Steam 4
+d6d5b792e20b752e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Well testing DRJ-Steam 3 | Well testing | Well testing DRJ-Steam 3
+c94f52d3f6725f32,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Well testing DRJ-Steam 2 | Well testing | Well testing DRJ-Steam 2
+104107a1e870e243,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Well testing DRJ-Steam 1 | Well testing | Well testing DRJ-Steam 1
+7857d4d4aeb80e1d,DARAJAT,DARAJAT_2023_2024,,,none,low,Explosive | Explosive | Explosive
+2d7abed93e17b9db,DARAJAT,DARAJAT_2023_2024,,,none,low,LIH | LIH | LIH
+86709e8fe7af7d0e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 6 | Services | Explosive Handling & Permittingting DRJ-Steam 6
+0e5c3202cce8a952,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 6 | Services | API non API Machine Shop Serv DRJ-Steam 6
+bd69b80a4f428a39,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Welding Services DRJ-Steam 6 | Services | Welding Services DRJ-Steam 6
+edaf45588aaed347,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 6 | Services | Vehicle Inspection DRJ-Steam 6
+5bb51791ecbc4867,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Rig Inspection DRJ-Steam 6 | Services | Rig Inspection DRJ-Steam 6
+fed03f8cef467d90,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,NDT Inspection DRJ-Steam 6 | Services | NDT Inspection DRJ-Steam 6
+aad5d4d5ef6a508b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 6 | Services | Drilling Safety, Health & Enviro DRJ-Steam 6"
+f666a40a8359e317,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Other Transportation DRJ-Steam 6 | Services | Other Transportation DRJ-Steam 6
+f8659f1cec64f113,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Land Transportation DRJ-Steam 6 | Services | Land Transportation DRJ-Steam 6
+15f764eee15d96fc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Supervision DRJ-Steam 6 | Services | Supervision DRJ-Steam 6
+699c1f38c54ad879,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 6 | Services | Open Hole Electrical Logging Serv DRJ-Steam 6
+b89b9a07a9362d55,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Mud Logging Service DRJ-Steam 6 | Services | Mud Logging Service DRJ-Steam 6
+b244fd77c07a836b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Coring DRJ-Steam 6 | Services | Coring DRJ-Steam 6
+672f3777eadc2a2a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 6 | Services | Cement, Cementing & Pump Fees DRJ-Steam 6"
+3ef3509c86d41c75,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Casing Installation DRJ-Steam 6 | Services | Casing Installation DRJ-Steam 6
+e3facbad05328fdd,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 6 | Services | Directional Drilling & Surveys DRJ-Steam 6
+75bd1ff0c3ea5113,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Equipment Rental DRJ-Steam 6 | Services | Equipment Rental DRJ-Steam 6
+a5b6fd6254acabf2,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 6 | Services | Bits, Reamer and Core heads DRJ-Steam 6"
+64806439b839f6b9,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 6 | Services | Mud, Chemical and Eng Serv DRJ-Steam 6"
+c58c2409614d85a6,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Contract Rig DRJ-Steam 6 | Services | Contract Rig DRJ-Steam 6
+c4a064c23284904a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 6 | Services | Service Lines & Comm DRJ-Steam 6
+a67968d99c788ae5,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Consumables DRJ-Steam 6 | Material | Consumables DRJ-Steam 6
+a14fd5d7f0bb642e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 6 | Material | Casing Repair & Modif DRJ-Steam 6
+39b2121e50068428,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Asset Transfer DRJ-Steam 6 | Material | Asset Transfer DRJ-Steam 6
+4e07d750f5e7eafd,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 6 | Material | Fuel & Lubricants DRJ-Steam 6
+81bc34ff01a4d641,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 6 | Material | DRJ-Steam Equip. Surface DRJ-Steam 6
+6fefc2201dc1577e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,Casing DRJ-Steam 6 | Material | Casing DRJ-Steam 6
+dbd76042dcff719a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 5 | Services | Explosive Handling & Permittingting DRJ-Steam 5
+e66e26523e229433,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 5 | Services | API non API Machine Shop Serv DRJ-Steam 5
+3fb1fcc9be72381b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Welding Services DRJ-Steam 5 | Services | Welding Services DRJ-Steam 5
+2fe951ac44949697,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 5 | Services | Vehicle Inspection DRJ-Steam 5
+8598987d6c4a54d1,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Rig Inspection DRJ-Steam 5 | Services | Rig Inspection DRJ-Steam 5
+31622a76db4a35b8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,NDT Inspection DRJ-Steam 5 | Services | NDT Inspection DRJ-Steam 5
+8e34dc83de65e204,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 5 | Services | Drilling Safety, Health & Enviro DRJ-Steam 5"
+61ff05e05b959df8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Other Transportation DRJ-Steam 5 | Services | Other Transportation DRJ-Steam 5
+173ea2c712424a6b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Land Transportation DRJ-Steam 5 | Services | Land Transportation DRJ-Steam 5
+00ee241410d05939,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Supervision DRJ-Steam 5 | Services | Supervision DRJ-Steam 5
+c9ddf0afbe043ab5,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 5 | Services | Open Hole Electrical Logging Serv DRJ-Steam 5
+20579d3429006ca3,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Mud Logging Service DRJ-Steam 5 | Services | Mud Logging Service DRJ-Steam 5
+b8221f85aecef2b8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Coring DRJ-Steam 5 | Services | Coring DRJ-Steam 5
+6ffbd8fd42997537,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 5 | Services | Cement, Cementing & Pump Fees DRJ-Steam 5"
+721a176004cba591,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Casing Installation DRJ-Steam 5 | Services | Casing Installation DRJ-Steam 5
+ec4ae1289a6c4f87,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 5 | Services | Directional Drilling & Surveys DRJ-Steam 5
+aee53619f756481b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Equipment Rental DRJ-Steam 5 | Services | Equipment Rental DRJ-Steam 5
+8bb11c4818f6bc4e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 5 | Services | Bits, Reamer and Core heads DRJ-Steam 5"
+7d605c208b4a49c7,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 5 | Services | Mud, Chemical and Eng Serv DRJ-Steam 5"
+1408dc8ad40829aa,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Contract Rig DRJ-Steam 5 | Services | Contract Rig DRJ-Steam 5
+c3e5361b5e2fbe2b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 5 | Services | Service Lines & Comm DRJ-Steam 5
+29364182c40ee638,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Consumables DRJ-Steam 5 | Material | Consumables DRJ-Steam 5
+f2b8928a159a2621,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 5 | Material | Casing Repair & Modif DRJ-Steam 5
+dd9bc3604678aaf8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Asset Transfer DRJ-Steam 5 | Material | Asset Transfer DRJ-Steam 5
+02c696431784cebc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 5 | Material | Fuel & Lubricants DRJ-Steam 5
+5bd0d748d069e354,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 5 | Material | DRJ-Steam Equip. Surface DRJ-Steam 5
+9fb4926f28a572f9,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,Casing DRJ-Steam 5 | Material | Casing DRJ-Steam 5
+4b30fd18445f334a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 4 | Services | Explosive Handling & Permittingting DRJ-Steam 4
+24e36242beebf3c3,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 4 | Services | API non API Machine Shop Serv DRJ-Steam 4
+e198e1b3056c5b90,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Welding Services DRJ-Steam 4 | Services | Welding Services DRJ-Steam 4
+87a21247ac466a27,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 4 | Services | Vehicle Inspection DRJ-Steam 4
+7591a760d0d20900,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Rig Inspection DRJ-Steam 4 | Services | Rig Inspection DRJ-Steam 4
+7b76ecd798a0ec66,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,NDT Inspection DRJ-Steam 4 | Services | NDT Inspection DRJ-Steam 4
+31c7543d7dc39a7b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 4 | Services | Drilling Safety, Health & Enviro DRJ-Steam 4"
+010444fef83ee91c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Other Transportation DRJ-Steam 4 | Services | Other Transportation DRJ-Steam 4
+af5ebffd53bf10dc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Land Transportation DRJ-Steam 4 | Services | Land Transportation DRJ-Steam 4
+d3358c19549484cb,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Supervision DRJ-Steam 4 | Services | Supervision DRJ-Steam 4
+a937679537fe9d58,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 4 | Services | Open Hole Electrical Logging Serv DRJ-Steam 4
+7a670c3bc624a2d8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Mud Logging Service DRJ-Steam 4 | Services | Mud Logging Service DRJ-Steam 4
+ebd3ea6dab29292f,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Coring DRJ-Steam 4 | Services | Coring DRJ-Steam 4
+3d22bc92add1e40e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 4 | Services | Cement, Cementing & Pump Fees DRJ-Steam 4"
+c8a8a617520020fe,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Casing Installation DRJ-Steam 4 | Services | Casing Installation DRJ-Steam 4
+c59930421fd3ed60,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 4 | Services | Directional Drilling & Surveys DRJ-Steam 4
+8f65cd9ec74bbc16,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Equipment Rental DRJ-Steam 4 | Services | Equipment Rental DRJ-Steam 4
+e27c21974e3ea830,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 4 | Services | Bits, Reamer and Core heads DRJ-Steam 4"
+b7d66ec1ec47a3ad,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 4 | Services | Mud, Chemical and Eng Serv DRJ-Steam 4"
+64de1e9d6a5a1dfb,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Contract Rig DRJ-Steam 4 | Services | Contract Rig DRJ-Steam 4
+bb28ace859be5e22,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 4 | Services | Service Lines & Comm DRJ-Steam 4
+10b0fc211e274a8e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Consumables DRJ-Steam 4 | Material | Consumables DRJ-Steam 4
+e501e4a09d3ff094,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 4 | Material | Casing Repair & Modif DRJ-Steam 4
+6063c6e48c29cb07,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Asset Transfer DRJ-Steam 4 | Material | Asset Transfer DRJ-Steam 4
+89f6115cf9087e74,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 4 | Material | Fuel & Lubricants DRJ-Steam 4
+18968de5bac166cc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 4 | Material | DRJ-Steam Equip. Surface DRJ-Steam 4
+f4cccff4a224dc08,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,Casing DRJ-Steam 4 | Material | Casing DRJ-Steam 4
+dd16e698bdb607ae,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 3 | Services | Explosive Handling & Permittingting DRJ-Steam 3
+de0518c71d961fe3,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 3 | Services | API non API Machine Shop Serv DRJ-Steam 3
+e9e13eda017dfc14,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Welding Services DRJ-Steam 3 | Services | Welding Services DRJ-Steam 3
+1235b0e9603df166,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 3 | Services | Vehicle Inspection DRJ-Steam 3
+35dba0d72de5f91f,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Rig Inspection DRJ-Steam 3 | Services | Rig Inspection DRJ-Steam 3
+30aeeab233b723b6,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,NDT Inspection DRJ-Steam 3 | Services | NDT Inspection DRJ-Steam 3
+531ea8b8d7b4e94e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 3 | Services | Drilling Safety, Health & Enviro DRJ-Steam 3"
+b13cadfd6193724b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Other Transportation DRJ-Steam 3 | Services | Other Transportation DRJ-Steam 3
+d5343db397db3577,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Land Transportation DRJ-Steam 3 | Services | Land Transportation DRJ-Steam 3
+7757610e040610fd,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Supervision DRJ-Steam 3 | Services | Supervision DRJ-Steam 3
+7ba5999d643eba6e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 3 | Services | Open Hole Electrical Logging Serv DRJ-Steam 3
+a9dec94351c7ecf8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Mud Logging Service DRJ-Steam 3 | Services | Mud Logging Service DRJ-Steam 3
+5b4ba3cbd885997a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Coring DRJ-Steam 3 | Services | Coring DRJ-Steam 3
+434e1b532efe238e,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 3 | Services | Cement, Cementing & Pump Fees DRJ-Steam 3"
+af4245d826ee1b90,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Casing Installation DRJ-Steam 3 | Services | Casing Installation DRJ-Steam 3
+e888780e7040f2d8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 3 | Services | Directional Drilling & Surveys DRJ-Steam 3
+e3f9efb7e750d196,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Equipment Rental DRJ-Steam 3 | Services | Equipment Rental DRJ-Steam 3
+709140be4a00da76,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 3 | Services | Bits, Reamer and Core heads DRJ-Steam 3"
+0b3304c4f95aa14b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 3 | Services | Mud, Chemical and Eng Serv DRJ-Steam 3"
+6ba70439cf0614e8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Contract Rig DRJ-Steam 3 | Services | Contract Rig DRJ-Steam 3
+ff14d4b99171512c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 3 | Services | Service Lines & Comm DRJ-Steam 3
+0ca59fc7b16db4de,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Consumables DRJ-Steam 3 | Material | Consumables DRJ-Steam 3
+1e4820f3d55aea3b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 3 | Material | Casing Repair & Modif DRJ-Steam 3
+a84135957d184d18,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Asset Transfer DRJ-Steam 3 | Material | Asset Transfer DRJ-Steam 3
+861733cfdfabb0fe,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 3 | Material | Fuel & Lubricants DRJ-Steam 3
+466fb5c00bd51535,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 3 | Material | DRJ-Steam Equip. Surface DRJ-Steam 3
+a129140224aac69c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,Casing DRJ-Steam 3 | Material | Casing DRJ-Steam 3
+69b18c7fe9ac1422,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 2 | Services | Explosive Handling & Permittingting DRJ-Steam 2
+74ce499901d3bc0d,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 2 | Services | API non API Machine Shop Serv DRJ-Steam 2
+7f351cecf0ec68b5,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Welding Services DRJ-Steam 2 | Services | Welding Services DRJ-Steam 2
+28a288c3ebc5e205,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 2 | Services | Vehicle Inspection DRJ-Steam 2
+0059dad80be9d6c6,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Rig Inspection DRJ-Steam 2 | Services | Rig Inspection DRJ-Steam 2
+067a9b3db0cddf0b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,NDT Inspection DRJ-Steam 2 | Services | NDT Inspection DRJ-Steam 2
+bd0f93d0b8dcd55d,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 2 | Services | Drilling Safety, Health & Enviro DRJ-Steam 2"
+15fa1f1d254248ee,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Other Transportation DRJ-Steam 2 | Services | Other Transportation DRJ-Steam 2
+b0443150ce9a52bf,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Land Transportation DRJ-Steam 2 | Services | Land Transportation DRJ-Steam 2
+98616b9d903ca262,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Supervision DRJ-Steam 2 | Services | Supervision DRJ-Steam 2
+794e8d66a445e274,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 2 | Services | Open Hole Electrical Logging Serv DRJ-Steam 2
+a58675649a0cc469,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Mud Logging Service DRJ-Steam 2 | Services | Mud Logging Service DRJ-Steam 2
+4d8dcf54de1d8573,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Coring DRJ-Steam 2 | Services | Coring DRJ-Steam 2
+d3018121c812aeb2,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 2 | Services | Cement, Cementing & Pump Fees DRJ-Steam 2"
+c68a6c0941fe048b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Casing Installation DRJ-Steam 2 | Services | Casing Installation DRJ-Steam 2
+8b1198240cf7db04,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 2 | Services | Directional Drilling & Surveys DRJ-Steam 2
+17f79a2e50c4e70a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Equipment Rental DRJ-Steam 2 | Services | Equipment Rental DRJ-Steam 2
+21d7234abfdd9bdc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 2 | Services | Bits, Reamer and Core heads DRJ-Steam 2"
+5dffda15501f8441,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 2 | Services | Mud, Chemical and Eng Serv DRJ-Steam 2"
+792192dd0c321b6f,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Contract Rig DRJ-Steam 2 | Services | Contract Rig DRJ-Steam 2
+c16a1cfb6b68a64a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 2 | Services | Service Lines & Comm DRJ-Steam 2
+7dd7b640b91d91bc,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Consumables DRJ-Steam 2 | Material | Consumables DRJ-Steam 2
+2cfd970ecd4ab280,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 2 | Material | Casing Repair & Modif DRJ-Steam 2
+bdde3014b6e3e361,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Asset Transfer DRJ-Steam 2 | Material | Asset Transfer DRJ-Steam 2
+46d973cc9546da35,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 2 | Material | Fuel & Lubricants DRJ-Steam 2
+8160b4b0fbd616c3,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 2 | Material | DRJ-Steam Equip. Surface DRJ-Steam 2
+3c823a112ca40081,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,Casing DRJ-Steam 2 | Material | Casing DRJ-Steam 2
+3bd86974e83f2613,DARAJAT,DARAJAT_2023_2024,,,none,low,Skid Moving 1 | Rig Skid | Skid Moving 1
+14c206d25065ea9a,DARAJAT,DARAJAT_2023_2024,,,none,low,Interpad Moving 4 | Rig Move | Interpad Moving 4
+22f1ebb132f3f93c,DARAJAT,DARAJAT_2023_2024,,,none,low,Interpad Moving 3 | Rig Move | Interpad Moving 3
+b94c424c979d4d47,DARAJAT,DARAJAT_2023_2024,,,none,low,Interpad Moving 2 | Rig Move | Interpad Moving 2
+3bb92304014e5dfa,DARAJAT,DARAJAT_2023_2024,,,none,low,Interpad Moving 1 | Rig Move | Interpad Moving 1
+29104911e92607e6,DARAJAT,DARAJAT_2023_2024,,,none,low,Demobilization from Darajat | Mobilization (incl. inter-field move) | Demobilization from Darajat
+32afce248672bfad,DARAJAT,DARAJAT_2023_2024,,,none,low,Mobilization to Darajat | Mobilization (incl. inter-field move) | Mobilization to Darajat
+4f070a573bdcbd74,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Explosive Handling & Permittingting DRJ-Steam 1 | Services | Explosive Handling & Permittingting DRJ-Steam 1
+4781834500a3bc72,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,API non API Machine Shop Serv DRJ-Steam 1 | Services | API non API Machine Shop Serv DRJ-Steam 1
+9baa9cfb3e012ac1,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Welding Services DRJ-Steam 1 | Services | Welding Services DRJ-Steam 1
+531bb67208cfdf2c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Vehicle Inspection DRJ-Steam 1 | Services | Vehicle Inspection DRJ-Steam 1
+311e67369efea12a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Rig Inspection DRJ-Steam 1 | Services | Rig Inspection DRJ-Steam 1
+04fe1de075d3177c,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,NDT Inspection DRJ-Steam 1 | Services | NDT Inspection DRJ-Steam 1
+8a486698cae1e704,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,"Drilling Safety, Health & Enviro DRJ-Steam 1 | Services | Drilling Safety, Health & Enviro DRJ-Steam 1"
+e9c1cebb69e152ac,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Other Transportation DRJ-Steam 1 | Services | Other Transportation DRJ-Steam 1
+ad58d6df5b5862d9,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Land Transportation DRJ-Steam 1 | Services | Land Transportation DRJ-Steam 1
+b99a9409243800dd,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Supervision DRJ-Steam 1 | Services | Supervision DRJ-Steam 1
+86576c49e28b89b6,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Open Hole Electrical Logging Serv DRJ-Steam 1 | Services | Open Hole Electrical Logging Serv DRJ-Steam 1
+ff109bd77a5b840b,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Mud Logging Service DRJ-Steam 1 | Services | Mud Logging Service DRJ-Steam 1
+9563f09b50c39b01,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Coring DRJ-Steam 1 | Services | Coring DRJ-Steam 1
+e7231976794614e5,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,"Cement, Cementing & Pump Fees DRJ-Steam 1 | Services | Cement, Cementing & Pump Fees DRJ-Steam 1"
+e6c2659b3e28ecc0,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Casing Installation DRJ-Steam 1 | Services | Casing Installation DRJ-Steam 1
+d4dcc0f391557433,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Directional Drilling & Surveys DRJ-Steam 1 | Services | Directional Drilling & Surveys DRJ-Steam 1
+2ad81d09a3bf0450,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Equipment Rental DRJ-Steam 1 | Services | Equipment Rental DRJ-Steam 1
+915144f2e5093872,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,"Bits, Reamer and Core heads DRJ-Steam 1 | Services | Bits, Reamer and Core heads DRJ-Steam 1"
+506849c7734a40f8,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,"Mud, Chemical and Eng Serv DRJ-Steam 1 | Services | Mud, Chemical and Eng Serv DRJ-Steam 1"
+6f7d2aad0cc89134,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Contract Rig DRJ-Steam 1 | Services | Contract Rig DRJ-Steam 1
+9ce6cfff3acc9266,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Service Lines & Comm DRJ-Steam 1 | Services | Service Lines & Comm DRJ-Steam 1
+682d3c067bd6ac37,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Consumables DRJ-Steam 1 | Material | Consumables DRJ-Steam 1
+04214a468f58824a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Casing Repair & Modif DRJ-Steam 1 | Material | Casing Repair & Modif DRJ-Steam 1
+89500fab94989b17,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Asset Transfer DRJ-Steam 1 | Material | Asset Transfer DRJ-Steam 1
+1cc8d5bf6af55ede,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Fuel & Lubricants DRJ-Steam 1 | Material | Fuel & Lubricants DRJ-Steam 1
+61c7659e5a231b83,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,DRJ-Steam Equip. Surface DRJ-Steam 1 | Material | DRJ-Steam Equip. Surface DRJ-Steam 1
+2bcd231e1874374a,DARAJAT,DARAJAT_2023_2024,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,Casing DRJ-Steam 1 | Material | Casing DRJ-Steam 1

@@ -1,6 +1,6 @@
 # Phase 4 Gate Preflight Report
 
-Generated at: 2026-04-02T09:17:59.855719+00:00
+Generated at: 2026-04-07T03:10:56.619726+00:00
 
 ## Runtime Toggles
 - group_by: `family`
@@ -21,7 +21,7 @@ Generated at: 2026-04-02T09:17:59.855719+00:00
 | G4 | Classification key uniqueness | 0 duplicates | 0 | PASS |
 | G5 | Classification label validity | 100% in {well_tied,campaign_tied,hybrid} | 822/822 | PASS |
 | G6 | Field-specific class coverage reported | mandatory report | Reported | PASS |
-| G7 | Well attribution coverage disclosure | mandatory disclosure if <100% | 0/822 populated | KNOWN LIMITATION |
+| G7 | Well attribution coverage disclosure | mandatory disclosure if <100% | 647/822 populated | KNOWN LIMITATION |
 | G8 | Event-code coverage disclosure | mandatory disclosure if <100% | 0/822 populated | KNOWN LIMITATION |
 
 ## Notes

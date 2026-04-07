@@ -37,6 +37,10 @@ WELL_MASTER_FIELDS = [
     "field",
     "campaign_code",
     "campaign_id",
+    "well_sequence_in_campaign",
+    "well_order_label",
+    "well_order_basis",
+    "well_order_note",
     "status",
     "region",
     "operator",
@@ -52,6 +56,18 @@ LOOKUP_FIELDS = [
     "alias_type",
     "resolution_method",
     "is_modeling_master",
+]
+
+SALAK_2025_ORDER = [
+    ("AWI 21-8", 1, "well_1"),
+    ("AWI 21-7", 2, "well_2"),
+    ("AWI 3-9", 3, "well_3"),
+    ("AWI 23-1", 4, "well_4"),
+    ("AWI 23-2", 5, "well_5"),
+    ("AWI 2-7 ML", 6, "well_6"),
+    ("AWI 2-6", 7, "well_7"),
+    ("AWI 9-11", 8, "well_8"),
+    ("AWI 9-10", 9, "well_9"),  # alias AWI 9-10RD canonicalized to AWI 9-10
 ]
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
@@ -482,9 +498,22 @@ def enrich_master_rows(master_rows: list[dict[str, str]], lookup_rows: list[dict
         if alias:
             aliases_by_canonical[canonical].add(alias)
 
+    order_map = {
+        well: {"well_sequence_in_campaign": str(seq), "well_order_label": label}
+        for well, seq, label in SALAK_2025_ORDER
+    }
+
     enriched_rows: list[dict[str, str]] = []
     for row in master_rows:
         well_canonical = row["well_canonical"]
+        order_meta = {"well_sequence_in_campaign": "", "well_order_label": "", "well_order_basis": "", "well_order_note": ""}
+        if row["campaign_id"] == "SALAK_2025_2026" and well_canonical in order_map:
+            order_meta = {
+                "well_sequence_in_campaign": order_map[well_canonical]["well_sequence_in_campaign"],
+                "well_order_label": order_map[well_canonical]["well_order_label"],
+                "well_order_basis": "user_confirmed_salak_2025_2026_left_to_right",
+                "well_order_note": "AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.",
+            }
         enriched_rows.append(
             {
                 "well_id": well_canonical,
@@ -494,6 +523,10 @@ def enrich_master_rows(master_rows: list[dict[str, str]], lookup_rows: list[dict
                 "field": row["field"],
                 "campaign_code": row["campaign_code"],
                 "campaign_id": row["campaign_id"],
+                "well_sequence_in_campaign": order_meta["well_sequence_in_campaign"],
+                "well_order_label": order_meta["well_order_label"],
+                "well_order_basis": order_meta["well_order_basis"],
+                "well_order_note": order_meta["well_order_note"],
                 "status": "in_scope_estimator",
                 "region": "",
                 "operator": "",
@@ -503,6 +536,44 @@ def enrich_master_rows(master_rows: list[dict[str, str]], lookup_rows: list[dict
             }
         )
     return enriched_rows
+
+
+def enrich_canonical_well_mapping_order_metadata() -> None:
+    path = PROCESSED_DIR / "canonical_well_mapping.csv"
+    if not path.exists():
+        return
+
+    order_map = {
+        well: {"well_sequence_in_campaign": str(seq), "well_order_label": label}
+        for well, seq, label in SALAK_2025_ORDER
+    }
+
+    with path.open("r", newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+        fieldnames = list(rows[0].keys()) if rows else []
+
+    for extra in ["well_sequence_in_campaign", "well_order_label", "well_order_basis", "well_order_note"]:
+        if extra not in fieldnames:
+            fieldnames.append(extra)
+
+    for row in rows:
+        row.setdefault("well_sequence_in_campaign", "")
+        row.setdefault("well_order_label", "")
+        row.setdefault("well_order_basis", "")
+        row.setdefault("well_order_note", "")
+
+        if row.get("campaign_id") != "SALAK_2025_2026":
+            continue
+
+        canonical = normalize_well(row.get("well_canonical", ""))
+        if canonical not in order_map:
+            continue
+        row["well_sequence_in_campaign"] = order_map[canonical]["well_sequence_in_campaign"]
+        row["well_order_label"] = order_map[canonical]["well_order_label"]
+        row["well_order_basis"] = "user_confirmed_salak_2025_2026_left_to_right"
+        row["well_order_note"] = "AWI 9-10RD aliases to canonical AWI 9-10 for order metadata."
+
+    write_csv(path, rows, fieldnames)
 
 
 def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str] | None = None) -> None:
@@ -665,6 +736,44 @@ def write_synthetic_report(campaign_rows: list[dict[str, str]], lv5_rows: list[d
     SYNTH_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def write_salak_2021_scope_report() -> None:
+    wb = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
+    summary_rows = extract_full_table(wb.get("Data.Summary", []), ["Asset", "Campaign", "WBS_Level", "WBS_ID"])
+    lvl5_rows = [r for r in summary_rows if clean_text(r.get("WBS_Level", "")) == "05"]
+
+    salak_2021_labels = {"SALAK CAMPAIGN 2021", "SLK 2021"}
+    salak_2021_lv5 = [r for r in lvl5_rows if clean_text(r.get("Campaign", "")).upper() in salak_2021_labels]
+    in_scope_labels = {"SLK 2025", "DRJ 2022", "DRJ 2023"}
+    in_scope_lv5 = [r for r in lvl5_rows if clean_text(r.get("Campaign", "")).upper() in in_scope_labels]
+
+    reference_only_sheets: list[str] = []
+    for sheet_name, rows in wb.items():
+        joined = " ".join(" ".join(r) for r in rows[:200]).upper()
+        if "2021" in joined and "SALAK" in joined and sheet_name != "Data.Summary":
+            reference_only_sheets.append(sheet_name)
+
+    lines = [
+        "# SALAK_2021 Scope Investigation",
+        "",
+        "## Objective",
+        "Assess whether SALAK_2021 can be promoted from `legacy_reference` to `in_scope` using current raw workbook evidence.",
+        "",
+        "## Findings",
+        f"- Data.Summary Lv5 rows for SALAK_2021 labels (`SALAK CAMPAIGN 2021` / `SLK 2021`): **{len(salak_2021_lv5)}**.",
+        f"- Data.Summary Lv5 rows for current in-scope campaigns (`SLK 2025`, `DRJ 2022`, `DRJ 2023`): **{len(in_scope_lv5)}**.",
+        f"- Sheets with SALAK 2021 references but no direct Lv5 cost-row authority used by this pipeline: **{', '.join(sorted(reference_only_sheets)) or 'none_detected'}**.",
+        "",
+        "## Interpretation",
+        "- Current Phase 4 pipeline consumes `Data.Summary` Lv5 cost-bearing rows as authoritative scope for estimator ingestion.",
+        "- SALAK_2021 appears as campaign/reference context in non-authoritative sheets, but lacks required Lv5 cost-bearing structure in `Data.Summary` for this run.",
+        "",
+        "## Recommendation",
+        "- Keep `SALAK_2021` as **`legacy_reference`** until auditable Lv5 cost-bearing rows are available in authoritative raw sources.",
+        "- Do not promote to `in_scope` and do not synthesize SALAK_2021 cost rows for estimator training/validation.",
+    ]
+    (ROOT / "reports" / "salak_2021_scope_investigation.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     # Keep campaign scope artifact unchanged for audit continuity.
     campaign_rows = enrich_campaign_rows(campaign_rows_from_sources())
@@ -674,7 +783,9 @@ def main() -> None:
     master_rows = enrich_master_rows(master_rows_base, lookup_rows)
     write_csv(PROCESSED_DIR / "well_master.csv", master_rows, WELL_MASTER_FIELDS)
     write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows, LOOKUP_FIELDS)
+    enrich_canonical_well_mapping_order_metadata()
     write_report(stats, master_rows, lookup_rows)
+    write_salak_2021_scope_report()
 
     synth_campaign_rows, synth_lv5_rows = build_synthetic_placeholders()
     write_csv(PROCESSED_DIR / "synthetic_campaign_placeholders.csv", synth_campaign_rows)

@@ -10,6 +10,7 @@ Current active artifacts:
 - `phase4_interconnection_model_design.md`
 - `phase4_driver_analysis.md`
 - `phase4_plus_readiness_plan.md`
+- `salak_2021_scope_investigation.md`
 
 ## Archived / Processed Docs
 - `reports/processed-docs/phase1-3/` contains completed phase decisions, gate outputs, and historical deliverables.
