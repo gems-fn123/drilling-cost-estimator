@@ -41,7 +41,7 @@ Implements the kickoff actions from `reports/phase4_execution_kickoff.md` and us
 - **Release decision (2026-04-07): APPROVED for Phase 4 execution.**
 - **Sprint 1: APPROVED** (A1, A2, A3, B1).
 - **Sprint 2: APPROVED** (B2, B3, C1, C2, C3, D1).
-- **Conditional prep approval:** D2 and D3 may proceed after Sprint 2 acceptance review.
+- **Phase 5 kickoff: GO** (D2 and D3 approved to proceed immediately with control conditions).
 
 ### Approval guardrails
 1. Maintain field-specific execution (DARAJAT and SALAK separated).

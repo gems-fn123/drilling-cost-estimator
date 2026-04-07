@@ -196,7 +196,7 @@ Based on the latest gate preflight (G1-G6 PASS; G7/G8 tracked as known limitatio
 ### Sprint approvals
 - **Sprint 1 approved**: Track A (A1, A2, A3) + B1.
 - **Sprint 2 approved**: Track B (B2, B3) + Track C (C1, C2, C3) + D1.
-- **Conditional Phase 5 kickoff prep approved**: D2 and D3 may start after Sprint 2 deliverables are accepted.
+- **Phase 5 kickoff approved (GO)**: D2 and D3 can proceed now under the guardrails below; no additional blocking gate is open.
 
 ### Control conditions (mandatory)
 - Keep DARAJAT and SALAK separated in all validation and reporting outputs.
