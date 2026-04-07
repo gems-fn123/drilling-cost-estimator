@@ -1,125 +1,125 @@
-well_alias,well_canonical,campaign_code,campaign_id,estimator_scope,include_for_estimator,include_for_well_training,source_sheet,note
-14-1,DRJ-51,,,reference,no,no,alias_catalog,Configured alias mapping
-14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,
-14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,
-14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,
-14-2,DRJ-52,,,reference,no,no,alias_catalog,Configured alias mapping
-14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,
-14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,
-14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,
-20-1,DRJ-50,,,reference,no,no,alias_catalog,Configured alias mapping
-20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,
-20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,
-20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,
-AWI 10-4,AWI 10-4,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 16-8,AWI 16-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 16-9,AWI 16-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 2-6,AWI 2-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 2-7 ML,AWI 2-7 ML,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 21-5,AWI 21-5,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 21-6,AWI 21-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 21-7,AWI 21-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 21-8,AWI 21-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 23-1,AWI 23-1,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 23-2,AWI 23-2,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 3-9,AWI 3-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 8-3,AWI 8-3,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 9-10,AWI 9-10,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 9-10,AWI 9-10,,,reference,no,no,alias_catalog,Configured alias mapping
-AWI 9-10RD,AWI 9-10,,,reference,no,no,alias_catalog,Configured alias mapping
-AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-AWI 9-11,AWI 9-11,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,
-AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,
-AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,
-DRJ-16,DRJ-16,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-37,DRJ-37,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-38,DRJ-38,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-38,DRJ-38,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-44,DRJ-44,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-45,DRJ-45,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-46,DRJ-46,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-47,DRJ-47,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-48,DRJ-48,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-49,DRJ-49,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-49,DRJ-49,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-50,DRJ-50,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-50,DRJ-50,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-51,DRJ-51,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-51,DRJ-51,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-52,DRJ-52,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-52,DRJ-52,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-53,DRJ-53,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-53,DRJ-53,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-54,DRJ-54,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-54,DRJ-54,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-55,DRJ-55,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-55,DRJ-55,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-56,DRJ-56,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-56,DRJ-56,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-57,DRJ-57,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-DRJ-57,DRJ-57,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 1,DRJ-STEAM 1,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,no,Cost & Technical Data,"Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed."
-DRJ-STEAM 1,DRJ-STEAM 1,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,no,Data.Summary,"Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed."
-DRJ-STEAM 2,DRJ-54,,EXCLUDED,excluded,no,no,WellView.Data,
-DRJ-STEAM 2,DRJ-54,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 2,DRJ-54,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,
-DRJ-STEAM 2,DRJ-54,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,
-DRJ-STEAM 3,DRJ-55,,EXCLUDED,excluded,no,no,WellView.Data,
-DRJ-STEAM 3,DRJ-55,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 3,DRJ-55,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,
-DRJ-STEAM 3,DRJ-55,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,
-DRJ-STEAM 4,DRJ-56,,EXCLUDED,excluded,no,no,WellView.Data,
-DRJ-STEAM 4,DRJ-56,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 4,DRJ-56,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,
-DRJ-STEAM 4,DRJ-56,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,
-DRJ-STEAM 5,DRJ-57,,EXCLUDED,excluded,no,no,WellView.Data,
-DRJ-STEAM 5,DRJ-57,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 5,DRJ-57,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,
-DRJ-STEAM 5,DRJ-57,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,
-DRJ-STEAM 6,DRJ-53,,EXCLUDED,excluded,no,no,WellView.Data,
-DRJ-STEAM 6,DRJ-53,,,reference,no,no,alias_catalog,Configured alias mapping
-DRJ-STEAM 6,DRJ-53,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,
-DRJ-STEAM 6,DRJ-53,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,
-HMD-A01,HMD-A01,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-HMD-A02,HMD-A02,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBA-6,MBA-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBA-7,MBA-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBD-7,MBD-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBD-8,MBD-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBE-6,MBE-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBE-7,MBE-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-MBI-1,MBI-1,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-SF-1,DRJ-49,,,reference,no,no,alias_catalog,Configured alias mapping
-SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,
-SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,
-SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,
-SF-ML,DRJ-38,,,reference,no,no,alias_catalog,Configured alias mapping
-SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,
-SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,
-SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,
-WWA-8,WWA-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
-WWA-9,WWA-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,
+well_alias,well_canonical,campaign_code,campaign_id,estimator_scope,include_for_estimator,include_for_well_training,source_sheet,note,well_sequence_in_campaign,well_order_label,well_order_basis,well_order_note
+14-1,DRJ-51,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,,,,,
+14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,,,,,
+14-1,DRJ-51,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,,,,,
+14-2,DRJ-52,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,,,,,
+14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,,,,,
+14-2,DRJ-52,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,,,,,
+20-1,DRJ-50,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,,,,,
+20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,,,,,
+20-1,DRJ-50,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,,,,,
+AWI 10-4,AWI 10-4,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 16-8,AWI 16-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 16-9,AWI 16-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 2-6,AWI 2-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,7,well_7,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,7,well_7,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 2-6,AWI 2-6,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,7,well_7,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 2-7 ML,AWI 2-7 ML,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,6,well_6,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,6,well_6,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 2-7 ML,AWI 2-7 ML,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,6,well_6,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-5,AWI 21-5,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 21-6,AWI 21-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 21-7,AWI 21-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,2,well_2,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,2,well_2,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-7,AWI 21-7,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,2,well_2,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-8,AWI 21-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,1,well_1,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,1,well_1,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 21-8,AWI 21-8,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,1,well_1,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-1,AWI 23-1,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,4,well_4,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,4,well_4,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-1,AWI 23-1,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,4,well_4,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-2,AWI 23-2,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,5,well_5,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,5,well_5,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 23-2,AWI 23-2,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,5,well_5,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 3-9,AWI 3-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,3,well_3,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,3,well_3,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 3-9,AWI 3-9,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,3,well_3,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 8-3,AWI 8-3,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 9-10,AWI 9-10,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 9-10,AWI 9-10,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+AWI 9-10RD,AWI 9-10,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,9,well_9,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,9,well_9,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 9-10RD,AWI 9-10,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,9,well_9,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 9-11,AWI 9-11,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Cost & Technical Data,,8,well_8,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,Data.Summary,,8,well_8,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+AWI 9-11,AWI 9-11,E540-30101-D245401,SALAK_2025_2026,in_scope,yes,yes,WellView.Data,,8,well_8,user_confirmed_salak_2025_2026_left_to_right,AWI 9-10RD aliases to canonical AWI 9-10 for order metadata.
+DRJ-16,DRJ-16,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-37,DRJ-37,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-38,DRJ-38,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-38,DRJ-38,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-44,DRJ-44,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-45,DRJ-45,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-46,DRJ-46,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-47,DRJ-47,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-48,DRJ-48,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-49,DRJ-49,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-49,DRJ-49,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-50,DRJ-50,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-50,DRJ-50,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-51,DRJ-51,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-51,DRJ-51,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-52,DRJ-52,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-52,DRJ-52,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-53,DRJ-53,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-53,DRJ-53,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-54,DRJ-54,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-54,DRJ-54,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-55,DRJ-55,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-55,DRJ-55,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-56,DRJ-56,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-56,DRJ-56,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-57,DRJ-57,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+DRJ-57,DRJ-57,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 1,DRJ-STEAM 1,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,no,Cost & Technical Data,"Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed.",,,,
+DRJ-STEAM 1,DRJ-STEAM 1,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,no,Data.Summary,"Keep in DARAJAT_2023_2024 campaign, exclude from well-level training until confirmed.",,,,
+DRJ-STEAM 2,DRJ-54,,EXCLUDED,excluded,no,no,WellView.Data,,,,,
+DRJ-STEAM 2,DRJ-54,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 2,DRJ-54,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,,,,,
+DRJ-STEAM 2,DRJ-54,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,,,,,
+DRJ-STEAM 3,DRJ-55,,EXCLUDED,excluded,no,no,WellView.Data,,,,,
+DRJ-STEAM 3,DRJ-55,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 3,DRJ-55,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,,,,,
+DRJ-STEAM 3,DRJ-55,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,,,,,
+DRJ-STEAM 4,DRJ-56,,EXCLUDED,excluded,no,no,WellView.Data,,,,,
+DRJ-STEAM 4,DRJ-56,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 4,DRJ-56,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,,,,,
+DRJ-STEAM 4,DRJ-56,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,,,,,
+DRJ-STEAM 5,DRJ-57,,EXCLUDED,excluded,no,no,WellView.Data,,,,,
+DRJ-STEAM 5,DRJ-57,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 5,DRJ-57,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,,,,,
+DRJ-STEAM 5,DRJ-57,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,,,,,
+DRJ-STEAM 6,DRJ-53,,EXCLUDED,excluded,no,no,WellView.Data,,,,,
+DRJ-STEAM 6,DRJ-53,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+DRJ-STEAM 6,DRJ-53,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Cost & Technical Data,,,,,
+DRJ-STEAM 6,DRJ-53,E530-30101-D235301,DARAJAT_2023_2024,in_scope,yes,yes,Data.Summary,,,,,
+HMD-A01,HMD-A01,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+HMD-A02,HMD-A02,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBA-6,MBA-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBA-7,MBA-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBD-7,MBD-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBD-8,MBD-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBE-6,MBE-6,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBE-7,MBE-7,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+MBI-1,MBI-1,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+SF-1,DRJ-49,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,,,,,
+SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,,,,,
+SF-1,DRJ-49,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,,,,,
+SF-ML,DRJ-38,,,reference,no,no,alias_catalog,Configured alias mapping,,,,
+SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Cost & Technical Data,,,,,
+SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,Data.Summary,,,,,
+SF-ML,DRJ-38,E530-30101-D225301,DARAJAT_2022,in_scope,yes,yes,WellView.Data,,,,,
+WWA-8,WWA-8,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
+WWA-9,WWA-9,,EXCLUDED,excluded,no,no,2. Drilling.Data.History,,,,,
