@@ -1,6 +1,13 @@
 from __future__ import annotations
 
+from pathlib import Path
+import sys
+
 import streamlit as st
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from src.app.components.calculator_tab import render_calculator_results
 from src.app.components.detail_tab import render_detail_tab
