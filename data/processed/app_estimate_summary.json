@@ -1,0 +1,10 @@
+{
+  "field": "SALAK",
+  "input_year": 2026,
+  "total_campaign_cost_mmusd": 9.170870515072002,
+  "total_campaign_cost_usd": 9170870.515072001,
+  "well_component_usd": 4572156.198672001,
+  "hybrid_component_usd": 976556.4714000002,
+  "campaign_tied_component_usd": 3622157.845,
+  "reconciliation_status": "PASS"
+}
