@@ -1,0 +1,9 @@
+field,metric_group,metric_name,metric_value,source_file,source_sheet,source_row,source_row_id
+SALAK,executive_summary,Total Budget (USD),157499099.33000001,20260327_WBS_Data.xlsx,Dashboard_x,5,ec5f6c22cdc08fea
+SALAK,executive_summary,Total Released (USD),145790445.81,20260327_WBS_Data.xlsx,Dashboard_x,5,b5116d0609b258fe
+SALAK,executive_summary,Total Actual (USD),106558960.11,20260327_WBS_Data.xlsx,Dashboard_x,5,136207347bcd4a95
+SALAK,executive_summary,Total Committed (USD),27814200.600000016,20260327_WBS_Data.xlsx,Dashboard_x,5,f995d32165e3370e
+SALAK,executive_summary,Budget Utilization %,0.67656869508016881,20260327_WBS_Data.xlsx,Dashboard_x,8,63a963b71c4162c9
+SALAK,executive_summary,Release Rate %,0.925658917607729,20260327_WBS_Data.xlsx,Dashboard_x,8,899767640cfbf6cc
+SALAK,executive_summary,Variance (Budget-Actual),50940139.220000014,20260327_WBS_Data.xlsx,Dashboard_x,8,0a2c2b06fca6e4e2
+SALAK,executive_summary,Remaining Budget,23125938.619999997,20260327_WBS_Data.xlsx,Dashboard_x,8,fe5b6f0ae0119629

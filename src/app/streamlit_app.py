@@ -10,6 +10,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.app.components.calculator_tab import render_calculator_results
+from src.app.components.dashboard_tab import render_dashboard_tab
 from src.app.components.detail_tab import render_detail_tab
 from src.app.components.input_panel import render_campaign_panel, render_runtime_toggles, render_well_inputs
 from src.modeling.phase5_estimation_core import build_validation_artifacts, estimate_campaign
@@ -21,7 +22,7 @@ def main() -> None:
 
     campaign_input = render_campaign_panel()
 
-    tab_calc, tab_detail = st.tabs(["CALCULATOR", "DETAIL WBS ESTIMATOR"])
+    tab_calc, tab_dashboard, tab_detail = st.tabs(["CALCULATOR", "HISTORICAL DASHBOARD", "DETAIL WBS ESTIMATOR"])
 
     with tab_calc:
         toggles = render_runtime_toggles()
@@ -39,6 +40,9 @@ def main() -> None:
 
         if st.session_state.get("last_result"):
             render_calculator_results(st.session_state["last_result"])
+
+    with tab_dashboard:
+        render_dashboard_tab()
 
     with tab_detail:
         if st.session_state.get("last_result"):

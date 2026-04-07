@@ -35,6 +35,12 @@ ALIGNMENT_REPORT = REPORTS_DIR / "wbs_lv5_driver_alignment_report.md"
 DEFINE_QUALITY_REPORT = REPORTS_DIR / "phase2_define_quality_thresholds.md"
 PHASE4_COVERAGE_REPORT = REPORTS_DIR / "phase4_plus_coverage_summary.md"
 
+DASHBOARD_SHEET_NAME = "Dashboard_x"
+DASHBOARD_SUMMARY_PATH = PROCESSED_DIR / "dashboard_x_summary_metrics.csv"
+DASHBOARD_WELL_PATH = PROCESSED_DIR / "dashboard_x_cost_by_well.csv"
+DASHBOARD_L3_PATH = PROCESSED_DIR / "dashboard_x_l3_breakdown.csv"
+DASHBOARD_REPORT_PATH = REPORTS_DIR / "dashboard_x_snapshot_report.md"
+
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 
@@ -187,6 +193,152 @@ def write_text(path: Path, text: str) -> None:
 def read_csv_rows(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8", newline="") as fh:
         return list(csv.DictReader(fh))
+
+
+def source_row_id(source_file: str, source_sheet: str, source_row: int, source_section: str, source_key: str) -> str:
+    source_row_key = f"{source_file}|{source_sheet}|{source_row}|{source_section}|{source_key}"
+    return hashlib.md5(source_row_key.encode("utf-8")).hexdigest()[:16]
+
+
+def row_value(row: list[str], index: int) -> str:
+    return clean_text(row[index]) if index < len(row) else ""
+
+
+def dashboard_field_from_title(title: str) -> str:
+    upper = clean_text(title).upper()
+    if "SLK" in upper or "SALAK" in upper:
+        return "SALAK"
+    if "DRJ" in upper or "DARAJAT" in upper:
+        return "DARAJAT"
+    return ""
+
+
+def build_dashboard_summary_rows(rows: list[list[str]]) -> list[dict[str, str]]:
+    title = row_value(rows[0], 0) if rows and rows[0] else ""
+    field = dashboard_field_from_title(title)
+    summary_pairs = [
+        (5, 0, "Total Budget (USD)", "executive_summary"),
+        (5, 1, "Total Released (USD)", "executive_summary"),
+        (5, 2, "Total Actual (USD)", "executive_summary"),
+        (5, 3, "Total Committed (USD)", "executive_summary"),
+        (8, 0, "Budget Utilization %", "executive_summary"),
+        (8, 1, "Release Rate %", "executive_summary"),
+        (8, 2, "Variance (Budget-Actual)", "executive_summary"),
+        (8, 3, "Remaining Budget", "executive_summary"),
+    ]
+    output: list[dict[str, str]] = []
+    for source_row, source_col, metric_name, metric_group in summary_pairs:
+        value = row_value(rows[source_row - 1], source_col) if len(rows) >= source_row else ""
+        output.append(
+            {
+                "field": field,
+                "metric_group": metric_group,
+                "metric_name": metric_name,
+                "metric_value": value,
+                "source_file": "20260327_WBS_Data.xlsx",
+                "source_sheet": DASHBOARD_SHEET_NAME,
+                "source_row": str(source_row),
+                "source_row_id": source_row_id("20260327_WBS_Data.xlsx", DASHBOARD_SHEET_NAME, source_row, metric_group, metric_name),
+            }
+        )
+    return output
+
+
+def build_dashboard_cost_by_well_rows(rows: list[list[str]]) -> list[dict[str, str]]:
+    header_idx = -1
+    for idx, row in enumerate(rows):
+        if row_value(row, 7) == "Well Name" and row_value(row, 8) == "Budget (USD)" and row_value(row, 9) == "Actual (USD)":
+            header_idx = idx
+            break
+    if header_idx < 0:
+        return []
+
+    title = row_value(rows[0], 0) if rows and rows[0] else ""
+    field = dashboard_field_from_title(title)
+    output: list[dict[str, str]] = []
+    for excel_row, row in enumerate(rows[header_idx + 1 :], start=header_idx + 2):
+        well_name = row_value(row, 7)
+        if not well_name:
+            break
+        if well_name.startswith("📅") or well_name.startswith("🔍"):
+            break
+        output.append(
+            {
+                "field": field,
+                "well_name": well_name,
+                "budget_usd": row_value(row, 8),
+                "actual_usd": row_value(row, 9),
+                "pct_spent": row_value(row, 10),
+                "status": row_value(row, 11),
+                "source_file": "20260327_WBS_Data.xlsx",
+                "source_sheet": DASHBOARD_SHEET_NAME,
+                "source_row": str(excel_row),
+                "source_row_id": source_row_id("20260327_WBS_Data.xlsx", DASHBOARD_SHEET_NAME, excel_row, "cost_by_well", well_name),
+            }
+        )
+    return output
+
+
+def build_dashboard_l3_rows(rows: list[list[str]]) -> list[dict[str, str]]:
+    header_idx = -1
+    for idx, row in enumerate(rows):
+        if row_value(row, 0) == "L3 Category" and row_value(row, 1) == "Description":
+            header_idx = idx
+            break
+    if header_idx < 0:
+        return []
+
+    title = row_value(rows[0], 0) if rows and rows[0] else ""
+    field = dashboard_field_from_title(title)
+    output: list[dict[str, str]] = []
+    for excel_row, row in enumerate(rows[header_idx + 1 :], start=header_idx + 2):
+        l3_category = row_value(row, 0)
+        description = row_value(row, 1)
+        if not l3_category and not description:
+            break
+        if l3_category.startswith("📊") or l3_category.startswith("🔍"):
+            break
+        if not any([l3_category, description, row_value(row, 2), row_value(row, 3), row_value(row, 4), row_value(row, 5)]):
+            continue
+        output.append(
+            {
+                "field": field,
+                "l3_category": l3_category,
+                "description": description,
+                "budget_usd": row_value(row, 2),
+                "actual_usd": row_value(row, 3),
+                "pct_spent": row_value(row, 4),
+                "variance_usd": row_value(row, 5),
+                "allocation_scope": "well" if description.upper().startswith("WELL COST") else "category",
+                "source_file": "20260327_WBS_Data.xlsx",
+                "source_sheet": DASHBOARD_SHEET_NAME,
+                "source_row": str(excel_row),
+                "source_row_id": source_row_id("20260327_WBS_Data.xlsx", DASHBOARD_SHEET_NAME, excel_row, "l3_breakdown", l3_category),
+            }
+        )
+    return output
+
+
+def write_dashboard_snapshot_report(summary_rows: list[dict[str, str]], well_rows: list[dict[str, str]], l3_rows: list[dict[str, str]]) -> None:
+    lines = [
+        "# Dashboard_x Snapshot Extract",
+        "",
+        "## Scope",
+        "- Source sheet: `Dashboard_x` from `20260327_WBS_Data.xlsx`.",
+        "- This extract preserves dashboard-style historical cost facts as auditable CSV rows.",
+        "- The extract is a source snapshot, not a model output.",
+        "",
+        "## Extracted Sections",
+        f"- summary metrics: **{len(summary_rows)}**",
+        f"- cost by well rows: **{len(well_rows)}**",
+        f"- L3 breakdown rows: **{len(l3_rows)}**",
+        "",
+        "## Notes",
+        "- Field is inferred from the dashboard title (`SLK` -> `SALAK`, `DRJ` -> `DARAJAT`).",
+        "- Each extracted row includes a deterministic `source_row_id` for lineage.",
+        "- This snapshot is intended to expand the auditable historical pool used by downstream estimator work.",
+    ]
+    write_text(DASHBOARD_REPORT_PATH, "\n".join(lines) + "\n")
 
 
 def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> None:
@@ -1486,6 +1638,28 @@ def main() -> None:
             "WBS Reference for Drilling Campaign (Drilling Cost).xlsx": wb_ref,
         }
     )
+
+    if DASHBOARD_SHEET_NAME in wb_data:
+        dashboard_rows = wb_data[DASHBOARD_SHEET_NAME]
+        dashboard_summary_rows = build_dashboard_summary_rows(dashboard_rows)
+        dashboard_well_rows = build_dashboard_cost_by_well_rows(dashboard_rows)
+        dashboard_l3_rows = build_dashboard_l3_rows(dashboard_rows)
+        write_csv(
+            DASHBOARD_SUMMARY_PATH,
+            dashboard_summary_rows,
+            ["field", "metric_group", "metric_name", "metric_value", "source_file", "source_sheet", "source_row", "source_row_id"],
+        )
+        write_csv(
+            DASHBOARD_WELL_PATH,
+            dashboard_well_rows,
+            ["field", "well_name", "budget_usd", "actual_usd", "pct_spent", "status", "source_file", "source_sheet", "source_row", "source_row_id"],
+        )
+        write_csv(
+            DASHBOARD_L3_PATH,
+            dashboard_l3_rows,
+            ["field", "l3_category", "description", "budget_usd", "actual_usd", "pct_spent", "variance_usd", "allocation_scope", "source_file", "source_sheet", "source_row", "source_row_id"],
+        )
+        write_dashboard_snapshot_report(dashboard_summary_rows, dashboard_well_rows, dashboard_l3_rows)
 
     data_summary = sheet_to_records(
         wb_data["Data.Summary"],

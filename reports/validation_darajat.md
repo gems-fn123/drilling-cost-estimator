@@ -1,6 +1,6 @@
 # Validation Report - DARAJAT
 
-Generated: 2026-04-07T11:39:49.256866+00:00
+Generated: 2026-04-07T12:27:36.538316+00:00
 
 Method policy: grouped benchmark fallback (no predictive validity claim).
 

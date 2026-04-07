@@ -1,6 +1,6 @@
 # Validation Report - SALAK
 
-Generated: 2026-04-07T11:39:49.256939+00:00
+Generated: 2026-04-07T12:27:36.538445+00:00
 
 Method policy: grouped benchmark fallback (no predictive validity claim).
 
