@@ -10,6 +10,7 @@ Current active artifacts:
 - `phase4_interconnection_model_design.md`
 - `phase4_driver_analysis.md`
 - `phase4_plus_readiness_plan.md`
+- `phase4_plus_coverage_summary.md`
 - `salak_2021_scope_investigation.md`
 
 ## Archived / Processed Docs

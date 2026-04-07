@@ -18,6 +18,8 @@ CURATED_POLICY_OUTPUT_PATH = PROCESSED_DIR / "wbs_lv5_curated_policy.csv"
 
 MASTER_PATH = PROCESSED_DIR / "wbs_lv5_master.csv"
 WELL_BRIDGE_PATH = PROCESSED_DIR / "wbs_row_to_well_bridge.csv"
+WELL_INSTANCE_CONTEXT_PATH = PROCESSED_DIR / "well_instance_context.csv"
+WELL_INSTANCE_EVENT_CONTEXT_PATH = PROCESSED_DIR / "well_instance_event_context.csv"
 CLASSIFICATION_PATH = PROCESSED_DIR / "wbs_lv5_classification.csv"
 DRIVER_REFERENCE_PATH = PROCESSED_DIR / "wbs_lv5_driver_reference.csv"
 REVIEW_QUEUE_PATH = PROCESSED_DIR / "wbs_lv5_review_queue.csv"
@@ -31,6 +33,7 @@ RULEBOOK_REPORT = REPORTS_DIR / "wbs_lv5_classification_rulebook.md"
 CLASSIFICATION_REPORT = REPORTS_DIR / "wbs_lv5_classification_report.md"
 ALIGNMENT_REPORT = REPORTS_DIR / "wbs_lv5_driver_alignment_report.md"
 DEFINE_QUALITY_REPORT = REPORTS_DIR / "phase2_define_quality_thresholds.md"
+PHASE4_COVERAGE_REPORT = REPORTS_DIR / "phase4_plus_coverage_summary.md"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
@@ -299,6 +302,32 @@ def compact_for_match(value: str | None) -> str:
 def compact_for_match_loose(value: str | None) -> str:
     strict = compact_for_match(value)
     return re.sub(r"\d+", lambda m: str(int(m.group(0))), strict) if strict else ""
+
+
+def base_well_canonical(value: str | None) -> str:
+    canonical = normalize_well_alias(value)
+    return re.sub(r"\s+(RD|ML)$", "", canonical).strip() if canonical else ""
+
+
+def build_well_instance_id(campaign_canonical: str, well_base: str) -> str:
+    return f"{campaign_canonical}|{well_base}" if clean_text(campaign_canonical) and clean_text(well_base) else ""
+
+
+def classify_deviation_type(well_text: str, note_text: str = "") -> str:
+    combined = f"{clean_text(well_text)} {clean_text(note_text)}".upper()
+    if "RD" in combined:
+        return "redrill"
+    if "SIDETRACK" in combined:
+        return "sidetrack"
+    if "ML" in combined:
+        return "multileg"
+    if "LIH" in combined:
+        return "LIH_affected"
+    if "STUCK" in combined:
+        return "stuck_related"
+    if clean_text(combined):
+        return "standard"
+    return "unknown"
 
 
 def candidate_aliases_from_text(text: str) -> list[str]:
@@ -695,6 +724,9 @@ def build_master_rows(
             by_field=well_lookup_by_field,
             campaign_to_field=campaign_to_field,
         )
+        resolved_well_canonical = clean_text(well_resolution.get("well_canonical", ""))
+        well_base = base_well_canonical(resolved_well_canonical)
+        well_instance_id = build_well_instance_id(campaign_canonical, well_base)
 
         source_row_key = f"20260327_WBS_Data.xlsx|Data.Summary|{row['_source_excel_row']}|{wbs_code}|{campaign_raw}"
         source_row_id = hashlib.md5(source_row_key.encode("utf-8")).hexdigest()[:16]
@@ -711,7 +743,9 @@ def build_master_rows(
                 "campaign_scope": campaign_scope,
                 "campaign_mapping_basis": mapping_basis,
                 "well_raw": clean_text(well_resolution.get("well_raw", "")),
-                "well_canonical": clean_text(well_resolution.get("well_canonical", "")),
+                "well_canonical": resolved_well_canonical,
+                "well_base_canonical": well_base,
+                "well_instance_id": well_instance_id,
                 "wbs_code_raw": wbs_code,
                 "wbs_lvl1": clean_text(dict_match.get("LVL 1", "")) or clean_text(row.get("L1", "")),
                 "wbs_lvl2": clean_text(dict_match.get("LVL 2", "")) or clean_text(row.get("L2", "")),
@@ -796,6 +830,8 @@ def build_well_bridge_rows(master_rows: list[dict[str, str]]) -> list[dict[str, 
                 "field": row["field"],
                 "campaign_canonical": row["campaign_canonical"],
                 "well_raw": row.get("well_raw", ""),
+                "well_base_canonical": row.get("well_base_canonical", ""),
+                "well_instance_id": row.get("well_instance_id", ""),
                 "well_canonical": row.get("well_canonical", ""),
                 "mapping_method": row.get("mapping_method", ""),
                 "confidence": row.get("mapping_confidence", ""),
@@ -1233,6 +1269,166 @@ def write_salak_2021_scope_investigation(wb_data: dict[str, list[list[str]]], ca
     (REPORTS_DIR / "salak_2021_scope_investigation.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def build_well_instance_context_rows(
+    wb_data: dict[str, list[list[str]]],
+    campaign_by_name: dict[str, dict[str, str]],
+    campaign_by_code: dict[str, dict[str, str]],
+    by_campaign: dict[tuple[str, str], set[str]],
+    by_field: dict[tuple[str, str], set[str]],
+) -> list[dict[str, str]]:
+    rows = sheet_to_records(
+        wb_data["WellView.Data"],
+        required=["Asset", "Drilling Campaign", "Well Name SAP", "Actual Depth (ft MD)", "Actual Days (days)", "NPT (days)"],
+        optional=["Well Name Well View"],
+    )
+    out: list[dict[str, str]] = []
+    for row in rows:
+        field = map_field(row.get("Asset", ""))
+        campaign_map, _ = resolve_campaign_mapping(row.get("Drilling Campaign", ""), campaign_by_name, campaign_by_code)
+        campaign_code = clean_text(campaign_map.get("campaign_code", ""))
+        campaign_canonical = clean_text(campaign_map.get("campaign_id", ""))
+        alias = normalize_well_alias(row.get("Well Name SAP", "") or row.get("Well Name Well View", ""))
+
+        campaign_hits = by_campaign.get((campaign_code, compact_for_match(alias)), set()) if campaign_code else set()
+        field_hits = by_field.get((field, compact_for_match(alias)), set())
+        hits = campaign_hits or field_hits
+        canonical = sorted(hits)[0] if len(hits) == 1 else ""
+        confidence = "high" if len(campaign_hits) == 1 else ("medium" if len(field_hits) == 1 else "low")
+        well_base = base_well_canonical(canonical)
+        well_instance_id = build_well_instance_id(campaign_canonical, well_base)
+        deviation = classify_deviation_type(alias, row.get("Well Name Well View", ""))
+        out.append(
+            {
+                "field": field,
+                "campaign_canonical": campaign_canonical,
+                "well_base_canonical": well_base,
+                "well_instance_id": well_instance_id,
+                "well_canonical": canonical,
+                "actual_depth": f"{parse_float(row.get('Actual Depth (ft MD)', '0')):.6f}",
+                "actual_days": f"{parse_float(row.get('Actual Days (days)', '0')):.6f}",
+                "npt_days": f"{parse_float(row.get('NPT (days)', '0')):.6f}",
+                "deviation_type": deviation,
+                "source_sheet": "WellView.Data",
+                "confidence": confidence,
+                "notes": clean_text(row.get("Well Name Well View", "")),
+            }
+        )
+    return out
+
+
+def build_well_instance_event_context_rows(
+    wb_data: dict[str, list[list[str]]],
+    by_campaign: dict[tuple[str, str], set[str]],
+    by_field: dict[tuple[str, str], set[str]],
+) -> list[dict[str, str]]:
+    rows = sheet_to_records(
+        wb_data["3. NPT.Data"],
+        required=["Well Name", "Event Reference No.", "Event Type", "Unsch Maj Cat", "Unscheduled Detail", "Dur (Net) (hr)"],
+        optional=["Job Cat"],
+    )
+
+    # derive campaign candidates from well_master
+    well_master_rows = read_csv_rows(PROCESSED_DIR / "well_master.csv")
+    campaign_by_well: dict[str, set[str]] = defaultdict(set)
+    field_by_campaign: dict[str, str] = {}
+    for wm in well_master_rows:
+        canonical = normalize_well_alias(wm.get("well_canonical", ""))
+        campaign = clean_text(wm.get("campaign_id", ""))
+        if canonical and campaign:
+            campaign_by_well[canonical].add(campaign)
+        if campaign:
+            field_by_campaign[campaign] = clean_text(wm.get("field", ""))
+
+    out: list[dict[str, str]] = []
+    for row in rows:
+        alias = normalize_well_alias(row.get("Well Name", ""))
+        # no explicit campaign in NPT row, so this is context-level bridge
+        # map alias by any known canonical candidate
+        candidates = set()
+        for field in {"DARAJAT", "SALAK"}:
+            candidates |= by_field.get((field, compact_for_match(alias)), set())
+        canonical = sorted(candidates)[0] if len(candidates) == 1 else ""
+        candidate_campaigns = campaign_by_well.get(canonical, set()) if canonical else set()
+        campaign_canonical = sorted(candidate_campaigns)[0] if len(candidate_campaigns) == 1 else ""
+        field = field_by_campaign.get(campaign_canonical, "")
+        well_base = base_well_canonical(canonical)
+        well_instance_id = build_well_instance_id(campaign_canonical, well_base)
+        detail = clean_text(row.get("Unscheduled Detail", ""))
+        deviation = classify_deviation_type(alias, detail)
+
+        confidence = "low"
+        if canonical and campaign_canonical and clean_text(row.get("Event Reference No.", "")):
+            confidence = "medium"
+        if canonical and campaign_canonical and clean_text(row.get("Event Reference No.", "")) and clean_text(row.get("Job Cat", "")):
+            confidence = "high"
+
+        out.append(
+            {
+                "field": field,
+                "campaign_canonical": campaign_canonical,
+                "well_base_canonical": well_base,
+                "well_instance_id": well_instance_id,
+                "well_canonical": canonical,
+                "event_ref_no": clean_text(row.get("Event Reference No.", "")),
+                "event_type": clean_text(row.get("Event Type", "")),
+                "event_major_category": clean_text(row.get("Unsch Maj Cat", "")),
+                "event_detail": detail,
+                "event_duration_days": f"{(parse_float(row.get('Dur (Net) (hr)', '0')) / 24.0):.6f}",
+                "deviation_type": deviation,
+                "mapping_method": "well_alias_context_bridge",
+                "confidence": confidence,
+                "source_text_used": clean_text(row.get("Well Name", "")),
+            }
+        )
+    return out
+
+
+def write_phase4_plus_coverage_summary(
+    master_rows: list[dict[str, str]],
+    bridge_rows: list[dict[str, str]],
+    event_rows: list[dict[str, str]],
+    context_rows: list[dict[str, str]],
+) -> None:
+    total = len(master_rows)
+    well_raw_after = sum(1 for r in master_rows if clean_text(r.get("well_raw", "")))
+    well_canon_after = sum(1 for r in master_rows if clean_text(r.get("well_canonical", "")))
+    direct_well_name = sum(1 for r in master_rows if clean_text(r.get("mapping_status_well", "")) == "mapped_from_well_name")
+    confidence_counts = Counter(clean_text(r.get("confidence", "")).lower() or "unknown" for r in event_rows)
+    deviation_counts = Counter(clean_text(r.get("deviation_type", "")) or "unknown" for r in context_rows)
+
+    lines = [
+        "# Phase 4 Plus Coverage Summary",
+        "",
+        "## Before vs After (current run reference)",
+        f"- populated `well_raw` rows before: **0** (historical pre-remediation baseline).",
+        f"- populated `well_raw` rows after: **{well_raw_after} / {total}**.",
+        f"- populated `well_canonical` rows before: **0** (historical pre-remediation baseline).",
+        f"- populated `well_canonical` rows after: **{well_canon_after} / {total}**.",
+        f"- rows mapped from direct `Well Name`: **{direct_well_name}**.",
+        f"- rows in `wbs_row_to_well_bridge.csv`: **{len(bridge_rows)}**.",
+        f"- rows in `well_instance_event_context.csv`: **{len(event_rows)}**.",
+        "",
+        "## Event mapping confidence tiers",
+        f"- high: **{confidence_counts.get('high', 0)}**",
+        f"- medium: **{confidence_counts.get('medium', 0)}**",
+        f"- low: **{confidence_counts.get('low', 0)}**",
+        "",
+        "## Deviation type counts (well context)",
+    ]
+    for key in ["standard", "redrill", "sidetrack", "multileg", "LIH_affected", "stuck_related", "unknown"]:
+        lines.append(f"- {key}: **{deviation_counts.get(key, 0)}**")
+
+    lines.extend(
+        [
+            "",
+            "## Notes",
+            "- `3. NPT.Data` is bridged as well-instance event context; direct row-level WBS event fill is not asserted.",
+            "- `event_code_raw` remains unchanged unless explicit row-level evidence exists.",
+        ]
+    )
+    write_text(PHASE4_COVERAGE_REPORT, "\n".join(lines) + "\n")
+
+
 def main() -> None:
     wb_data = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
     wb_dict = read_xlsx(RAW_DIR / "20260318_WBS_Dictionary.xlsx")
@@ -1280,6 +1476,18 @@ def main() -> None:
     )
     class_rows = build_class_rows(master_rows, policy_rows)
     bridge_rows = build_well_bridge_rows(master_rows)
+    well_instance_context_rows = build_well_instance_context_rows(
+        wb_data,
+        campaign_by_name,
+        campaign_by_code,
+        well_lookup_by_campaign,
+        well_lookup_by_field,
+    )
+    well_instance_event_rows = build_well_instance_event_context_rows(
+        wb_data,
+        well_lookup_by_campaign,
+        well_lookup_by_field,
+    )
     driver_rows = build_driver_reference(class_rows)
     review_rows = build_review_queue(class_rows)
     global_summary_rows, field_summary_rows = build_summary_rows(class_rows)
@@ -1304,6 +1512,8 @@ def main() -> None:
             "campaign_mapping_basis",
             "well_raw",
             "well_canonical",
+            "well_base_canonical",
+            "well_instance_id",
             "wbs_code_raw",
             "wbs_lvl1",
             "wbs_lvl2",
@@ -1333,7 +1543,47 @@ def main() -> None:
             "field",
             "campaign_canonical",
             "well_raw",
+            "well_base_canonical",
+            "well_instance_id",
             "well_canonical",
+            "mapping_method",
+            "confidence",
+            "source_text_used",
+        ],
+    )
+    write_csv(
+        WELL_INSTANCE_CONTEXT_PATH,
+        well_instance_context_rows,
+        [
+            "field",
+            "campaign_canonical",
+            "well_base_canonical",
+            "well_instance_id",
+            "well_canonical",
+            "actual_depth",
+            "actual_days",
+            "npt_days",
+            "deviation_type",
+            "source_sheet",
+            "confidence",
+            "notes",
+        ],
+    )
+    write_csv(
+        WELL_INSTANCE_EVENT_CONTEXT_PATH,
+        well_instance_event_rows,
+        [
+            "field",
+            "campaign_canonical",
+            "well_base_canonical",
+            "well_instance_id",
+            "well_canonical",
+            "event_ref_no",
+            "event_type",
+            "event_major_category",
+            "event_detail",
+            "event_duration_days",
+            "deviation_type",
             "mapping_method",
             "confidence",
             "source_text_used",
@@ -1419,6 +1669,7 @@ def main() -> None:
     write_text(CLASSIFICATION_REPORT, alignment_report)
     write_text(DEFINE_QUALITY_REPORT, build_define_quality_report(master_rows, class_rows))
     write_salak_2021_scope_investigation(wb_data, campaign_by_code)
+    write_phase4_plus_coverage_summary(master_rows, bridge_rows, well_instance_event_rows, well_instance_context_rows)
     print("Wrote WBS Lv.5 driver alignment artifacts.")
 
 
