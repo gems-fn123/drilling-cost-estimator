@@ -4,18 +4,15 @@
 Only active-phase artifacts should remain directly under `reports/`.
 
 Current active artifacts:
-- `phase4_execution_kickoff.md`
-- `phase4_gate_preflight_report.md`
-- `phase4_implementation_tracker.md`
-- `phase4_interconnection_model_design.md`
-- `phase4_driver_analysis.md`
-- `phase4_plus_readiness_plan.md`
-- `phase4_plus_coverage_summary.md`
 - `phase5_kickoff_decision.md`
+- `phase5_app_integration_prerequisites.md`
+- `phase5_monitoring_skeleton.md`
+- `phase5_streamlit_demo_review_pack.md`
 - `salak_2021_scope_investigation.md`
 
 ## Archived / Processed Docs
 - `reports/processed-docs/phase1-3/` contains completed phase decisions, gate outputs, and historical deliverables.
+- `reports/processed-docs/phase4/` contains archived Phase 4 execution and readiness artifacts.
 
 ## Other
 - `reports/other/` contains supporting analyses and non-gating reference notes.
