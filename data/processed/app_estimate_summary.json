@@ -1,10 +1,28 @@
 {
   "field": "SALAK",
   "input_year": 2026,
-  "total_campaign_cost_mmusd": 9.170870515072002,
-  "total_campaign_cost_usd": 9170870.515072001,
-  "well_component_usd": 4572156.198672001,
-  "hybrid_component_usd": 976556.4714000002,
-  "campaign_tied_component_usd": 3622157.845,
-  "reconciliation_status": "PASS"
+  "total_campaign_cost_mmusd": 83.280546742896,
+  "total_campaign_cost_usd": 83280546.74289599,
+  "well_component_usd": 73143542.18649602,
+  "hybrid_component_usd": 6023505.0492,
+  "campaign_tied_component_usd": 4113499.5072000003,
+  "reconciliation_status": "PASS",
+  "l2_cost_breakdown": [
+    {
+      "l2_id": "E540-30101-D245401",
+      "estimate_usd": 72460793.16705601
+    },
+    {
+      "l2_id": "E540-30203-D245401",
+      "estimate_usd": 7628091.447168002
+    },
+    {
+      "l2_id": "E540-30129-D245401",
+      "estimate_usd": 3191662.128672
+    },
+    {
+      "l2_id": "E540-30299-D245401",
+      "estimate_usd": 0.0
+    }
+  ]
 }

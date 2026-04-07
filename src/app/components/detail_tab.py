@@ -8,7 +8,7 @@ import streamlit as st
 
 
 def render_detail_tab(result: dict) -> None:
-    st.subheader("DETAIL WBS ESTIMATOR")
+    st.subheader("DETAIL WBS ESTIMATOR (PRIMARY AUDIT VIEW)")
     detail_rows = result["detail_wbs"]
     st.dataframe(detail_rows, use_container_width=True, hide_index=True)
 
@@ -24,22 +24,10 @@ def render_detail_tab(result: dict) -> None:
         writer.writeheader()
         writer.writerows(result["audit_rows"])
 
-    st.download_button(
-        "Download Audit CSV",
-        data=audit_buffer.getvalue(),
-        file_name="app_estimate_audit.csv",
-        mime="text/csv",
-    )
+    st.download_button("Download Audit CSV", data=audit_buffer.getvalue(), file_name="app_estimate_audit.csv", mime="text/csv")
     st.download_button(
         "Download Run Manifest",
-        data=json.dumps(
-            {
-                "field": result["campaign_input"]["field_canonical"],
-                "year": result["campaign_input"]["campaign_start_year"],
-                "rows": len(result["audit_rows"]),
-            },
-            indent=2,
-        ),
+        data=json.dumps({"field": result["campaign_input"]["field_canonical"], "year": result["campaign_input"]["campaign_start_year"], "rows": len(result["audit_rows"])}, indent=2),
         file_name="app_run_manifest_preview.json",
         mime="application/json",
     )
