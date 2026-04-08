@@ -1,16 +1,17 @@
 {
-  "run_timestamp": "2026-04-07T11:39:49.311634+00:00",
+  "run_timestamp": "2026-04-07T12:27:48.248031+00:00",
   "field": "SALAK",
-  "input_hashes": "4c5a29146a05c9aef489e1bc294cdcec38508325a2627299a2be4ccd586ef8ad",
+  "scenario_id": "SALAK_2026_2w",
+  "estimate_type": "dashboard_anchored",
   "runtime_toggles": {
     "external_forecast_requested": true,
     "external_forecast_applied": false,
-    "synthetic_data_requested": true
+    "synthetic_data_requested": false
   },
   "external_adjustment_formula": "fallback_historical_only_external_series_unavailable",
   "reconciliation": {
-    "campaign_total_usd": 9170870.515072001,
-    "detail_total_usd": 9170870.515072001,
+    "campaign_total_usd": 83280546.74289599,
+    "detail_total_usd": 83280546.74289599,
     "status": "PASS"
   },
   "outputs": {

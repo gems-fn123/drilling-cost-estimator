@@ -1,11 +1,11 @@
 # Validation Report - SALAK
 
-Generated: 2026-04-07T11:39:49.256939+00:00
+Generated: 2026-04-07T12:27:48.205008+00:00
 
-Method policy: grouped benchmark fallback (no predictive validity claim).
+Backtest mode: historical median peer baseline (no regression claim).
 
-| bucket_id | method_branch | n_obs | mape_proxy | interval_method |
-|---|---|---:|---:|---|
-| campaign_tied | grouped_benchmark | 14 | 0.0069 | quantile_band_p10_p90 |
-| hybrid | grouped_benchmark | 47 | 1.8785 | quantile_band_p10_p90 |
-| well_tied | grouped_benchmark | 299 | 6474.5109 | quantile_band_p10_p90 |
+- Wells backtested: 9
+- MAE (USD): 1,607,942.19
+- MAPE (%): 641.25
+- Bias (USD): 497,566.06
+- Interval coverage: not produced (point-estimate baseline only).

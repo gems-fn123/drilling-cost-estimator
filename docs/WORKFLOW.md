@@ -260,3 +260,18 @@ Event Codes  →  Campaign Mapping →  Baselines    →  Confidence    →  Mon
 - All Level-5 estimates are traceable to source rows and valid WBS hierarchy.
 - Event-code standardization applied to unscheduled-event impact modeling.
 - Validation metrics and assumptions published with each release.
+
+
+---
+
+## Agent Execution Mode (Repository-Specific)
+
+When implementing estimator logic or app behavior, agents must follow this order:
+1. Build/refresh historical mart and row bridges.
+2. Rebuild dashboard aggregates from mart and document mismatch checks.
+3. Estimate at WBS/component grain (not total-then-spread).
+4. Reconcile detail rows to campaign total exactly.
+5. Emit audit package (`app_estimate_audit.csv`, `app_estimate_summary.json`, `app_run_manifest.json`).
+6. Publish/refresh field-specific validation and backtest artifacts.
+
+This execution mode operationalizes the cross-phase principles (Hierarchy First, Field Specificity, Evidence-Based, Auditability) for day-to-day agent changes.

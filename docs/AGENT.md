@@ -1,151 +1,78 @@
 # Agent Workflow Guide
 
 ## Purpose
-Operational guide for AI agents executing data ingestion, validation, and classification tasks.
+Define the **operating purpose and workflow** for agents in this repository so execution stays aligned with `AGENTS.md`, `GPT_PROJECT_INSTRUCTIONS.md`, and project docs.
+
+Primary purpose:
+1. Reconstruct and maintain auditable historical drilling cost structure first.
+2. Estimate only through evidence-backed, field-separated logic.
+3. Keep every estimate traceable to source-row lineage and reproducible outputs.
 
 ## Audience
-AI agents, automation specialists, and Phase 2–4 engineers.
+AI agents, automation contributors, and maintainers running work in this repository.
 
-## Prerequisites
-1. Read [MASTER_INSTRUCTIONS.md](MASTER_INSTRUCTIONS.md) sections 1–3
-2. Read [AGENTS.md](AGENTS.md)
-3. Review your assigned phase in [MASTER_INSTRUCTIONS.md](MASTER_INSTRUCTIONS.md) section 3
+## Required Startup Sequence (Every Task)
+1. Read `AGENTS.md`.
+2. Read `GPT_PROJECT_INSTRUCTIONS.md`.
+3. Read `MASTER_INSTRUCTIONS.md` sections 1–3.
+4. Read this file (`docs/AGENT.md`) and `docs/WORKFLOW.md`.
+5. Confirm scope and current phase before editing code.
 
-## Data Assets in This Repository (`data/raw/`)
+## Agent Operating Contract
 
-### Primary Workbooks
-- **20260327_WBS_Data.xlsx**
-  - Sheets: `WBS.Tree`, `Data.Summary`, `Cost & Technical Data`
-  - Primary source for WBS hierarchy and cost records
-  
-- **20260318_WBS_Dictionary.xlsx**
-  - Sheets: `WBS_Dictionary`, `WBS.structure`
-  - Dictionary and structure reference
+### Non-Negotiables
+- Keep **DARAJAT** and **SALAK** separate unless explicit statistical justification is documented.
+- Do not invent drivers or claim predictive validity without supporting analysis.
+- Preserve exact WBS lineage (L1→L5) and source-row traceability.
+- Keep unmapped/missing attribution rows visible in artifacts and audit outputs.
+- Persist run artifacts in `data/processed/` and reports in `reports/`.
 
-### Supporting Assets
-- **UNSCHEDULED EVENT CODE.xlsx**
-  - Controlled vocabulary for unscheduled event classification
-  - Use for mapping event records to standardized codes
+### Data-First Rule
+The estimator and UI must consume one canonical history base (historical mart + bridges), not parallel ad hoc summary logic.
 
-- **WBS Reference for Drilling Campaign (Drilling Cost).xlsx**
-  - Supplemental campaign reference
-  - Validate against primary workbook hierarchies
+### Honest Uncertainty Rule
+Uncertainty labels must reflect actual method used (empirical spread, bootstrap, holdout-derived metrics, etc.).
 
-## Core Workflow (Phases 2–4)
+## Workflow by Phase (Execution Corridor)
 
-1. **Load and Profile** (Phase 1)
-   - Sheet inventory (list all sheets, row counts)
-   - Missingness analysis (null counts per column)
-   - Check for duplicate keys and orphan entries
-   - **Output:** Profile summary to `reports/source_inventory.md`
+### Phase 1–4 (Data Engineering & Validation Setup)
+- Ingest, normalize, canonicalize, classify, and validate hierarchy.
+- Publish canonical tables and QA reports.
+- No unsupported model claims.
 
-2. **Normalize Schema** (Phase 2)
-   - Map source columns to canonical schema:
-     ```
-     wbs_level_1, wbs_level_2, wbs_level_3, wbs_level_4, wbs_level_5,
-     wbs_code, activity, cost, duration, well, campaign, event_code,
-     source_file, source_row, data_quality_flag
-     ```
-   - Standardize naming conventions (remove special chars, whitespace)
-   - Create well-name and campaign-name canonicalization crosswalks
-   - Treat `data/processed/wbs_lv5_master.csv` as the implemented row-grain contract and `data/processed/wbs_lv5_classification.csv` as the implemented classification contract for the Phase 2 to 3 handoff
+### Phase 5 (Demonstrate)
+- Build field-specific validation artifacts.
+- Publish MAE/MAPE/bias only from actual backtest/holdout logic.
+- Produce confidence/uncertainty artifacts with explicit method labels.
 
-3. **Validate Hierarchy** (Phase 3)
-   - Every Level-5 entry must have valid L1–L4 parents
-   - Every node must have exactly one parent (except L1)
-   - Cost rollups must be additive upward (L5 → L1)
-   - Record violations in `data_quality_flag` column
+### Phase 6 (Deploy)
+- Build/operate Streamlit app that:
+  - shows campaign totals,
+  - shows per-well attribution,
+  - shows WBS drill-down,
+  - reconciles detail totals exactly,
+  - exports audit package per run.
 
-4. **Map Unscheduled Events** (Phase 3)
-   - Join event records to `UNSCHEDULED EVENT CODE.xlsx`
-   - Standardize event codes
-   - Flag unmapped events for manual review
+## Required Deliverable Patterns
 
-5. **Generate Outputs** (Phase 4)
-   - Save canonical tables in `data/processed/`:
-     - `canonical_well_mapping.csv`
-     - `canonical_campaign_mapping.csv`
-     - `well_master.csv`
-     - `well_alias_lookup.csv`
-   - Publish ingestion report: `reports/001_ingestion_task.md`
-   - **DO NOT model or estimate yet**
+### Processed Artifacts (`data/processed/`)
+- Canonical mart/bridge and coverage outputs.
+- Dashboard rebuild outputs.
+- Backtest outputs by well and campaign.
+- App run audit/summary/manifest outputs.
 
-## Data Contracts
+### Reports (`reports/`)
+- Dashboard rebuild check.
+- Field-specific validation reports.
+- Handoff notes capturing assumptions, limitations, and open gaps.
 
-Implemented gate note: the conceptual schema above is distributed across the current Phase 2 artifacts. Use `wbs_lv5_master.csv`, `wbs_lv5_classification.csv`, `well_master.csv`, and `canonical_campaign_mapping.csv` as the authoritative implemented interfaces in this repository.
+## Agent Checklist Before Commit
+- [ ] Field separation preserved in logic and outputs.
+- [ ] Reconciliation checks pass (detail = total).
+- [ ] Audit outputs include source rows/method/uncertainty flags.
+- [ ] Unmapped attribution impact surfaced.
+- [ ] Docs updated when workflow/behavior changes.
 
-### Canonical Columns (Required)
-```
-wbs_level_1 (string, non-null)
-wbs_level_2 (string, non-null)
-wbs_level_3 (string, non-null)
-wbs_level_4 (string, non-null)
-wbs_level_5 (string, non-null)
-wbs_code (string, unique, non-null)
-activity (string)
-cost (numeric, ≥0)
-duration (numeric, ≥0)
-well (string)
-campaign (string)
-event_code (string or null)
-classification (enum: well_tied|campaign_tied|hybrid)
-source_file (string)
-source_row (integer)
-data_quality_flag (string: null, "high_confidence", "flag_missing_cost", "flag_ambiguous_wbs", etc.)
-```
-
-### Well Master
-```
-well_id (string, primary key)
-well_name (string, canonical)
-well_aliases (JSON array of alternate names)
-field (enum: DARAJAT|SALAK)
-status (string)
-region (string)
-operator (string)
-```
-
-Current export note: `well_master.csv` also carries `well_canonical`, `campaign_code`, `campaign_id`, `include_for_estimator`, `include_for_well_training`, and `training_note`. `status` is scoped to estimator-roster membership; `region` and `operator` are intentionally blank until a reliable source is added.
-
-### Campaign Master
-```
-campaign_id (string, primary key)
-campaign_name (string, canonical)
-campaign_wbs_code (string, L1 WBS code)
-field (enum: DARAJAT|SALAK)
-start_date (date)
-end_date (date)
-actual_cost_total (numeric)
-```
-
-Current export note: `canonical_campaign_mapping.csv` also carries `campaign_code`, `campaign_name_raw`, `estimator_scope`, `include_for_estimator`, and source lineage columns. `start_date`, `end_date`, and `actual_cost_total` are intentionally blank in the Define layer because the current source package does not support an auditable canonical fill for those fields.
-
-## Execution Guardrails
-
-### Mandatory
-- ✓ Never estimate a Level-5 item without a valid Level-1…5 path
-- ✓ Reject rows with ambiguous WBS mapping until remediated
-- ✓ Keep well and campaign names canonicalized before any aggregation
-- ✓ Maintain an assumption register for all manual overrides
-
-### Quality Thresholds
-- Flag records with >20% missing cost/duration data
-- Reject null or duplicate WBS codes (L1–L5)
-- Document all data imputation decisions in assumption register
-- Verify parent-child links (every L2 parent must be in L1, etc.)
-
-### Field Specificity
-- Do NOT mix DARAJAT and SALAK records in any single analysis
-- Create separate wells masters and campaign masters per field
-- Keep field context in all output file names and column headers
-
-## Success Criteria
-
-- [ ] All source workbooks profiled (sheet list, row counts, missingness → `reports/source_inventory.md`)
-- [ ] Schema normalized to canonical columns (see Data Contracts above)
-- [ ] WBS hierarchy validated: zero orphan L5 entries, all parents linkable to L1
-- [ ] Well and campaign names canonicalized with crosswalk tables
-- [ ] Unscheduled events mapped to standardized codes
-- [ ] All outputs in `data/processed/` with correct column names
-- [ ] Ingestion report published to `reports/001_ingestion_task.md`
-- [ ] **NO model training or cost estimation performed in this phase**
+## Skills / Tooling Notes
+- If superpowers skills are used in local Codex, install via native skill discovery (`~/.agents/skills/superpowers` symlink to `~/.codex/superpowers/skills`) and restart Codex.
+- Do not rely on skills that bypass repository guardrails; AGENTS and project docs remain authoritative.
