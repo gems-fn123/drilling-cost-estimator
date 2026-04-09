@@ -61,6 +61,10 @@ def _normalize_depth(depth_ft: int) -> int:
     return int(round(clipped / 500.0) * 500)
 
 
+def _format_mmusd(amount_usd: float) -> str:
+    return f"{amount_usd / 1_000_000.0:.2f} mm USD"
+
+
 def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict, List[WellInput]]:
     field = campaign_input.get("field")
     if field not in {"SLK", "DRJ"}:
@@ -336,12 +340,19 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "field": field,
         "input_year": normalized_campaign["campaign_start_year"],
         "total_campaign_cost_mmusd": total_cost / 1_000_000.0,
+        "total_campaign_cost_formatted": _format_mmusd(total_cost),
         "total_campaign_cost_usd": total_cost,
         "well_component_usd": sum(r["estimated_cost_usd"] for r in well_outputs),
+        "well_component_formatted": _format_mmusd(sum(r["estimated_cost_usd"] for r in well_outputs)),
         "hybrid_component_usd": sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "hybrid"),
+        "hybrid_component_formatted": _format_mmusd(sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "hybrid")),
         "campaign_tied_component_usd": sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "campaign_tied"),
+        "campaign_tied_component_formatted": _format_mmusd(sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "campaign_tied")),
         "reconciliation_status": "PASS",
-        "l2_cost_breakdown": [{"l2_id": k, "estimate_usd": v} for k, v in sorted(by_l2.items(), key=lambda x: x[1], reverse=True)],
+        "l2_cost_breakdown": [
+            {"l2_id": k, "estimate_usd": v, "estimate_formatted": _format_mmusd(v)}
+            for k, v in sorted(by_l2.items(), key=lambda x: x[1], reverse=True)
+        ],
     }
     APP_SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
