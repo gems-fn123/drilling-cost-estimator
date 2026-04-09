@@ -250,6 +250,31 @@ def _field_rows(field: str) -> List[dict]:
     return [r for r in read_csv(PHASE5_APP) if r["field"] == field]
 
 
+def _build_fraction_rows(rows: List[dict], group_key: str, total_cost: float, name_key: str) -> List[dict]:
+    grouped_cost = defaultdict(float)
+    grouped_rows = defaultdict(int)
+    grouped_tags: Dict[str, set] = defaultdict(set)
+    for row in rows:
+        bucket = row.get(group_key, "unknown") or "unknown"
+        grouped_cost[bucket] += row.get("estimate_usd", 0.0)
+        grouped_rows[bucket] += int(row.get("source_row_count", 0) or 0)
+        grouped_tags[bucket].add(row.get("source_field_campaign_years", "unknown"))
+
+    output = []
+    for bucket in sorted(grouped_cost):
+        estimate = grouped_cost[bucket]
+        output.append(
+            {
+                name_key: bucket,
+                "estimate_usd": estimate,
+                "share_fraction": (estimate / total_cost) if total_cost else 0.0,
+                "source_row_count": grouped_rows[bucket],
+                "source_tag": " | ".join(sorted(tag for tag in grouped_tags[bucket] if tag)),
+            }
+        )
+    return output
+
+
 def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     normalized_campaign, normalized_wells = normalize_inputs(campaign_input, well_rows)
     field = normalized_campaign["field_canonical"]
@@ -346,6 +371,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
                     "upper_bound_usd": est * (1 + unc_pct / 100.0),
                     "estimation_method": "grouped_benchmark",
                     "driver_basis": r.get("driver_family", "unknown"),
+                    "well_estimation_use": r.get("well_estimation_use", ""),
                     "source_field_campaign_years": f"{field} | {source_years}",
                     "source_row_count": source_count,
                     "synthetic_rows_used": synthetic_used,
@@ -367,6 +393,45 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
 
     recalc_detail_sum = sum(r["estimate_usd"] for r in detail_rows)
     reconciled = abs(recalc_detail_sum - total_cost) <= 0.01
+
+    wbs_family_fractions = {
+        "l2_id": _build_fraction_rows(detail_rows, "wbs_lvl2", total_cost, "l2_id"),
+        "driver_family": _build_fraction_rows(detail_rows, "driver_basis", total_cost, "driver_family"),
+        "classification": _build_fraction_rows(detail_rows, "classification", total_cost, "classification"),
+    }
+
+    direct_rows = [r for r in detail_rows if r.get("well_estimation_use") == "direct" and r.get("classification") == "well_tied"]
+    direct_total = sum(r["estimate_usd"] for r in direct_rows)
+    direct_family = _build_fraction_rows(
+        direct_rows,
+        "driver_basis",
+        direct_total,
+        "driver_family",
+    )
+    driver_attribution_rows = []
+    for well in well_outputs:
+        for family_row in direct_family:
+            frac = family_row["share_fraction"]
+            driver_attribution_rows.append(
+                {
+                    "well_label": well["well_label"],
+                    "driver_family": family_row["driver_family"],
+                    "direct_fraction_of_well": frac,
+                    "direct_estimate_usd": well["estimated_cost_usd"] * frac,
+                    "source_row_count": family_row["source_row_count"],
+                    "source_tag": family_row["source_tag"],
+                }
+            )
+
+    driver_attribution = {
+        "source_filter": {
+            "classification": "well_tied",
+            "well_estimation_use": "direct_well_linked",
+        },
+        "rows": driver_attribution_rows,
+    }
+
+    component_share_breakdown = _build_fraction_rows(detail_rows, "component_scope", total_cost, "component_scope")
 
     run_timestamp = datetime.now(timezone.utc).isoformat()
     payload_for_hash = json.dumps({"campaign": normalized_campaign, "wells": [w.__dict__ for w in normalized_wells]}, sort_keys=True)
@@ -440,6 +505,9 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "hybrid_component_usd": hybrid_total,
         "campaign_tied_component_usd": campaign_total_component,
         "reconciliation_status": "PASS" if reconciled else "FAIL",
+        "wbs_family_fractions": wbs_family_fractions,
+        "driver_attribution": driver_attribution,
+        "component_share_breakdown": component_share_breakdown,
     }
     APP_SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
@@ -447,6 +515,9 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "campaign_input": normalized_campaign,
         "well_outputs": well_outputs,
         "campaign_summary": summary,
+        "wbs_family_fractions": wbs_family_fractions,
+        "driver_attribution": driver_attribution,
+        "component_share_breakdown": component_share_breakdown,
         "detail_wbs": detail_rows,
         "audit_rows": audit_rows,
         "warnings": [

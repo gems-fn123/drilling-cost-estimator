@@ -62,6 +62,11 @@ class TestPhase5EstimatorEngine(unittest.TestCase):
         self.assertGreater(summary["total_campaign_cost_usd"], 0)
         detail_sum = sum(r["estimate_usd"] for r in result["detail_wbs"])
         self.assertAlmostEqual(detail_sum, summary["total_campaign_cost_usd"], places=2)
+        self.assertIn("wbs_family_fractions", result)
+        self.assertIn("driver_attribution", result)
+        self.assertIn("component_share_breakdown", result)
+        self.assertTrue(result["wbs_family_fractions"]["classification"])
+        self.assertTrue(result["component_share_breakdown"])
 
     def test_audit_outputs_exist_and_have_reconciliation(self) -> None:
         for path in [APP_RUN_MANIFEST, APP_AUDIT, APP_SUMMARY]:
@@ -71,6 +76,9 @@ class TestPhase5EstimatorEngine(unittest.TestCase):
         summary = json.loads(Path(APP_SUMMARY).read_text(encoding="utf-8"))
         self.assertEqual(manifest["reconciliation"]["status"], "PASS")
         self.assertEqual(summary["reconciliation_status"], "PASS")
+        self.assertIn("wbs_family_fractions", summary)
+        self.assertIn("driver_attribution", summary)
+        self.assertIn("component_share_breakdown", summary)
 
 
 if __name__ == "__main__":

@@ -6,5 +6,172 @@
   "well_component_usd": 4572156.198672001,
   "hybrid_component_usd": 976556.4714000002,
   "campaign_tied_component_usd": 3622157.845,
-  "reconciliation_status": "PASS"
+  "reconciliation_status": "PASS",
+  "wbs_family_fractions": {
+    "l2_id": [
+      {
+        "l2_id": "E540-30101-D245401",
+        "estimate_usd": 7015338.325226351,
+        "share_fraction": 0.7649588241047445,
+        "source_row_count": 272,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "l2_id": "E540-30129-D245401",
+        "estimate_usd": 1379863.5548651083,
+        "share_fraction": 0.15046156769930963,
+        "source_row_count": 38,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "l2_id": "E540-30203-D245401",
+        "estimate_usd": 775667.683982875,
+        "share_fraction": 0.08457950449830172,
+        "source_row_count": 49,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "l2_id": "E540-30299-D245401",
+        "estimate_usd": 0.9509976630841609,
+        "share_fraction": 1.0369764369927914e-07,
+        "source_row_count": 1,
+        "source_tag": "SALAK | 2025_2026"
+      }
+    ],
+    "driver_family": [
+      {
+        "driver_family": "campaign_compliance",
+        "estimate_usd": 114169.42821794873,
+        "share_fraction": 0.012449137519749659,
+        "source_row_count": 3,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "campaign_logistics",
+        "estimate_usd": 2351607.0313036335,
+        "share_fraction": 0.2564213536151067,
+        "source_row_count": 1,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "interpad_move_count",
+        "estimate_usd": 442116.62841203203,
+        "share_fraction": 0.0482087962844344,
+        "source_row_count": 8,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "pad_expansion_flag",
+        "estimate_usd": 148477.88087002514,
+        "share_fraction": 0.01619016216901187,
+        "source_row_count": 11,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "rig_skid_count",
+        "estimate_usd": 48073.49016906431,
+        "share_fraction": 0.005241976766552012,
+        "source_row_count": 8,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "shared_support",
+        "estimate_usd": 800491.6792771491,
+        "share_fraction": 0.08728633535514098,
+        "source_row_count": 7,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "tie_in_flag",
+        "estimate_usd": 337888.47194887884,
+        "share_fraction": 0.0368436640113467,
+        "source_row_count": 20,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "waste_support",
+        "estimate_usd": 355889.70620126696,
+        "share_fraction": 0.03880653484490647,
+        "source_row_count": 3,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "driver_family": "well_scope",
+        "estimate_usd": 4572156.198672003,
+        "share_fraction": 0.49855203943375126,
+        "source_row_count": 299,
+        "source_tag": "SALAK | 2025_2026"
+      }
+    ],
+    "classification": [
+      {
+        "classification": "campaign_tied",
+        "estimate_usd": 3622157.844999999,
+        "share_fraction": 0.3949633613349039,
+        "source_row_count": 14,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "classification": "hybrid",
+        "estimate_usd": 976556.4714000006,
+        "share_fraction": 0.10648459923134501,
+        "source_row_count": 47,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "classification": "well_tied",
+        "estimate_usd": 4572156.198672003,
+        "share_fraction": 0.49855203943375126,
+        "source_row_count": 299,
+        "source_tag": "SALAK | 2025_2026"
+      }
+    ]
+  },
+  "driver_attribution": {
+    "source_filter": {
+      "classification": "well_tied",
+      "well_estimation_use": "direct_well_linked"
+    },
+    "rows": [
+      {
+        "well_label": "Well-1",
+        "driver_family": "well_scope",
+        "direct_fraction_of_well": 1.0,
+        "direct_estimate_usd": 1821285.9300000004,
+        "source_row_count": 299,
+        "source_tag": "SALAK | 2025_2026"
+      },
+      {
+        "well_label": "Well-2",
+        "driver_family": "well_scope",
+        "direct_fraction_of_well": 1.0,
+        "direct_estimate_usd": 2750870.268672001,
+        "source_row_count": 299,
+        "source_tag": "SALAK | 2025_2026"
+      }
+    ]
+  },
+  "component_share_breakdown": [
+    {
+      "component_scope": "campaign_tied",
+      "estimate_usd": 3622157.844999999,
+      "share_fraction": 0.3949633613349039,
+      "source_row_count": 14,
+      "source_tag": "SALAK | 2025_2026"
+    },
+    {
+      "component_scope": "hybrid",
+      "estimate_usd": 976556.4714000006,
+      "share_fraction": 0.10648459923134501,
+      "source_row_count": 47,
+      "source_tag": "SALAK | 2025_2026"
+    },
+    {
+      "component_scope": "well_tied",
+      "estimate_usd": 4572156.198672003,
+      "share_fraction": 0.49855203943375126,
+      "source_row_count": 299,
+      "source_tag": "SALAK | 2025_2026"
+    }
+  ]
 }
