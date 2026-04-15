@@ -56,6 +56,13 @@ def _safe_float(text: str) -> float:
     return float((text or "0").replace(",", ""))
 
 
+def _safe_int(text: str, default: int = 0) -> int:
+    try:
+        return int(str(text))
+    except (TypeError, ValueError):
+        return default
+
+
 def _normalize_depth(depth_ft: int) -> int:
     clipped = min(10000, max(4500, int(depth_ft)))
     return int(round(clipped / 500.0) * 500)
@@ -114,8 +121,14 @@ def _external_adjustment(enabled: bool) -> Tuple[float, bool, str]:
 
 def _load_mart_rows(field: str, year: int) -> List[dict]:
     rows = [r for r in read_csv(HISTORICAL_MART) if r["field"] == field]
-    prior = [r for r in rows if (r.get("campaign_start_year") or "0").isdigit() and int(r["campaign_start_year"]) <= year]
-    return prior or rows
+    if not rows:
+        return []
+    years = sorted({_safe_int(r.get("campaign_start_year"), 0) for r in rows if _safe_int(r.get("campaign_start_year"), 0) > 0})
+    if not years:
+        return rows
+    anchor_year = max([y for y in years if y <= year], default=max(years))
+    anchored_rows = [r for r in rows if _safe_int(r.get("campaign_start_year"), 0) == anchor_year]
+    return anchored_rows or rows
 
 
 def _build_wbs_templates(rows: List[dict]) -> List[dict]:
@@ -208,6 +221,13 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     ext_factor, ext_applied, ext_formula = _external_adjustment(normalized_campaign["use_external_forecast"])
 
     mart_rows = _load_mart_rows(field, normalized_campaign["campaign_start_year"])
+    historical_well_count = len(
+        {
+            r.get("well_canonical", "").strip()
+            for r in mart_rows
+            if r.get("well_canonical", "").strip() and "STEAM" not in r.get("well_canonical", "").upper()
+        }
+    ) or 1
     templates = _build_wbs_templates(mart_rows)
 
     direct_templates = [t for t in templates if t["classification"] == "well_tied"]
@@ -221,7 +241,8 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         well_detail = []
         for t in direct_templates:
             method = "empirical_analog" if t["source_row_count"] >= 5 else "fallback_benchmark"
-            estimate = t["median_usd"] * depth_factor * ext_factor
+            per_well_base = t["median_usd"] / historical_well_count
+            estimate = per_well_base * depth_factor * ext_factor
             unc_pct = min(150.0, ((t["p90_usd"] - t["p10_usd"]) / max(t["median_usd"], 1.0)) * 100)
             well_total += estimate
             row = {
@@ -339,6 +360,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     summary = {
         "field": field,
         "input_year": normalized_campaign["campaign_start_year"],
+        "estimation_methodology": "historical_analog_median_by_lv5_with_empirical_p10_p90_uncertainty",
         "total_campaign_cost_mmusd": total_cost / 1_000_000.0,
         "total_campaign_cost_formatted": _format_mmusd(total_cost),
         "total_campaign_cost_usd": total_cost,
@@ -349,10 +371,12 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "campaign_tied_component_usd": sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "campaign_tied"),
         "campaign_tied_component_formatted": _format_mmusd(sum(r["estimate_usd"] for r in detail_rows if r["classification"] == "campaign_tied")),
         "reconciliation_status": "PASS",
+        "historical_anchor_well_count": historical_well_count,
         "l2_cost_breakdown": [
             {"l2_id": k, "estimate_usd": v, "estimate_formatted": _format_mmusd(v)}
             for k, v in sorted(by_l2.items(), key=lambda x: x[1], reverse=True)
         ],
+        "uncertainty_definition": "uncertainty_pct = ((p90_usd - p10_usd) / median_usd) * 100 at Lv5 analog group",
     }
     APP_SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 

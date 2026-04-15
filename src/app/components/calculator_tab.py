@@ -16,6 +16,8 @@ def render_calculator_results(result: dict) -> None:
     c4.metric("Campaign-tied (USD)", f"{summary['campaign_tied_component_usd']:,.0f}")
 
     st.caption(f"Reconciliation status: {summary['reconciliation_status']}")
+    st.caption(f"Estimator method: {summary.get('estimation_methodology', 'n/a')}")
+    st.caption(f"Uncertainty definition: {summary.get('uncertainty_definition', 'n/a')}")
 
     st.subheader("Per-Well Estimate")
     st.dataframe(
