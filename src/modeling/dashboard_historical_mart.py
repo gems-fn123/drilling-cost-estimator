@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -52,6 +53,11 @@ def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
 
 def _safe_float(v: str) -> float:
     return float((v or "0").replace(",", ""))
+
+
+def _normalize_text(value: str) -> str:
+    collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
+    return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
 
 
 def _years(text: str) -> List[str]:
@@ -122,10 +128,13 @@ def build_historical_cost_mart() -> List[dict]:
             ]
         )
         class_row = classes.get(key, {})
+        family_tag = (class_row.get("wbs_family_tag") or row.get("tag_lvl5") or row.get("wbs_label_raw") or "").strip()
+        family_group_key = _normalize_text(family_tag) or "unknown_family"
 
         actual = _safe_float(row.get("cost_actual", "0"))
         mart_rows.append(
             {
+                "classification_key": key,
                 "source_row_id": source_row_id,
                 "field": field,
                 "campaign_raw": row.get("campaign_raw", ""),
@@ -149,6 +158,8 @@ def build_historical_cost_mart() -> List[dict]:
                 "l4_desc": row.get("wbs_lvl4", ""),
                 "l5_id": row.get("wbs_lvl5", ""),
                 "l5_desc": row.get("tag_lvl5", "") or row.get("wbs_label_raw", ""),
+                "wbs_family_tag": family_tag,
+                "family_group_key": family_group_key,
                 "classification": class_row.get("classification", "unclassified"),
                 "driver_family": class_row.get("driver_family", "unknown"),
                 "budget_usd": "0",

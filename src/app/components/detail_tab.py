@@ -17,8 +17,8 @@ def render_detail_tab(result: dict) -> None:
         st.error("Audit check failed: non-Lv.5 row detected in detail output.")
 
     st.caption(
-        "Method: historical analog median by Lv.5 group; `uncertainty_pct` is empirical spread "
-        "((P90-P10)/median*100). Lower is tighter historical spread."
+        "Method: field-specific family analog with anchor-year Lv.5 row distribution; `uncertainty_pct` "
+        "is empirical spread ((P90-P10)/median*100) over grouped historical peers."
     )
 
     enriched_rows = []
@@ -40,6 +40,7 @@ def render_detail_tab(result: dict) -> None:
                 "l4_id": row.get("l4_id", ""),
                 "l5_id": row.get("l5_id", ""),
                 "l5_desc": row.get("l5_desc", ""),
+                "wbs_family_tag": row.get("wbs_family_tag", ""),
                 "estimate_usd": row.get("estimate_usd", 0.0),
                 "estimate_formatted": f"{float(row.get('estimate_usd', 0.0))/1_000_000.0:.2f} mm USD",
                 "uncertainty_pct": round(unc_pct, 2),
@@ -50,6 +51,7 @@ def render_detail_tab(result: dict) -> None:
                 "source_row_count": row.get("source_row_count", 0),
                 "source_field_campaign_years": row.get("source_field_campaign_years", ""),
                 "source_wells": row.get("source_wells", ""),
+                "support_explanation": row.get("support_explanation", ""),
             }
         )
 
@@ -70,7 +72,7 @@ def render_detail_tab(result: dict) -> None:
     st.download_button("Download Audit CSV", data=audit_buffer.getvalue(), file_name="app_estimate_audit.csv", mime="text/csv")
     st.download_button(
         "Download Run Manifest",
-        data=json.dumps({"field": result["campaign_input"]["field_canonical"], "year": result["campaign_input"]["campaign_start_year"], "rows": len(result["audit_rows"])}, indent=2),
+        data=json.dumps(result.get("run_manifest", {}), indent=2),
         file_name="app_run_manifest_preview.json",
         mime="application/json",
     )

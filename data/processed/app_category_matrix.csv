@@ -1,0 +1,5 @@
+Cost Category,Well-1,Well-2,Well-3,Well-4,Well-5,Error (MMUSD) / MAPE (%)
+Drilling,4.764,5.171,4.045,5.171,4.397,4.79 / 17.6%
+Support,0.397,0.431,0.337,0.431,0.367,0.00 / 0.1%
+Surface Facility,1.102,1.196,0.936,1.196,1.017,1.91 / 42.9%
+Contingency,0.0,0.0,0.0,0.0,0.0,n/a: fewer than 2 historical contingency campaign observations in DARAJAT

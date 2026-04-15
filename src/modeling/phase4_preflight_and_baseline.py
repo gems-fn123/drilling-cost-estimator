@@ -482,8 +482,12 @@ def write_driver_report(driver_summary: Dict[str, List[dict]], args: argparse.Na
     DRIVER_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def main() -> None:
-    args = parse_args()
+def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_policy: str = "training") -> dict:
+    args = argparse.Namespace(
+        group_by=group_by,
+        use_synthetic=use_synthetic,
+        synthetic_policy=synthetic_policy,
+    )
 
     master_rows = read_csv(MASTER_PATH)
     classification_rows = read_csv(CLASSIFICATION_PATH)
@@ -556,6 +560,16 @@ def main() -> None:
         ],
     }
     RUN_MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    return manifest
+
+
+def main() -> None:
+    args = parse_args()
+    run_phase4(
+        group_by=args.group_by,
+        use_synthetic=args.use_synthetic,
+        synthetic_policy=args.synthetic_policy,
+    )
 
 
 if __name__ == "__main__":
