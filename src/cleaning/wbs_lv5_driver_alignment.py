@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import json
 import re
 import zipfile
 from collections import Counter, defaultdict
@@ -34,11 +35,13 @@ CLASSIFICATION_REPORT = REPORTS_DIR / "wbs_lv5_classification_report.md"
 ALIGNMENT_REPORT = REPORTS_DIR / "wbs_lv5_driver_alignment_report.md"
 DEFINE_QUALITY_REPORT = REPORTS_DIR / "phase2_define_quality_thresholds.md"
 PHASE4_COVERAGE_REPORT = REPORTS_DIR / "phase4_plus_coverage_summary.md"
+DARAJAT_5W_ESTIMATE_PATH = PROCESSED_DIR / "darajat_5well_lv5_estimate.json"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 
 MATERIAL_REVIEW_THRESHOLD = 500000.0
+LV5_LEVEL_CODE = "05"
 
 CAMPAIGN_LABEL_TO_CODE = {
     "DRJ 2022": "E530-30101-D225301",
@@ -162,6 +165,42 @@ def sheet_to_records(rows: list[list[str]], required: list[str], optional: list[
     return records
 
 
+def normalize_level_code(value: str | None) -> str:
+    text = clean_text(value)
+    if not text:
+        return ""
+    digits = re.sub(r"[^0-9]", "", text)
+    if not digits:
+        return ""
+    return f"{int(digits):02d}"
+
+
+def lv5_wbs_ids_from_structure_sheet(wb_data: dict[str, list[list[str]]]) -> set[str]:
+    if "WBS.structure.x1" not in wb_data:
+        return set()
+    rows = sheet_to_records(
+        wb_data["WBS.structure.x1"],
+        required=["Level", "ID"],
+    )
+    return {
+        clean_text(row.get("ID", ""))
+        for row in rows
+        if normalize_level_code(row.get("Level", "")) == LV5_LEVEL_CODE and clean_text(row.get("ID", ""))
+    }
+
+
+def filter_to_lv5_rows(data_summary_rows: list[dict[str, str]], lv5_wbs_ids: set[str]) -> tuple[list[dict[str, str]], Counter]:
+    level_profile = Counter(normalize_level_code(row.get("WBS_Level", "")) or "unknown" for row in data_summary_rows)
+    filtered: list[dict[str, str]] = []
+    for row in data_summary_rows:
+        wbs_id = clean_text(row.get("WBS_ID", ""))
+        is_lv5_level = normalize_level_code(row.get("WBS_Level", "")) == LV5_LEVEL_CODE
+        is_lv5_from_structure = bool(lv5_wbs_ids and wbs_id in lv5_wbs_ids)
+        if is_lv5_level or is_lv5_from_structure:
+            filtered.append(row)
+    return filtered, level_profile
+
+
 def map_field(asset_raw: str) -> str:
     value = clean_text(asset_raw).upper()
     if value in {"DRJ", "DARAJAT"}:
@@ -218,7 +257,7 @@ def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> No
             "- **Curated driver policy:** `src/cleaning/wbs_lv5_family_policy.csv`.",
             "",
             "## Data Quality Observations",
-            "- `Data.Summary` contains multiple WBS levels; only rows with populated `L5` are used in this build.",
+            "- `Data.Summary` contains multiple WBS levels; ingestion keeps only `WBS_Level = 05` rows (Lv.5 leaf entries).",
             "- Campaign labels in `Data.Summary` are short labels (`DRJ 2022`, `DRJ 2023`, `SLK 2025`), so driver alignment resolves them through explicit alias mapping before class assignment.",
             "- `hybrid` is reserved for non-well scope that is estimable from structured campaign design/scope drivers. Missing evidence no longer defaults to `hybrid`.",
             "",
@@ -1042,6 +1081,7 @@ def build_alignment_report(
     driver_rows: list[dict[str, str]],
     global_summary_rows: list[dict[str, str]],
     field_summary_rows: list[dict[str, str]],
+    source_level_profile: Counter,
 ) -> str:
     total_cost = sum(parse_float(row["cost_actual"]) for row in master_rows)
     mapped_in_scope = sum(
@@ -1069,12 +1109,22 @@ def build_alignment_report(
         f"- Total Lv.5 source rows processed: **{len(master_rows)}**",
         f"- Total cost processed (USD): **{total_cost:,.2f}**",
         "",
+        "## Data.Summary WBS level profile (pre-filter)",
+    ]
+    for level_code, count in sorted(source_level_profile.items()):
+        lines.append(f"- Level `{level_code}`: **{count}** rows")
+
+    lines.extend(
+        [
+            f"- Lv.5 ingestion filter: keep only `WBS_Level={LV5_LEVEL_CODE}` (with `WBS.structure.x1` Lv.5 ID fallback).",
+            "",
         "## Campaign Mapping Gate",
         f"- In-scope campaign rows mapped: **{mapped_in_scope} / {len(master_rows)}**",
         "- In-scope labels `DRJ 2022`, `DRJ 2023`, and `SLK 2025` are required to resolve before class assignment.",
         "",
         "## Approved Driver Mix",
-    ]
+        ]
+    )
     for row in global_summary_rows:
         lines.append(
             f"- `{row['classification']}`: {row['key_count']} keys ({row['key_share_pct']}%), "
@@ -1241,9 +1291,9 @@ def build_define_quality_report(master_rows: list[dict[str, str]], class_rows: l
 def write_salak_2021_scope_investigation(wb_data: dict[str, list[list[str]]], campaign_by_code: dict[str, dict[str, str]]) -> None:
     data_summary_rows = sheet_to_records(
         wb_data["Data.Summary"],
-        required=["Asset", "Campaign", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
+        required=["Asset", "Campaign", "WBS_Level", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
     )
-    data_summary_rows = [row for row in data_summary_rows if clean_text(row.get("L5", ""))]
+    data_summary_rows, _ = filter_to_lv5_rows(data_summary_rows, lv5_wbs_ids_from_structure_sheet(wb_data))
 
     salak_2021_code = "E540-30101-D20001"
     salak_2021_labels = {
@@ -1472,6 +1522,43 @@ def write_phase4_plus_coverage_summary(
     write_text(PHASE4_COVERAGE_REPORT, "\n".join(lines) + "\n")
 
 
+def build_darajat_5well_lv5_estimate(master_rows: list[dict[str, str]]) -> dict[str, object]:
+    target_rows = [r for r in master_rows if r.get("field") == "DARAJAT" and clean_text(r.get("campaign_raw", "")) == "DRJ 2023"]
+    total_usd = sum(parse_float(r.get("cost_actual", "0")) for r in target_rows)
+    by_l2: dict[str, float] = defaultdict(float)
+    for row in target_rows:
+        by_l2[clean_text(row.get("wbs_lvl2", ""))] += parse_float(row.get("cost_actual", "0"))
+
+    reference_usd = 38_000_000.0
+    tolerance_pct = 5.0
+    lower = reference_usd * (1 - tolerance_pct / 100.0)
+    upper = reference_usd * (1 + tolerance_pct / 100.0)
+    reconciliation_status = "PASS" if lower <= total_usd <= upper else "FAIL"
+
+    payload: dict[str, object] = {
+        "field": "DARAJAT",
+        "campaign_label": "DRJ 2023",
+        "well_count_reference": 5,
+        "source_grain": "Lv5-only (WBS_Level=05)",
+        "reference_total_mmusd": "38.00 mm USD",
+        "tolerance_pct": tolerance_pct,
+        "total_estimate_usd": round(total_usd, 6),
+        "total_estimate_mmusd": round(total_usd / 1_000_000.0, 6),
+        "total_estimate_formatted": f"{total_usd / 1_000_000.0:.2f} mm USD",
+        "reconciliation_status": reconciliation_status,
+        "l2_breakdown": [
+            {
+                "l2_id": key,
+                "estimate_usd": round(value, 6),
+                "estimate_formatted": f"{value / 1_000_000.0:.2f} mm USD",
+            }
+            for key, value in sorted(by_l2.items(), key=lambda item: item[1], reverse=True)
+        ],
+    }
+    DARAJAT_5W_ESTIMATE_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    return payload
+
+
 def main() -> None:
     wb_data = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
     wb_dict = read_xlsx(RAW_DIR / "20260318_WBS_Dictionary.xlsx")
@@ -1489,10 +1576,11 @@ def main() -> None:
 
     data_summary = sheet_to_records(
         wb_data["Data.Summary"],
-        required=["Asset", "Campaign", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
+        required=["Asset", "Campaign", "WBS_Level", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
         optional=["Well Name"],
     )
-    data_summary = [row for row in data_summary if clean_text(row.get("L5", ""))]
+    lv5_wbs_ids = lv5_wbs_ids_from_structure_sheet(wb_data)
+    data_summary, source_level_profile = filter_to_lv5_rows(data_summary, lv5_wbs_ids)
 
     dict_rows = sheet_to_records(
         wb_dict["WBS_Dictionary"],
@@ -1707,12 +1795,13 @@ def main() -> None:
     )
 
     build_rulebook(policy_rows)
-    alignment_report = build_alignment_report(master_rows, driver_rows, global_summary_rows, field_summary_rows)
+    alignment_report = build_alignment_report(master_rows, driver_rows, global_summary_rows, field_summary_rows, source_level_profile)
     write_text(ALIGNMENT_REPORT, alignment_report)
     write_text(CLASSIFICATION_REPORT, alignment_report)
     write_text(DEFINE_QUALITY_REPORT, build_define_quality_report(master_rows, class_rows))
     write_salak_2021_scope_investigation(wb_data, campaign_by_code)
     write_phase4_plus_coverage_summary(master_rows, bridge_rows, well_instance_event_rows, well_instance_context_rows)
+    build_darajat_5well_lv5_estimate(master_rows)
     print("Wrote WBS Lv.5 driver alignment artifacts.")
 
 
