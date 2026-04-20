@@ -1,5 +1,5 @@
 {
-  "run_timestamp_utc": "2026-04-15T06:19:46.594237+00:00",
+  "run_timestamp_utc": "2026-04-20T07:47:14.709881+00:00",
   "runtime_toggles": {
     "group_by": "family",
     "use_synthetic": false,
@@ -20,6 +20,11 @@
       "path": "data\\processed\\synthetic_wbs_lv5_placeholders.csv",
       "sha256": "1194c2b31ccd65d6fe91c56cd9ac6021915b658d25f9b48b98b6447250d183f1",
       "rows_used": 0
+    },
+    "well_pool_exclusions": {
+      "path": "data\\processed\\well_pool_exclusions.csv",
+      "sha256": "773f7ba6aa3e424c2a0e1813fa5ee1bda14a75705b1f797dac0939d089d8f5f1",
+      "active_count": 3
     }
   },
   "outputs": {
@@ -31,6 +36,7 @@
   },
   "notes": [
     "This run remains deterministic and does not fit predictive statistical models.",
-    "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field."
+    "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field.",
+    "Manual well-pool exclusions are applied when listed in data/processed/well_pool_exclusions.csv."
   ]
 }

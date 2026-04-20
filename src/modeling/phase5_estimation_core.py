@@ -148,8 +148,12 @@ def _refresh_pipeline_outputs() -> None:
     build_phase5_operational_assets()
 
 
+def _is_pool_eligible(row: dict) -> bool:
+    return (row.get("exclude_from_estimator_pool") or "no").strip().lower() != "yes"
+
+
 def _load_field_rows(field: str) -> List[dict]:
-    return [r for r in read_csv(HISTORICAL_MART) if r["field"] == field]
+    return [r for r in read_csv(HISTORICAL_MART) if r["field"] == field and _is_pool_eligible(r)]
 
 
 def _select_anchor_year(rows: List[dict], year: int) -> int:
@@ -470,7 +474,7 @@ def _build_category_matrix(detail_rows: List[dict], well_labels: List[str], fiel
 
 def build_validation_artifacts() -> None:
     _refresh_pipeline_outputs()
-    rows = read_csv(HISTORICAL_MART)
+    rows = [row for row in read_csv(HISTORICAL_MART) if _is_pool_eligible(row)]
     grouped = defaultdict(list)
     for row in rows:
         grouped[(row["field"], row["classification"])].append(_safe_float(row["actual_usd"]))

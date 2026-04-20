@@ -27,6 +27,7 @@ REPORTS_DIR = ROOT / "reports"
 MASTER_PATH = PROCESSED_DIR / "wbs_lv5_master.csv"
 CLASSIFICATION_PATH = PROCESSED_DIR / "wbs_lv5_classification.csv"
 SYNTHETIC_LV5_PATH = PROCESSED_DIR / "synthetic_wbs_lv5_placeholders.csv"
+WELL_POOL_EXCLUSIONS_PATH = PROCESSED_DIR / "well_pool_exclusions.csv"
 
 GATE_RESULTS_PATH = PROCESSED_DIR / "phase4_gate_results.csv"
 BASELINE_DARAJAT_PATH = PROCESSED_DIR / "baseline_estimates_darajat.csv"
@@ -65,6 +66,24 @@ def parse_args() -> argparse.Namespace:
 def read_csv(path: Path) -> List[dict]:
     with path.open("r", encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def load_well_pool_exclusions(path: Path) -> Dict[Tuple[str, str], str]:
+    if not path.exists():
+        return {}
+
+    exclusions: Dict[Tuple[str, str], str] = {}
+    for row in read_csv(path):
+        status = (row.get("status") or "active").strip().lower()
+        if status not in {"active", "yes", "true", "1"}:
+            continue
+        field = (row.get("field") or "").strip().upper()
+        well_canonical = (row.get("well_canonical") or "").strip().upper()
+        if not field or not well_canonical:
+            continue
+        reason = (row.get("reason") or "manual_exclusion").strip()
+        exclusions[(field, well_canonical)] = reason
+    return exclusions
 
 
 def file_sha256(path: Path) -> str:
@@ -289,6 +308,7 @@ def build_analysis_rows(
     master_rows: List[dict],
     class_map: Dict[str, dict],
     group_by: str,
+    well_pool_exclusions: Dict[Tuple[str, str], str],
 ) -> List[dict]:
     rows: List[dict] = []
     for row in master_rows:
@@ -303,6 +323,10 @@ def build_analysis_rows(
         )
         class_row = class_map.get(key)
         field, group_key, classification, driver_family = derive_group_key(row, class_row, group_by)
+        mapped_well = (row.get("well_canonical") or "").strip()
+        exclusion_key = (field.upper(), mapped_well.upper()) if mapped_well else None
+        if exclusion_key and exclusion_key in well_pool_exclusions:
+            continue
         rows.append(
             {
                 "field": field,
@@ -492,6 +516,7 @@ def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_
     master_rows = read_csv(MASTER_PATH)
     classification_rows = read_csv(CLASSIFICATION_PATH)
     class_map, family_to_class, family_to_driver = build_classification_maps(classification_rows)
+    well_pool_exclusions = load_well_pool_exclusions(WELL_POOL_EXCLUSIONS_PATH)
 
     gates = evaluate_gates(master_rows, classification_rows)
     write_csv(GATE_RESULTS_PATH, gates)
@@ -501,7 +526,12 @@ def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_
     if blocking_gate_failed:
         raise SystemExit("Blocking gate failed (G1-G6). Baseline outputs were not generated.")
 
-    analysis_rows = build_analysis_rows(master_rows, class_map, group_by=args.group_by)
+    analysis_rows = build_analysis_rows(
+        master_rows,
+        class_map,
+        group_by=args.group_by,
+        well_pool_exclusions=well_pool_exclusions,
+    )
 
     synthetic_rows_used = 0
     if args.use_synthetic:
@@ -546,6 +576,11 @@ def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_
                 "sha256": file_sha256(SYNTHETIC_LV5_PATH),
                 "rows_used": synthetic_rows_used,
             },
+            "well_pool_exclusions": {
+                "path": str(WELL_POOL_EXCLUSIONS_PATH.relative_to(ROOT)),
+                "sha256": file_sha256(WELL_POOL_EXCLUSIONS_PATH) if WELL_POOL_EXCLUSIONS_PATH.exists() else "not_available",
+                "active_count": len(well_pool_exclusions),
+            },
         },
         "outputs": {
             "phase4_gate_results": str(GATE_RESULTS_PATH.relative_to(ROOT)),
@@ -557,6 +592,7 @@ def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_
         "notes": [
             "This run remains deterministic and does not fit predictive statistical models.",
             "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field.",
+            "Manual well-pool exclusions are applied when listed in data/processed/well_pool_exclusions.csv.",
         ],
     }
     RUN_MANIFEST_PATH.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

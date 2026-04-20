@@ -10,7 +10,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
-from typing import Dict, Iterable, List
+from typing import Dict, Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[2]
 PROCESSED = ROOT / "data" / "processed"
@@ -21,6 +21,7 @@ WBS_CLASS = PROCESSED / "wbs_lv5_classification.csv"
 WELL_ALIAS = PROCESSED / "well_alias_lookup.csv"
 WELL_MAP = PROCESSED / "canonical_well_mapping.csv"
 CAMPAIGN_MAP = PROCESSED / "canonical_campaign_mapping.csv"
+WELL_POOL_EXCLUSIONS = PROCESSED / "well_pool_exclusions.csv"
 
 HISTORICAL_MART = PROCESSED / "historical_cost_mart.csv"
 WELL_BRIDGE = PROCESSED / "wbs_row_to_well_bridge.csv"
@@ -78,11 +79,30 @@ def _build_lookup(rows: Iterable[dict], key: str, val: str) -> Dict[str, str]:
     return out
 
 
+def _load_well_pool_exclusions() -> Dict[Tuple[str, str], str]:
+    if not WELL_POOL_EXCLUSIONS.exists():
+        return {}
+
+    exclusions: Dict[Tuple[str, str], str] = {}
+    for row in read_csv(WELL_POOL_EXCLUSIONS):
+        status = (row.get("status") or "active").strip().lower()
+        if status not in {"active", "yes", "true", "1"}:
+            continue
+        field = (row.get("field") or "").strip().upper()
+        well_canonical = (row.get("well_canonical") or "").strip().upper()
+        if not field or not well_canonical:
+            continue
+        reason = (row.get("reason") or "manual_exclusion").strip()
+        exclusions[(field, well_canonical)] = reason
+    return exclusions
+
+
 def build_historical_cost_mart() -> List[dict]:
     master = read_csv(WBS_MASTER)
     classes = {r["classification_key"]: r for r in read_csv(WBS_CLASS)}
     alias_lookup = _build_lookup(read_csv(WELL_ALIAS), "well_alias", "well_canonical")
     canonical_lookup = _build_lookup(read_csv(WELL_MAP), "well_alias", "well_canonical")
+    well_pool_exclusions = _load_well_pool_exclusions()
     campaign_rows = read_csv(CAMPAIGN_MAP)
     campaign_by_code = {r.get("campaign_code", "").strip(): r for r in campaign_rows if r.get("campaign_code")}
 
@@ -112,6 +132,12 @@ def build_historical_cost_mart() -> List[dict]:
             map_method = "canonical_alias"
             map_conf = "medium"
             map_source = "canonical_well_mapping"
+
+        exclusion_reason = ""
+        exclusion_key = (field.upper(), mapped.upper()) if mapped else None
+        if exclusion_key:
+            exclusion_reason = well_pool_exclusions.get(exclusion_key, "")
+        exclude_from_pool = "yes" if exclusion_reason else "no"
 
         campaign_code = (row.get("campaign_code") or "").strip()
         campaign_map = campaign_by_code.get(campaign_code, {})
@@ -146,6 +172,8 @@ def build_historical_cost_mart() -> List[dict]:
                 "mapping_method": map_method,
                 "mapping_confidence": map_conf,
                 "mapping_source": map_source,
+                "exclude_from_estimator_pool": exclude_from_pool,
+                "pool_exclusion_reason": exclusion_reason,
                 "l0_id": (row.get("wbs_lvl1", "").split("-") or [""])[0],
                 "l0_desc": "ROOT",
                 "l1_id": row.get("wbs_lvl1", ""),
@@ -181,6 +209,8 @@ def build_historical_cost_mart() -> List[dict]:
                 "mapping_method": map_method,
                 "mapping_confidence": map_conf,
                 "mapping_source": map_source,
+                "exclude_from_estimator_pool": exclude_from_pool,
+                "pool_exclusion_reason": exclusion_reason,
                 "requires_manual_review": "yes" if not mapped else "no",
             }
         )
@@ -280,10 +310,20 @@ def build_dashboard_rebuild_outputs(mart_rows: List[dict]) -> None:
 
 
 def build_backtest_outputs(mart_rows: List[dict]) -> None:
-    well_actual = _group_sum([r for r in mart_rows if r.get("well_canonical")], ["field", "campaign_canonical", "campaign_start_year", "well_canonical"], "actual_usd")
+    eligible_well_rows = [
+        r
+        for r in mart_rows
+        if r.get("well_canonical") and (r.get("exclude_from_estimator_pool") or "no").strip().lower() != "yes"
+    ]
+    well_actual = _group_sum(eligible_well_rows, ["field", "campaign_canonical", "campaign_start_year", "well_canonical"], "actual_usd")
     by_field = defaultdict(list)
     for r in well_actual:
         by_field[r["field"]].append(r)
+
+    excluded_wells_by_field = defaultdict(set)
+    for row in mart_rows:
+        if (row.get("exclude_from_estimator_pool") or "no").strip().lower() == "yes" and row.get("well_canonical"):
+            excluded_wells_by_field[row.get("field", "")].add(row.get("well_canonical", ""))
 
     backtest_rows: List[dict] = []
     for field, rows in by_field.items():
@@ -359,6 +399,9 @@ def build_backtest_outputs(mart_rows: List[dict]) -> None:
             f"- Bias (USD): {bias:,.2f}",
             "- Interval coverage: not produced (point-estimate baseline only).",
         ]
+        excluded_wells = sorted(x for x in excluded_wells_by_field.get(field, set()) if x)
+        if excluded_wells:
+            lines.append(f"- Excluded wells from estimator/backtest pool: {', '.join(excluded_wells)}")
         target.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
