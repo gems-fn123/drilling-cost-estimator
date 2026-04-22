@@ -80,16 +80,6 @@ def _focus_option_label(node: dict) -> str:
     return f"{node_id} | {sum_part}"
 
 
-def _iter_descendants(node: dict) -> list[dict]:
-    descendants: list[dict] = []
-    stack = list(node.get("children", []))
-    while stack:
-        current = stack.pop(0)
-        descendants.append(current)
-        stack.extend(current.get("children", []))
-    return descendants
-
-
 def _render_tree_node(node: dict) -> None:
     label = (
         f"{node.get('node_label', '')} | sum={node.get('sum_usd', 0):,.2f} | "
@@ -231,17 +221,37 @@ def render_wbs_tree_tab() -> None:
     focus_root = selected_field_tree if selected_campaign_node is None else selected_campaign_node
 
     if selected_campaign_node is not None:
-        cascade_nodes = [selected_campaign_node] + _iter_descendants(selected_campaign_node)
-        cascade_option_keys = [f"focus_{idx}" for idx in range(len(cascade_nodes))]
-        cascade_option_map = {f"focus_{idx}": node for idx, node in enumerate(cascade_nodes)}
+        # Progressive cascade: each selector only shows direct children of the current node.
+        current_node = selected_campaign_node
+        for depth in range(1, 8):
+            direct_children = current_node.get("children", [])
+            if not direct_children:
+                break
 
-        selected_focus_key = st.selectbox(
-            "Cascade node",
-            options=cascade_option_keys,
-            format_func=lambda key: _focus_option_label(cascade_option_map[key]),
-            key="wbs_focus_selector",
-        )
-        focus_root = cascade_option_map[selected_focus_key]
+            option_keys = ["__stop__"] + [f"child_{idx}" for idx in range(len(direct_children))]
+            option_map: dict[str, dict] = {f"child_{idx}": node for idx, node in enumerate(direct_children)}
+            child_level = int(direct_children[0].get("level", int(current_node.get("level", 0)) + 1))
+            selector_key = (
+                f"wbs_focus_selector_{selected_field}_{selected_campaign_key}_"
+                f"{depth}_{str(current_node.get('wbs_id', ''))}"
+            )
+
+            selected_step_key = st.selectbox(
+                f"Cascade node (WBS L{child_level})",
+                options=option_keys,
+                format_func=lambda key, node=current_node, mapping=option_map: (
+                    f"{_focus_option_label(node)} (stop here)" if key == "__stop__" else _focus_option_label(mapping[key])
+                ),
+                index=1,
+                key=selector_key,
+            )
+
+            if selected_step_key == "__stop__":
+                break
+
+            current_node = option_map[selected_step_key]
+
+        focus_root = current_node
 
     st.caption("sum = descendants; spr = P90 - P10.")
     focused_payload = {
