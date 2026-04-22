@@ -562,32 +562,32 @@ def run_phase4(group_by: str = "family", use_synthetic: bool = False, synthetic_
         },
         "inputs": {
             "wbs_lv5_master": {
-                "path": str(MASTER_PATH.relative_to(ROOT)),
+                "path": MASTER_PATH.relative_to(ROOT).as_posix(),
                 "sha256": file_sha256(MASTER_PATH),
                 "row_count": len(master_rows),
             },
             "wbs_lv5_classification": {
-                "path": str(CLASSIFICATION_PATH.relative_to(ROOT)),
+                "path": CLASSIFICATION_PATH.relative_to(ROOT).as_posix(),
                 "sha256": file_sha256(CLASSIFICATION_PATH),
                 "row_count": len(classification_rows),
             },
             "synthetic_wbs_lv5_placeholders": {
-                "path": str(SYNTHETIC_LV5_PATH.relative_to(ROOT)),
+                "path": SYNTHETIC_LV5_PATH.relative_to(ROOT).as_posix(),
                 "sha256": file_sha256(SYNTHETIC_LV5_PATH),
                 "rows_used": synthetic_rows_used,
             },
             "well_pool_exclusions": {
-                "path": str(WELL_POOL_EXCLUSIONS_PATH.relative_to(ROOT)),
+                "path": WELL_POOL_EXCLUSIONS_PATH.relative_to(ROOT).as_posix(),
                 "sha256": file_sha256(WELL_POOL_EXCLUSIONS_PATH) if WELL_POOL_EXCLUSIONS_PATH.exists() else "not_available",
                 "active_count": len(well_pool_exclusions),
             },
         },
         "outputs": {
-            "phase4_gate_results": str(GATE_RESULTS_PATH.relative_to(ROOT)),
-            "baseline_estimates_darajat": str(BASELINE_DARAJAT_PATH.relative_to(ROOT)),
-            "baseline_estimates_salak": str(BASELINE_SALAK_PATH.relative_to(ROOT)),
-            "phase4_gate_report": str(GATE_REPORT_PATH.relative_to(ROOT)),
-            "phase4_driver_analysis_report": str(DRIVER_REPORT_PATH.relative_to(ROOT)),
+            "phase4_gate_results": GATE_RESULTS_PATH.relative_to(ROOT).as_posix(),
+            "baseline_estimates_darajat": BASELINE_DARAJAT_PATH.relative_to(ROOT).as_posix(),
+            "baseline_estimates_salak": BASELINE_SALAK_PATH.relative_to(ROOT).as_posix(),
+            "phase4_gate_report": GATE_REPORT_PATH.relative_to(ROOT).as_posix(),
+            "phase4_driver_analysis_report": DRIVER_REPORT_PATH.relative_to(ROOT).as_posix(),
         },
         "notes": [
             "This run remains deterministic and does not fit predictive statistical models.",

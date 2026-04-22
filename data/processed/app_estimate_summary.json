@@ -1,72 +1,65 @@
 {
-  "field": "DARAJAT",
+  "field": "SALAK",
   "input_year": 2026,
   "estimation_methodology": "field_specific_family_analog_with_anchor_year_lv5_distribution",
-  "total_campaign_cost_mmusd": 30.959778668416,
-  "total_campaign_cost_formatted": "30.96 mm USD",
-  "total_campaign_cost_usd": 30959778.668416,
-  "well_component_usd": 20158599.481216,
-  "well_component_formatted": "20.16 mm USD",
-  "hybrid_component_usd": 6160510.269,
-  "hybrid_component_formatted": "6.16 mm USD",
-  "campaign_tied_component_usd": 4640668.918200001,
-  "campaign_tied_component_formatted": "4.64 mm USD",
+  "total_campaign_cost_mmusd": 20.741402371104,
+  "total_campaign_cost_formatted": "20.74 mm USD",
+  "total_campaign_cost_usd": 20741402.371104002,
+  "well_component_usd": 10604397.814704001,
+  "well_component_formatted": "10.60 mm USD",
+  "hybrid_component_usd": 6023505.0492,
+  "hybrid_component_formatted": "6.02 mm USD",
+  "campaign_tied_component_usd": 4113499.5072000003,
+  "campaign_tied_component_formatted": "4.11 mm USD",
   "reconciliation_status": "PASS",
-  "historical_anchor_year": 2023,
-  "historical_anchor_well_count": 5,
+  "historical_anchor_year": 2025,
+  "historical_anchor_well_count": 7,
   "l2_cost_breakdown": [
     {
-      "l2_id": "E530-30101-D235301",
-      "estimate_usd": 23548548.654152,
-      "estimate_formatted": "23.55 mm USD"
+      "l2_id": "E540-30101-D245401",
+      "estimate_usd": 15284356.438656008,
+      "estimate_formatted": "15.28 mm USD"
     },
     {
-      "l2_id": "E530-30203-D235301",
-      "estimate_usd": 5448126.100776001,
-      "estimate_formatted": "5.45 mm USD"
+      "l2_id": "E540-30203-D245401",
+      "estimate_usd": 3804584.477136,
+      "estimate_formatted": "3.80 mm USD"
     },
     {
-      "l2_id": "E530-30129-D235301",
-      "estimate_usd": 1963103.9134880002,
-      "estimate_formatted": "1.96 mm USD"
+      "l2_id": "E540-30129-D245401",
+      "estimate_usd": 1652461.455312,
+      "estimate_formatted": "1.65 mm USD"
+    },
+    {
+      "l2_id": "E540-30299-D245401",
+      "estimate_usd": 0.0,
+      "estimate_formatted": "0.00 mm USD"
     }
   ],
   "category_matrix": [
     {
       "Cost Category": "Drilling",
-      "Well-1": 4.764,
-      "Well-2": 5.171,
-      "Well-3": 4.045,
-      "Well-4": 5.171,
-      "Well-5": 4.397,
-      "Error (MMUSD) / MAPE (%)": "4.79 / 17.6%"
+      "Well-1": 6.088,
+      "Well-2": 9.196,
+      "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical drilling campaign observations in SALAK"
     },
     {
       "Cost Category": "Support",
-      "Well-1": 0.397,
-      "Well-2": 0.431,
-      "Well-3": 0.337,
-      "Well-4": 0.431,
-      "Well-5": 0.367,
-      "Error (MMUSD) / MAPE (%)": "0.00 / 0.1%"
+      "Well-1": 0.658,
+      "Well-2": 0.994,
+      "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical support campaign observations in SALAK"
     },
     {
       "Cost Category": "Surface Facility",
-      "Well-1": 1.102,
-      "Well-2": 1.196,
-      "Well-3": 0.936,
-      "Well-4": 1.196,
-      "Well-5": 1.017,
-      "Error (MMUSD) / MAPE (%)": "1.91 / 42.9%"
+      "Well-1": 1.516,
+      "Well-2": 2.289,
+      "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical surface facility campaign observations in SALAK"
     },
     {
       "Cost Category": "Contingency",
       "Well-1": 0.0,
       "Well-2": 0.0,
-      "Well-3": 0.0,
-      "Well-4": 0.0,
-      "Well-5": 0.0,
-      "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in DARAJAT"
+      "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],
   "category_matrix_note": "Matrix values are presentation-layer MMUSD totals. Shared rows remain campaign-scoped in detail output and are allocated to wells only for matrix display.",

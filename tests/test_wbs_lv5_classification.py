@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import subprocess
+import sys
 from pathlib import Path
 import unittest
 
@@ -21,8 +22,8 @@ MATERIAL_REVIEW_THRESHOLD = 500000.0
 class TestWbsLv5Classification(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run(["python", "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
-        subprocess.run(["python", "src/cleaning/build_wbs_lv5_classification.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "src/cleaning/build_wbs_lv5_classification.py"], cwd=ROOT, check=True)
 
     def read_csv(self, path: Path) -> list[dict[str, str]]:
         with path.open(encoding="utf-8") as fh:

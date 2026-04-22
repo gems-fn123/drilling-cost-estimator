@@ -1,0 +1,115 @@
+{
+  "generated_at_utc": "2026-04-22T06:34:31.902263+00:00",
+  "pipeline": "streamlined_etl_v1",
+  "runtime_toggles": {
+    "group_by": "family",
+    "use_synthetic": false,
+    "synthetic_policy": "not_applied"
+  },
+  "field_partition_rule": "DARAJAT and SALAK are processed independently and never pooled.",
+  "validation_summary": {
+    "confidence_band_rows": 6,
+    "method_registry_rows": 6,
+    "eligible_historical_rows": 724
+  },
+  "wbs_tree_summary": {
+    "source_row_count": 822,
+    "darajat_row_count": 462,
+    "salak_row_count": 360,
+    "combined_json": "data/processed/wbs_tree_interactive.json",
+    "darajat_json": "data/processed/wbs_tree_field_darajat.json",
+    "salak_json": "data/processed/wbs_tree_field_salak.json",
+    "interactive_html": "reports/wbs_tree_interactive.html"
+  },
+  "artifacts": [
+    {
+      "path": "data/processed/historical_cost_mart.csv",
+      "exists": true,
+      "size_bytes": 469300,
+      "row_count": 822
+    },
+    {
+      "path": "data/processed/phase4_gate_results.csv",
+      "exists": true,
+      "size_bytes": 1132,
+      "row_count": 8
+    },
+    {
+      "path": "data/processed/baseline_estimates_darajat.csv",
+      "exists": true,
+      "size_bytes": 8001,
+      "row_count": 61
+    },
+    {
+      "path": "data/processed/baseline_estimates_salak.csv",
+      "exists": true,
+      "size_bytes": 7119,
+      "row_count": 57
+    },
+    {
+      "path": "data/processed/phase5_app_dataset.csv",
+      "exists": true,
+      "size_bytes": 10886,
+      "row_count": 118
+    },
+    {
+      "path": "data/processed/phase5_monitoring_kpis.csv",
+      "exists": true,
+      "size_bytes": 220,
+      "row_count": 2
+    },
+    {
+      "path": "data/processed/confidence_bands.csv",
+      "exists": true,
+      "size_bytes": 622,
+      "row_count": 6
+    },
+    {
+      "path": "data/processed/estimator_method_registry.csv",
+      "exists": true,
+      "size_bytes": 2530,
+      "row_count": 6
+    },
+    {
+      "path": "data/processed/app_estimate_audit.csv",
+      "exists": true,
+      "size_bytes": 240433,
+      "row_count": 527
+    },
+    {
+      "path": "data/processed/app_estimate_summary.json",
+      "exists": true,
+      "size_bytes": 2447
+    },
+    {
+      "path": "data/processed/app_run_manifest.json",
+      "exists": true,
+      "size_bytes": 973
+    },
+    {
+      "path": "data/processed/wbs_tree_interactive.json",
+      "exists": true,
+      "size_bytes": 1489624
+    },
+    {
+      "path": "data/processed/wbs_tree_field_darajat.json",
+      "exists": true,
+      "size_bytes": 817775
+    },
+    {
+      "path": "data/processed/wbs_tree_field_salak.json",
+      "exists": true,
+      "size_bytes": 604500
+    },
+    {
+      "path": "reports/wbs_tree_interactive.html",
+      "exists": true,
+      "size_bytes": 10118
+    },
+    {
+      "path": "reports/wbs_tree_diagram_report.md",
+      "exists": true,
+      "size_bytes": 756
+    }
+  ]
+}

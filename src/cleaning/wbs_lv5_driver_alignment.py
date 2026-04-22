@@ -4,10 +4,10 @@ import csv
 import hashlib
 import json
 import re
-import zipfile
 from collections import Counter, defaultdict
 from pathlib import Path
-import xml.etree.ElementTree as ET
+
+from src.io.build_canonical_mappings import read_xlsx as read_xlsx_workbook
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
@@ -95,43 +95,7 @@ def parse_float(value: str | None) -> float:
 
 
 def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
-    sheets: dict[str, list[list[str]]] = {}
-    with zipfile.ZipFile(path) as zf:
-        shared_strings: list[str] = []
-        if "xl/sharedStrings.xml" in zf.namelist():
-            root = ET.fromstring(zf.read("xl/sharedStrings.xml"))
-            for item in root.findall("a:si", NS_MAIN):
-                shared_strings.append("".join(node.text or "" for node in item.findall(".//a:t", NS_MAIN)))
-
-        wb = ET.fromstring(zf.read("xl/workbook.xml"))
-        rels = ET.fromstring(zf.read("xl/_rels/workbook.xml.rels"))
-        rel_map = {rel.attrib["Id"]: rel.attrib["Target"] for rel in rels.findall("p:Relationship", NS_PKG)}
-
-        for sh in wb.findall("a:sheets/a:sheet", NS_MAIN):
-            name = sh.attrib["name"]
-            rel_id = sh.attrib["{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"]
-            target = "xl/" + rel_map[rel_id].lstrip("/")
-            root = ET.fromstring(zf.read(target))
-            rows: list[list[str]] = []
-            for row in root.findall("a:sheetData/a:row", NS_MAIN):
-                values: dict[int, str] = {}
-                for c in row.findall("a:c", NS_MAIN):
-                    v = c.find("a:v", NS_MAIN)
-                    if v is None:
-                        continue
-                    txt = v.text or ""
-                    if c.attrib.get("t") == "s":
-                        txt = shared_strings[int(txt)] if txt else ""
-                    values[col_index(c.attrib["r"])] = clean_text(txt)
-                if not values:
-                    rows.append([])
-                    continue
-                dense = [""] * (max(values) + 1)
-                for i, value in values.items():
-                    dense[i] = value
-                rows.append(dense)
-            sheets[name] = rows
-    return sheets
+    return read_xlsx_workbook(path)
 
 
 def find_header(rows: list[list[str]], required: list[str], lookahead: int = 40) -> tuple[int, dict[str, int]]:

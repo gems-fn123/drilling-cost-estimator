@@ -140,11 +140,15 @@ def _external_adjustment(enabled: bool) -> Tuple[float, bool, str]:
     return 1.0, False, "fallback_historical_only_external_series_unavailable"
 
 
-def _refresh_pipeline_outputs() -> None:
+def _refresh_pipeline_outputs(*, group_by: str = "family", use_synthetic: bool = False, synthetic_policy: str = "training") -> None:
     build_canonical_mappings()
     build_wbs_lv5_alignment()
     refresh_all_outputs()
-    run_phase4(group_by="family", use_synthetic=False, synthetic_policy="training")
+    run_phase4(
+        group_by=group_by,
+        use_synthetic=use_synthetic,
+        synthetic_policy=synthetic_policy,
+    )
     build_phase5_operational_assets()
 
 
@@ -472,9 +476,7 @@ def _build_category_matrix(detail_rows: List[dict], well_labels: List[str], fiel
     return display_rows, payload
 
 
-def build_validation_artifacts() -> None:
-    _refresh_pipeline_outputs()
-    rows = [row for row in read_csv(HISTORICAL_MART) if _is_pool_eligible(row)]
+def _write_validation_artifacts(rows: List[dict]) -> dict:
     grouped = defaultdict(list)
     for row in rows:
         grouped[(row["field"], row["classification"])].append(_safe_float(row["actual_usd"]))
@@ -522,6 +524,30 @@ def build_validation_artifacts() -> None:
         write_csv(CONFIDENCE_BANDS, bands, list(bands[0].keys()))
     if methods:
         write_csv(METHOD_REGISTRY, methods, list(methods[0].keys()))
+
+    return {
+        "confidence_band_rows": len(bands),
+        "method_registry_rows": len(methods),
+        "eligible_historical_rows": len(rows),
+    }
+
+
+def build_validation_artifacts(
+    *,
+    refresh_pipeline: bool = True,
+    group_by: str = "family",
+    use_synthetic: bool = False,
+    synthetic_policy: str = "training",
+) -> dict:
+    if refresh_pipeline:
+        _refresh_pipeline_outputs(
+            group_by=group_by,
+            use_synthetic=use_synthetic,
+            synthetic_policy=synthetic_policy,
+        )
+
+    rows = [row for row in read_csv(HISTORICAL_MART) if _is_pool_eligible(row)]
+    return _write_validation_artifacts(rows)
 
 
 def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
@@ -726,10 +752,10 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
             "status": "PASS",
         },
         "outputs": {
-            "audit_csv": str(APP_AUDIT.relative_to(ROOT)),
-            "summary_json": str(APP_SUMMARY.relative_to(ROOT)),
-            "category_matrix_csv": str(APP_CATEGORY_MATRIX_CSV.relative_to(ROOT)),
-            "category_matrix_json": str(APP_CATEGORY_MATRIX_JSON.relative_to(ROOT)),
+            "audit_csv": APP_AUDIT.relative_to(ROOT).as_posix(),
+            "summary_json": APP_SUMMARY.relative_to(ROOT).as_posix(),
+            "category_matrix_csv": APP_CATEGORY_MATRIX_CSV.relative_to(ROOT).as_posix(),
+            "category_matrix_json": APP_CATEGORY_MATRIX_JSON.relative_to(ROOT).as_posix(),
         },
     }
     APP_RUN_MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

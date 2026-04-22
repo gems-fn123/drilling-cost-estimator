@@ -1,16 +1,16 @@
 {
-  "generated_at_utc": "2026-04-20T07:47:28.585038+00:00",
+  "generated_at_utc": "2026-04-22T06:34:31.678344+00:00",
   "phase": "phase5",
   "inputs": [
-    "data\\processed\\baseline_estimates_darajat.csv",
-    "data\\processed\\baseline_estimates_salak.csv",
-    "data\\processed\\phase4_gate_results.csv"
+    "data/processed/baseline_estimates_darajat.csv",
+    "data/processed/baseline_estimates_salak.csv",
+    "data/processed/phase4_gate_results.csv"
   ],
   "outputs": [
-    "data\\processed\\phase5_app_dataset.csv",
-    "data\\processed\\phase5_monitoring_kpis.csv",
-    "reports\\phase5_app_integration_prerequisites.md",
-    "reports\\phase5_monitoring_skeleton.md"
+    "data/processed/phase5_app_dataset.csv",
+    "data/processed/phase5_monitoring_kpis.csv",
+    "reports/phase5_app_integration_prerequisites.md",
+    "reports/phase5_monitoring_skeleton.md"
   ],
   "app_rows": 118,
   "kpi_rows": 2

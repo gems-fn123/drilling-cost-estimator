@@ -6,7 +6,7 @@ Assess whether SALAK_2021 can be moved from `legacy_reference` to `in_scope` for
 ## Evidence
 - Data.Summary Lv5 cost rows mapped to SALAK_2021 labels: **0**.
 - Data.Summary Lv5 cost rows for current in-scope labels (`DRJ 2022`, `DRJ 2023`, `SLK 2025`): **822**.
-- Non-Data.Summary sheets with SALAK 2021 references: **1. WellName.Dictionary, 2. Drilling.Data.History, Drilled.Well**.
+- Non-Data.Summary sheets with SALAK 2021 references: **1. WellName.Dictionary, 2. Drilling.Data.History, 3. NPT.Data, Drilled.Well**.
 
 ## Assessment
 - Current Phase 4 ingestion contract requires cost-bearing Lv5 rows in `Data.Summary`.

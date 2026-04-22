@@ -1,16 +1,13 @@
 {
-  "field": "DARAJAT",
-  "generated_at_utc": "2026-04-15T06:19:46.666481+00:00",
+  "field": "SALAK",
+  "generated_at_utc": "2026-04-22T02:37:58.290701+00:00",
   "units": {
     "matrix_cells": "MMUSD",
     "benchmark_error": "MMUSD"
   },
   "well_labels": [
     "Well-1",
-    "Well-2",
-    "Well-3",
-    "Well-4",
-    "Well-5"
+    "Well-2"
   ],
   "allocation_rulebook": {
     "category_mapping": [
@@ -27,1398 +24,978 @@
     {
       "cost_category": "Drilling",
       "well_values_usd": {
-        "Well-1": 4763530.294652,
-        "Well-2": 5171288.487874,
-        "Well-3": 4045336.496381,
-        "Well-4": 5171288.487874,
-        "Well-5": 4397104.887371
+        "Well-1": 6088414.770018,
+        "Well-2": 9195941.668638
       },
-      "row_total_usd": 23548548.654152,
+      "row_total_usd": 15284356.438656,
       "benchmark": {
-        "mae_mmusd": 4.78820131000001,
-        "mape_pct": 17.593912525431485,
-        "available": true,
-        "note": "field-specific category peer benchmark from 2 historical backtests"
+        "mae_mmusd": null,
+        "mape_pct": null,
+        "available": false,
+        "note": "n/a: fewer than 2 historical drilling campaign observations in SALAK"
       },
-      "display_error_mape": "4.79 / 17.6%"
+      "display_error_mape": "n/a: fewer than 2 historical drilling campaign observations in SALAK"
     },
     {
       "cost_category": "Support",
       "well_values_usd": {
-        "Well-1": 397107.486358,
-        "Well-2": 431099.887191,
-        "Well-3": 337235.896106,
-        "Well-4": 431099.887191,
-        "Well-5": 366560.756641
+        "Well-1": 658246.277613,
+        "Well-2": 994215.177699
       },
-      "row_total_usd": 1963103.913488,
+      "row_total_usd": 1652461.455312,
       "benchmark": {
-        "mae_mmusd": 0.0025623300000000744,
-        "mape_pct": 0.13178102721554158,
-        "available": true,
-        "note": "field-specific category peer benchmark from 2 historical backtests"
+        "mae_mmusd": null,
+        "mape_pct": null,
+        "available": false,
+        "note": "n/a: fewer than 2 historical support campaign observations in SALAK"
       },
-      "display_error_mape": "0.00 / 0.1%"
+      "display_error_mape": "n/a: fewer than 2 historical support campaign observations in SALAK"
     },
     {
       "cost_category": "Surface Facility",
       "well_values_usd": {
-        "Well-1": 1102076.994691,
-        "Well-2": 1196414.785439,
-        "Well-3": 935917.693952,
-        "Well-4": 1196414.785439,
-        "Well-5": 1017301.841252
+        "Well-1": 1515529.189428,
+        "Well-2": 2289055.287708
       },
-      "row_total_usd": 5448126.100774,
+      "row_total_usd": 3804584.477136,
       "benchmark": {
-        "mae_mmusd": 1.911945759999999,
-        "mape_pct": 42.93338020500674,
-        "available": true,
-        "note": "field-specific category peer benchmark from 2 historical backtests"
+        "mae_mmusd": null,
+        "mape_pct": null,
+        "available": false,
+        "note": "n/a: fewer than 2 historical surface facility campaign observations in SALAK"
       },
-      "display_error_mape": "1.91 / 42.9%"
+      "display_error_mape": "n/a: fewer than 2 historical surface facility campaign observations in SALAK"
     },
     {
       "cost_category": "Contingency",
       "well_values_usd": {
         "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-2": 0.0
       },
       "row_total_usd": 0.0,
       "benchmark": {
         "mae_mmusd": null,
         "mape_pct": null,
         "available": false,
-        "note": "n/a: fewer than 2 historical contingency campaign observations in DARAJAT"
+        "note": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
       },
-      "display_error_mape": "n/a: fewer than 2 historical contingency campaign observations in DARAJAT"
+      "display_error_mape": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],
   "shared_row_allocations": [
     {
-      "audit_key": "2ab1f6af855c5a0d",
-      "l5_id": "E530-30203900963-D235301",
+      "audit_key": "2198d81efaa3d489",
+      "l5_id": "E540-30299011521-D245401",
+      "l5_desc": "Contingency",
+      "cost_category": "Contingency",
+      "allocation_basis": "equal split fallback (no direct category subtotal)",
+      "weights": {
+        "Well-1": 0.5,
+        "Well-2": 0.5
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "4b93e3bc940011e0",
+      "l5_id": "E540-30203930961-D245401",
+      "l5_desc": "New Rig Pavement",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "6ece921757893b24",
+      "l5_id": "E540-30203940963-D245401",
       "l5_desc": "Installation, Hook Up & Pre-Commisioning",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 72708.117226,
-        "Well-2": 78931.932061,
-        "Well-3": 61745.970321,
-        "Well-4": 78931.932061,
-        "Well-5": 67115.185131
+        "Well-1": 61765.434034,
+        "Well-2": 93290.511566
       }
     },
     {
-      "audit_key": "c1bbc08db6819ede",
-      "l5_id": "E530-30203890963-D235301",
+      "audit_key": "e413c178b62f25a1",
+      "l5_id": "E540-30203900963-D245401",
       "l5_desc": "Installation, Hook Up & Pre-Commisioning",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-1": 16279.287763,
+        "Well-2": 24588.236237
       }
     },
     {
-      "audit_key": "719c1c46eba4f4c8",
-      "l5_id": "E530-30203880963-D235301",
+      "audit_key": "a2aff8ae9650dcd2",
+      "l5_id": "E540-30203890963-D245401",
       "l5_desc": "Installation, Hook Up & Pre-Commisioning",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 90385.667791,
-        "Well-2": 98122.680954,
-        "Well-3": 76758.290186,
-        "Well-4": 98122.680954,
-        "Well-5": 83432.924115
+        "Well-1": 0.0,
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "061c0b68365d9b19",
-      "l5_id": "E530-30203870963-D235301",
+      "audit_key": "ebde0efe13b8dc81",
+      "l5_id": "E540-30203880963-D245401",
       "l5_desc": "Installation, Hook Up & Pre-Commisioning",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 35278.29858,
-        "Well-2": 38298.120938,
-        "Well-3": 29959.41664,
-        "Well-4": 38298.120938,
-        "Well-5": 32564.583304
+        "Well-1": 43272.671128,
+        "Well-2": 65359.042472
       }
     },
     {
-      "audit_key": "357d617d408c45a6",
-      "l5_id": "E530-30203900821-D235301",
+      "audit_key": "20b33ed44458e573",
+      "l5_id": "E540-30203870963-D245401",
+      "l5_desc": "Installation, Hook Up & Pre-Commisioning",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 41143.654876,
+        "Well-2": 62143.376324
+      }
+    },
+    {
+      "audit_key": "0c578f57da4f30d6",
+      "l5_id": "E540-30203940821-D245401",
       "l5_desc": "Material - Non LL",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 51133.488796,
-        "Well-2": 55510.515437,
-        "Well-3": 43424.132024,
-        "Well-4": 55510.515437,
-        "Well-5": 47200.143506
+        "Well-1": 3376.325048,
+        "Well-2": 5099.601352
       }
     },
     {
-      "audit_key": "20e8a446a57a26f1",
-      "l5_id": "E530-30203890821-D235301",
+      "audit_key": "55f4c8af286c7cc3",
+      "l5_id": "E540-30203900821-D245401",
       "l5_desc": "Material - Non LL",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 19051.491504,
-        "Well-2": 20682.299177,
-        "Well-3": 16179.112785,
-        "Well-4": 20682.299177,
-        "Well-5": 17585.992157
-      }
-    },
-    {
-      "audit_key": "ea3933aee7ea7bde",
-      "l5_id": "E530-30203880821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 35055.974257,
-        "Well-2": 38056.765653,
-        "Well-3": 29770.611984,
-        "Well-4": 38056.765653,
-        "Well-5": 32359.360853
-      }
-    },
-    {
-      "audit_key": "3c1e78017cb2a7e5",
-      "l5_id": "E530-30203870821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 24557.001133,
-        "Well-2": 26659.08043,
-        "Well-3": 20854.560962,
-        "Well-4": 26659.08043,
-        "Well-5": 22668.001045
-      }
-    },
-    {
-      "audit_key": "7f620cabb1496601",
-      "l5_id": "E530-30203900860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 16889.59419,
-        "Well-2": 18335.343453,
-        "Well-3": 14343.163066,
-        "Well-4": 18335.343453,
-        "Well-5": 15590.394638
-      }
-    },
-    {
-      "audit_key": "b1ee102c782611c9",
-      "l5_id": "E530-30203890860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 9763.346475,
-        "Well-2": 10599.088933,
-        "Well-3": 8291.334237,
-        "Well-4": 10599.088933,
-        "Well-5": 9012.319822
-      }
-    },
-    {
-      "audit_key": "327d1dcbd1184b4d",
-      "l5_id": "E530-30203880860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 21784.489133,
-        "Well-2": 23649.241402,
-        "Well-3": 18500.058463,
-        "Well-4": 23649.241402,
-        "Well-5": 20108.7592
-      }
-    },
-    {
-      "audit_key": "20061bc62ee1c606",
-      "l5_id": "E530-30203870860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 9852.394177,
-        "Well-2": 10695.759118,
-        "Well-3": 8366.956285,
-        "Well-4": 10695.759118,
-        "Well-5": 9094.517702
-      }
-    },
-    {
-      "audit_key": "e888a9b8299eb8ff",
-      "l5_id": "E530-30203900759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 6649.42742,
-        "Well-2": 7218.618407,
-        "Well-3": 5646.898363,
-        "Well-4": 7218.618407,
-        "Well-5": 6137.933003
-      }
-    },
-    {
-      "audit_key": "4d98107860535fcd",
-      "l5_id": "E530-30203890759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 1113.161816,
-        "Well-2": 1208.448467,
-        "Well-3": 945.331265,
-        "Well-4": 1208.448467,
-        "Well-5": 1027.533985
-      }
-    },
-    {
-      "audit_key": "b8e644fbd73aea0b",
-      "l5_id": "E530-30203880759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 2258.833908,
-        "Well-2": 2452.190091,
-        "Well-3": 1918.271257,
-        "Well-4": 2452.190091,
-        "Well-5": 2085.077453
-      }
-    },
-    {
-      "audit_key": "6c541cf4db7c5044",
-      "l5_id": "E530-30203870759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 2165.03015,
-        "Well-2": 2350.356731,
-        "Well-3": 1838.61022,
-        "Well-4": 2350.356731,
-        "Well-5": 1998.489368
-      }
-    },
-    {
-      "audit_key": "3a7135c8ce0cf7a0",
-      "l5_id": "E530-30203940962-D235301",
-      "l5_desc": "Construction",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 18386.129959,
-        "Well-2": 19959.982684,
-        "Well-3": 15614.067289,
-        "Well-4": 19959.982684,
-        "Well-5": 16971.81227
-      }
-    },
-    {
-      "audit_key": "5a6a9cb72b4ff866",
-      "l5_id": "E530-30203930962-D235301",
-      "l5_desc": "Construction",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
         "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "5b62e0ee52972cbd",
-      "l5_id": "E530-30203920962-D235301",
+      "audit_key": "109cd4df653b7972",
+      "l5_id": "E540-30203890821-D245401",
+      "l5_desc": "Material - Non LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 19227.820268,
+        "Well-2": 29041.699732
+      }
+    },
+    {
+      "audit_key": "aca88bf84d3f2fec",
+      "l5_id": "E540-30203880821-D245401",
+      "l5_desc": "Material - Non LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 59939.832218,
+        "Well-2": 90533.122582
+      }
+    },
+    {
+      "audit_key": "fe702656bee21536",
+      "l5_id": "E540-30203870821-D245401",
+      "l5_desc": "Material - Non LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 7240.779637,
+        "Well-2": 10936.473563
+      }
+    },
+    {
+      "audit_key": "dca9059dbeac10bb",
+      "l5_id": "E540-30203940860-D245401",
+      "l5_desc": "Material - LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 64891.436902,
+        "Well-2": 98012.026298
+      }
+    },
+    {
+      "audit_key": "f42ffb021f9591af",
+      "l5_id": "E540-30203900860-D245401",
+      "l5_desc": "Material - LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 56789.974187,
+        "Well-2": 85775.577013
+      }
+    },
+    {
+      "audit_key": "160c2b9e2c619ee2",
+      "l5_id": "E540-30203890860-D245401",
+      "l5_desc": "Material - LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 75973.327916,
+        "Well-2": 114750.114484
+      }
+    },
+    {
+      "audit_key": "305ea551f0ab2919",
+      "l5_id": "E540-30203880860-D245401",
+      "l5_desc": "Material - LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 110099.021989,
+        "Well-2": 166293.562811
+      }
+    },
+    {
+      "audit_key": "9a804f55250362d9",
+      "l5_id": "E540-30203870860-D245401",
+      "l5_desc": "Material - LL",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 144571.495698,
+        "Well-2": 218360.787102
+      }
+    },
+    {
+      "audit_key": "86a630169c304709",
+      "l5_id": "E540-30203940759-D245401",
+      "l5_desc": "Engineering",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 14549.141013,
+        "Well-2": 21975.022587
+      }
+    },
+    {
+      "audit_key": "25d895a73fce00f8",
+      "l5_id": "E540-30203900759-D245401",
+      "l5_desc": "Engineering",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 14807.521033,
+        "Well-2": 22365.279767
+      }
+    },
+    {
+      "audit_key": "6dc64fd640d9dc64",
+      "l5_id": "E540-30203890759-D245401",
+      "l5_desc": "Engineering",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 38334.14914,
+        "Well-2": 57899.89886
+      }
+    },
+    {
+      "audit_key": "393571a732117b50",
+      "l5_id": "E540-30203880759-D245401",
+      "l5_desc": "Engineering",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 24337.92304,
+        "Well-2": 36759.99896
+      }
+    },
+    {
+      "audit_key": "09f3c7f9997d95b5",
+      "l5_id": "E540-30203870759-D245401",
+      "l5_desc": "Engineering",
+      "cost_category": "Surface Facility",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 33600.136233,
+        "Well-2": 50749.645767
+      }
+    },
+    {
+      "audit_key": "59106cfba4757b18",
+      "l5_id": "E540-30203920962-D245401",
       "l5_desc": "Construction",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 3253.114748,
-        "Well-2": 3531.581371,
-        "Well-3": 2762.64514,
-        "Well-4": 3531.581371,
-        "Well-5": 3002.875153
+        "Well-1": 0.0,
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "15b293ac50b3319a",
-      "l5_id": "E530-30203860962-D235301",
+      "audit_key": "d3a927346be1c3e7",
+      "l5_id": "E540-30203860962-D245401",
       "l5_desc": "Construction",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 175823.619794,
-        "Well-2": 190874.121648,
-        "Well-3": 149314.827886,
-        "Well-4": 190874.121648,
-        "Well-5": 162298.725963
+        "Well-1": 39117.747132,
+        "Well-2": 59083.445268
       }
     },
     {
-      "audit_key": "0989de5763020411",
-      "l5_id": "E530-30203850962-D235301",
+      "audit_key": "517b84adc50fd50c",
+      "l5_id": "E540-30203850962-D245401",
       "l5_desc": "Construction",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-1": 91601.819312,
+        "Well-2": 138355.387888
       }
     },
     {
-      "audit_key": "b6d952848b0352bf",
-      "l5_id": "E530-30203840962-D235301",
+      "audit_key": "4b119392623b326e",
+      "l5_id": "E540-30203840962-D245401",
       "l5_desc": "Construction",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 50323.654279,
-        "Well-2": 54631.359085,
-        "Well-3": 42736.395634,
-        "Well-4": 54631.359085,
-        "Well-5": 46452.60395
+        "Well-1": 99644.01195,
+        "Well-2": 150502.31565
       }
     },
     {
-      "audit_key": "107e055c7cd404a1",
-      "l5_id": "E530-30203830962-D235301",
+      "audit_key": "fdc48ef96790cb3e",
+      "l5_id": "E540-30203830962-D245401",
       "l5_desc": "Construction",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 40538.648877,
-        "Well-2": 44008.757221,
-        "Well-3": 34426.667969,
-        "Well-4": 44008.757221,
-        "Well-5": 37420.291271
+        "Well-1": 86802.689771,
+        "Well-2": 131106.782629
       }
     },
     {
-      "audit_key": "b2d8ee5689322b72",
-      "l5_id": "E530-30203940821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 39023.871509,
-        "Well-2": 42364.31491,
-        "Well-3": 33140.27242,
-        "Well-4": 42364.31491,
-        "Well-5": 36022.035239
-      }
-    },
-    {
-      "audit_key": "ad2f5b6f673f2c62",
-      "l5_id": "E530-30203930821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 910.362993,
-        "Well-2": 988.290066,
-        "Well-3": 773.108265,
-        "Well-4": 988.290066,
-        "Well-5": 840.335071
-      }
-    },
-    {
-      "audit_key": "1f915ec7b866ab50",
-      "l5_id": "E530-30203920821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 17614.936084,
-        "Well-2": 19122.774613,
-        "Well-3": 14959.145721,
-        "Well-4": 19122.774613,
-        "Well-5": 16259.941001
-      }
-    },
-    {
-      "audit_key": "1f9ba6d114b953d5",
-      "l5_id": "E530-30203860821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 29813.60876,
-        "Well-2": 32365.65367,
-        "Well-3": 25318.633901,
-        "Well-4": 32365.65367,
-        "Well-5": 27520.254242
-      }
-    },
-    {
-      "audit_key": "98c598ec5e0fa730",
-      "l5_id": "E530-30203850821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 10292.326723,
-        "Well-2": 11173.349891,
-        "Well-3": 8740.560541,
-        "Well-4": 11173.349891,
-        "Well-5": 9500.609283
-      }
-    },
-    {
-      "audit_key": "8627f43d2bc7c612",
-      "l5_id": "E530-30203840821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 6702.667688,
-        "Well-2": 7276.416042,
-        "Well-3": 5692.111636,
-        "Well-4": 7276.416042,
-        "Well-5": 6187.077865
-      }
-    },
-    {
-      "audit_key": "680420f52ba61f5f",
-      "l5_id": "E530-30203830821-D235301",
-      "l5_desc": "Material - Non LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 6702.667688,
-        "Well-2": 7276.416042,
-        "Well-3": 5692.111636,
-        "Well-4": 7276.416042,
-        "Well-5": 6187.077865
-      }
-    },
-    {
-      "audit_key": "15136bd5411e5e50",
-      "l5_id": "E530-30203940860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 36564.601985,
-        "Well-2": 39694.531915,
-        "Well-3": 31051.78507,
-        "Well-4": 39694.531915,
-        "Well-5": 33751.940293
-      }
-    },
-    {
-      "audit_key": "3f98455028878c50",
-      "l5_id": "E530-30203930860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 2598.290834,
-        "Well-2": 2820.70453,
-        "Well-3": 2206.548524,
-        "Well-4": 2820.70453,
-        "Well-5": 2398.422307
-      }
-    },
-    {
-      "audit_key": "7e9db8efb97adb5f",
-      "l5_id": "E530-30203920860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 20284.33609,
-        "Well-2": 22020.67526,
-        "Well-3": 17226.082341,
-        "Well-4": 22020.67526,
-        "Well-5": 18724.002546
-      }
-    },
-    {
-      "audit_key": "96774bc22565e92f",
-      "l5_id": "E530-30203860860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
-      }
-    },
-    {
-      "audit_key": "e52caa5002a60f86",
-      "l5_id": "E530-30203850860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
-      }
-    },
-    {
-      "audit_key": "35be047c8ce3e050",
-      "l5_id": "E530-30203840860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
-      }
-    },
-    {
-      "audit_key": "c40b15561b5f2233",
-      "l5_id": "E530-30203830860-D235301",
-      "l5_desc": "Material - LL",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
-      }
-    },
-    {
-      "audit_key": "4e9e529d690bfa9f",
-      "l5_id": "E530-30203940759-D235301",
+      "audit_key": "517274b8047a15d8",
+      "l5_id": "E540-30203920759-D245401",
       "l5_desc": "Engineering",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 1721.540629,
-        "Well-2": 1868.904506,
-        "Well-3": 1461.985272,
-        "Well-4": 1868.904506,
-        "Well-5": 1589.114427
+        "Well-1": 18678.815966,
+        "Well-2": 28212.483634
       }
     },
     {
-      "audit_key": "9f4b9940e911dcf7",
-      "l5_id": "E530-30203930759-D235301",
+      "audit_key": "1010a2e99c2823f0",
+      "l5_id": "E540-30203860759-D245401",
       "l5_desc": "Engineering",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 198.18225,
-        "Well-2": 215.146651,
-        "Well-3": 168.302465,
-        "Well-4": 215.146651,
-        "Well-5": 182.937461
+        "Well-1": 7983.873327,
+        "Well-2": 12058.842273
       }
     },
     {
-      "audit_key": "ab1ebe7e18d1d176",
-      "l5_id": "E530-30203920759-D235301",
+      "audit_key": "11b2103d7f719c34",
+      "l5_id": "E540-30203850759-D245401",
       "l5_desc": "Engineering",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 201.585541,
-        "Well-2": 218.841263,
-        "Well-3": 171.192644,
-        "Well-4": 218.841263,
-        "Well-5": 186.078961
+        "Well-1": 5632.765296,
+        "Well-2": 8507.728704
       }
     },
     {
-      "audit_key": "78cbd87558479e84",
-      "l5_id": "E530-30203860759-D235301",
+      "audit_key": "590df09940c561f0",
+      "l5_id": "E540-30203840759-D245401",
       "l5_desc": "Engineering",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 6377.654588,
-        "Well-2": 6923.581821,
-        "Well-3": 5416.100512,
-        "Well-4": 6923.581821,
-        "Well-5": 5887.065772
+        "Well-1": 4848.827438,
+        "Well-2": 7323.668962
       }
     },
     {
-      "audit_key": "e82b476019cab433",
-      "l5_id": "E530-30203850759-D235301",
+      "audit_key": "6f39cffe2a92418d",
+      "l5_id": "E540-30203830759-D245401",
       "l5_desc": "Engineering",
       "cost_category": "Surface Facility",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.3983428935627788,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 1893.064674,
-        "Well-2": 2055.11101,
-        "Well-3": 1607.648769,
-        "Well-4": 2055.11101,
-        "Well-5": 1747.444316
+        "Well-1": 10502.617113,
+        "Well-2": 15863.152887
       }
     },
     {
-      "audit_key": "9e50063a8ed766f0",
-      "l5_id": "E530-30203840759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 908.417294,
-        "Well-2": 986.177815,
-        "Well-3": 771.455918,
-        "Well-4": 986.177815,
-        "Well-5": 838.53904
-      }
-    },
-    {
-      "audit_key": "bba39aac0139c54d",
-      "l5_id": "E530-30203830759-D235301",
-      "l5_desc": "Engineering",
-      "cost_category": "Surface Facility",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589554,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589554,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 899.236577,
-        "Well-2": 976.211228,
-        "Well-3": 763.65937,
-        "Well-4": 976.211228,
-        "Well-5": 830.064531
-      }
-    },
-    {
-      "audit_key": "3e6f54626de8b982",
-      "l5_id": "E530-30129912724-D235301",
-      "l5_desc": "Permitting",
+      "audit_key": "6fe65d0c43f13978",
+      "l5_id": "E540-30129805264-D245401",
+      "l5_desc": "Project Management Cost",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 34125.991604,
-        "Well-2": 37047.176485,
-        "Well-3": 28980.8421,
-        "Well-4": 37047.176485,
-        "Well-5": 31500.915326
+        "Well-1": 5648.657266,
+        "Well-2": 8531.731934
       }
     },
     {
-      "audit_key": "6774265d8cfe143b",
-      "l5_id": "E530-30129826460-D235301",
+      "audit_key": "779bb9f73dac9e57",
+      "l5_id": "E540-30129826585-D245401",
+      "l5_desc": "Internet and IT Support Service",
+      "cost_category": "Support",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 2210.48088,
+        "Well-2": 3338.71032
+      }
+    },
+    {
+      "audit_key": "2c13028627f6ad39",
+      "l5_id": "E540-30129826460-D245401",
       "l5_desc": "Hardware Supply",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 2780.548359,
-        "Well-2": 3018.563298,
-        "Well-3": 2361.327222,
-        "Well-4": 3018.563298,
-        "Well-5": 2566.660023
+        "Well-1": 1720.867113,
+        "Well-2": 2599.197687
       }
     },
     {
-      "audit_key": "acadc3fc41935ec6",
-      "l5_id": "E530-30129146321-D235301",
+      "audit_key": "f697dee316f6865d",
+      "l5_id": "E540-30129146321-D245401",
       "l5_desc": "Drilling Facilities Support",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 32700.297696,
-        "Well-2": 35499.443179,
-        "Well-3": 27770.098966,
-        "Well-4": 35499.443179,
-        "Well-5": 30184.89018
+        "Well-1": 204545.899618,
+        "Well-2": 308946.126782
       }
     },
     {
-      "audit_key": "b4785e205257019c",
-      "l5_id": "E530-30129816043-D235301",
+      "audit_key": "b6f2a9a927cd0856",
+      "l5_id": "E540-30129816043-D245401",
       "l5_desc": "Drilling Operation Water Support",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 56347.330061,
-        "Well-2": 61170.661515,
-        "Well-3": 47851.886452,
-        "Well-4": 61170.661515,
-        "Well-5": 52012.920057
+        "Well-1": 137810.133843,
+        "Well-2": 208148.426157
       }
     },
     {
-      "audit_key": "f76e7adbf285d0e7",
-      "l5_id": "E530-30129785627-D235301",
+      "audit_key": "89351d641c2098bb",
+      "l5_id": "E540-30129785627-D245401",
       "l5_desc": "Security",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 7342.879846,
-        "Well-2": 7971.43036,
-        "Well-3": 6235.7995,
-        "Well-4": 7971.43036,
-        "Well-5": 6778.042934
+        "Well-1": 10188.275335,
+        "Well-2": 15388.371065
       }
     },
     {
-      "audit_key": "84e749220e2fe842",
-      "l5_id": "E530-30129786227-D235301",
+      "audit_key": "171b3158f3fe84e5",
+      "l5_id": "E540-30129786227-D245401",
       "l5_desc": "PGPA",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 12583.167797,
-        "Well-2": 13660.286961,
-        "Well-3": 10686.013268,
-        "Well-4": 13660.286961,
-        "Well-5": 11615.231813
+        "Well-1": 48698.191205,
+        "Well-2": 73553.747995
       }
     },
     {
-      "audit_key": "c2f4e2892da104dc",
-      "l5_id": "E530-30129772724-D235301",
-      "l5_desc": "Environment Permit",
+      "audit_key": "a7e8c47249d822d3",
+      "l5_id": "E540-30129775929-D245401",
+      "l5_desc": "Sampling and Lab Analysis",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 4179.04951,
-        "Well-2": 4536.776148,
-        "Well-3": 3548.97743,
-        "Well-4": 4536.776148,
-        "Well-5": 3857.584164
+        "Well-1": 2949.104685,
+        "Well-2": 4454.327715
       }
     },
     {
-      "audit_key": "5adfa60b4509af9b",
-      "l5_id": "E530-30129775920-D235301",
-      "l5_desc": "Environmental Monitoring",
-      "cost_category": "Support",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 3452.306876,
-        "Well-2": 3747.824345,
-        "Well-3": 2931.805224,
-        "Well-4": 3747.824345,
-        "Well-5": 3186.74481
-      }
-    },
-    {
-      "audit_key": "7f8f2a2e433e62ef",
-      "l5_id": "E530-30129775736-D235301",
+      "audit_key": "8fec6e6ff7776949",
+      "l5_id": "E540-30129775736-D245401",
       "l5_desc": "Hazardous Waste",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 10133.993334,
-        "Well-2": 11001.463163,
-        "Well-3": 8606.098954,
-        "Well-4": 11001.463163,
-        "Well-5": 9354.455386
+        "Well-1": 409.452677,
+        "Well-2": 618.437323
       }
     },
     {
-      "audit_key": "5e2b99e7aacc8e65",
-      "l5_id": "E530-30129775816-D235301",
-      "l5_desc": "Heavy Equipment for Drill Cutting",
-      "cost_category": "Support",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
-      },
-      "allocated_usd": {
-        "Well-1": 8435.198688,
-        "Well-2": 9157.251696,
-        "Well-3": 7163.43027,
-        "Well-4": 9157.251696,
-        "Well-5": 7786.33725
-      }
-    },
-    {
-      "audit_key": "ae95ec27775456c5",
-      "l5_id": "E530-30129775817-D235301",
+      "audit_key": "a16123a5d88f32f7",
+      "l5_id": "E540-30129775816-D245401",
       "l5_desc": "Drill Cutting - Transport & Process",
       "cost_category": "Support",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228401,
-        "Well-2": 0.21960115520589552,
-        "Well-3": 0.17178708360304737,
-        "Well-4": 0.21960115520589552,
-        "Well-5": 0.18672509087287753
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
       },
       "allocated_usd": {
-        "Well-1": 95523.304016,
-        "Well-2": 103700.09884,
-        "Well-3": 81121.328949,
-        "Well-4": 103700.09884,
-        "Well-5": 88175.357555
+        "Well-1": 84802.611855,
+        "Well-2": 128085.864945
       }
     },
     {
-      "audit_key": "5738c54c52b7b26f",
-      "l5_id": "E530-30101729921-D235301",
+      "audit_key": "8650fa3f683a8a9d",
+      "l5_id": "E540-30129775817-D245401",
+      "l5_desc": "Drill Cutting - Transport & Process",
+      "cost_category": "Support",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277885,
+        "Well-2": 0.6016571064372211
+      },
+      "allocated_usd": {
+        "Well-1": 75784.573136,
+        "Well-2": 114465.019264
+      }
+    },
+    {
+      "audit_key": "1d0c9e462081018c",
+      "l5_id": "E540-30101729921-D245401",
       "l5_desc": "LIH",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
         "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "383821fc1e880eeb",
-      "l5_id": "E530-30101610123-D235301",
+      "audit_key": "f9e671c148fd5f12",
+      "l5_id": "E540-30101610405-D245401",
       "l5_desc": "Rig Skid",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
-      },
-      "allocated_usd": {
-        "Well-1": 29835.178052,
-        "Well-2": 32389.069293,
-        "Well-3": 25336.951207,
-        "Well-4": 32389.069293,
-        "Well-5": 27540.164355
-      }
-    },
-    {
-      "audit_key": "0765c33a8d0eb7ee",
-      "l5_id": "E530-30101560423-D235301",
-      "l5_desc": "Rig Move",
-      "cost_category": "Drilling",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
         "Well-1": 0.0,
-        "Well-2": 0.0,
-        "Well-3": 0.0,
-        "Well-4": 0.0,
-        "Well-5": 0.0
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "daff8392af42e5c9",
-      "l5_id": "E530-30101560323-D235301",
+      "audit_key": "a9edd4d2d4677c22",
+      "l5_id": "E540-30101610423-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "dce9c287c52a2d21",
+      "l5_id": "E540-30101610305-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "9f2dccff81f68288",
+      "l5_id": "E540-30101610323-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 34147.234704,
+        "Well-2": 51575.983296
+      }
+    },
+    {
+      "audit_key": "50edc5ca3d555b09",
+      "l5_id": "E540-30101610205-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 17855.419216,
+        "Well-2": 26968.825184
+      }
+    },
+    {
+      "audit_key": "a49933ecc3f13a9c",
+      "l5_id": "E540-30101610223-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 28198.097036,
+        "Well-2": 42590.405764
+      }
+    },
+    {
+      "audit_key": "5a469868da0b9d18",
+      "l5_id": "E540-30101610105-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "bce33001bbb093f5",
+      "l5_id": "E540-30101610123-D245401",
+      "l5_desc": "Rig Skid",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 37915.347992,
+        "Well-2": 57267.341608
+      }
+    },
+    {
+      "audit_key": "94f98e19da041941",
+      "l5_id": "E540-30101560405-D245401",
       "l5_desc": "Rig Move",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
-        "Well-1": 80746.603509,
-        "Well-2": 87658.512769,
-        "Well-3": 68572.500211,
-        "Well-4": 87658.512769,
-        "Well-5": 74535.326316
+        "Well-1": 0.0,
+        "Well-2": 0.0
       }
     },
     {
-      "audit_key": "83033ea0dff023ef",
-      "l5_id": "E530-30101560223-D235301",
+      "audit_key": "774e756eea63f293",
+      "l5_id": "E540-30101560423-D245401",
       "l5_desc": "Rig Move",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
-        "Well-1": 140058.002049,
-        "Well-2": 152046.967024,
-        "Well-3": 118941.564817,
-        "Well-4": 152046.967024,
-        "Well-5": 129284.309583
+        "Well-1": 80028.068834,
+        "Well-2": 120874.395166
       }
     },
     {
-      "audit_key": "6338379c7fe12d2c",
-      "l5_id": "E530-30101560123-D235301",
+      "audit_key": "c5993337074a56b3",
+      "l5_id": "E540-30101560305-D245401",
       "l5_desc": "Rig Move",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
-        "Well-1": 125863.373389,
-        "Well-2": 136637.278151,
-        "Well-3": 106887.049401,
-        "Well-4": 136637.278151,
-        "Well-5": 116181.575437
+        "Well-1": 124578.727055,
+        "Well-2": 188163.709345
       }
     },
     {
-      "audit_key": "d310b35feca10b0c",
-      "l5_id": "E530-30101696706-D235301",
+      "audit_key": "6b489cd27c1da77b",
+      "l5_id": "E540-30101560323-D245401",
+      "l5_desc": "Rig Move",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 219457.634799,
+        "Well-2": 331468.811601
+      }
+    },
+    {
+      "audit_key": "6c51f04f7a2f5c96",
+      "l5_id": "E540-30101560205-D245401",
+      "l5_desc": "Rig Move",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 148610.017686,
+        "Well-2": 224460.570714
+      }
+    },
+    {
+      "audit_key": "49afb663ac2009e9",
+      "l5_id": "E540-30101560223-D245401",
+      "l5_desc": "Rig Move",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 156502.67782,
+        "Well-2": 236381.64458
+      }
+    },
+    {
+      "audit_key": "771cd988f7f043d4",
+      "l5_id": "E540-30101560105-D245401",
+      "l5_desc": "Rig Move",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 0.0,
+        "Well-2": 0.0
+      }
+    },
+    {
+      "audit_key": "d7eadcd9489c5fd9",
+      "l5_id": "E540-30101560123-D245401",
+      "l5_desc": "Rig Move",
+      "cost_category": "Drilling",
+      "allocation_basis": "within-category direct subtotal weights",
+      "weights": {
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
+      },
+      "allocated_usd": {
+        "Well-1": 357114.106119,
+        "Well-2": 539385.145881
+      }
+    },
+    {
+      "audit_key": "98db5607c9403e20",
+      "l5_id": "E540-30101690306-D245401",
       "l5_desc": "Rig Mobilization",
       "cost_category": "Drilling",
       "allocation_basis": "within-category direct subtotal weights",
       "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
+        "Well-1": 0.39834289356277874,
+        "Well-2": 0.6016571064372214
       },
       "allocated_usd": {
-        "Well-1": 200610.562592,
-        "Well-2": 217782.82675,
-        "Well-3": 170364.662386,
-        "Well-4": 217782.82675,
-        "Well-5": 185178.980855
-      }
-    },
-    {
-      "audit_key": "d1212afbf125a618",
-      "l5_id": "E530-30101690306-D235301",
-      "l5_desc": "Rig Mobilization",
-      "cost_category": "Drilling",
-      "allocation_basis": "within-category direct subtotal weights",
-      "weights": {
-        "Well-1": 0.20228551511228407,
-        "Well-2": 0.21960115520589546,
-        "Well-3": 0.17178708360304745,
-        "Well-4": 0.21960115520589546,
-        "Well-5": 0.18672509087287756
-      },
-      "allocated_usd": {
-        "Well-1": 470525.472204,
-        "Well-2": 510802.452625,
-        "Well-3": 399584.708702,
-        "Well-4": 510802.452625,
-        "Well-5": 434331.205111
+        "Well-1": 1063815.048757,
+        "Well-2": 1606786.249643
       }
     }
   ]

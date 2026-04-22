@@ -1,7 +1,7 @@
 {
-  "run_timestamp": "2026-04-15T06:19:46.713774+00:00",
-  "field": "DARAJAT",
-  "scenario_id": "DARAJAT_2026_5w",
+  "run_timestamp": "2026-04-22T02:37:58.299525+00:00",
+  "field": "SALAK",
+  "scenario_id": "SALAK_2026_2w",
   "estimate_type": "dashboard_anchored",
   "runtime_toggles": {
     "external_forecast_requested": true,
@@ -11,8 +11,8 @@
   "external_adjustment_formula": "fallback_historical_only_external_series_unavailable",
   "allocation_basis": "Within-category direct well subtotal weights with equal split fallback for categories without direct well rows.",
   "reconciliation": {
-    "campaign_total_usd": 30959778.668416,
-    "detail_total_usd": 30959778.668421,
+    "campaign_total_usd": 20741402.371104002,
+    "detail_total_usd": 20741402.371103,
     "status": "PASS"
   },
   "outputs": {
