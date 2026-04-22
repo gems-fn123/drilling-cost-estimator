@@ -34,6 +34,10 @@ APP_REPORT_PATH = REPORTS_DIR / "phase5_app_integration_prerequisites.md"
 MONITORING_REPORT_PATH = REPORTS_DIR / "phase5_monitoring_skeleton.md"
 
 
+def _relpath(path: Path) -> str:
+    return path.relative_to(ROOT).as_posix()
+
+
 def read_csv(path: Path) -> List[dict]:
     with path.open("r", encoding="utf-8", newline="") as handle:
         return list(csv.DictReader(handle))
@@ -164,8 +168,8 @@ def write_manifest(app_rows: List[dict], kpi_rows: List[dict]) -> None:
     payload = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "phase": "phase5",
-        "inputs": [str(BASELINE_DARAJAT.relative_to(ROOT)), str(BASELINE_SALAK.relative_to(ROOT)), str(GATE_RESULTS.relative_to(ROOT))],
-        "outputs": [str(APP_DATASET_PATH.relative_to(ROOT)), str(MONITORING_KPI_PATH.relative_to(ROOT)), str(APP_REPORT_PATH.relative_to(ROOT)), str(MONITORING_REPORT_PATH.relative_to(ROOT))],
+        "inputs": [_relpath(BASELINE_DARAJAT), _relpath(BASELINE_SALAK), _relpath(GATE_RESULTS)],
+        "outputs": [_relpath(APP_DATASET_PATH), _relpath(MONITORING_KPI_PATH), _relpath(APP_REPORT_PATH), _relpath(MONITORING_REPORT_PATH)],
         "app_rows": len(app_rows),
         "kpi_rows": len(kpi_rows),
     }

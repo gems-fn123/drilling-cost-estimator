@@ -1,0 +1,4 @@
+field,well_canonical,status,reason,note
+DARAJAT,DRJ-STEAM 1,active,non_canonical_alias_pending_review,Temporary exclusion pending canonical verification.
+SALAK,AWI 9-10,active,incomplete_spend_pending_closeout,Temporary exclusion until spend completeness is confirmed.
+SALAK,AWI 9-11,active,incomplete_spend_pending_closeout,Temporary exclusion until spend completeness is confirmed.

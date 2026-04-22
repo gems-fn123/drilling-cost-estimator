@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import subprocess
+import sys
 from pathlib import Path
 import unittest
 
@@ -18,8 +19,8 @@ RUNBOOK = ROOT / "docs" / "refresh_runbook.md"
 class TestPhase5OperationalAssets(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run(["python", "src/modeling/phase4_preflight_and_baseline.py", "--group-by", "family"], cwd=ROOT, check=True)
-        subprocess.run(["python", "src/app/build_phase5_operational_assets.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "src/modeling/phase4_preflight_and_baseline.py", "--group-by", "family"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "src/app/build_phase5_operational_assets.py"], cwd=ROOT, check=True)
 
     def read_csv(self, path: Path) -> list[dict[str, str]]:
         with path.open(encoding="utf-8") as fh:

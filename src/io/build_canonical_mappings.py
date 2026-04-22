@@ -72,6 +72,8 @@ SALAK_2025_ORDER = [
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
+ZIP_MAGIC = b"PK\x03\x04"
+OLE_MAGIC = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
 OFFICIAL_CAMPAIGNS = {
     "E530-30101-D225301": {"campaign_id": "DARAJAT_2022", "field": "DARAJAT", "scope": "in_scope"},
@@ -153,7 +155,7 @@ def col_index(cell_ref: str) -> int:
     return idx - 1
 
 
-def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
+def _read_zip_xlsx(path: Path) -> dict[str, list[list[str]]]:
     sheets: dict[str, list[list[str]]] = {}
     with zipfile.ZipFile(path) as zf:
         shared_strings: list[str] = []
@@ -191,6 +193,124 @@ def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
                 rows.append(dense)
             sheets[name] = rows
     return sheets
+
+
+def _read_legacy_xls(path: Path) -> dict[str, list[list[str]]]:
+    try:
+        import xlrd
+    except ImportError as exc:  # pragma: no cover - environment-dependent dependency
+        raise RuntimeError(
+            "Legacy Excel format detected (non-zip workbook). Install 'xlrd' to read this file type."
+        ) from exc
+
+    sheets: dict[str, list[list[str]]] = {}
+    workbook = xlrd.open_workbook(str(path))
+    for sheet in workbook.sheets():
+        rows: list[list[str]] = []
+        for row_idx in range(sheet.nrows):
+            dense: list[str] = []
+            for value in sheet.row_values(row_idx):
+                if isinstance(value, float) and value.is_integer():
+                    dense.append(str(int(value)))
+                else:
+                    dense.append(clean_text(str(value)) if value is not None else "")
+
+            while dense and not dense[-1]:
+                dense.pop()
+            rows.append(dense)
+        sheets[sheet.name] = rows
+    return sheets
+
+
+def _read_with_excel_com(path: Path) -> dict[str, list[list[str]]]:
+    try:
+        import pythoncom
+        import win32com.client
+    except ImportError as exc:  # pragma: no cover - windows dependency
+        raise RuntimeError(
+            "Legacy/encrypted workbook fallback requires pywin32 (win32com)."
+        ) from exc
+
+    def _coerce_cell(value: object) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, float) and value.is_integer():
+            return str(int(value))
+        return clean_text(str(value))
+
+    resolved_path = path.resolve()
+    excel = None
+    workbook = None
+    com_initialized = False
+    try:
+        # Streamlit may execute callbacks on worker threads where COM is not initialized.
+        pythoncom.CoInitialize()
+        com_initialized = True
+        excel = win32com.client.DispatchEx("Excel.Application")
+        excel.Visible = False
+        excel.DisplayAlerts = False
+        workbook = excel.Workbooks.Open(str(resolved_path), ReadOnly=True, UpdateLinks=0, IgnoreReadOnlyRecommended=True)
+
+        sheets: dict[str, list[list[str]]] = {}
+        for worksheet in workbook.Worksheets:
+            used_range = worksheet.UsedRange
+            row_count = int(used_range.Rows.Count)
+            col_count = int(used_range.Columns.Count)
+            if row_count <= 0 or col_count <= 0:
+                sheets[worksheet.Name] = []
+                continue
+
+            raw_values = used_range.Value
+            if row_count == 1 and col_count == 1:
+                matrix = ((raw_values,),)
+            elif row_count == 1:
+                matrix = (raw_values,)
+            elif col_count == 1:
+                matrix = tuple((item,) for item in raw_values)
+            else:
+                matrix = raw_values
+
+            rows: list[list[str]] = []
+            for row in matrix:
+                dense = [_coerce_cell(value) for value in row]
+                while dense and not dense[-1]:
+                    dense.pop()
+                rows.append(dense)
+            sheets[worksheet.Name] = rows
+
+        return sheets
+    finally:
+        if workbook is not None:
+            try:
+                workbook.Close(False)
+            except Exception:
+                pass
+        if excel is not None:
+            try:
+                excel.Quit()
+            except Exception:
+                pass
+        if com_initialized:
+            try:
+                pythoncom.CoUninitialize()
+            except Exception:
+                pass
+
+
+def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
+    with path.open("rb") as handle:
+        magic = handle.read(8)
+
+    if magic.startswith(ZIP_MAGIC):
+        return _read_zip_xlsx(path)
+    if magic == OLE_MAGIC:
+        try:
+            return _read_legacy_xls(path)
+        except Exception:
+            # Some enterprise workbooks are wrapped in OLE encryption containers.
+            return _read_with_excel_com(path)
+
+    raise ValueError(f"Unsupported Excel format for file: {path}")
 
 
 def norm_header(text: str) -> str:

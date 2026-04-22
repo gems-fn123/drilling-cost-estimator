@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+  <meta charset="utf-8" />
+  <title>Interactive WBS Tree</title>
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: Inter, Arial, sans-serif; margin: 20px; color: #111827; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
+    h1 { margin: 0 0 0.35rem 0; font-size: 28px; letter-spacing: -0.02em; }
+    .subtitle { color: #4b5563; margin: 0 0 14px 0; }
+    .legend { background: #ecfeff; border: 1px solid #67e8f9; border-radius: 10px; padding: 10px 12px; margin: 12px 0 18px 0; color: #155e75; }
+    .meta { color: #6b7280; font-size: 12px; margin-top: 4px; }
+    #trees { display: grid; gap: 18px; }
+    .field-card { border: 1px solid #d1d5db; border-radius: 14px; padding: 14px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05); }
+    .field-header { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; margin-bottom: 10px; }
+    .field-title { margin: 0; font-size: 20px; letter-spacing: 0.01em; }
+    .field-summary { margin: 0; color: #374151; font-size: 13px; }
+    .diagram-wrap { overflow-x: auto; overflow-y: hidden; border-radius: 12px; background: #fff; border: 1px solid #e5e7eb; padding: 8px; }
+    .diagram-wrap .mermaid { min-width: 100%; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">E7CRSC4TRWZ4-297197074-23199564</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">d620f650-cbf2-4320-9e3b-62b228197e66</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://starenergycoid.sharepoint.com/sites/STARDRIVE/_layouts/15/DocIdRedir.aspx?ID=E7CRSC4TRWZ4-297197074-23199564, E7CRSC4TRWZ4-297197074-23199564</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <h1>WBS Flowchart</h1>
+    <p class="subtitle">Mapped Data.Summary rows, split by field.</p>
+    <div class="legend">sum = descendant total. spr = P90 - P10.</div>
+  <div class="meta">Generated at UTC: 2026-04-22T06:34:31.756555+00:00</div>
+  <div id="trees"></div>
+  <script>
+    const sections = [{"field": "DARAJAT", "summary": "r=462 | c=2 | sum=68.04M | spr=444.72K", "diagram": "%%{init: {\"theme\": \"base\", \"securityLevel\": \"loose\", \"flowchart\": {\"curve\": \"basis\", \"nodeSpacing\": 24, \"rankSpacing\": 36, \"htmlLabels\": true}} }%%\nflowchart LR\nclassDef root fill:#0f172a,color:#ffffff,stroke:#0f172a,stroke-width:1.5px;\nclassDef internal fill:#f8fafc,color:#0f172a,stroke:#94a3b8,stroke-width:1px;\nclassDef leaf fill:#ecfeff,color:#0f172a,stroke:#06b6d4,stroke-width:1px;\n  darajat_1[\"DARAJAT_ROOT - DARAJAT WBS Tree<br/>sum 68.04M | spr 444.72K\"]:::root\n  darajat_2[\"E530-30-D235301<br/>sum 37.37M | spr 483.67K\"]:::internal\n  darajat_1 --> darajat_2\n  darajat_3[\"E530-30101-D235301<br/>sum 29.82M | spr 571.66K\"]:::internal\n  darajat_2 --> darajat_3\n  darajat_4[\"E530-3010104-D235301<br/>sum 6.93M | spr 725.54K\"]:::leaf\n  darajat_3 --> darajat_4\n  darajat_5[\"E530-3010102-D235301<br/>sum 5.19M | spr 560.06K\"]:::leaf\n  darajat_3 --> darajat_5\n  darajat_6[\"E530-3010105-D235301<br/>sum 4.56M | spr 583.59K\"]:::leaf\n  darajat_3 --> darajat_6\n  darajat_7[\"E530-3010103-D235301<br/>sum 4.36M | spr 498.17K\"]:::leaf\n  darajat_3 --> darajat_7\n  darajat_8[\"+7 more<br/>sum 8.78M | spr 0.00\"]:::leaf\n  darajat_3 --> darajat_8\n  darajat_9[\"E530-30203-D235301<br/>sum 5.61M | spr 232.12K\"]:::internal\n  darajat_2 --> darajat_9\n  darajat_10[\"E530-3020374-D235301<br/>sum 1.39M | spr 79.99K\"]:::leaf\n  darajat_9 --> darajat_10\n  darajat_11[\"E530-3020386-D235301<br/>sum 1.09M | spr 706.16K\"]:::leaf\n  darajat_9 --> darajat_11\n  darajat_12[\"E530-3020388-D235301<br/>sum 684.24K | spr 300.59K\"]:::leaf\n  darajat_9 --> darajat_12\n  darajat_13[\"E530-3020390-D235301<br/>sum 674.61K | spr 258.68K\"]:::leaf\n  darajat_9 --> darajat_13\n  darajat_14[\"+8 more<br/>sum 1.76M | spr 0.00\"]:::leaf\n  darajat_9 --> darajat_14\n  darajat_15[\"E530-30129-D235301<br/>sum 1.94M | spr 128.12K\"]:::internal\n  darajat_2 --> darajat_15\n  darajat_16[\"E530-3012977-D235301<br/>sum 523.83K | spr 255.86K\"]:::leaf\n  darajat_15 --> darajat_16\n  darajat_17[\"E530-3012975-D235301<br/>sum 494.96K | spr 63.98K\"]:::leaf\n  darajat_15 --> darajat_17\n  darajat_18[\"E530-3012979-D235301<br/>sum 196.08K | spr 20.38K\"]:::leaf\n  darajat_15 --> darajat_18\n  darajat_19[\"E530-3012914-D235301<br/>sum 188.12K | spr 0.00\"]:::leaf\n  darajat_15 --> darajat_19\n  darajat_20[\"+5 more<br/>sum 540.12K | spr 0.00\"]:::leaf\n  darajat_15 --> darajat_20\n  darajat_21[\"E530-30-D225301<br/>sum 30.67M | spr 431.40K\"]:::internal\n  darajat_1 --> darajat_21\n  darajat_22[\"E530-30101-D225301<br/>sum 25.03M | spr 476.13K\"]:::internal\n  darajat_21 --> darajat_22\n  darajat_23[\"E530-3010104-D225301<br/>sum 4.78M | spr 458.92K\"]:::leaf\n  darajat_22 --> darajat_23\n  darajat_24[\"E530-3010101-D225301<br/>sum 4.20M | spr 485.84K\"]:::leaf\n  darajat_22 --> darajat_24\n  darajat_25[\"E530-3010103-D225301<br/>sum 4.07M | spr 426.10K\"]:::leaf\n  darajat_22 --> darajat_25\n  darajat_26[\"E530-3010105-D225301<br/>sum 3.91M | spr 390.03K\"]:::leaf\n  darajat_22 --> darajat_26\n  darajat_27[\"+6 more<br/>sum 8.07M | spr 0.00\"]:::leaf\n  darajat_22 --> darajat_27\n  darajat_28[\"E530-30203-D225301<br/>sum 3.69M | spr 223.07K\"]:::internal\n  darajat_21 --> darajat_28\n  darajat_29[\"E530-3020374-D225301<br/>sum 971.46K | spr 84.76K\"]:::leaf\n  darajat_28 --> darajat_29\n  darajat_30[\"E530-3020387-D225301<br/>sum 681.77K | spr 242.16K\"]:::leaf\n  darajat_28 --> darajat_30\n  darajat_31[\"E530-3020389-D225301<br/>sum 518.54K | spr 216.31K\"]:::leaf\n  darajat_28 --> darajat_31\n  darajat_32[\"E530-3020384-D225301<br/>sum 372.42K | spr 248.04K\"]:::leaf\n  darajat_28 --> darajat_32\n  darajat_33[\"+4 more<br/>sum 1.15M | spr 0.00\"]:::leaf\n  darajat_28 --> darajat_33\n  darajat_34[\"E530-30129-D225301<br/>sum 1.95M | spr 80.71K\"]:::internal\n  darajat_21 --> darajat_34\n  darajat_35[\"E530-3012977-D225301<br/>sum 590.50K | spr 177.13K\"]:::leaf\n  darajat_34 --> darajat_35\n  darajat_36[\"E530-3012975-D225301<br/>sum 397.05K | spr 7.37K\"]:::leaf\n  darajat_34 --> darajat_36\n  darajat_37[\"E530-3012981-D225301<br/>sum 383.59K | spr 0.00\"]:::leaf\n  darajat_34 --> darajat_37\n  darajat_38[\"E530-3012979-D225301<br/>sum 298.16K | spr 6.00K\"]:::leaf\n  darajat_34 --> darajat_38\n  darajat_39[\"+5 more<br/>sum 276.37K | spr 0.00\"]:::leaf\n  darajat_34 --> darajat_39"}, {"field": "SALAK", "summary": "r=360 | c=1 | sum=38.52M | spr=330.39K", "diagram": "%%{init: {\"theme\": \"base\", \"securityLevel\": \"loose\", \"flowchart\": {\"curve\": \"basis\", \"nodeSpacing\": 24, \"rankSpacing\": 36, \"htmlLabels\": true}} }%%\nflowchart LR\nclassDef root fill:#0f172a,color:#ffffff,stroke:#0f172a,stroke-width:1.5px;\nclassDef internal fill:#f8fafc,color:#0f172a,stroke:#94a3b8,stroke-width:1px;\nclassDef leaf fill:#ecfeff,color:#0f172a,stroke:#06b6d4,stroke-width:1px;\n  salak_1[\"SALAK_ROOT - SALAK WBS Tree<br/>sum 38.52M | spr 330.39K\"]:::root\n  salak_2[\"E540-30-D245401<br/>sum 38.52M | spr 330.39K\"]:::internal\n  salak_1 --> salak_2\n  salak_3[\"E540-30101-D245401<br/>sum 31.87M | spr 407.28K\"]:::internal\n  salak_2 --> salak_3\n  salak_4[\"E540-3010104-D245401<br/>sum 4.88M | spr 483.59K\"]:::leaf\n  salak_3 --> salak_4\n  salak_5[\"E540-3010102-D245401<br/>sum 4.72M | spr 548.68K\"]:::leaf\n  salak_3 --> salak_5\n  salak_6[\"E540-3010108-D245401<br/>sum 4.33M | spr 469.45K\"]:::leaf\n  salak_3 --> salak_6\n  salak_7[\"E540-3010106-D245401<br/>sum 3.67M | spr 505.45K\"]:::leaf\n  salak_3 --> salak_7\n  salak_8[\"+11 more<br/>sum 14.27M | spr 0.00\"]:::leaf\n  salak_3 --> salak_8\n  salak_9[\"E540-30203-D245401<br/>sum 4.62M | spr 218.94K\"]:::internal\n  salak_2 --> salak_9\n  salak_10[\"E540-3020374-D245401<br/>sum 1.84M | spr 219.10K\"]:::leaf\n  salak_9 --> salak_10\n  salak_11[\"E540-3020388-D245401<br/>sum 552.40K | spr 151.17K\"]:::leaf\n  salak_9 --> salak_11\n  salak_12[\"E540-3020387-D245401<br/>sum 526.62K | spr 228.71K\"]:::leaf\n  salak_9 --> salak_12\n  salak_13[\"E540-3020394-D245401<br/>sum 336.07K | spr 133.02K\"]:::leaf\n  salak_9 --> salak_13\n  salak_14[\"+8 more<br/>sum 1.36M | spr 0.00\"]:::leaf\n  salak_9 --> salak_14\n  salak_15[\"E540-30129-D245401<br/>sum 2.03M | spr 151.17K\"]:::internal\n  salak_2 --> salak_15\n  salak_16[\"E540-3012914-D245401<br/>sum 475.46K | spr 0.00\"]:::leaf\n  salak_15 --> salak_16\n  salak_17[\"E540-3012975-D245401<br/>sum 417.02K | spr 84.97K\"]:::leaf\n  salak_15 --> salak_17\n  salak_18[\"E540-3012977-D245401<br/>sum 381.08K | spr 188.11K\"]:::leaf\n  salak_15 --> salak_18\n  salak_19[\"E540-3012981-D245401<br/>sum 320.33K | spr 0.00\"]:::leaf\n  salak_15 --> salak_19\n  salak_20[\"+5 more<br/>sum 438.74K | spr 0.00\"]:::leaf\n  salak_15 --> salak_20\n  salak_21[\"E540-30299-D245401<br/>sum 0.00 | spr 0.00\"]:::internal\n  salak_2 --> salak_21\n  salak_22[\"E540-3029901-D245401<br/>sum 0.00 | spr 0.00\"]:::leaf\n  salak_21 --> salak_22"}];
+
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'base',
+      securityLevel: 'loose',
+      flowchart: {
+        curve: 'basis',
+        nodeSpacing: 14,
+        rankSpacing: 18,
+        htmlLabels: true,
+      },
+    });
+
+    const treesEl = document.getElementById('trees');
+    sections.forEach((item) => {
+      const section = document.createElement('section');
+      section.className = 'field-card';
+
+      const header = document.createElement('div');
+      header.className = 'field-header';
+
+      const title = document.createElement('h2');
+      title.className = 'field-title';
+      title.textContent = item.field;
+      header.appendChild(title);
+
+      const summary = document.createElement('p');
+      summary.className = 'field-summary';
+      summary.textContent = item.summary;
+      header.appendChild(summary);
+
+      const diagramWrap = document.createElement('div');
+      diagramWrap.className = 'diagram-wrap';
+
+      const diagram = document.createElement('div');
+      diagram.className = 'mermaid';
+      diagram.textContent = item.diagram;
+      diagramWrap.appendChild(diagram);
+
+      section.appendChild(header);
+      section.appendChild(diagramWrap);
+      treesEl.appendChild(section);
+    });
+
+    mermaid.run({ querySelector: '.mermaid' });
+  </script>
+</body>
+</html>

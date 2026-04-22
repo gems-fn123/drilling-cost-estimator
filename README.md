@@ -37,6 +37,28 @@ bash scripts/setup.sh
 3. **Field-specific driver validation** (DARAJAT and SALAK separately)
 4. **Streamlit app prototype** using only validated drivers
 
+## Streamlined ETL Pipeline (Frontend Handover)
+Use a single entrypoint to refresh canonical ingestion, classification, historical mart, baseline, and estimator validation artifacts.
+
+Refresh-only run:
+
+```bash
+python src/modeling/streamlined_etl_pipeline.py --refresh-only
+```
+
+Refresh + estimator endpoint run (request JSON must include `campaign_input` and `well_rows`):
+
+```bash
+python src/modeling/streamlined_etl_pipeline.py --request-json path/to/request.json
+```
+
+Primary pipeline outputs:
+- `data/processed/etl_pipeline_manifest.json`
+- `data/processed/etl_pipeline_endpoint_output.json`
+- `data/processed/wbs_tree_interactive.json` (plus per-field tree JSONs)
+- `reports/wbs_tree_interactive.html` (collapsible tree view)
+- existing estimator audit outputs (`app_estimate_audit.csv`, `app_estimate_summary.json`, `app_run_manifest.json`)
+
 ## Streamlit App + Audit Layer (Phase 5)
 Run the app:
 
@@ -49,6 +71,9 @@ Run validation artifact build:
 ```bash
 python src/modeling/build_phase5_validation_artifacts.py
 ```
+WBS tree tab:
+- Open `WBS TREE VIEWER` (main tabs, not sidebar) to load an Excel file path (default empty), select sheet name (default `Data.Summary`), and render the collapsible field-separated WBS tree with median/spread at each node.
+- You can also refresh ETL directly from that tab (`REFRESH ETL PIPELINE + TREE`) and view generated tree artifacts.
 
 ### Toggle behavior
 - `EXTN. DATA`: attempts external forecast adjustment; if no auditable external series is available, app explicitly falls back to historical-only mode.

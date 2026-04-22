@@ -1,5 +1,5 @@
 {
-  "run_timestamp_utc": "2026-04-15T06:19:46.594237+00:00",
+  "run_timestamp_utc": "2026-04-22T07:03:51.040204+00:00",
   "runtime_toggles": {
     "group_by": "family",
     "use_synthetic": false,
@@ -7,30 +7,36 @@
   },
   "inputs": {
     "wbs_lv5_master": {
-      "path": "data\\processed\\wbs_lv5_master.csv",
+      "path": "data/processed/wbs_lv5_master.csv",
       "sha256": "12504b71367309c983b0928df73e34abf313875f74630480543aa672e51fe378",
       "row_count": 822
     },
     "wbs_lv5_classification": {
-      "path": "data\\processed\\wbs_lv5_classification.csv",
+      "path": "data/processed/wbs_lv5_classification.csv",
       "sha256": "66f6276c31a6d64fad37390655138736eebb6c6901c489dacb2f18f94245e3aa",
       "row_count": 822
     },
     "synthetic_wbs_lv5_placeholders": {
-      "path": "data\\processed\\synthetic_wbs_lv5_placeholders.csv",
-      "sha256": "1194c2b31ccd65d6fe91c56cd9ac6021915b658d25f9b48b98b6447250d183f1",
+      "path": "data/processed/synthetic_wbs_lv5_placeholders.csv",
+      "sha256": "3918e064f91910c4e4b6f60b245fd51278abeb805daa1e433c74576123c2d3c9",
       "rows_used": 0
+    },
+    "well_pool_exclusions": {
+      "path": "data/processed/well_pool_exclusions.csv",
+      "sha256": "773f7ba6aa3e424c2a0e1813fa5ee1bda14a75705b1f797dac0939d089d8f5f1",
+      "active_count": 3
     }
   },
   "outputs": {
-    "phase4_gate_results": "data\\processed\\phase4_gate_results.csv",
-    "baseline_estimates_darajat": "data\\processed\\baseline_estimates_darajat.csv",
-    "baseline_estimates_salak": "data\\processed\\baseline_estimates_salak.csv",
-    "phase4_gate_report": "reports\\phase4_gate_preflight_report.md",
-    "phase4_driver_analysis_report": "reports\\phase4_driver_analysis.md"
+    "phase4_gate_results": "data/processed/phase4_gate_results.csv",
+    "baseline_estimates_darajat": "data/processed/baseline_estimates_darajat.csv",
+    "baseline_estimates_salak": "data/processed/baseline_estimates_salak.csv",
+    "phase4_gate_report": "reports/phase4_gate_preflight_report.md",
+    "phase4_driver_analysis_report": "reports/phase4_driver_analysis.md"
   },
   "notes": [
     "This run remains deterministic and does not fit predictive statistical models.",
-    "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field."
+    "Family-grain aggregation is the default to support cross-campaign-year mapping readiness within field.",
+    "Manual well-pool exclusions are applied when listed in data/processed/well_pool_exclusions.csv."
   ]
 }
