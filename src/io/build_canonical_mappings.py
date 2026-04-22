@@ -224,6 +224,7 @@ def _read_legacy_xls(path: Path) -> dict[str, list[list[str]]]:
 
 def _read_with_excel_com(path: Path) -> dict[str, list[list[str]]]:
     try:
+        import pythoncom
         import win32com.client
     except ImportError as exc:  # pragma: no cover - windows dependency
         raise RuntimeError(
@@ -240,7 +241,11 @@ def _read_with_excel_com(path: Path) -> dict[str, list[list[str]]]:
     resolved_path = path.resolve()
     excel = None
     workbook = None
+    com_initialized = False
     try:
+        # Streamlit may execute callbacks on worker threads where COM is not initialized.
+        pythoncom.CoInitialize()
+        com_initialized = True
         excel = win32com.client.DispatchEx("Excel.Application")
         excel.Visible = False
         excel.DisplayAlerts = False
@@ -283,6 +288,11 @@ def _read_with_excel_com(path: Path) -> dict[str, list[list[str]]]:
         if excel is not None:
             try:
                 excel.Quit()
+            except Exception:
+                pass
+        if com_initialized:
+            try:
+                pythoncom.CoUninitialize()
             except Exception:
                 pass
 

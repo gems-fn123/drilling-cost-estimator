@@ -8,7 +8,6 @@ from pathlib import Path
 import streamlit as st
 import streamlit.components.v1 as components
 
-from src.modeling.streamlined_etl_pipeline import run_streamlined_etl
 from src.modeling.wbs_tree_diagram import (
     WBS_TREE_COMBINED_JSON,
     build_wbs_tree_from_excel_sheet,
@@ -123,7 +122,7 @@ def _render_field_tree(field: str, tree: dict) -> None:
 
 def render_wbs_tree_tab() -> None:
     st.subheader("WBS TREE")
-    st.caption("Load Excel, or refresh ETL and open the tree.")
+    st.caption("Load Excel and open the tree.")
 
     col_folder, col_path, col_sheet = st.columns([2, 2, 1])
     with col_folder:
@@ -153,19 +152,7 @@ def render_wbs_tree_tab() -> None:
 
             uploaded = st.file_uploader("Or upload Excel file (.xlsx/.xlsm/.xls)", type=["xlsx", "xlsm", "xls"])
 
-    col_a, col_b = st.columns([1, 1])
-    with col_a:
-        load_btn = st.button("Load Excel", type="primary")
-    with col_b:
-        refresh_btn = st.button("Refresh ETL + Tree")
-
-    if refresh_btn:
-        try:
-            run_streamlined_etl()
-            st.session_state["wbs_tree_payload"] = load_wbs_tree_payload()
-            st.success("ETL refresh completed and WBS tree payload loaded.")
-        except Exception as exc:
-            st.error(f"ETL refresh failed: {exc}")
+    load_btn = st.button("Load Excel", type="primary")
 
     if load_btn:
         temp_path: Path | None = None
@@ -208,7 +195,7 @@ def render_wbs_tree_tab() -> None:
 
     payload = st.session_state.get("wbs_tree_payload")
     if not payload:
-        st.info("No tree loaded yet. Use Load Excel or Refresh ETL + Tree.")
+        st.info("No tree loaded yet. Use Load Excel.")
         return
 
     source_contract = payload.get("source_contract", {})

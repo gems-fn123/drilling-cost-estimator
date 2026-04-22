@@ -1,6 +1,6 @@
 # Phase 4 Gate Preflight Report
 
-Generated at: 2026-04-22T06:34:31.584298+00:00
+Generated at: 2026-04-22T07:03:51.028209+00:00
 
 ## Runtime Toggles
 - group_by: `family`

@@ -2,33 +2,33 @@
   "field": "SALAK",
   "input_year": 2026,
   "estimation_methodology": "field_specific_family_analog_with_anchor_year_lv5_distribution",
-  "total_campaign_cost_mmusd": 20.741402371104,
-  "total_campaign_cost_formatted": "20.74 mm USD",
-  "total_campaign_cost_usd": 20741402.371104002,
-  "well_component_usd": 10604397.814704001,
-  "well_component_formatted": "10.60 mm USD",
-  "hybrid_component_usd": 6023505.0492,
-  "hybrid_component_formatted": "6.02 mm USD",
-  "campaign_tied_component_usd": 4113499.5072000003,
-  "campaign_tied_component_formatted": "4.11 mm USD",
+  "total_campaign_cost_mmusd": 22.05867486,
+  "total_campaign_cost_formatted": "22.06 mm USD",
+  "total_campaign_cost_usd": 22058674.86,
+  "well_component_usd": 12672559.529999997,
+  "well_component_formatted": "12.67 mm USD",
+  "hybrid_component_usd": 5577319.49,
+  "hybrid_component_formatted": "5.58 mm USD",
+  "campaign_tied_component_usd": 3808795.84,
+  "campaign_tied_component_formatted": "3.81 mm USD",
   "reconciliation_status": "PASS",
   "historical_anchor_year": 2025,
   "historical_anchor_well_count": 7,
   "l2_cost_breakdown": [
     {
       "l2_id": "E540-30101-D245401",
-      "estimate_usd": 15284356.438656008,
-      "estimate_formatted": "15.28 mm USD"
+      "estimate_usd": 16732934.079999998,
+      "estimate_formatted": "16.73 mm USD"
     },
     {
       "l2_id": "E540-30203-D245401",
-      "estimate_usd": 3804584.477136,
-      "estimate_formatted": "3.80 mm USD"
+      "estimate_usd": 3739289.8299999996,
+      "estimate_formatted": "3.74 mm USD"
     },
     {
       "l2_id": "E540-30129-D245401",
-      "estimate_usd": 1652461.455312,
-      "estimate_formatted": "1.65 mm USD"
+      "estimate_usd": 1586450.9500000002,
+      "estimate_formatted": "1.59 mm USD"
     },
     {
       "l2_id": "E540-30299-D245401",
@@ -39,26 +39,30 @@
   "category_matrix": [
     {
       "Cost Category": "Drilling",
-      "Well-1": 6.088,
-      "Well-2": 9.196,
+      "Well-1": 5.578,
+      "Well-2": 5.578,
+      "Well-3": 5.578,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical drilling campaign observations in SALAK"
     },
     {
       "Cost Category": "Support",
-      "Well-1": 0.658,
-      "Well-2": 0.994,
+      "Well-1": 0.529,
+      "Well-2": 0.529,
+      "Well-3": 0.529,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical support campaign observations in SALAK"
     },
     {
       "Cost Category": "Surface Facility",
-      "Well-1": 1.516,
-      "Well-2": 2.289,
+      "Well-1": 1.246,
+      "Well-2": 1.246,
+      "Well-3": 1.246,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical surface facility campaign observations in SALAK"
     },
     {
       "Cost Category": "Contingency",
       "Well-1": 0.0,
       "Well-2": 0.0,
+      "Well-3": 0.0,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],

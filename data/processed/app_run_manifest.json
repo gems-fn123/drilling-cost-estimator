@@ -1,7 +1,7 @@
 {
-  "run_timestamp": "2026-04-22T02:37:58.299525+00:00",
+  "run_timestamp": "2026-04-22T07:03:51.130217+00:00",
   "field": "SALAK",
-  "scenario_id": "SALAK_2026_2w",
+  "scenario_id": "SALAK_2026_3w",
   "estimate_type": "dashboard_anchored",
   "runtime_toggles": {
     "external_forecast_requested": true,
@@ -11,14 +11,14 @@
   "external_adjustment_formula": "fallback_historical_only_external_series_unavailable",
   "allocation_basis": "Within-category direct well subtotal weights with equal split fallback for categories without direct well rows.",
   "reconciliation": {
-    "campaign_total_usd": 20741402.371104002,
-    "detail_total_usd": 20741402.371103,
+    "campaign_total_usd": 22058674.86,
+    "detail_total_usd": 22058674.859994,
     "status": "PASS"
   },
   "outputs": {
-    "audit_csv": "data\\processed\\app_estimate_audit.csv",
-    "summary_json": "data\\processed\\app_estimate_summary.json",
-    "category_matrix_csv": "data\\processed\\app_category_matrix.csv",
-    "category_matrix_json": "data\\processed\\app_category_matrix.json"
+    "audit_csv": "data/processed/app_estimate_audit.csv",
+    "summary_json": "data/processed/app_estimate_summary.json",
+    "category_matrix_csv": "data/processed/app_category_matrix.csv",
+    "category_matrix_json": "data/processed/app_category_matrix.json"
   }
 }
