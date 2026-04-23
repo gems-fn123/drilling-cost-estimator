@@ -31,7 +31,7 @@ def main() -> None:
 
         if st.button("CALCULATE DRILLING COST", type="primary"):
             try:
-                build_validation_artifacts()
+                build_validation_artifacts(refresh_pipeline=False)
                 result = estimate_campaign(campaign_input, well_rows)
                 st.session_state["last_result"] = result
             except Exception as exc:
