@@ -10,9 +10,9 @@
 - rows in `well_instance_event_context.csv`: **429**.
 
 ## Event mapping confidence tiers
-- high: **197**
+- high: **336**
 - medium: **0**
-- low: **232**
+- low: **93**
 
 ## Deviation type counts (well context)
 - standard: **14**

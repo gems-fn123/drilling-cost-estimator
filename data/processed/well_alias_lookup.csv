@@ -13,75 +13,195 @@ well_alias,well_canonical,source_sheet,alias_type,resolution_method,is_modeling_
 20-1,DRJ-50,WellView.Data,source_observation,direct_match,yes
 20-1,DRJ-50,alias_catalog,manual_alias,manual_alias_map,yes
 AWI 10-4,AWI 10-4,2. Drilling.Data.History,history_observation,out_of_scope,no
-AWI 16-8,AWI 16-8,2. Drilling.Data.History,history_observation,out_of_scope,no
-AWI 16-9,AWI 16-9,2. Drilling.Data.History,history_observation,out_of_scope,no
+AWI 16-08,AWI 16-8,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 16-08,AWI 16-8,General.Camp.Data,source_observation,direct_match,yes
+AWI 16-08,AWI 16-8,Structured.Cost,source_observation,direct_match,yes
+AWI 16-09,AWI 16-9,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 16-09,AWI 16-9,General.Camp.Data,source_observation,direct_match,yes
+AWI 16-09,AWI 16-9,Structured.Cost,source_observation,direct_match,yes
+AWI 16-8,AWI 16-8,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+AWI 16-8,AWI 16-8,General.Camp.Data,source_observation,direct_match,yes
+AWI 16-9,AWI 16-9,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+AWI 16-9,AWI 16-9,General.Camp.Data,source_observation,direct_match,yes
 AWI 2-6,AWI 2-6,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 2-6,AWI 2-6,Cost & Technical Data,source_observation,direct_match,yes
+AWI 2-6,AWI 2-6,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 2-6,AWI 2-6,Data.Summary,source_observation,direct_match,yes
+AWI 2-6,AWI 2-6,General.Camp.Data,source_observation,direct_match,yes
+AWI 2-6,AWI 2-6,Structured.Cost,source_observation,direct_match,yes
 AWI 2-6,AWI 2-6,WellView.Data,source_observation,direct_match,yes
 AWI 2-7 ML,AWI 2-7 ML,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 2-7 ML,AWI 2-7 ML,Cost & Technical Data,source_observation,direct_match,yes
+AWI 2-7 ML,AWI 2-7 ML,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 2-7 ML,AWI 2-7 ML,Data.Summary,source_observation,direct_match,yes
+AWI 2-7 ML,AWI 2-7 ML,General.Camp.Data,source_observation,direct_match,yes
+AWI 2-7 ML,AWI 2-7 ML,Structured.Cost,source_observation,direct_match,yes
 AWI 2-7 ML,AWI 2-7 ML,WellView.Data,source_observation,direct_match,yes
-AWI 21-5,AWI 21-5,2. Drilling.Data.History,history_observation,out_of_scope,no
-AWI 21-6,AWI 21-6,2. Drilling.Data.History,history_observation,out_of_scope,no
+AWI 21-05,AWI 21-5,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 21-05,AWI 21-5,General.Camp.Data,source_observation,direct_match,yes
+AWI 21-05,AWI 21-5,Structured.Cost,source_observation,direct_match,yes
+AWI 21-06,AWI 21-6,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 21-06,AWI 21-6,General.Camp.Data,source_observation,direct_match,yes
+AWI 21-06,AWI 21-6,Structured.Cost,source_observation,direct_match,yes
+AWI 21-5,AWI 21-5,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+AWI 21-5,AWI 21-5,General.Camp.Data,source_observation,direct_match,yes
+AWI 21-6,AWI 21-6,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+AWI 21-6,AWI 21-6,General.Camp.Data,source_observation,direct_match,yes
 AWI 21-7,AWI 21-7,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 21-7,AWI 21-7,Cost & Technical Data,source_observation,direct_match,yes
+AWI 21-7,AWI 21-7,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 21-7,AWI 21-7,Data.Summary,source_observation,direct_match,yes
+AWI 21-7,AWI 21-7,General.Camp.Data,source_observation,direct_match,yes
+AWI 21-7,AWI 21-7,Structured.Cost,source_observation,direct_match,yes
 AWI 21-7,AWI 21-7,WellView.Data,source_observation,direct_match,yes
 AWI 21-8,AWI 21-8,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 21-8,AWI 21-8,Cost & Technical Data,source_observation,direct_match,yes
+AWI 21-8,AWI 21-8,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 21-8,AWI 21-8,Data.Summary,source_observation,direct_match,yes
+AWI 21-8,AWI 21-8,General.Camp.Data,source_observation,direct_match,yes
+AWI 21-8,AWI 21-8,Structured.Cost,source_observation,direct_match,yes
 AWI 21-8,AWI 21-8,WellView.Data,source_observation,direct_match,yes
 AWI 23-1,AWI 23-1,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 23-1,AWI 23-1,Cost & Technical Data,source_observation,direct_match,yes
+AWI 23-1,AWI 23-1,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 23-1,AWI 23-1,Data.Summary,source_observation,direct_match,yes
+AWI 23-1,AWI 23-1,General.Camp.Data,source_observation,direct_match,yes
+AWI 23-1,AWI 23-1,Structured.Cost,source_observation,direct_match,yes
 AWI 23-1,AWI 23-1,WellView.Data,source_observation,direct_match,yes
 AWI 23-2,AWI 23-2,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 23-2,AWI 23-2,Cost & Technical Data,source_observation,direct_match,yes
+AWI 23-2,AWI 23-2,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 23-2,AWI 23-2,Data.Summary,source_observation,direct_match,yes
+AWI 23-2,AWI 23-2,General.Camp.Data,source_observation,direct_match,yes
+AWI 23-2,AWI 23-2,Structured.Cost,source_observation,direct_match,yes
 AWI 23-2,AWI 23-2,WellView.Data,source_observation,direct_match,yes
 AWI 3-9,AWI 3-9,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 3-9,AWI 3-9,Cost & Technical Data,source_observation,direct_match,yes
+AWI 3-9,AWI 3-9,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 3-9,AWI 3-9,Data.Summary,source_observation,direct_match,yes
+AWI 3-9,AWI 3-9,General.Camp.Data,source_observation,direct_match,yes
+AWI 3-9,AWI 3-9,Structured.Cost,source_observation,direct_match,yes
 AWI 3-9,AWI 3-9,WellView.Data,source_observation,direct_match,yes
 AWI 8-3,AWI 8-3,2. Drilling.Data.History,history_observation,out_of_scope,no
 AWI 9-10,AWI 9-10,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+AWI 9-10,AWI 9-10,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 9-10,AWI 9-10,General.Camp.Data,source_observation,direct_match,yes
+AWI 9-10,AWI 9-10,Structured.Cost,source_observation,direct_match,yes
 AWI 9-10,AWI 9-10,alias_catalog,manual_alias,manual_alias_map,yes
-AWI 9-10RD,AWI 9-10,Cost & Technical Data,source_observation,direct_match,yes
-AWI 9-10RD,AWI 9-10,Data.Summary,source_observation,direct_match,yes
-AWI 9-10RD,AWI 9-10,WellView.Data,source_observation,direct_match,yes
+AWI 9-10 RD,AWI 9-10 RD,DashBoard.Tab.Template,source_observation,direct_match,yes
+AWI 9-10 RD,AWI 9-10 RD,General.Camp.Data,source_observation,direct_match,yes
+AWI 9-10 RD,AWI 9-10 RD,Structured.Cost,source_observation,direct_match,yes
+AWI 9-10RD,AWI 9-10 RD,Cost & Technical Data,source_observation,direct_match,yes
+AWI 9-10RD,AWI 9-10 RD,Data.Summary,source_observation,direct_match,yes
+AWI 9-10RD,AWI 9-10 RD,General.Camp.Data,source_observation,direct_match,yes
+AWI 9-10RD,AWI 9-10 RD,WellView.Data,source_observation,direct_match,yes
 AWI 9-10RD,AWI 9-10,alias_catalog,manual_alias,manual_alias_map,yes
 AWI 9-11,AWI 9-11,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 AWI 9-11,AWI 9-11,Cost & Technical Data,source_observation,direct_match,yes
+AWI 9-11,AWI 9-11,DashBoard.Tab.Template,source_observation,direct_match,yes
 AWI 9-11,AWI 9-11,Data.Summary,source_observation,direct_match,yes
+AWI 9-11,AWI 9-11,General.Camp.Data,source_observation,direct_match,yes
+AWI 9-11,AWI 9-11,Structured.Cost,source_observation,direct_match,yes
 AWI 9-11,AWI 9-11,WellView.Data,source_observation,direct_match,yes
+DRJ 14-1,DRJ-51,General.Camp.Data,source_observation,direct_match,yes
+DRJ 14-2,DRJ-52,General.Camp.Data,source_observation,direct_match,yes
+DRJ 20 NE,DRJ-48,General.Camp.Data,source_observation,direct_match,yes
+DRJ 20 WNW,DRJ-44,General.Camp.Data,source_observation,direct_match,yes
+DRJ 20-1,DRJ-50,General.Camp.Data,source_observation,direct_match,yes
+DRJ S4 SW,DRJ-47,General.Camp.Data,source_observation,direct_match,yes
+DRJ S4S,DRJ-46,General.Camp.Data,source_observation,direct_match,yes
+DRJ S4SSE,DRJ-45,General.Camp.Data,source_observation,direct_match,yes
+DRJ SF-1,DRJ-49,General.Camp.Data,source_observation,direct_match,yes
+DRJ SF-ML,DRJ-38RD,General.Camp.Data,source_observation,direct_match,yes
+DRJ STEAM 2,DRJ-54,General.Camp.Data,source_observation,direct_match,yes
+DRJ STEAM 3,DRJ-55,General.Camp.Data,source_observation,direct_match,yes
+DRJ STEAM 4,DRJ-56,General.Camp.Data,source_observation,direct_match,yes
+DRJ STEAM 5,DRJ-57,General.Camp.Data,source_observation,direct_match,yes
+DRJ STEAM 6,DRJ-53,General.Camp.Data,source_observation,direct_match,yes
 DRJ-16,DRJ-16,2. Drilling.Data.History,history_observation,out_of_scope,no
 DRJ-37,DRJ-37,2. Drilling.Data.History,history_observation,out_of_scope,no
 DRJ-38,DRJ-38,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
 DRJ-38,DRJ-38,alias_catalog,manual_alias,manual_alias_map,yes
-DRJ-44,DRJ-44,2. Drilling.Data.History,history_observation,out_of_scope,no
-DRJ-45,DRJ-45,2. Drilling.Data.History,history_observation,out_of_scope,no
-DRJ-46,DRJ-46,2. Drilling.Data.History,history_observation,out_of_scope,no
-DRJ-47,DRJ-47,2. Drilling.Data.History,history_observation,out_of_scope,no
-DRJ-48,DRJ-48,2. Drilling.Data.History,history_observation,out_of_scope,no
+DRJ-38RD,DRJ-38RD,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-38RD,DRJ-38RD,General.Camp.Data,source_observation,direct_match,yes
+DRJ-38RD,DRJ-38RD,Structured.Cost,source_observation,direct_match,yes
+DRJ-38RD,DRJ-38,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-44,DRJ-44,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-44,DRJ-44,General.Camp.Data,source_observation,direct_match,yes
+DRJ-44,DRJ-44,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-44OH,DRJ-44,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-44OH,DRJ-44,Structured.Cost,source_observation,direct_match,yes
+DRJ-44OH,DRJ-44,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-45,DRJ-45,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-45,DRJ-45,General.Camp.Data,source_observation,direct_match,yes
+DRJ-45,DRJ-45,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-45OH,DRJ-45,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-45OH,DRJ-45,Structured.Cost,source_observation,direct_match,yes
+DRJ-45OH,DRJ-45,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-46,DRJ-46,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-46,DRJ-46,General.Camp.Data,source_observation,direct_match,yes
+DRJ-46,DRJ-46,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-46OH,DRJ-46,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-46OH,DRJ-46,Structured.Cost,source_observation,direct_match,yes
+DRJ-46OH,DRJ-46,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-47,DRJ-47,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-47,DRJ-47,General.Camp.Data,source_observation,direct_match,yes
+DRJ-47,DRJ-47,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-47OH,DRJ-47,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-47OH,DRJ-47,Structured.Cost,source_observation,direct_match,yes
+DRJ-47OH,DRJ-47,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-48,DRJ-48,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-48,DRJ-48,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-48,DRJ-48,General.Camp.Data,source_observation,direct_match,yes
+DRJ-48,DRJ-48,Structured.Cost,source_observation,direct_match,yes
 DRJ-49,DRJ-49,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-49,DRJ-49,General.Camp.Data,source_observation,direct_match,yes
 DRJ-49,DRJ-49,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-49OH,DRJ-49,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-49OH,DRJ-49,Structured.Cost,source_observation,direct_match,yes
+DRJ-49OH,DRJ-49,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-50,DRJ-50,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-50,DRJ-50,General.Camp.Data,source_observation,direct_match,yes
 DRJ-50,DRJ-50,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-50OH,DRJ-50,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-50OH,DRJ-50,Structured.Cost,source_observation,direct_match,yes
+DRJ-50OH,DRJ-50,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-51,DRJ-51,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-51,DRJ-51,General.Camp.Data,source_observation,direct_match,yes
 DRJ-51,DRJ-51,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-51OH,DRJ-51,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-51OH,DRJ-51,Structured.Cost,source_observation,direct_match,yes
+DRJ-51OH,DRJ-51,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-52,DRJ-52,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-52,DRJ-52,General.Camp.Data,source_observation,direct_match,yes
 DRJ-52,DRJ-52,alias_catalog,manual_alias,manual_alias_map,yes
+DRJ-52OH,DRJ-52,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-52OH,DRJ-52,Structured.Cost,source_observation,direct_match,yes
+DRJ-52OH,DRJ-52,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-53,DRJ-53,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-53,DRJ-53,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-53,DRJ-53,General.Camp.Data,source_observation,direct_match,yes
+DRJ-53,DRJ-53,Structured.Cost,source_observation,direct_match,yes
 DRJ-53,DRJ-53,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-54,DRJ-54,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-54,DRJ-54,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-54,DRJ-54,General.Camp.Data,source_observation,direct_match,yes
+DRJ-54,DRJ-54,Structured.Cost,source_observation,direct_match,yes
 DRJ-54,DRJ-54,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-55,DRJ-55,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-55,DRJ-55,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-55,DRJ-55,General.Camp.Data,source_observation,direct_match,yes
+DRJ-55,DRJ-55,Structured.Cost,source_observation,direct_match,yes
 DRJ-55,DRJ-55,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-56,DRJ-56,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-56,DRJ-56,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-56,DRJ-56,General.Camp.Data,source_observation,direct_match,yes
+DRJ-56,DRJ-56,Structured.Cost,source_observation,direct_match,yes
 DRJ-56,DRJ-56,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-57,DRJ-57,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+DRJ-57,DRJ-57,DashBoard.Tab.Template,source_observation,direct_match,yes
+DRJ-57,DRJ-57,General.Camp.Data,source_observation,direct_match,yes
+DRJ-57,DRJ-57,Structured.Cost,source_observation,direct_match,yes
 DRJ-57,DRJ-57,alias_catalog,manual_alias,manual_alias_map,yes
 DRJ-STEAM 1,DRJ-STEAM 1,Cost & Technical Data,source_observation,direct_match,yes
 DRJ-STEAM 1,DRJ-STEAM 1,Data.Summary,source_observation,direct_match,yes
@@ -107,13 +227,41 @@ DRJ-STEAM 6,DRJ-53,WellView.Data,source_observation,out_of_scope,no
 DRJ-STEAM 6,DRJ-53,alias_catalog,manual_alias,manual_alias_map,yes
 HMD-A01,HMD-A01,2. Drilling.Data.History,history_observation,out_of_scope,no
 HMD-A02,HMD-A02,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBA-6,MBA-6,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBA-7,MBA-7,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBD-7,MBD-7,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBD-8,MBD-8,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBE-6,MBE-6,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBE-7,MBE-7,2. Drilling.Data.History,history_observation,out_of_scope,no
-MBI-1,MBI-1,2. Drilling.Data.History,history_observation,out_of_scope,no
+MBA-6,MBA-6,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBA-6,MBA-6,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBA-6,MBA-6,General.Camp.Data,source_observation,direct_match,yes
+MBA-6,MBA-6,Structured.Cost,source_observation,direct_match,yes
+MBA-7,MBA-7,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBA-7,MBA-7,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBA-7,MBA-7,General.Camp.Data,source_observation,direct_match,yes
+MBA-7,MBA-7,Structured.Cost,source_observation,direct_match,yes
+MBD 8 WO,MBD-8WO,General.Camp.Data,source_observation,direct_match,yes
+MBD-7,MBD-7,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBD-7,MBD-7,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBD-7,MBD-7,General.Camp.Data,source_observation,direct_match,yes
+MBD-7,MBD-7,Structured.Cost,source_observation,direct_match,yes
+MBD-8,MBD-8,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBD-8,MBD-8,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBD-8,MBD-8,General.Camp.Data,source_observation,direct_match,yes
+MBD-8,MBD-8,Structured.Cost,source_observation,direct_match,yes
+MBD-8WO,MBD-8WO,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBD-8WO,MBD-8WO,General.Camp.Data,source_observation,direct_match,yes
+MBD-8WO,MBD-8WO,Structured.Cost,source_observation,direct_match,yes
+MBE 06,MBE-6,General.Camp.Data,source_observation,direct_match,yes
+MBE 07,MBE-7,General.Camp.Data,source_observation,direct_match,yes
+MBE-6,MBE-6,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBE-6,MBE-6,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBE-6,MBE-6,General.Camp.Data,source_observation,direct_match,yes
+MBE-6,MBE-6,Structured.Cost,source_observation,direct_match,yes
+MBE-7,MBE-7,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBE-7,MBE-7,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBE-7,MBE-7,General.Camp.Data,source_observation,direct_match,yes
+MBE-7,MBE-7,Structured.Cost,source_observation,direct_match,yes
+MBI 1,MBI-1,General.Camp.Data,source_observation,direct_match,yes
+MBI-1,MBI-1,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+MBI-1,MBI-1,DashBoard.Tab.Template,source_observation,direct_match,yes
+MBI-1,MBI-1,General.Camp.Data,source_observation,direct_match,yes
+MBI-1,MBI-1,Structured.Cost,source_observation,direct_match,yes
 SF-1,DRJ-49,Cost & Technical Data,source_observation,direct_match,yes
 SF-1,DRJ-49,Data.Summary,source_observation,direct_match,yes
 SF-1,DRJ-49,WellView.Data,source_observation,direct_match,yes
@@ -122,5 +270,18 @@ SF-ML,DRJ-38,Cost & Technical Data,source_observation,direct_match,yes
 SF-ML,DRJ-38,Data.Summary,source_observation,direct_match,yes
 SF-ML,DRJ-38,WellView.Data,source_observation,direct_match,yes
 SF-ML,DRJ-38,alias_catalog,manual_alias,manual_alias_map,yes
-WWA-8,WWA-8,2. Drilling.Data.History,history_observation,out_of_scope,no
-WWA-9,WWA-9,2. Drilling.Data.History,history_observation,out_of_scope,no
+WELL 20 01,DRJ-44,General.Camp.Data,source_observation,direct_match,yes
+WELL 20 02,DRJ-48,General.Camp.Data,source_observation,direct_match,yes
+WELL S4 01,DRJ-45,General.Camp.Data,source_observation,direct_match,yes
+WELL S4 02,DRJ-46,General.Camp.Data,source_observation,direct_match,yes
+WELL S4 03,DRJ-47,General.Camp.Data,source_observation,direct_match,yes
+WWA 8,WWA-8,General.Camp.Data,source_observation,direct_match,yes
+WWA 9,WWA-9,General.Camp.Data,source_observation,direct_match,yes
+WWA-8,WWA-8,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+WWA-8,WWA-8,DashBoard.Tab.Template,source_observation,direct_match,yes
+WWA-8,WWA-8,General.Camp.Data,source_observation,direct_match,yes
+WWA-8,WWA-8,Structured.Cost,source_observation,direct_match,yes
+WWA-9,WWA-9,2. Drilling.Data.History,history_observation,history_reassigned_unique_master,yes
+WWA-9,WWA-9,DashBoard.Tab.Template,source_observation,direct_match,yes
+WWA-9,WWA-9,General.Camp.Data,source_observation,direct_match,yes
+WWA-9,WWA-9,Structured.Cost,source_observation,direct_match,yes

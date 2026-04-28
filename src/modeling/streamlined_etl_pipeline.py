@@ -22,6 +22,9 @@ from src.modeling.phase5_estimation_core import (
     build_validation_artifacts,
     estimate_campaign,
 )
+from src.modeling.unit_price_macro_analysis import MACRO_FACTORS_PATH, MACRO_WEIGHTS_PATH
+from src.modeling.unit_price_npt_analysis import NPT_CONTRIBUTION_SUMMARY, NPT_PENALTY_REFERENCE
+from src.modeling.unit_price_well_analysis import SERVICE_TIME_BANDS, UNIT_PRICE_BENCHMARK, UNIT_PRICE_WELL_PROFILE
 from src.modeling.wbs_tree_diagram import (
     WBS_TREE_COMBINED_JSON,
     WBS_TREE_DARAJAT_JSON,
@@ -89,6 +92,13 @@ def run_streamlined_etl(
         APP_AUDIT,
         APP_SUMMARY,
         APP_RUN_MANIFEST,
+        UNIT_PRICE_WELL_PROFILE,
+        UNIT_PRICE_BENCHMARK,
+        SERVICE_TIME_BANDS,
+        MACRO_FACTORS_PATH,
+        MACRO_WEIGHTS_PATH,
+        NPT_CONTRIBUTION_SUMMARY,
+        NPT_PENALTY_REFERENCE,
         WBS_TREE_COMBINED_JSON,
         WBS_TREE_DARAJAT_JSON,
         WBS_TREE_SALAK_JSON,

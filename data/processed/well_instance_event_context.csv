@@ -11,13 +11,13 @@ field,campaign_canonical,well_base_canonical,well_instance_id,well_canonical,eve
 ,,AWI 10-4,,AWI 10-4,9,NPT,EQP,CSG LN,0.083333,standard,well_alias_context_bridge,low,AWI 10-4
 ,,AWI 10-4,,AWI 10-4,10,DC,WP,TIGHT HOLE,0.583333,standard,well_alias_context_bridge,low,AWI 10-4
 ,,AWI 10-4,,AWI 10-4,11,NPT,RREQ,TOP DRIVE,0.083333,standard,well_alias_context_bridge,low,AWI 10-4
-,,AWI 16-8,,AWI 16-8,1,NPT,RREQ,TOP DRIVE,0.114583,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,2,NPT,RREQ,TOP DRIVE,0.187500,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,3,NPT,RREQ,TOP DRIVE,0.104167,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,4,NPT,EQP,BHA,0.083333,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,5,NPT,RREQ,PIPE HANDL,0.020833,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,6,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,low,AWI 16-8
-,,AWI 16-8,,AWI 16-8,7,NPT,RREQ,CIRSYS,0.020833,standard,well_alias_context_bridge,low,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,1,NPT,RREQ,TOP DRIVE,0.114583,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,2,NPT,RREQ,TOP DRIVE,0.187500,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,3,NPT,RREQ,TOP DRIVE,0.104167,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,4,NPT,EQP,BHA,0.083333,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,5,NPT,RREQ,PIPE HANDL,0.020833,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,6,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,high,AWI 16-8
+SALAK,SALAK_2021,AWI 16-8,SALAK_2021|AWI 16-8,AWI 16-8,7,NPT,RREQ,CIRSYS,0.020833,standard,well_alias_context_bridge,high,AWI 16-8
 SALAK,SALAK_2025_2026,AWI 2-6,SALAK_2025_2026|AWI 2-6,AWI 2-6,1,NPT,EQPS,CIRSYS,0.458333,standard,well_alias_context_bridge,high,AWI 2-6
 SALAK,SALAK_2025_2026,AWI 2-6,SALAK_2025_2026|AWI 2-6,AWI 2-6,2,NPT,EQPS,CIRSYS,0.229167,standard,well_alias_context_bridge,high,AWI 2-6
 SALAK,SALAK_2025_2026,AWI 2-7,SALAK_2025_2026|AWI 2-7,AWI 2-7 ML,1,NPT,RREQ,COMPTR,0.041667,multileg,well_alias_context_bridge,high,AWI 2-7 ML
@@ -27,10 +27,10 @@ SALAK,SALAK_2025_2026,AWI 2-7,SALAK_2025_2026|AWI 2-7,AWI 2-7 ML,4,NPT,RREQ,DW H
 SALAK,SALAK_2025_2026,AWI 2-7,SALAK_2025_2026|AWI 2-7,AWI 2-7 ML,5,NPT,SW,TOOL FAIL,0.041667,multileg,well_alias_context_bridge,high,AWI 2-7 ML
 SALAK,SALAK_2025_2026,AWI 2-7,SALAK_2025_2026|AWI 2-7,AWI 2-7 ML,6,NPT,WC,KICK,0.062500,multileg,well_alias_context_bridge,high,AWI 2-7 ML
 SALAK,SALAK_2025_2026,AWI 2-7,SALAK_2025_2026|AWI 2-7,AWI 2-7 ML,7,NPT,RREQ,PIPE HANDL,0.020833,multileg,well_alias_context_bridge,high,AWI 2-7 ML
-,,AWI 21-5,,AWI 21-5,1,NPT,WO,EQP,0.072917,standard,well_alias_context_bridge,low,AWI 21-5
-,,AWI 21-5,,AWI 21-5,2,NPT,RREQ,EQP,0.083333,standard,well_alias_context_bridge,low,AWI 21-5
-,,AWI 21-5,,AWI 21-5,3,NPT,RREQ,CIRSYS,0.010417,standard,well_alias_context_bridge,low,AWI 21-5
-,,AWI 21-5,,AWI 21-5,4,NPT,RREQ,CIRSYS,0.281250,standard,well_alias_context_bridge,low,AWI 21-5
+SALAK,SALAK_2021,AWI 21-5,SALAK_2021|AWI 21-5,AWI 21-5,1,NPT,WO,EQP,0.072917,standard,well_alias_context_bridge,high,AWI 21-5
+SALAK,SALAK_2021,AWI 21-5,SALAK_2021|AWI 21-5,AWI 21-5,2,NPT,RREQ,EQP,0.083333,standard,well_alias_context_bridge,high,AWI 21-5
+SALAK,SALAK_2021,AWI 21-5,SALAK_2021|AWI 21-5,AWI 21-5,3,NPT,RREQ,CIRSYS,0.010417,standard,well_alias_context_bridge,high,AWI 21-5
+SALAK,SALAK_2021,AWI 21-5,SALAK_2021|AWI 21-5,AWI 21-5,4,NPT,RREQ,CIRSYS,0.281250,standard,well_alias_context_bridge,high,AWI 21-5
 SALAK,SALAK_2025_2026,AWI 21-7,SALAK_2025_2026|AWI 21-7,AWI 21-7,1,NPT,EQPS,CSG HAN,0.083333,standard,well_alias_context_bridge,high,AWI 21-7
 SALAK,SALAK_2025_2026,AWI 21-7,SALAK_2025_2026|AWI 21-7,AWI 21-7,2,NPT,EQPS,PIPE HANDL,0.010417,standard,well_alias_context_bridge,high,AWI 21-7
 SALAK,SALAK_2025_2026,AWI 21-7,SALAK_2025_2026|AWI 21-7,AWI 21-7,3,NPT,WC,KICK,0.041667,standard,well_alias_context_bridge,high,AWI 21-7
@@ -91,11 +91,11 @@ SALAK,SALAK_2025_2026,AWI 3-9,SALAK_2025_2026|AWI 3-9,AWI 3-9,8,NPT,RREQ,TOP DRI
 ,,AWI 8-3,,AWI 8-3,8,NPT,WP,JUNK,0.291667,standard,well_alias_context_bridge,low,AWI 8-3
 ,,AWI 8-3,,AWI 8-3,8,NPT,WP,JUNK,0.500000,standard,well_alias_context_bridge,low,AWI 8-3
 ,,AWI 8-3,,AWI 8-3,9,NPT,EQPS,PSI CNTRL,0.062500,standard,well_alias_context_bridge,low,AWI 8-3
-SALAK,SALAK_2025_2026,AWI 9-10,SALAK_2025_2026|AWI 9-10,AWI 9-10,1,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,high,AWI 9-10
-SALAK,SALAK_2025_2026,AWI 9-10,SALAK_2025_2026|AWI 9-10,AWI 9-10,2,NPT,EQP,BHA,0.072917,standard,well_alias_context_bridge,high,AWI 9-10
-SALAK,SALAK_2025_2026,AWI 9-10,SALAK_2025_2026|AWI 9-10,AWI 9-10,3,NPT,EQP,FL DISP,0.020833,standard,well_alias_context_bridge,high,AWI 9-10
-SALAK,SALAK_2025_2026,AWI 9-10,SALAK_2025_2026|AWI 9-10,AWI 9-10,4,NPT,WP,CMT JOB,0.875000,standard,well_alias_context_bridge,high,AWI 9-10
-SALAK,SALAK_2025_2026,AWI 9-10,SALAK_2025_2026|AWI 9-10,AWI 9-10,5,NPT,RREQ,TOP DRIVE,0.229167,standard,well_alias_context_bridge,high,AWI 9-10
+SALAK,SALAK_2021,AWI 9-10,SALAK_2021|AWI 9-10,AWI 9-10,1,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,high,AWI 9-10
+SALAK,SALAK_2021,AWI 9-10,SALAK_2021|AWI 9-10,AWI 9-10,2,NPT,EQP,BHA,0.072917,standard,well_alias_context_bridge,high,AWI 9-10
+SALAK,SALAK_2021,AWI 9-10,SALAK_2021|AWI 9-10,AWI 9-10,3,NPT,EQP,FL DISP,0.020833,standard,well_alias_context_bridge,high,AWI 9-10
+SALAK,SALAK_2021,AWI 9-10,SALAK_2021|AWI 9-10,AWI 9-10,4,NPT,WP,CMT JOB,0.875000,standard,well_alias_context_bridge,high,AWI 9-10
+SALAK,SALAK_2021,AWI 9-10,SALAK_2021|AWI 9-10,AWI 9-10,5,NPT,RREQ,TOP DRIVE,0.229167,standard,well_alias_context_bridge,high,AWI 9-10
 SALAK,SALAK_2025_2026,AWI 9-11,SALAK_2025_2026|AWI 9-11,AWI 9-11,1,NPT,RREQ,CIRSYS,0.125000,standard,well_alias_context_bridge,high,AWI 9-11
 SALAK,SALAK_2025_2026,AWI 9-11,SALAK_2025_2026|AWI 9-11,AWI 9-11,2,NPT,RREQ,PIPE HANDL,0.062500,standard,well_alias_context_bridge,high,AWI 9-11
 SALAK,SALAK_2025_2026,AWI 9-11,SALAK_2025_2026|AWI 9-11,AWI 9-11,3,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,high,AWI 9-11
@@ -176,33 +176,33 @@ DARAJAT,DARAJAT_2022,DRJ-38,DARAJAT_2022|DRJ-38,DRJ-38,12,NPT,RREQ,TOP DRIVE,0.0
 DARAJAT,DARAJAT_2022,DRJ-38,DARAJAT_2022|DRJ-38,DRJ-38,13,NPT,RREQ,DW HOIST,0.020833,standard,well_alias_context_bridge,high,DRJ-38
 DARAJAT,DARAJAT_2022,DRJ-38,DARAJAT_2022|DRJ-38,DRJ-38,14,NPT,SP,HOLE CLEAN,0.187500,standard,well_alias_context_bridge,high,DRJ-38
 DARAJAT,DARAJAT_2022,DRJ-38,DARAJAT_2022|DRJ-38,DRJ-38,15,NPT,SP,HOLE CLEAN,0.020833,standard,well_alias_context_bridge,high,DRJ-38
-,,DRJ-44,,DRJ-44,1,NPT,WP,TIGHT HOLE,0.041667,standard,well_alias_context_bridge,low,DRJ-44
-,,DRJ-44,,DRJ-44,2,NPT,EQP,SC,1.041667,standard,well_alias_context_bridge,low,DRJ-44
-,,DRJ-44,,DRJ-44,3,DC,WO,TRANSPORT,2.291667,standard,well_alias_context_bridge,low,DRJ-44
-,,DRJ-44,,DRJ-44,4,NPT,EQP,BHA,3.093750,standard,well_alias_context_bridge,low,DRJ-44
-,,DRJ-44,,DRJ-44,5,NPT,EQP,LOG TOOL,0.687500,standard,well_alias_context_bridge,low,DRJ-44
-,,DRJ-45,,DRJ-45,1,NPT,EQPS,EQPS,1.333333,standard,well_alias_context_bridge,low,DRJ-45
-,,DRJ-45,,DRJ-45,2,NPT,EQPS,EQPS,0.020833,standard,well_alias_context_bridge,low,DRJ-45
-,,DRJ-45,,DRJ-45,3,NPT,EQPS,EQPS,0.937500,standard,well_alias_context_bridge,low,DRJ-45
-,,DRJ-45,,DRJ-45,4,NPT,EQPS,EQPS,0.145833,standard,well_alias_context_bridge,low,DRJ-45
-,,DRJ-46,,DRJ-46,1,NPT,RREQ,DW HOIST,0.083333,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,2,NPT,WP,TORQ,0.020833,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,3,NPT,RREQ,TOP DRIVE,0.083333,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,4,NPT,RREQ,ROT,0.020833,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,5,NPT,WP,TIGHT HOLE,0.083333,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,6,NPT,EQPS,PWR SWVL,0.083333,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,7,NPT,SP,HOLE CLEAN,0.958333,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-46,,DRJ-46,8,NPT,WC,KICK,0.051389,standard,well_alias_context_bridge,low,DRJ-46
-,,DRJ-47,,DRJ-47,1,NPT,WP,TORQ,0.125000,standard,well_alias_context_bridge,low,DRJ-47
-,,DRJ-47,,DRJ-47,2,DC,WP,TORQ,0.218750,standard,well_alias_context_bridge,low,DRJ-47
-,,DRJ-47,,DRJ-47,3,NPT,RREQ,TOP DRIVE,0.052083,standard,well_alias_context_bridge,low,DRJ-47
-,,DRJ-47,,DRJ-47,4,NPT,RREQ,DW HOIST,0.583333,standard,well_alias_context_bridge,low,DRJ-47
-,,DRJ-47,,DRJ-47,5,NPT,RREQ,,1.312500,standard,well_alias_context_bridge,low,DRJ-47
-,,DRJ-48,,DRJ-48,1,NPT,EQP,BHA,0.052083,standard,well_alias_context_bridge,low,DRJ-48
-,,DRJ-48,,DRJ-48,2,NPT,EQP,BHA,0.052083,standard,well_alias_context_bridge,low,DRJ-48
-,,DRJ-48,,DRJ-48,3,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,low,DRJ-48
-,,DRJ-48,,DRJ-48,4,NPT,WP,FRM INSTAB,1.333333,standard,well_alias_context_bridge,low,DRJ-48
-,,DRJ-48,,DRJ-48,5,NPT,EQPS,CMT,0.020833,standard,well_alias_context_bridge,low,DRJ-48
+DARAJAT,DARAJAT_2019,DRJ-44,DARAJAT_2019|DRJ-44,DRJ-44,1,NPT,WP,TIGHT HOLE,0.041667,standard,well_alias_context_bridge,high,DRJ-44
+DARAJAT,DARAJAT_2019,DRJ-44,DARAJAT_2019|DRJ-44,DRJ-44,2,NPT,EQP,SC,1.041667,standard,well_alias_context_bridge,high,DRJ-44
+DARAJAT,DARAJAT_2019,DRJ-44,DARAJAT_2019|DRJ-44,DRJ-44,3,DC,WO,TRANSPORT,2.291667,standard,well_alias_context_bridge,high,DRJ-44
+DARAJAT,DARAJAT_2019,DRJ-44,DARAJAT_2019|DRJ-44,DRJ-44,4,NPT,EQP,BHA,3.093750,standard,well_alias_context_bridge,high,DRJ-44
+DARAJAT,DARAJAT_2019,DRJ-44,DARAJAT_2019|DRJ-44,DRJ-44,5,NPT,EQP,LOG TOOL,0.687500,standard,well_alias_context_bridge,high,DRJ-44
+DARAJAT,DARAJAT_2019,DRJ-45,DARAJAT_2019|DRJ-45,DRJ-45,1,NPT,EQPS,EQPS,1.333333,standard,well_alias_context_bridge,high,DRJ-45
+DARAJAT,DARAJAT_2019,DRJ-45,DARAJAT_2019|DRJ-45,DRJ-45,2,NPT,EQPS,EQPS,0.020833,standard,well_alias_context_bridge,high,DRJ-45
+DARAJAT,DARAJAT_2019,DRJ-45,DARAJAT_2019|DRJ-45,DRJ-45,3,NPT,EQPS,EQPS,0.937500,standard,well_alias_context_bridge,high,DRJ-45
+DARAJAT,DARAJAT_2019,DRJ-45,DARAJAT_2019|DRJ-45,DRJ-45,4,NPT,EQPS,EQPS,0.145833,standard,well_alias_context_bridge,high,DRJ-45
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,1,NPT,RREQ,DW HOIST,0.083333,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,2,NPT,WP,TORQ,0.020833,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,3,NPT,RREQ,TOP DRIVE,0.083333,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,4,NPT,RREQ,ROT,0.020833,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,5,NPT,WP,TIGHT HOLE,0.083333,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,6,NPT,EQPS,PWR SWVL,0.083333,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,7,NPT,SP,HOLE CLEAN,0.958333,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-46,DARAJAT_2019|DRJ-46,DRJ-46,8,NPT,WC,KICK,0.051389,standard,well_alias_context_bridge,high,DRJ-46
+DARAJAT,DARAJAT_2019,DRJ-47,DARAJAT_2019|DRJ-47,DRJ-47,1,NPT,WP,TORQ,0.125000,standard,well_alias_context_bridge,high,DRJ-47
+DARAJAT,DARAJAT_2019,DRJ-47,DARAJAT_2019|DRJ-47,DRJ-47,2,DC,WP,TORQ,0.218750,standard,well_alias_context_bridge,high,DRJ-47
+DARAJAT,DARAJAT_2019,DRJ-47,DARAJAT_2019|DRJ-47,DRJ-47,3,NPT,RREQ,TOP DRIVE,0.052083,standard,well_alias_context_bridge,high,DRJ-47
+DARAJAT,DARAJAT_2019,DRJ-47,DARAJAT_2019|DRJ-47,DRJ-47,4,NPT,RREQ,DW HOIST,0.583333,standard,well_alias_context_bridge,high,DRJ-47
+DARAJAT,DARAJAT_2019,DRJ-47,DARAJAT_2019|DRJ-47,DRJ-47,5,NPT,RREQ,,1.312500,standard,well_alias_context_bridge,high,DRJ-47
+DARAJAT,DARAJAT_2019,DRJ-48,DARAJAT_2019|DRJ-48,DRJ-48,1,NPT,EQP,BHA,0.052083,standard,well_alias_context_bridge,high,DRJ-48
+DARAJAT,DARAJAT_2019,DRJ-48,DARAJAT_2019|DRJ-48,DRJ-48,2,NPT,EQP,BHA,0.052083,standard,well_alias_context_bridge,high,DRJ-48
+DARAJAT,DARAJAT_2019,DRJ-48,DARAJAT_2019|DRJ-48,DRJ-48,3,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,high,DRJ-48
+DARAJAT,DARAJAT_2019,DRJ-48,DARAJAT_2019|DRJ-48,DRJ-48,4,NPT,WP,FRM INSTAB,1.333333,standard,well_alias_context_bridge,high,DRJ-48
+DARAJAT,DARAJAT_2019,DRJ-48,DARAJAT_2019|DRJ-48,DRJ-48,5,NPT,EQPS,CMT,0.020833,standard,well_alias_context_bridge,high,DRJ-48
 DARAJAT,DARAJAT_2022,DRJ-49,DARAJAT_2022|DRJ-49,DRJ-49,1,NPT,EQP,JWLRY,0.083333,standard,well_alias_context_bridge,high,DRJ-49
 DARAJAT,DARAJAT_2022,DRJ-49,DARAJAT_2022|DRJ-49,DRJ-49,2,NPT,WO,WATER,0.145833,standard,well_alias_context_bridge,high,DRJ-49
 DARAJAT,DARAJAT_2022,DRJ-49,DARAJAT_2022|DRJ-49,DRJ-49,3,NPT,WP,TIGHT HOLE,0.083333,standard,well_alias_context_bridge,high,DRJ-49
@@ -327,104 +327,104 @@ DARAJAT,DARAJAT_2023_2024,DRJ-57,DARAJAT_2023_2024|DRJ-57,DRJ-57,6,NPT,RREQ,TOP 
 ,,HMD-A02,,HMD-A02,2,NPT,EQPS,CSG HAN,0.020833,standard,well_alias_context_bridge,low,HMD-A02
 ,,HMD-A02,,HMD-A02,3,NPT,WO,CMT,0.333333,standard,well_alias_context_bridge,low,HMD-A02
 ,,HMD-A02,,HMD-A02,4,NPT,EQPS,CMT,0.104167,standard,well_alias_context_bridge,low,HMD-A02
-,,MBA-6,,MBA-6,1,NPT,RREQ,MOD,0.020833,standard,well_alias_context_bridge,low,MBA-6
-,,MBA-6,,MBA-6,2,NPT,EQPS,CMT,0.020833,standard,well_alias_context_bridge,low,MBA-6
-,,MBA-6,,MBA-6,3,DC,EQPS,ML,0.020833,multileg,well_alias_context_bridge,low,MBA-6
-,,MBA-6,,MBA-6,4,NPT,EQPS,AIR DRILLING,0.145833,standard,well_alias_context_bridge,low,MBA-6
-,,MBA-6,,MBA-6,5,NPT,WC,STEAM,0.125000,standard,well_alias_context_bridge,low,MBA-6
-,,MBA-6,,MBA-6,6,NPT,EQPS,CSG HAN,0.187500,standard,well_alias_context_bridge,low,MBA-6
-,,MBA-7,,MBA-7,1,NPT,RREQ,TOP DRIVE,1.531250,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,2,NPT,RREQ,CIRSYS,0.052083,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,3,NPT,EQP,CSG LN,0.541667,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,4,NPT,WP,FRM INSTAB,0.041667,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,5,NPT,EQPS,CSG HAN,0.270833,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,6,NPT,EQP,CSG LN,0.041667,standard,well_alias_context_bridge,low,MBA-7
-,,MBA-7,,MBA-7,7,NPT,EQPS,CIRSYS,0.020833,standard,well_alias_context_bridge,low,MBA-7
-,,MBD-7,,MBD-7,1,NPT,SCL,GEOMETRY,0.125000,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,2,NPT,RREQ,TOP DRIVE,0.010417,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,3,DC,EQSS,SS SMD SPU,0.125000,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,4,NPT,WO,ORDERS,0.020833,redrill,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,5,NPT,EQP,CMT,0.208333,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,2,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,7,DC,EQPS,PIPE HANDL,0.062500,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,6,NPT,RRBOP,SURF,0.010417,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,7,NPT,WO,EQP,0.333333,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,8,NPT,SP,HOLE CLEAN,1.020833,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,9,DC,SCL,HOLE CLEAN,0.833333,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,10,NPT,EQPS,CIRSYS,0.010417,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,11,NPT,EQPS,CIRSYS,0.395833,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,12,NPT,SP,HOLE CLEAN,3.437500,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,12,NPT,SP,HOLE CLEAN,1.583333,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,2,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-7,,MBD-7,13,NPT,EQP,CSG LN,0.750000,standard,well_alias_context_bridge,low,MBD-7
-,,MBD-8,,MBD-8,1,NPT,PR,ERROR,0.145833,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,1,NPT,SP,CMT,2.187500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,2,NPT,EQP,CMT,0.104167,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,2,NPT,WP,TIGHT HOLE,0.500000,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,3,NPT,RREQ,DERRICK,0.125000,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,4,NPT,RREQ,CIRSYS,0.062500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,3,NPT,RREQ,DERRICK,0.250000,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,4,NPT,RREQ,CIRSYS,0.083333,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,3,NPT,RREQ,DERRICK,0.562500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,5,NPT,WP,TIGHT HOLE,0.020833,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,4,NPT,PR,PROC,0.312500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,WP,TIGHT HOLE,0.520833,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,5,NPT,SP,STUCK,0.062500,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,7,NPT,WP,TIGHT HOLE,4.187500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,11.437500,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,8,NPT,WO,WATER,0.031250,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,7,NPT,SW,STUCK,1.333333,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,0.166667,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,8,NPT,RRBOP,SURF,0.104167,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,0.020833,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,8,NPT,RRBOP,SURF,0.041667,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,1.041667,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,9,NPT,RREQ,POWER,0.166667,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,2.041667,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,10,NPT,WC,STEAM,0.031250,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,11,NPT,WC,STEAM,0.062500,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,0.333333,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,12,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,6,NPT,SP,STUCK,4.645833,stuck_related,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,13,NPT,WP,SLTSUT INSTAB,0.354167,standard,well_alias_context_bridge,low,MBD-8
-,,MBD-8,,MBD-8,14,NPT,EQPS,CSG HAN,0.104167,standard,well_alias_context_bridge,low,MBD-8
-,,MBE-6,,MBE-6,1,NPT,RREQ,CIRSYS,0.125000,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,2,NPT,WP,TIGHT HOLE,0.083333,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,3,NPT,EQP,CSG LN,0.010417,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,4,NPT,RREQ,TOP DRIVE,0.197917,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,5,NPT,RREQ,DW HOIST,0.010417,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,6,NPT,RREQ,EQP,0.489583,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,7,NPT,WO,CMT,0.239583,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,8,NPT,RREQ,CIRSYS,0.020833,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,9,NPT,RREQ,CIRSYS,0.031250,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-6,,MBE-6,10,NPT,RREQ,CIRSYS,0.041667,standard,well_alias_context_bridge,low,MBE-6
-,,MBE-7,,MBE-7,1,NPT,WP,TIGHT HOLE,0.291667,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,1,NPT,WP,TIGHT HOLE,0.062500,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,2,NPT,RREQ,TOP DRIVE,0.010417,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,3,NPT,WO,HES,0.145833,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,3,NPT,WO,HES,0.729167,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,3,NPT,WO,HES,0.010417,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,4,NPT,SCL,GEOMETRY,0.125000,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,5,NPT,SCL,GEOMETRY,1.833333,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,6,NPT,RREQ,TOP DRIVE,0.156250,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,7,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,low,MBE-7
-,,MBE-7,,MBE-7,8,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,low,MBE-7
-,,MBI-1,,MBI-1,1,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,low,MBI-1
-,,MBI-1,,MBI-1,2,NPT,RREQ,CIRSYS,0.010417,standard,well_alias_context_bridge,low,MBI-1
-,,WWA-8,,WWA-8,1,NPT,FISH,FISH ALL OH,0.843750,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,2,NPT,RREQ,TOP DRIVE,0.239583,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,3,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,4,NPT,RREQ,EQP,0.041667,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,5,NPT,RREQ,DP,0.270833,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,6,NPT,RREQ,DP,0.031250,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,7,NPT,RREQ,DP,0.072917,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,8,NPT,EQP,BHA,0.072917,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,9,NPT,RREQ,TOP DRIVE,0.062500,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,10,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,11,NPT,EQPS,CMT,0.052083,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,12,NPT,RREQ,TOP DRIVE,1.072917,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-8,,WWA-8,13,NPT,SP,HOLE CLEAN,1.937500,standard,well_alias_context_bridge,low,WWA-8
-,,WWA-9,,WWA-9,1,NPT,RREQ,CIRSYS,0.062500,standard,well_alias_context_bridge,low,WWA-9
-,,WWA-9,,WWA-9,2,NPT,RREQ,ROT,0.312500,standard,well_alias_context_bridge,low,WWA-9
-,,WWA-9,,WWA-9,3,SC,WO,EQP,0.166667,standard,well_alias_context_bridge,low,WWA-9
-,,WWA-9,,WWA-9,4,SC,PR,PROC,0.208333,standard,well_alias_context_bridge,low,WWA-9
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,1,NPT,RREQ,MOD,0.020833,standard,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,2,NPT,EQPS,CMT,0.020833,standard,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,3,DC,EQPS,ML,0.020833,multileg,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,4,NPT,EQPS,AIR DRILLING,0.145833,standard,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,5,NPT,WC,STEAM,0.125000,standard,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-6,WAYANG_WINDU_2018|MBA-6,MBA-6,6,NPT,EQPS,CSG HAN,0.187500,standard,well_alias_context_bridge,high,MBA-6
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,1,NPT,RREQ,TOP DRIVE,1.531250,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,2,NPT,RREQ,CIRSYS,0.052083,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,3,NPT,EQP,CSG LN,0.541667,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,4,NPT,WP,FRM INSTAB,0.041667,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,5,NPT,EQPS,CSG HAN,0.270833,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,6,NPT,EQP,CSG LN,0.041667,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBA-7,WAYANG_WINDU_2018|MBA-7,MBA-7,7,NPT,EQPS,CIRSYS,0.020833,standard,well_alias_context_bridge,high,MBA-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,1,NPT,SCL,GEOMETRY,0.125000,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,2,NPT,RREQ,TOP DRIVE,0.010417,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,3,DC,EQSS,SS SMD SPU,0.125000,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,4,NPT,WO,ORDERS,0.020833,redrill,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,5,NPT,EQP,CMT,0.208333,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,2,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,7,DC,EQPS,PIPE HANDL,0.062500,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,6,NPT,RRBOP,SURF,0.010417,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,7,NPT,WO,EQP,0.333333,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,8,NPT,SP,HOLE CLEAN,1.020833,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,9,DC,SCL,HOLE CLEAN,0.833333,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,10,NPT,EQPS,CIRSYS,0.010417,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,11,NPT,EQPS,CIRSYS,0.395833,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,12,NPT,SP,HOLE CLEAN,3.437500,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,12,NPT,SP,HOLE CLEAN,1.583333,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,2,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,WAYANG_WINDU_2018|MBD-7,MBD-7,13,NPT,EQP,CSG LN,0.750000,standard,well_alias_context_bridge,high,MBD-7
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,1,NPT,PR,ERROR,0.145833,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,1,NPT,SP,CMT,2.187500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,2,NPT,EQP,CMT,0.104167,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,2,NPT,WP,TIGHT HOLE,0.500000,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,3,NPT,RREQ,DERRICK,0.125000,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,4,NPT,RREQ,CIRSYS,0.062500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,3,NPT,RREQ,DERRICK,0.250000,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,4,NPT,RREQ,CIRSYS,0.083333,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,3,NPT,RREQ,DERRICK,0.562500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,5,NPT,WP,TIGHT HOLE,0.020833,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,4,NPT,PR,PROC,0.312500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,WP,TIGHT HOLE,0.520833,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,5,NPT,SP,STUCK,0.062500,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,7,NPT,WP,TIGHT HOLE,4.187500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,11.437500,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,8,NPT,WO,WATER,0.031250,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,7,NPT,SW,STUCK,1.333333,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,0.166667,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,8,NPT,RRBOP,SURF,0.104167,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,0.020833,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,8,NPT,RRBOP,SURF,0.041667,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,1.041667,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,9,NPT,RREQ,POWER,0.166667,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,2.041667,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,10,NPT,WC,STEAM,0.031250,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,11,NPT,WC,STEAM,0.062500,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,0.333333,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,12,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,6,NPT,SP,STUCK,4.645833,stuck_related,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,13,NPT,WP,SLTSUT INSTAB,0.354167,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,WAYANG_WINDU_2018|MBD-8,MBD-8,14,NPT,EQPS,CSG HAN,0.104167,standard,well_alias_context_bridge,high,MBD-8
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,1,NPT,RREQ,CIRSYS,0.125000,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,2,NPT,WP,TIGHT HOLE,0.083333,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,3,NPT,EQP,CSG LN,0.010417,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,4,NPT,RREQ,TOP DRIVE,0.197917,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,5,NPT,RREQ,DW HOIST,0.010417,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,6,NPT,RREQ,EQP,0.489583,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,7,NPT,WO,CMT,0.239583,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,8,NPT,RREQ,CIRSYS,0.020833,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,9,NPT,RREQ,CIRSYS,0.031250,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,WAYANG_WINDU_2021|MBE-6,MBE-6,10,NPT,RREQ,CIRSYS,0.041667,standard,well_alias_context_bridge,high,MBE-6
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,1,NPT,WP,TIGHT HOLE,0.291667,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,1,NPT,WP,TIGHT HOLE,0.062500,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,2,NPT,RREQ,TOP DRIVE,0.010417,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,3,NPT,WO,HES,0.145833,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,3,NPT,WO,HES,0.729167,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,3,NPT,WO,HES,0.010417,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,4,NPT,SCL,GEOMETRY,0.125000,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,5,NPT,SCL,GEOMETRY,1.833333,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,6,NPT,RREQ,TOP DRIVE,0.156250,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,7,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBE-7,WAYANG_WINDU_2021|MBE-7,MBE-7,8,NPT,RREQ,TOP DRIVE,0.041667,standard,well_alias_context_bridge,high,MBE-7
+WAYANG_WINDU,WAYANG_WINDU_2021,MBI-1,WAYANG_WINDU_2021|MBI-1,MBI-1,1,NPT,RREQ,TOP DRIVE,0.020833,standard,well_alias_context_bridge,high,MBI-1
+WAYANG_WINDU,WAYANG_WINDU_2021,MBI-1,WAYANG_WINDU_2021|MBI-1,MBI-1,2,NPT,RREQ,CIRSYS,0.010417,standard,well_alias_context_bridge,high,MBI-1
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,1,NPT,FISH,FISH ALL OH,0.843750,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,2,NPT,RREQ,TOP DRIVE,0.239583,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,3,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,4,NPT,RREQ,EQP,0.041667,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,5,NPT,RREQ,DP,0.270833,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,6,NPT,RREQ,DP,0.031250,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,7,NPT,RREQ,DP,0.072917,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,8,NPT,EQP,BHA,0.072917,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,9,NPT,RREQ,TOP DRIVE,0.062500,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,10,NPT,RREQ,TOP DRIVE,0.031250,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,11,NPT,EQPS,CMT,0.052083,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,12,NPT,RREQ,TOP DRIVE,1.072917,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-8,WAYANG_WINDU_2021|WWA-8,WWA-8,13,NPT,SP,HOLE CLEAN,1.937500,standard,well_alias_context_bridge,high,WWA-8
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-9,WAYANG_WINDU_2021|WWA-9,WWA-9,1,NPT,RREQ,CIRSYS,0.062500,standard,well_alias_context_bridge,high,WWA-9
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-9,WAYANG_WINDU_2021|WWA-9,WWA-9,2,NPT,RREQ,ROT,0.312500,standard,well_alias_context_bridge,high,WWA-9
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-9,WAYANG_WINDU_2021|WWA-9,WWA-9,3,SC,WO,EQP,0.166667,standard,well_alias_context_bridge,high,WWA-9
+WAYANG_WINDU,WAYANG_WINDU_2021,WWA-9,WAYANG_WINDU_2021|WWA-9,WWA-9,4,SC,PR,PROC,0.208333,standard,well_alias_context_bridge,high,WWA-9

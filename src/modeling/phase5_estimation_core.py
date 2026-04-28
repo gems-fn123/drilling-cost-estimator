@@ -18,6 +18,13 @@ from src.cleaning.wbs_lv5_driver_alignment import main as build_wbs_lv5_alignmen
 from src.io.build_canonical_mappings import main as build_canonical_mappings
 from src.modeling.dashboard_historical_mart import HISTORICAL_MART, refresh_all_outputs
 from src.modeling.phase4_preflight_and_baseline import run_phase4
+from src.modeling.unit_price_macro_analysis import MACRO_REFERENCE_PATH, MACRO_WEIGHTS_PATH, main as build_unit_price_macro_analysis
+from src.modeling.unit_price_well_analysis import (
+    SERVICE_TIME_BANDS,
+    UNIT_PRICE_BENCHMARK,
+    UNIT_PRICE_WELL_PROFILE,
+    main as build_unit_price_well_analysis,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 PROCESSED = ROOT / "data" / "processed"
@@ -30,9 +37,9 @@ APP_SUMMARY = PROCESSED / "app_estimate_summary.json"
 APP_CATEGORY_MATRIX_CSV = PROCESSED / "app_category_matrix.csv"
 APP_CATEGORY_MATRIX_JSON = PROCESSED / "app_category_matrix.json"
 
-FIELD_MAP = {"DRJ": "DARAJAT", "SLK": "SALAK"}
+FIELD_MAP = {"DRJ": "DARAJAT", "SLK": "SALAK", "WW": "WAYANG_WINDU"}
 RATE_FACTOR = {"Standard": 1.0, "Fast": 0.92, "Careful": 1.12}
-LEG_FACTOR = {"Standard-J": 1.0, "Multilateral": 1.18, "Re-Drill": 1.10}
+LEG_FACTOR = {"Standard-J": 1.0}
 CATEGORY_ORDER = ["Drilling", "Support", "Surface Facility", "Contingency"]
 CATEGORY_ERROR_COLUMN = "Error (MMUSD) / MAPE (%)"
 
@@ -61,7 +68,7 @@ def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
 
 
 def _safe_float(text: str) -> float:
-    return float((text or "0").replace(",", ""))
+    return float(str(text or "0").replace(",", ""))
 
 
 def _safe_int(text: str, default: int = 0) -> int:
@@ -69,6 +76,132 @@ def _safe_int(text: str, default: int = 0) -> int:
         return int(str(text))
     except (TypeError, ValueError):
         return default
+
+
+def _ensure_unit_price_support_outputs() -> None:
+    if not UNIT_PRICE_BENCHMARK.exists() or not SERVICE_TIME_BANDS.exists() or not UNIT_PRICE_WELL_PROFILE.exists():
+        build_unit_price_well_analysis()
+    if not MACRO_WEIGHTS_PATH.exists() or not MACRO_REFERENCE_PATH.exists():
+        build_unit_price_macro_analysis()
+
+
+def _load_unit_price_benchmark_index() -> Dict[Tuple[str, str], dict]:
+    _ensure_unit_price_support_outputs()
+    return {
+        (row["field"], row["pricing_basis"]): row
+        for row in read_csv(UNIT_PRICE_BENCHMARK)
+    }
+
+
+def _load_service_time_band_index() -> Dict[str, dict]:
+    _ensure_unit_price_support_outputs()
+    return {
+        row["field"]: row
+        for row in read_csv(SERVICE_TIME_BANDS)
+    }
+
+
+def _load_macro_reference_index() -> Dict[int, dict]:
+    _ensure_unit_price_support_outputs()
+    return {
+        _safe_int(row["year"]): row
+        for row in read_csv(MACRO_REFERENCE_PATH)
+    }
+
+
+def _load_macro_weight_rows(pricing_basis: str) -> List[dict]:
+    _ensure_unit_price_support_outputs()
+    rows = read_csv(MACRO_WEIGHTS_PATH)
+    return [
+        row
+        for row in rows
+        if row["scope_type"] == "pooled_pricing_basis"
+        and row["field"] == "ALL_FIELDS"
+        and row["pricing_basis"] == pricing_basis
+        and row["weight_eligible"] == "yes"
+        and row["support_status"] == "operational"
+    ]
+
+
+def _load_field_base_years() -> Dict[str, int]:
+    _ensure_unit_price_support_outputs()
+    base_years: Dict[str, int] = {}
+    for row in read_csv(UNIT_PRICE_WELL_PROFILE):
+        if row.get("exclude_from_estimator_pool") == "yes":
+            continue
+        year = _safe_int(row.get("campaign_year"), 0)
+        if year <= 0:
+            continue
+        field = row["field"]
+        base_years[field] = max(base_years.get(field, 0), year)
+    return base_years
+
+
+def _benchmark_uncertainty_pct(benchmark_row: dict | None) -> float:
+    if not benchmark_row:
+        return 0.0
+    median_value = _safe_float(benchmark_row.get("median_value", "0"))
+    p10_value = _safe_float(benchmark_row.get("p10_value", "0"))
+    p90_value = _safe_float(benchmark_row.get("p90_value", "0"))
+    if median_value <= 0.0:
+        return 0.0
+    return min(200.0, ((p90_value - p10_value) / median_value) * 100.0)
+
+
+def _representative_pace_days_per_1000ft(field: str, drill_rate_mode: str) -> float:
+    band_rows = _load_service_time_band_index()
+    row = band_rows.get(field)
+    if not row:
+        return 3.5
+    key = {
+        "Fast": "fast_p50_days_per_1000ft",
+        "Standard": "standard_p50_days_per_1000ft",
+        "Careful": "careful_p50_days_per_1000ft",
+    }[drill_rate_mode]
+    value = _safe_float(row.get(key, "0"))
+    if value > 0.0:
+        return value
+    return _safe_float(row.get("standard_p50_days_per_1000ft", "0")) or 3.5
+
+
+def _estimated_active_days(field: str, depth_ft: int, drill_rate_mode: str) -> float:
+    pace_days_per_1000ft = _representative_pace_days_per_1000ft(field, drill_rate_mode)
+    return max(8.0, pace_days_per_1000ft * (depth_ft / 1000.0))
+
+
+def _macro_adjustment_for_basis(enabled: bool, field: str, target_year: int, pricing_basis: str) -> Tuple[float, bool, str]:
+    if not enabled:
+        return 1.0, False, "disabled_by_user"
+
+    macro_by_year = _load_macro_reference_index()
+    base_years = _load_field_base_years()
+    base_year = base_years.get(field, 0)
+    if base_year <= 0:
+        return 1.0, False, "fallback_historical_only_missing_field_base_year"
+    if target_year not in macro_by_year or base_year not in macro_by_year:
+        return 1.0, False, "fallback_historical_only_macro_window_unavailable"
+
+    weight_rows = _load_macro_weight_rows(pricing_basis)
+    if not weight_rows:
+        return 1.0, False, f"fallback_historical_only_no_macro_weights_for_{pricing_basis}"
+
+    factor = 0.0
+    parts: List[str] = []
+    for row in weight_rows:
+        factor_name = row["factor_name"]
+        weight = _safe_float(row["forecast_weight"])
+        base_value = _safe_float(macro_by_year[base_year].get(factor_name, "0"))
+        target_value = _safe_float(macro_by_year[target_year].get(factor_name, "0"))
+        if weight <= 0.0 or base_value <= 0.0 or target_value <= 0.0:
+            continue
+        ratio = target_value / base_value
+        factor += weight * ratio
+        parts.append(f"{weight:.6f}*({factor_name}_{target_year}/{factor_name}_{base_year})")
+
+    if factor <= 0.0 or not parts:
+        return 1.0, False, f"fallback_historical_only_invalid_macro_ratio_for_{pricing_basis}"
+
+    return factor, True, " + ".join(parts)
 
 
 def _percentile(values: Iterable[float], pct: float) -> float:
@@ -95,8 +228,8 @@ def _format_mmusd(amount_usd: float) -> str:
 
 def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict, List[WellInput]]:
     field = campaign_input.get("field")
-    if field not in {"SLK", "DRJ"}:
-        raise ValueError("Field must be SLK or DRJ")
+    if field not in {"SLK", "DRJ", "WW"}:
+        raise ValueError("Field must be SLK, DRJ, or WW")
     year = int(campaign_input.get("year"))
     no_pads = int(campaign_input.get("no_pads"))
     no_wells = int(campaign_input.get("no_wells"))
@@ -107,9 +240,8 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
     normalized_wells: List[WellInput] = []
     for idx, row in enumerate(well_rows, start=1):
         depth = _normalize_depth(int(row["depth_ft"]))
-        leg = row["leg_type"]
         mode = row["drill_rate_mode"]
-        if leg not in LEG_FACTOR or mode not in RATE_FACTOR:
+        if mode not in RATE_FACTOR:
             raise ValueError(f"Invalid well inputs at row {idx}")
         normalized_wells.append(
             WellInput(
@@ -117,7 +249,7 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
                 pad_label=row["pad_label"],
                 depth_ft=depth,
                 depth_bucket_ft=depth,
-                leg_type=leg,
+                leg_type="Standard-J",
                 drill_rate_mode=mode,
             )
         )
@@ -132,12 +264,6 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
         "use_external_forecast": bool(campaign_input.get("use_external_forecast", False)),
         "use_synthetic_data": bool(campaign_input.get("use_synthetic_data", False)),
     }, normalized_wells
-
-
-def _external_adjustment(enabled: bool) -> Tuple[float, bool, str]:
-    if not enabled:
-        return 1.0, False, "disabled_by_user"
-    return 1.0, False, "fallback_historical_only_external_series_unavailable"
 
 
 def _refresh_pipeline_outputs(*, group_by: str = "family", use_synthetic: bool = False, synthetic_policy: str = "training") -> None:
@@ -553,7 +679,44 @@ def build_validation_artifacts(
 def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     normalized_campaign, normalized_wells = normalize_inputs(campaign_input, well_rows)
     field = normalized_campaign["field_canonical"]
-    ext_factor, ext_applied, ext_formula = _external_adjustment(normalized_campaign["use_external_forecast"])
+    benchmark_index = _load_unit_price_benchmark_index()
+    active_day_benchmark = benchmark_index.get((field, "active_day_rate"))
+    depth_benchmark = benchmark_index.get((field, "depth_rate"))
+    per_well_job_benchmark = benchmark_index.get((field, "per_well_job"))
+    if not active_day_benchmark or not depth_benchmark:
+        raise ValueError(f"Missing direct well unit-price benchmark for {field}")
+
+    active_factor, active_applied, active_formula = _macro_adjustment_for_basis(
+        normalized_campaign["use_external_forecast"],
+        field,
+        normalized_campaign["campaign_start_year"],
+        "active_day_rate",
+    )
+    depth_factor_macro, depth_applied, depth_formula = _macro_adjustment_for_basis(
+        normalized_campaign["use_external_forecast"],
+        field,
+        normalized_campaign["campaign_start_year"],
+        "depth_rate",
+    )
+    per_job_factor, per_job_applied, per_job_formula = _macro_adjustment_for_basis(
+        normalized_campaign["use_external_forecast"],
+        field,
+        normalized_campaign["campaign_start_year"],
+        "per_well_job",
+    )
+    shared_factor, shared_applied, shared_formula = _macro_adjustment_for_basis(
+        normalized_campaign["use_external_forecast"],
+        field,
+        normalized_campaign["campaign_start_year"],
+        "campaign_scope_benchmark",
+    )
+    ext_applied = active_applied or depth_applied or per_job_applied or shared_applied
+    ext_formula = (
+        f"active_day_rate: {active_formula}; "
+        f"depth_rate: {depth_formula}; "
+        f"per_well_job: {per_job_formula}; "
+        f"campaign_scope_benchmark: {shared_formula}"
+    )
 
     field_rows = _load_field_rows(field)
     anchor_year, anchor_rows = _select_anchor_rows(field_rows, normalized_campaign["campaign_start_year"])
@@ -572,15 +735,36 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     fallback_templates = [t for t in templates if t["classification"] not in {"well_tied", "hybrid", "campaign_tied"}]
 
     detail_rows, well_outputs = [], []
+    distribution_baseline = [
+        (_safe_float(template["support_stats"].get("median_usd", "0")) * template["anchor_weight"], template)
+        for template in direct_templates
+    ]
+    direct_distribution_total = sum(weight for weight, _ in distribution_baseline)
+    active_day_rate_value = _safe_float(active_day_benchmark["median_value"])
+    depth_rate_value = _safe_float(depth_benchmark["median_value"])
+    per_well_job_value = _safe_float(per_well_job_benchmark["median_value"]) if per_well_job_benchmark else 0.0
+    active_unc_pct = _benchmark_uncertainty_pct(active_day_benchmark)
+    depth_unc_pct = _benchmark_uncertainty_pct(depth_benchmark)
+    per_job_unc_pct = _benchmark_uncertainty_pct(per_well_job_benchmark)
+
     for well in normalized_wells:
-        depth_factor = (well.depth_bucket_ft / 7000.0) * LEG_FACTOR[well.leg_type] * RATE_FACTOR[well.drill_rate_mode]
-        well_total = 0.0
+        estimated_days = _estimated_active_days(field, well.depth_bucket_ft, well.drill_rate_mode)
+        active_day_component = active_day_rate_value * estimated_days * active_factor
+        depth_component = depth_rate_value * well.depth_bucket_ft * depth_factor_macro
+        per_job_component = per_well_job_value * per_job_factor
+        well_total = active_day_component + depth_component + per_job_component
+        direct_unc_pct = 0.0
+        if well_total > 0.0:
+            direct_unc_pct = (
+                (active_day_component / well_total) * active_unc_pct
+                + (depth_component / well_total) * depth_unc_pct
+                + (per_job_component / well_total) * per_job_unc_pct
+            )
         well_detail = []
-        for template in direct_templates:
+        for baseline_value, template in distribution_baseline:
             stats = template["support_stats"]
-            estimate = stats["median_usd"] * template["anchor_weight"] * depth_factor * ext_factor
-            unc_pct = _uncertainty_pct(stats, cap=150.0)
-            well_total += estimate
+            allocation_weight = (baseline_value / direct_distribution_total) if direct_distribution_total > 0.0 else (1.0 / max(len(direct_templates), 1))
+            estimate = well_total * allocation_weight
             row = {
                 "well_label": well.well_label,
                 "component_scope": "direct_well_linked",
@@ -593,32 +777,36 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
                 "wbs_family_tag": template["wbs_family_tag"],
                 "family_group_key": template["family_group_key"],
                 "estimate_usd": estimate,
-                "uncertainty_pct": unc_pct,
+                "uncertainty_pct": direct_unc_pct,
                 "uncertainty_type": "empirical_spread",
-                "estimation_method": _estimation_method(stats),
+                "estimation_method": "unit_price_benchmark_allocated_to_anchor_wbs",
                 "driver_family": template["driver_family"],
                 "source_field_campaign_years": ", ".join(stats["source_campaign_years"][:8]),
                 "source_wells": ", ".join(stats["source_wells"][:10]),
                 "source_row_ids": ", ".join(stats["source_row_ids"][:20]),
                 "source_row_count": stats["source_row_count"],
-                "support_explanation": template["support_explanation"],
+                "support_explanation": (
+                    "Direct well benchmark allocated by anchor-year WBS distribution. "
+                    f"active_day_rate={active_day_rate_value:.2f} USD/day, estimated_days={estimated_days:.2f}, "
+                    f"depth_rate={depth_rate_value:.2f} USD/ft, depth_ft={well.depth_bucket_ft}, "
+                    f"per_well_job={per_well_job_value:.2f} USD/well."
+                ),
                 "synthetic_rows_used": 0,
-                "external_adjustment_applied": ext_applied,
+                "external_adjustment_applied": active_applied or depth_applied or per_job_applied,
             }
             detail_rows.append(row)
             well_detail.append(row)
 
         top = sorted(well_detail, key=lambda r: r["estimate_usd"], reverse=True)[:5]
-        avg_unc = sum(r["uncertainty_pct"] for r in well_detail) / max(len(well_detail), 1)
         well_outputs.append(
             {
                 "well_label": well.well_label,
                 "estimated_cost_usd": well_total,
                 "estimated_cost_mmusd": well_total / 1_000_000.0,
-                "estimated_days": max(8.0, 20.0 * (well.depth_bucket_ft / 7000.0) * LEG_FACTOR[well.leg_type] / RATE_FACTOR[well.drill_rate_mode]),
-                "uncertainty_pct": avg_unc,
+                "estimated_days": estimated_days,
+                "uncertainty_pct": direct_unc_pct,
                 "uncertainty_label": "empirical_spread",
-                "method_label": "dashboard_anchored_wbs",
+                "method_label": "unit_price_direct_benchmark_plus_anchor_wbs_allocation",
                 "top_wbs_contributors": [f"{r['l5_id']} ({r['estimate_usd']/1_000_000:.2f} MMUSD)" for r in top],
                 "source_campaign_tags": sorted({r["source_field_campaign_years"] for r in top}),
             }
@@ -627,11 +815,12 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     shared_weight = 1.0 + 0.08 * normalized_campaign["pad_expansion_count"]
     for template in shared_templates + fallback_templates:
         stats = template["support_stats"]
-        base = stats["median_usd"] * template["anchor_weight"] * ext_factor
         if template["classification"] in {"hybrid", "campaign_tied"}:
+            base = stats["median_usd"] * template["anchor_weight"] * shared_factor
             estimate = base * shared_weight
             scope = "shared_support" if template["classification"] == "hybrid" else "campaign_overhead"
         else:
+            base = stats["median_usd"] * template["anchor_weight"]
             estimate = base
             scope = "fallback_unclassified"
         unc_pct = _uncertainty_pct(stats)
@@ -711,7 +900,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     summary = {
         "field": field,
         "input_year": normalized_campaign["campaign_start_year"],
-        "estimation_methodology": "field_specific_family_analog_with_anchor_year_lv5_distribution",
+        "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_wbs_distribution_and_campaign_scope_analogs",
         "total_campaign_cost_mmusd": total_cost / 1_000_000.0,
         "total_campaign_cost_formatted": _format_mmusd(total_cost),
         "total_campaign_cost_usd": total_cost,
@@ -738,7 +927,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "run_timestamp": datetime.now(timezone.utc).isoformat(),
         "field": field,
         "scenario_id": scenario_id,
-        "estimate_type": "dashboard_anchored",
+        "estimate_type": "unit_price_benchmark_anchored",
         "runtime_toggles": {
             "external_forecast_requested": normalized_campaign["use_external_forecast"],
             "external_forecast_applied": ext_applied,

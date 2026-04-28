@@ -1,5 +1,5 @@
-Cost Category,Well-1,Well-2,Well-3,Error (MMUSD) / MAPE (%)
-Drilling,5.578,5.578,5.578,n/a: fewer than 2 historical drilling campaign observations in SALAK
-Support,0.529,0.529,0.529,n/a: fewer than 2 historical support campaign observations in SALAK
-Surface Facility,1.246,1.246,1.246,n/a: fewer than 2 historical surface facility campaign observations in SALAK
-Contingency,0.0,0.0,0.0,n/a: fewer than 2 historical contingency campaign observations in SALAK
+Cost Category,Well-1,Well-2,Error (MMUSD) / MAPE (%)
+Drilling,6.875,9.405,n/a: fewer than 2 historical drilling campaign observations in SALAK
+Support,0.735,1.005,n/a: fewer than 2 historical support campaign observations in SALAK
+Surface Facility,1.695,2.318,n/a: fewer than 2 historical surface facility campaign observations in SALAK
+Contingency,0.0,0.0,n/a: fewer than 2 historical contingency campaign observations in SALAK

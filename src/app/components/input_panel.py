@@ -8,7 +8,7 @@ import streamlit as st
 def render_campaign_panel() -> dict:
     st.sidebar.header("Campaign Inputs")
     year = st.sidebar.number_input("Year", min_value=2018, max_value=2035, value=2026, step=1)
-    field = st.sidebar.selectbox("Field", ["SLK", "DRJ"], index=0)
+    field = st.sidebar.selectbox("Field", ["SLK", "DRJ", "WW"], index=0)
     no_pads = st.sidebar.number_input("No. Pads", min_value=1, max_value=5, value=2, step=1)
     no_wells = st.sidebar.number_input("No. Wells", min_value=1, max_value=20, value=3, step=1)
     no_pad_expansion = st.sidebar.number_input("No. Pad Expansion", min_value=0, max_value=int(no_pads), value=0, step=1)
@@ -36,11 +36,12 @@ def render_runtime_toggles() -> dict:
 
 def render_well_inputs(no_wells: int, no_pads: int) -> List[dict]:
     st.subheader("Individual Well Parameters")
+    st.caption("Complexity split is disabled on this branch; all new estimated wells are treated as Standard-J.")
     options = [f"Pad-{idx}" for idx in range(1, no_pads + 1)]
     rows: List[dict] = []
     for idx in range(1, no_wells + 1):
         st.markdown(f"**Well-{idx}**")
-        c1, c2, c3, c4 = st.columns([1, 1, 1, 1])
+        c1, c2, c3 = st.columns([1, 1, 1])
         with c1:
             pad_label = st.selectbox("Pad", options, key=f"pad_{idx}")
         with c2:
@@ -51,16 +52,14 @@ def render_well_inputs(no_wells: int, no_pads: int) -> List[dict]:
                 key=f"depth_{idx}",
             )
         with c3:
-            leg_type = st.selectbox("Leg-type", ["Standard-J", "Multilateral", "Re-Drill"], key=f"leg_{idx}")
-        with c4:
-            drill_rate_mode = st.selectbox("Drill-Rate", ["Standard", "Fast", "Careful"], key=f"rate_{idx}")
+            drill_rate_mode = st.selectbox("Service Pace", ["Standard", "Fast", "Careful"], key=f"rate_{idx}")
 
         rows.append(
             {
                 "well_label": f"Well-{idx}",
                 "pad_label": pad_label,
                 "depth_ft": int(depth_ft),
-                "leg_type": leg_type,
+                "leg_type": "Standard-J",
                 "drill_rate_mode": drill_rate_mode,
             }
         )

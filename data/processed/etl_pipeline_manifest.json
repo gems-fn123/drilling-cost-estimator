@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-22T06:34:31.902263+00:00",
+  "generated_at_utc": "2026-04-24T10:26:51.482797+00:00",
   "pipeline": "streamlined_etl_v1",
   "runtime_toggles": {
     "group_by": "family",
@@ -73,18 +73,60 @@
     {
       "path": "data/processed/app_estimate_audit.csv",
       "exists": true,
-      "size_bytes": 240433,
+      "size_bytes": 310113,
       "row_count": 527
     },
     {
       "path": "data/processed/app_estimate_summary.json",
       "exists": true,
-      "size_bytes": 2447
+      "size_bytes": 2461
     },
     {
       "path": "data/processed/app_run_manifest.json",
       "exists": true,
-      "size_bytes": 973
+      "size_bytes": 1627
+    },
+    {
+      "path": "data/processed/unit_price_well_profile.csv",
+      "exists": true,
+      "size_bytes": 8452,
+      "row_count": 39
+    },
+    {
+      "path": "data/processed/unit_price_benchmark.csv",
+      "exists": true,
+      "size_bytes": 1598,
+      "row_count": 10
+    },
+    {
+      "path": "data/processed/service_time_band_reference.csv",
+      "exists": true,
+      "size_bytes": 1496,
+      "row_count": 3
+    },
+    {
+      "path": "data/processed/unit_price_macro_factors.csv",
+      "exists": true,
+      "size_bytes": 44291,
+      "row_count": 112
+    },
+    {
+      "path": "data/processed/unit_price_macro_weights.csv",
+      "exists": true,
+      "size_bytes": 13341,
+      "row_count": 56
+    },
+    {
+      "path": "data/processed/npt_contribution_summary.csv",
+      "exists": true,
+      "size_bytes": 16022,
+      "row_count": 162
+    },
+    {
+      "path": "data/processed/npt_penalty_reference.csv",
+      "exists": true,
+      "size_bytes": 5645,
+      "row_count": 36
     },
     {
       "path": "data/processed/wbs_tree_interactive.json",

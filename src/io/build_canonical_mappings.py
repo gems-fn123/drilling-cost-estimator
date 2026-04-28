@@ -12,6 +12,7 @@ RAW_DIR = ROOT / "data" / "raw"
 PROCESSED_DIR = ROOT / "data" / "processed"
 REPORT_PATH = ROOT / "reports" / "well_master_build_report.md"
 SYNTH_REPORT_PATH = ROOT / "reports" / "synthetic_placeholder_method.md"
+SCOPE_REPORT_PATH = ROOT / "reports" / "unit_price_scope_coverage.md"
 
 CAMPAIGN_MAPPING_FIELDS = [
     "campaign_code",
@@ -75,12 +76,17 @@ NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 ZIP_MAGIC = b"PK\x03\x04"
 OLE_MAGIC = b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
 
+PRIMARY_WORKBOOK = "20260327_WBS_Data.xlsx"
+DASHBOARD_WORKBOOK = "20260422_Data for Dashboard.xlsx"
+
 OFFICIAL_CAMPAIGNS = {
     "E530-30101-D225301": {"campaign_id": "DARAJAT_2022", "field": "DARAJAT", "scope": "in_scope"},
     "E530-30101-D235301": {"campaign_id": "DARAJAT_2023_2024", "field": "DARAJAT", "scope": "in_scope"},
     "E540-30101-D245401": {"campaign_id": "SALAK_2025_2026", "field": "SALAK", "scope": "in_scope"},
-    "E530-30101-D19001": {"campaign_id": "DARAJAT_2019", "field": "DARAJAT", "scope": "legacy_reference"},
-    "E540-30101-D20001": {"campaign_id": "SALAK_2021", "field": "SALAK", "scope": "legacy_reference"},
+    "E530-30101-D19001": {"campaign_id": "DARAJAT_2019", "field": "DARAJAT", "scope": "in_scope"},
+    "E540-30101-D20001": {"campaign_id": "SALAK_2021", "field": "SALAK", "scope": "in_scope"},
+    "E500-2-0-8501-185003": {"campaign_id": "WAYANG_WINDU_2018", "field": "WAYANG_WINDU", "scope": "in_scope"},
+    "E500-30101-D205011": {"campaign_id": "WAYANG_WINDU_2021", "field": "WAYANG_WINDU", "scope": "in_scope"},
 }
 
 WELL_ALIAS_PAIRS = [
@@ -89,6 +95,15 @@ WELL_ALIAS_PAIRS = [
     ("20-1", "DRJ-50"),
     ("SF-1", "DRJ-49"),
     ("SF-ML", "DRJ-38"),
+    ("DRJ-38RD", "DRJ-38"),
+    ("DRJ-44OH", "DRJ-44"),
+    ("DRJ-45OH", "DRJ-45"),
+    ("DRJ-46OH", "DRJ-46"),
+    ("DRJ-47OH", "DRJ-47"),
+    ("DRJ-49OH", "DRJ-49"),
+    ("DRJ-50OH", "DRJ-50"),
+    ("DRJ-51OH", "DRJ-51"),
+    ("DRJ-52OH", "DRJ-52"),
     ("DRJ-Steam 6", "DRJ-53"),
     ("DRJ-Steam 2", "DRJ-54"),
     ("DRJ-Steam 3", "DRJ-55"),
@@ -103,6 +118,15 @@ CAMPAIGN_LABEL_TO_CODE = {
     "SLK 2025": "E540-30101-D245401",
     "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
     "SALAK CAMPAIGN 2021": "E540-30101-D20001",
+    "DRJ - 2019": "E530-30101-D19001",
+    "DRJ - 2022": "E530-30101-D225301",
+    "DRJ - 2024": "E530-30101-D235301",
+    "SLK - 2021": "E540-30101-D20001",
+    "SLK - 2025": "E540-30101-D245401",
+    "WW - 2018": "E500-2-0-8501-185003",
+    "WW - 2021": "E500-30101-D205011",
+    "WAYANG WINDU CAMPAIGN 2018/2019": "E500-2-0-8501-185003",
+    "WAYANG WINDU CAMPAIGN 2020/2021": "E500-30101-D205011",
 }
 
 SYNTHETIC_CAMPAIGNS = [
@@ -365,7 +389,10 @@ def extract_full_table(rows: list[list[str]], required_headers: list[str]) -> li
 
 def campaign_rows_from_sources() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
-    for workbook in sorted(RAW_DIR.glob("*.xlsx")):
+    for workbook_name in [PRIMARY_WORKBOOK, DASHBOARD_WORKBOOK]:
+        workbook = RAW_DIR / workbook_name
+        if not workbook.exists():
+            continue
         sheets = read_xlsx(workbook)
         for sheet, data in sheets.items():
             for rec in extract_table(data, {"campaign_code": "WBS Drilling Campaign", "campaign_name": "Campaign"}):
@@ -398,6 +425,20 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
                         }
                     )
 
+    for row in dashboard_campaign_rows():
+        meta = OFFICIAL_CAMPAIGNS.get(row["campaign_code"])
+        rows.append(
+            {
+                "campaign_code": row["campaign_code"],
+                "campaign_id": meta["campaign_id"] if meta else "EXCLUDED",
+                "campaign_name_raw": row["campaign_name"],
+                "estimator_scope": meta["scope"] if meta else "excluded",
+                "include_for_estimator": "yes" if meta and meta["scope"] == "in_scope" else "no",
+                "source_file": row["source_file"],
+                "source_sheet": row["source_sheet"],
+            }
+        )
+
     dedup: dict[str, dict[str, str]] = {}
     for row in rows:
         if row["campaign_code"] not in dedup:
@@ -418,6 +459,7 @@ def campaign_rows_from_sources() -> list[dict[str, str]]:
 
 
 def enrich_campaign_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    actual_totals = dashboard_actual_costs()
     enriched_rows: list[dict[str, str]] = []
     for row in rows:
         meta = OFFICIAL_CAMPAIGNS.get(row["campaign_code"])
@@ -434,7 +476,7 @@ def enrich_campaign_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
                 "include_for_estimator": row["include_for_estimator"],
                 "start_date": "",
                 "end_date": "",
-                "actual_cost_total": "",
+                "actual_cost_total": f"{actual_totals[row['campaign_code']]:.2f}" if row["campaign_code"] in actual_totals else "",
                 "source_file": row["source_file"],
                 "source_sheet": row["source_sheet"],
             }
@@ -448,12 +490,85 @@ def build_alias_index() -> dict[str, str]:
         l_norm, r_norm = normalize_well(left), normalize_well(right)
         mapping[l_norm] = r_norm
         mapping[r_norm] = r_norm
+    mapping.update(load_dashboard_alias_index())
     return mapping
+
+
+def load_dashboard_alias_index() -> dict[str, str]:
+    path = RAW_DIR / DASHBOARD_WORKBOOK
+    if not path.exists():
+        return {}
+
+    wb = read_xlsx(path)
+    rows = extract_full_table(
+        wb.get("General.Camp.Data", []),
+        ["Asset", "Campaign", "WBS CODE", "Well Name Actual", "Well Name SAP", "Well Name Alt 1", "Well Name Alt 2"],
+    )
+
+    mapping: dict[str, str] = {}
+    for row in rows:
+        canonical = normalize_well(row.get("Well Name Actual", ""))
+        if not canonical:
+            continue
+        for key in ["Well Name Actual", "Well Name SAP", "Well Name Alt 1", "Well Name Alt 2"]:
+            alias = normalize_well(row.get(key, ""))
+            if alias:
+                mapping[alias] = canonical
+        if canonical.startswith("DRJ-") and canonical not in {"DRJ-53", "DRJ-54", "DRJ-55", "DRJ-56", "DRJ-57"}:
+            mapping[f"{canonical}OH"] = canonical
+        if canonical == "DRJ-38":
+            mapping["DRJ-38RD"] = canonical
+    return mapping
+
+
+def dashboard_campaign_rows() -> list[dict[str, str]]:
+    path = RAW_DIR / DASHBOARD_WORKBOOK
+    if not path.exists():
+        return []
+
+    wb = read_xlsx(path)
+    rows = extract_full_table(wb.get("General.Camp.Data", []), ["Asset", "Campaign", "WBS CODE"])
+    out: list[dict[str, str]] = []
+    for row in rows:
+        code = clean_text(row.get("WBS CODE", "")).upper()
+        campaign_name = clean_text(row.get("Campaign", ""))
+        if code and campaign_name:
+            out.append(
+                {
+                    "campaign_code": code,
+                    "campaign_name": campaign_name,
+                    "source_file": DASHBOARD_WORKBOOK,
+                    "source_sheet": "General.Camp.Data",
+                }
+            )
+    return out
+
+
+def dashboard_actual_costs() -> dict[str, float]:
+    path = RAW_DIR / DASHBOARD_WORKBOOK
+    if not path.exists():
+        return {}
+
+    wb = read_xlsx(path)
+    rows = extract_full_table(wb.get("Check.Total", []), ["Row Labels", "Sum of Actual Cost USD"])
+    out: dict[str, float] = {}
+    for row in rows:
+        label = clean_text(row.get("Row Labels", "")).upper()
+        total_text = clean_text(row.get("Sum of Actual Cost USD", ""))
+        if not label or not total_text:
+            continue
+        code = CAMPAIGN_LABEL_TO_CODE.get(label, "")
+        if code:
+            try:
+                out[code] = float(total_text.replace(",", ""))
+            except ValueError:
+                continue
+    return out
 
 
 def collect_observations() -> list[dict[str, str]]:
     observations: list[dict[str, str]] = []
-    wb = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
+    wb = read_xlsx(RAW_DIR / PRIMARY_WORKBOOK)
 
     for sheet in ["Data.Summary", "Cost & Technical Data"]:
         for row in extract_table(wb.get(sheet, []), {"campaign": "Campaign", "well": "Well Name"}):
@@ -467,6 +582,50 @@ def collect_observations() -> list[dict[str, str]]:
     for row in extract_table(wb.get("2. Drilling.Data.History", []), {"campaign": "Drilling Campaign", "well": "Well Name (WellView Version)"}):
         if row["well"]:
             observations.append({"source_sheet": "2. Drilling.Data.History", "campaign_raw": row["campaign"], "well_alias": normalize_well(row["well"])})
+
+    dashboard_path = RAW_DIR / DASHBOARD_WORKBOOK
+    if dashboard_path.exists():
+        dashboard = read_xlsx(dashboard_path)
+        context_rows = extract_full_table(
+            dashboard.get("General.Camp.Data", []),
+            ["Asset", "Campaign", "WBS CODE", "Well Name Actual", "Well Name SAP", "Well Name Alt 1", "Well Name Alt 2"],
+        )
+        for row in context_rows:
+            campaign_raw = row.get("Campaign", "")
+            for key in ["Well Name Actual", "Well Name SAP", "Well Name Alt 1", "Well Name Alt 2"]:
+                well_alias = normalize_well(row.get(key, ""))
+                if well_alias:
+                    observations.append(
+                        {
+                            "source_sheet": "General.Camp.Data",
+                            "campaign_raw": campaign_raw,
+                            "well_alias": well_alias,
+                        }
+                    )
+
+        template_rows = extract_full_table(dashboard.get("DashBoard.Tab.Template", []), ["Asset", "Campaign", "Well"])
+        for row in template_rows:
+            well_alias = normalize_well(row.get("Well", ""))
+            if well_alias and well_alias != "GENERAL":
+                observations.append(
+                    {
+                        "source_sheet": "DashBoard.Tab.Template",
+                        "campaign_raw": row.get("Campaign", ""),
+                        "well_alias": well_alias,
+                    }
+                )
+
+        structured_rows = extract_full_table(dashboard.get("Structured.Cost", []), ["Asset", "Campaign", "Well"])
+        for row in structured_rows:
+            well_alias = normalize_well(row.get("Well", ""))
+            if well_alias and well_alias != "GENERAL":
+                observations.append(
+                    {
+                        "source_sheet": "Structured.Cost",
+                        "campaign_raw": row.get("Campaign", ""),
+                        "well_alias": well_alias,
+                    }
+                )
 
     return observations
 
@@ -497,7 +656,7 @@ def build_master_and_lookup() -> tuple[list[dict[str, str]], list[dict[str, str]
             )
             continue
 
-        if obs["source_sheet"] in {"Data.Summary", "Cost & Technical Data", "WellView.Data"} and campaign_code in OFFICIAL_CAMPAIGNS:
+        if obs["source_sheet"] in {"Data.Summary", "Cost & Technical Data", "WellView.Data", "General.Camp.Data", "DashBoard.Tab.Template", "Structured.Cost"} and campaign_code in OFFICIAL_CAMPAIGNS:
             meta = OFFICIAL_CAMPAIGNS[campaign_code]
             if meta["scope"] == "in_scope":
                 key = (canonical, campaign_code)
@@ -720,10 +879,11 @@ def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], looku
 - Remaining exclusions: **{stats['remaining_exclusions']}**
 
 ## Rules enforced
-1. Campaign scope unchanged from current definition (3 in-scope, 2 legacy, others excluded).
+1. Campaign scope widened to all seven dashboard campaigns across DARAJAT, SALAK, and WAYANG_WINDU.
 2. `DRJ-Steam 1` kept in scope and excluded from well-level training.
 3. `20-1` under DRJ 2023 treated as posting exception only.
 4. History rows (`2. Drilling.Data.History`) are reassigned to campaign when canonical well maps to exactly one in-scope master well.
+5. Dashboard workbook aliases (`OH`, `RD`, SAP/Alt names, WW spacing variants) are normalized into canonical well names before estimator use.
 
 ## Exported contract
 - `well_master.csv` now carries both estimator roster fields (`campaign_code`, `campaign_id`, training flags) and stable master keys (`well_id`, `well_name`, `well_aliases`).
@@ -731,6 +891,40 @@ def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], looku
 - `region` and `operator` remain blank in this Define layer because the current source package does not provide a reliable authoritative value for every in-scope well.
 """
     REPORT_PATH.write_text(report, encoding="utf-8")
+
+
+def write_scope_coverage_report(campaign_rows: list[dict[str, str]], master_rows: list[dict[str, str]]) -> None:
+    wells_by_campaign: dict[str, int] = {}
+    for row in master_rows:
+        wells_by_campaign[row["campaign_id"]] = wells_by_campaign.get(row["campaign_id"], 0) + 1
+
+    lines = [
+        "# Unit Price Scope Coverage",
+        "",
+        "Ground-up canonical scope for the dashboard-driven unit-price build.",
+        "",
+        "| field | campaign_id | campaign_code | include_for_estimator | actual_cost_total | canonical_well_count | source_file | source_sheet |",
+        "|---|---|---|---|---:|---:|---|---|",
+    ]
+    for row in sorted(campaign_rows, key=lambda r: (r["field"], r["campaign_id"])):
+        if row["include_for_estimator"] != "yes":
+            continue
+        lines.append(
+            f"| {row['field']} | {row['campaign_id']} | {row['campaign_code']} | {row['include_for_estimator']} | "
+            f"{row['actual_cost_total'] or '0.00'} | {wells_by_campaign.get(row['campaign_id'], 0)} | "
+            f"{row['source_file'] or ''} | {row['source_sheet'] or ''} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Notes",
+            "- Campaign scope is workbook-driven and no longer limited to the legacy three-campaign estimator subset.",
+            "- Canonical well names come from the combined alias layer: primary workbook observations, dashboard workbook General.Camp.Data, and manual alias rules.",
+            "- `DRJ-STEAM 1` remains in estimator scope but excluded from well-level training until confirmed.",
+        ]
+    )
+    SCOPE_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _to_float(value: str) -> float | None:
@@ -857,7 +1051,7 @@ def write_synthetic_report(campaign_rows: list[dict[str, str]], lv5_rows: list[d
 
 
 def write_salak_2021_scope_report() -> None:
-    wb = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
+    wb = read_xlsx(RAW_DIR / PRIMARY_WORKBOOK)
     summary_rows = extract_full_table(wb.get("Data.Summary", []), ["Asset", "Campaign", "WBS_Level", "WBS_ID"])
     lvl5_rows = [r for r in summary_rows if clean_text(r.get("WBS_Level", "")) == "05"]
 
@@ -876,7 +1070,7 @@ def write_salak_2021_scope_report() -> None:
         "# SALAK_2021 Scope Investigation",
         "",
         "## Objective",
-        "Assess whether SALAK_2021 can be promoted from `legacy_reference` to `in_scope` using current raw workbook evidence.",
+        "Record the current scope posture for SALAK_2021 after adding the dashboard workbook to the canonical source package.",
         "",
         "## Findings",
         f"- Data.Summary Lv5 rows for SALAK_2021 labels (`SALAK CAMPAIGN 2021` / `SLK 2021`): **{len(salak_2021_lv5)}**.",
@@ -884,12 +1078,12 @@ def write_salak_2021_scope_report() -> None:
         f"- Sheets with SALAK 2021 references but no direct Lv5 cost-row authority used by this pipeline: **{', '.join(sorted(reference_only_sheets)) or 'none_detected'}**.",
         "",
         "## Interpretation",
-        "- Current Phase 4 pipeline consumes `Data.Summary` Lv5 cost-bearing rows as authoritative scope for estimator ingestion.",
-        "- SALAK_2021 appears as campaign/reference context in non-authoritative sheets, but lacks required Lv5 cost-bearing structure in `Data.Summary` for this run.",
+        "- The legacy `Data.Summary` pipeline alone is still sparse for SALAK_2021.",
+        "- The widened unit-price program now treats the dashboard workbook as an authoritative historical source for campaign and well scope, so SALAK_2021 is retained in canonical scope.",
         "",
         "## Recommendation",
-        "- Keep `SALAK_2021` as **`legacy_reference`** until auditable Lv5 cost-bearing rows are available in authoritative raw sources.",
-        "- Do not promote to `in_scope` and do not synthesize SALAK_2021 cost rows for estimator training/validation.",
+        "- Keep SALAK_2021 included for dashboard-driven history, unit-price analysis, and macro trend work.",
+        "- Keep legacy `Data.Summary`-only estimator logic separated from this widened scope until the new unit-price path fully replaces it.",
     ]
     (ROOT / "reports" / "salak_2021_scope_investigation.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -905,6 +1099,7 @@ def main() -> None:
     write_csv(PROCESSED_DIR / "well_alias_lookup.csv", lookup_rows, LOOKUP_FIELDS)
     enrich_canonical_well_mapping_order_metadata()
     write_report(stats, master_rows, lookup_rows)
+    write_scope_coverage_report(campaign_rows, master_rows)
     write_salak_2021_scope_report()
 
     synth_campaign_rows, synth_lv5_rows = build_synthetic_placeholders()

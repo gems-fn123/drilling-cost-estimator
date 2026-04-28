@@ -72,6 +72,8 @@ class TestPhase5EstimatorEngine(unittest.TestCase):
         summary = json.loads(Path(APP_SUMMARY).read_text(encoding="utf-8"))
         self.assertEqual(manifest["reconciliation"]["status"], "PASS")
         self.assertEqual(summary["reconciliation_status"], "PASS")
+        self.assertTrue(manifest["runtime_toggles"]["external_forecast_applied"])
+        self.assertIn("active_day_rate:", manifest["external_adjustment_formula"])
 
 
 if __name__ == "__main__":
