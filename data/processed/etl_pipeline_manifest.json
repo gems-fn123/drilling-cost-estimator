@@ -1,24 +1,26 @@
 {
-  "generated_at_utc": "2026-04-24T10:26:51.482797+00:00",
+  "generated_at_utc": "2026-04-29T08:51:02.979971+00:00",
   "pipeline": "streamlined_etl_v1",
   "runtime_toggles": {
     "group_by": "family",
     "use_synthetic": false,
     "synthetic_policy": "not_applied"
   },
-  "field_partition_rule": "DARAJAT and SALAK are processed independently and never pooled.",
+  "field_partition_rule": "DARAJAT, SALAK, and WAYANG_WINDU are processed independently and never pooled.",
   "validation_summary": {
-    "confidence_band_rows": 6,
-    "method_registry_rows": 6,
-    "eligible_historical_rows": 724
+    "confidence_band_rows": 7,
+    "method_registry_rows": 7,
+    "eligible_historical_rows": 1092
   },
   "wbs_tree_summary": {
-    "source_row_count": 822,
-    "darajat_row_count": 462,
-    "salak_row_count": 360,
+    "source_row_count": 1138,
+    "darajat_row_count": 452,
+    "salak_row_count": 396,
+    "wayang_windu_row_count": 290,
     "combined_json": "data/processed/wbs_tree_interactive.json",
     "darajat_json": "data/processed/wbs_tree_field_darajat.json",
     "salak_json": "data/processed/wbs_tree_field_salak.json",
+    "wayang_windu_json": "data/processed/wbs_tree_field_wayang_windu.json",
     "interactive_html": "reports/wbs_tree_interactive.html"
   },
   "artifacts": [
@@ -61,30 +63,30 @@
     {
       "path": "data/processed/confidence_bands.csv",
       "exists": true,
-      "size_bytes": 622,
-      "row_count": 6
+      "size_bytes": 753,
+      "row_count": 7
     },
     {
       "path": "data/processed/estimator_method_registry.csv",
       "exists": true,
-      "size_bytes": 2530,
-      "row_count": 6
+      "size_bytes": 2951,
+      "row_count": 7
     },
     {
       "path": "data/processed/app_estimate_audit.csv",
       "exists": true,
-      "size_bytes": 310113,
-      "row_count": 527
+      "size_bytes": 34179,
+      "row_count": 45
     },
     {
       "path": "data/processed/app_estimate_summary.json",
       "exists": true,
-      "size_bytes": 2461
+      "size_bytes": 2109
     },
     {
       "path": "data/processed/app_run_manifest.json",
       "exists": true,
-      "size_bytes": 1627
+      "size_bytes": 1653
     },
     {
       "path": "data/processed/unit_price_well_profile.csv",
@@ -117,6 +119,17 @@
       "row_count": 56
     },
     {
+      "path": "data/processed/unit_price_macro_cluster_weights.csv",
+      "exists": true,
+      "size_bytes": 100004,
+      "row_count": 320
+    },
+    {
+      "path": "reports/unit_price_macro_correlation.md",
+      "exists": true,
+      "size_bytes": 29879
+    },
+    {
       "path": "data/processed/npt_contribution_summary.csv",
       "exists": true,
       "size_bytes": 16022,
@@ -131,27 +144,32 @@
     {
       "path": "data/processed/wbs_tree_interactive.json",
       "exists": true,
-      "size_bytes": 1489624
+      "size_bytes": 916333
     },
     {
       "path": "data/processed/wbs_tree_field_darajat.json",
       "exists": true,
-      "size_bytes": 817775
+      "size_bytes": 388793
     },
     {
       "path": "data/processed/wbs_tree_field_salak.json",
       "exists": true,
-      "size_bytes": 604500
+      "size_bytes": 285888
+    },
+    {
+      "path": "data/processed/wbs_tree_field_wayang_windu.json",
+      "exists": true,
+      "size_bytes": 203328
     },
     {
       "path": "reports/wbs_tree_interactive.html",
       "exists": true,
-      "size_bytes": 10118
+      "size_bytes": 17027
     },
     {
       "path": "reports/wbs_tree_diagram_report.md",
       "exists": true,
-      "size_bytes": 756
+      "size_bytes": 924
     }
   ]
 }

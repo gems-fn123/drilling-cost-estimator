@@ -71,6 +71,18 @@ Run validation artifact build:
 ```bash
 python src/modeling/build_phase5_validation_artifacts.py
 ```
+
+## Azure App Service Deployment
+
+This repo now includes Azure App Service deployment assets for Streamlit:
+
+- `app.py`
+- `requirements.txt`
+- `.streamlit/config.toml`
+- `.github/workflows/azure-streamlit-deploy.yml`
+- `scripts/azure_configure_app_service.sh`
+
+Setup and migration checklist: `docs/azure_app_service_migration.md`.
 WBS tree tab:
 - Open `WBS TREE VIEWER` (main tabs, not sidebar) to load an Excel file path (default empty), select sheet name (default `Data.Summary`), and render the collapsible field-separated WBS tree with median/spread at each node.
 - You can also refresh ETL directly from that tab (`REFRESH ETL PIPELINE + TREE`) and view generated tree artifacts.

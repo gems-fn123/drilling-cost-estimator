@@ -22,18 +22,6 @@ def render_campaign_panel() -> dict:
     }
 
 
-def render_runtime_toggles() -> dict:
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        use_external_forecast = st.toggle("EXTN. DATA", value=True)
-    with col2:
-        use_synthetic_data = st.toggle("SYNTH DATA", value=True)
-    return {
-        "use_external_forecast": use_external_forecast,
-        "use_synthetic_data": use_synthetic_data,
-    }
-
-
 def render_well_inputs(no_wells: int, no_pads: int) -> List[dict]:
     st.subheader("Individual Well Parameters")
     st.caption("Complexity split is disabled on this branch; all new estimated wells are treated as Standard-J.")

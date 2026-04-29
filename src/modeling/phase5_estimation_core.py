@@ -6,7 +6,8 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
-from collections import defaultdict
+import re
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,9 +17,18 @@ from typing import Dict, Iterable, List, Tuple
 from src.app.build_phase5_operational_assets import main as build_phase5_operational_assets
 from src.cleaning.wbs_lv5_driver_alignment import main as build_wbs_lv5_alignment
 from src.io.build_canonical_mappings import main as build_canonical_mappings
-from src.modeling.dashboard_historical_mart import HISTORICAL_MART, refresh_all_outputs
+from src.modeling.dashboard_historical_mart import refresh_all_outputs
 from src.modeling.phase4_preflight_and_baseline import run_phase4
-from src.modeling.unit_price_macro_analysis import MACRO_REFERENCE_PATH, MACRO_WEIGHTS_PATH, main as build_unit_price_macro_analysis
+from src.modeling.unit_price_macro_analysis import (
+    MACRO_CLUSTER_WEIGHTS_PATH,
+    MACRO_REFERENCE_PATH,
+    MACRO_WEIGHTS_PATH,
+    main as build_unit_price_macro_analysis,
+)
+from src.modeling.unit_price_history_pipeline import (
+    UNIT_PRICE_HISTORY_MART,
+    main as build_unit_price_history_pipeline,
+)
 from src.modeling.unit_price_well_analysis import (
     SERVICE_TIME_BANDS,
     UNIT_PRICE_BENCHMARK,
@@ -36,6 +46,7 @@ APP_AUDIT = PROCESSED / "app_estimate_audit.csv"
 APP_SUMMARY = PROCESSED / "app_estimate_summary.json"
 APP_CATEGORY_MATRIX_CSV = PROCESSED / "app_category_matrix.csv"
 APP_CATEGORY_MATRIX_JSON = PROCESSED / "app_category_matrix.json"
+WELL_POOL_EXCLUSIONS = PROCESSED / "well_pool_exclusions.csv"
 
 FIELD_MAP = {"DRJ": "DARAJAT", "SLK": "SALAK", "WW": "WAYANG_WINDU"}
 RATE_FACTOR = {"Standard": 1.0, "Fast": 0.92, "Careful": 1.12}
@@ -78,10 +89,124 @@ def _safe_int(text: str, default: int = 0) -> int:
         return default
 
 
+def _normalize_key(value: str) -> str:
+    collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
+    return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
+
+
+def _extract_year(text: str) -> int:
+    match = re.search(r"(20\d{2})", str(text or ""))
+    return int(match.group(1)) if match else 0
+
+
+def _classification_from_pricing_basis(pricing_basis: str, well_canonical: str) -> str:
+    basis = (pricing_basis or "").strip().lower()
+    if basis in {"active_day_rate", "depth_rate", "per_well_job"}:
+        return "well_tied"
+    if basis == "campaign_scope_benchmark" and well_canonical:
+        return "hybrid"
+    return "campaign_tied"
+
+
+def _driver_from_pricing_basis(pricing_basis: str) -> str:
+    basis = (pricing_basis or "").strip().lower()
+    if basis == "active_day_rate":
+        return "service_time"
+    if basis == "depth_rate":
+        return "material_depth"
+    if basis == "per_well_job":
+        return "per_well_fixed"
+    if basis == "campaign_scope_benchmark":
+        return "campaign_scope"
+    return "other"
+
+
+def _load_well_exclusion_index() -> Dict[Tuple[str, str], str]:
+    if not WELL_POOL_EXCLUSIONS.exists():
+        return {}
+    exclusions: Dict[Tuple[str, str], str] = {}
+    for row in read_csv(WELL_POOL_EXCLUSIONS):
+        status = (row.get("status") or "active").strip().lower()
+        if status not in {"active", "yes", "true", "1"}:
+            continue
+        field = (row.get("field") or "").strip().upper()
+        well = (row.get("well_canonical") or "").strip().upper()
+        if field and well:
+            exclusions[(field, well)] = (row.get("reason") or "manual_exclusion").strip()
+    return exclusions
+
+
+def _to_estimator_history_row(row: dict, exclusions: Dict[Tuple[str, str], str]) -> dict:
+    field = (row.get("field") or "").strip()
+    campaign_canonical = (row.get("campaign_canonical") or "").strip()
+    campaign_raw = (row.get("campaign_raw") or "").strip()
+    campaign_year = _safe_int(row.get("campaign_year"), 0) or _extract_year(campaign_canonical) or _extract_year(campaign_raw)
+    source_workbook = (row.get("source_workbook") or "").strip()
+    source_sheet = (row.get("source_sheet") or "").strip()
+    source_row_key = (row.get("source_row_key") or "").strip()
+    source_row_id = "|".join(part for part in [source_workbook, source_sheet, source_row_key] if part)
+
+    l2 = (row.get("level_2") or "").strip()
+    l3 = (row.get("level_3") or "").strip()
+    l4 = (row.get("level_4") or "").strip()
+    l5 = (row.get("level_5") or "").strip() or l4 or l3 or l2 or "Unknown Cost Family"
+    family_group_key = _normalize_key(l5) or "unknown_cost_family"
+    well_canonical = (row.get("well_canonical") or "").strip()
+    classification = _classification_from_pricing_basis(row.get("pricing_basis", ""), well_canonical)
+    exclusion_reason = exclusions.get((field.upper(), well_canonical.upper()), "") if well_canonical else ""
+
+    return {
+        "source_row_id": source_row_id,
+        "field": field,
+        "campaign_raw": campaign_raw,
+        "campaign_canonical": campaign_canonical,
+        "campaign_start_year": str(campaign_year or ""),
+        "campaign_code": (row.get("campaign_code") or "").strip(),
+        "well_raw": (row.get("well_raw") or "").strip(),
+        "well_canonical": well_canonical,
+        "exclude_from_estimator_pool": "yes" if exclusion_reason else "no",
+        "pool_exclusion_reason": exclusion_reason,
+        "classification": classification,
+        "l1_id": campaign_canonical or campaign_raw or "UNSPECIFIED_CAMPAIGN",
+        "l1_desc": campaign_canonical or campaign_raw or "UNSPECIFIED_CAMPAIGN",
+        "l2_id": l2,
+        "l2_desc": l2,
+        "l3_id": l3,
+        "l3_desc": l3,
+        "l4_id": l4,
+        "l4_desc": l4,
+        "l5_id": l5,
+        "l5_desc": l5,
+        "wbs_family_tag": l5,
+        "family_group_key": family_group_key,
+        "driver_family": _driver_from_pricing_basis(row.get("pricing_basis", "")),
+        "actual_usd": row.get("actual_cost_usd", "0"),
+        "source_sheet": source_sheet,
+        "source_workbook": source_workbook,
+        "source_field_campaign_year": f"{field}_{campaign_year}" if campaign_year else f"{field}_unknown",
+    }
+
+
+def _load_estimator_history_rows(field: str | None = None) -> List[dict]:
+    _ensure_unit_price_support_outputs()
+    exclusions = _load_well_exclusion_index()
+    rows = [_to_estimator_history_row(row, exclusions) for row in read_csv(UNIT_PRICE_HISTORY_MART)]
+    eligible = [row for row in rows if _is_pool_eligible(row)]
+    if field is None:
+        return eligible
+    return [row for row in eligible if row["field"] == field]
+
+
 def _ensure_unit_price_support_outputs() -> None:
+    if not UNIT_PRICE_HISTORY_MART.exists():
+        build_unit_price_history_pipeline()
     if not UNIT_PRICE_BENCHMARK.exists() or not SERVICE_TIME_BANDS.exists() or not UNIT_PRICE_WELL_PROFILE.exists():
         build_unit_price_well_analysis()
-    if not MACRO_WEIGHTS_PATH.exists() or not MACRO_REFERENCE_PATH.exists():
+    if (
+        not MACRO_WEIGHTS_PATH.exists()
+        or not MACRO_REFERENCE_PATH.exists()
+        or not MACRO_CLUSTER_WEIGHTS_PATH.exists()
+    ):
         build_unit_price_macro_analysis()
 
 
@@ -268,6 +393,11 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
 
 def _refresh_pipeline_outputs(*, group_by: str = "family", use_synthetic: bool = False, synthetic_policy: str = "training") -> None:
     build_canonical_mappings()
+    build_unit_price_history_pipeline()
+    build_unit_price_well_analysis()
+    build_unit_price_macro_analysis()
+
+    # Keep legacy artifacts refreshed for compatibility with existing reports.
     build_wbs_lv5_alignment()
     refresh_all_outputs()
     run_phase4(
@@ -283,7 +413,7 @@ def _is_pool_eligible(row: dict) -> bool:
 
 
 def _load_field_rows(field: str) -> List[dict]:
-    return [r for r in read_csv(HISTORICAL_MART) if r["field"] == field and _is_pool_eligible(r)]
+    return _load_estimator_history_rows(field)
 
 
 def _select_anchor_year(rows: List[dict], year: int) -> int:
@@ -306,11 +436,10 @@ def _select_peer_rows(rows: List[dict], year: int) -> List[dict]:
     return peer_rows or rows
 
 
-def _support_key(row: dict) -> Tuple[str, str, str]:
+def _support_key(row: dict) -> Tuple[str, str]:
     return (
         (row.get("classification") or "unclassified").strip(),
         (row.get("family_group_key") or row.get("wbs_family_tag") or row.get("l5_desc") or "unknown_family").strip(),
-        (row.get("driver_family") or "unknown_driver").strip(),
     )
 
 
@@ -373,12 +502,19 @@ def _estimation_method(stats: dict) -> str:
     return "empirical_analog" if stats["support_unit_count"] >= 2 else "fallback_benchmark"
 
 
+def _dominant_text(rows: List[dict], key: str, fallback: str = "") -> str:
+    values = [str(row.get(key, "")).strip() for row in rows if str(row.get(key, "")).strip()]
+    if not values:
+        return fallback
+    return Counter(values).most_common(1)[0][0]
+
+
 def _build_projection_templates(anchor_rows: List[dict], peer_rows: List[dict]) -> List[dict]:
-    support_index: Dict[Tuple[str, str, str], List[dict]] = defaultdict(list)
+    support_index: Dict[Tuple[str, str], List[dict]] = defaultdict(list)
     for row in peer_rows:
         support_index[_support_key(row)].append(row)
 
-    anchor_index: Dict[Tuple[str, str, str], List[dict]] = defaultdict(list)
+    anchor_index: Dict[Tuple[str, str], List[dict]] = defaultdict(list)
     for row in anchor_rows:
         anchor_index[_support_key(row)].append(row)
 
@@ -388,42 +524,36 @@ def _build_projection_templates(anchor_rows: List[dict], peer_rows: List[dict]) 
         stats = _summarize_support_rows(support_rows)
         anchor_total = sum(_safe_float(r.get("actual_usd", "0")) for r in anchor_group)
 
-        if abs(anchor_total) > 1e-9:
-            running_weight = 0.0
-            anchor_weights = []
-            for idx, row in enumerate(anchor_group):
-                if idx == len(anchor_group) - 1:
-                    weight = max(0.0, 1.0 - running_weight)
-                else:
-                    weight = _safe_float(row.get("actual_usd", "0")) / anchor_total
-                    running_weight += weight
-                anchor_weights.append(weight)
-        else:
-            anchor_weights = [1.0 / len(anchor_group)] * len(anchor_group)
-            anchor_weights[-1] = 1.0 - sum(anchor_weights[:-1])
+        l5_desc = _dominant_text(anchor_group, "l5_desc", "Unknown Cost Family")
+        l2_desc = _dominant_text(anchor_group, "l2_desc")
+        l3_desc = _dominant_text(anchor_group, "l3_desc")
+        l4_desc = _dominant_text(anchor_group, "l4_desc")
+        driver_family = _dominant_text(anchor_group, "driver_family", "other")
+        classification = _dominant_text(anchor_group, "classification", "unclassified")
+        family_group_key = _dominant_text(anchor_group, "family_group_key", _normalize_key(l5_desc) or "unknown_cost_family")
 
-        for row, anchor_weight in zip(anchor_group, anchor_weights):
-            templates.append(
-                {
-                    "classification": row.get("classification", "unclassified"),
-                    "l2_id": row.get("l2_id", ""),
-                    "l3_id": row.get("l3_id", ""),
-                    "l4_id": row.get("l4_id", ""),
-                    "l5_id": row.get("l5_id", ""),
-                    "l5_desc": row.get("l5_desc", ""),
-                    "wbs_family_tag": row.get("wbs_family_tag", ""),
-                    "family_group_key": row.get("family_group_key", ""),
-                    "driver_family": row.get("driver_family", ""),
-                    "anchor_weight": anchor_weight,
-                    "support_stats": stats,
-                    "support_explanation": _support_explanation(stats),
-                }
-            )
+        templates.append(
+            {
+                "classification": classification,
+                "l2_id": l2_desc,
+                "l3_id": l3_desc,
+                "l4_id": l4_desc,
+                "l5_id": l5_desc,
+                "l5_desc": l5_desc,
+                "wbs_family_tag": l5_desc,
+                "family_group_key": family_group_key,
+                "driver_family": driver_family,
+                "anchor_total_usd": anchor_total,
+                "support_stats": stats,
+                "support_explanation": _support_explanation(stats),
+            }
+        )
     return templates
 
 
 def _map_cost_category(row: dict) -> str:
     l2_id = (row.get("l2_id") or "").strip()
+    l2_text = l2_id.lower()
     family_tag = ((row.get("wbs_family_tag") or row.get("l5_desc") or "").strip()).lower()
     if "contingency" in family_tag or l2_id.startswith(("E530-30299", "E540-30299")):
         return "Contingency"
@@ -432,6 +562,14 @@ def _map_cost_category(row: dict) -> str:
     if l2_id.startswith(("E530-30129", "E540-30129")):
         return "Support"
     if l2_id.startswith(("E530-30101", "E540-30101")):
+        return "Drilling"
+    if "contingency" in l2_text:
+        return "Contingency"
+    if "surface" in l2_text or "facility" in l2_text:
+        return "Surface Facility"
+    if "support" in l2_text:
+        return "Support"
+    if "drilling" in l2_text:
         return "Drilling"
     if any(token in family_tag for token in ("construction", "hook up", "pre comm", "material - ll", "material - non ll", "surface")):
         return "Surface Facility"
@@ -672,7 +810,7 @@ def build_validation_artifacts(
             synthetic_policy=synthetic_policy,
         )
 
-    rows = [row for row in read_csv(HISTORICAL_MART) if _is_pool_eligible(row)]
+    rows = _load_estimator_history_rows()
     return _write_validation_artifacts(rows)
 
 
@@ -719,6 +857,8 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     )
 
     field_rows = _load_field_rows(field)
+    if not field_rows:
+        raise ValueError(f"No estimator history rows available for field {field}. Refresh unit_price_history_mart first.")
     anchor_year, anchor_rows = _select_anchor_rows(field_rows, normalized_campaign["campaign_start_year"])
     peer_rows = _select_peer_rows(field_rows, normalized_campaign["campaign_start_year"])
     historical_anchor_well_count = len(
@@ -729,16 +869,22 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         }
     ) or 1
     templates = _build_projection_templates(anchor_rows, peer_rows)
+    if not templates:
+        raise ValueError(f"No projection templates available for field {field}.")
 
     direct_templates = [t for t in templates if t["classification"] == "well_tied"]
     shared_templates = [t for t in templates if t["classification"] in {"hybrid", "campaign_tied"}]
     fallback_templates = [t for t in templates if t["classification"] not in {"well_tied", "hybrid", "campaign_tied"}]
+    if not direct_templates:
+        raise ValueError(f"No direct well templates found for field {field}.")
 
     detail_rows, well_outputs = [], []
-    distribution_baseline = [
-        (_safe_float(template["support_stats"].get("median_usd", "0")) * template["anchor_weight"], template)
-        for template in direct_templates
-    ]
+    distribution_baseline = []
+    for template in direct_templates:
+        anchor_total = _safe_float(str(template.get("anchor_total_usd", "0")))
+        if anchor_total <= 0.0:
+            anchor_total = _safe_float(template["support_stats"].get("median_usd", "0"))
+        distribution_baseline.append((anchor_total, template))
     direct_distribution_total = sum(weight for weight, _ in distribution_baseline)
     active_day_rate_value = _safe_float(active_day_benchmark["median_value"])
     depth_rate_value = _safe_float(depth_benchmark["median_value"])
@@ -779,14 +925,14 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
                 "estimate_usd": estimate,
                 "uncertainty_pct": direct_unc_pct,
                 "uncertainty_type": "empirical_spread",
-                "estimation_method": "unit_price_benchmark_allocated_to_anchor_wbs",
+                "estimation_method": "unit_price_benchmark_allocated_to_anchor_cost_family",
                 "driver_family": template["driver_family"],
                 "source_field_campaign_years": ", ".join(stats["source_campaign_years"][:8]),
                 "source_wells": ", ".join(stats["source_wells"][:10]),
                 "source_row_ids": ", ".join(stats["source_row_ids"][:20]),
                 "source_row_count": stats["source_row_count"],
                 "support_explanation": (
-                    "Direct well benchmark allocated by anchor-year WBS distribution. "
+                    "Direct well benchmark allocated by anchor-year cost-family distribution. "
                     f"active_day_rate={active_day_rate_value:.2f} USD/day, estimated_days={estimated_days:.2f}, "
                     f"depth_rate={depth_rate_value:.2f} USD/ft, depth_ft={well.depth_bucket_ft}, "
                     f"per_well_job={per_well_job_value:.2f} USD/well."
@@ -806,8 +952,8 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
                 "estimated_days": estimated_days,
                 "uncertainty_pct": direct_unc_pct,
                 "uncertainty_label": "empirical_spread",
-                "method_label": "unit_price_direct_benchmark_plus_anchor_wbs_allocation",
-                "top_wbs_contributors": [f"{r['l5_id']} ({r['estimate_usd']/1_000_000:.2f} MMUSD)" for r in top],
+                "method_label": "unit_price_direct_benchmark_plus_anchor_cost_family_allocation",
+                "top_wbs_contributors": [f"{r['l5_desc']} ({r['estimate_usd']/1_000_000:.2f} MMUSD)" for r in top],
                 "source_campaign_tags": sorted({r["source_field_campaign_years"] for r in top}),
             }
         )
@@ -815,13 +961,14 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     shared_weight = 1.0 + 0.08 * normalized_campaign["pad_expansion_count"]
     for template in shared_templates + fallback_templates:
         stats = template["support_stats"]
+        baseline_value = _safe_float(str(template.get("anchor_total_usd", "0")))
+        if baseline_value <= 0.0:
+            baseline_value = stats["median_usd"]
         if template["classification"] in {"hybrid", "campaign_tied"}:
-            base = stats["median_usd"] * template["anchor_weight"] * shared_factor
-            estimate = base * shared_weight
+            estimate = baseline_value * shared_factor * shared_weight
             scope = "shared_support" if template["classification"] == "hybrid" else "campaign_overhead"
         else:
-            base = stats["median_usd"] * template["anchor_weight"]
-            estimate = base
+            estimate = baseline_value
             scope = "fallback_unclassified"
         unc_pct = _uncertainty_pct(stats)
         detail_rows.append(
@@ -900,7 +1047,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     summary = {
         "field": field,
         "input_year": normalized_campaign["campaign_start_year"],
-        "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_wbs_distribution_and_campaign_scope_analogs",
+        "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_cost_family_distribution_and_campaign_scope_analogs",
         "total_campaign_cost_mmusd": total_cost / 1_000_000.0,
         "total_campaign_cost_formatted": _format_mmusd(total_cost),
         "total_campaign_cost_usd": total_cost,

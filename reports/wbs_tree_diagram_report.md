@@ -1,18 +1,20 @@
 # WBS Tree Diagram Report
 
-Generated: 2026-04-24T10:26:51.445225+00:00
+Generated: 2026-04-29T08:51:02.956301+00:00
 
 ## Source Contract
-- Source dataset: `data/processed/historical_cost_mart.csv`
-- Included rows: mapped `Data.Summary` rows with complete L1-L5 path and non-empty `campaign_canonical`.
-- Field handling: DARAJAT and SALAK are built as separate trees.
+- Source dataset: `data/processed/unit_price_history_mart.csv`
+- Included rows: `Structured.Cost` lineage rows with complete campaign + Level 2..5 hierarchy.
+- Field handling: DARAJAT, SALAK, and WAYANG_WINDU are built as separate trees.
 
 ## Field Snapshot
-- **DARAJAT**: node_count=697, leaf_count=462, r=462, c=2, sum=68036634.54, spr=444724.08 (1084.12%).
-- **SALAK**: node_count=514, leaf_count=360, r=360, c=1, sum=38522325.57, spr=330391.61 (1925.30%).
+- **DARAJAT**: node_count=289, leaf_count=151, r=452, c=3, sum=110040018.70, spr=637011.56 (1028.82%).
+- **SALAK**: node_count=211, leaf_count=104, r=396, c=2, sum=66573573.31, spr=482943.42 (1254.97%).
+- **WAYANG_WINDU**: node_count=136, leaf_count=70, r=290, c=2, sum=54061998.09, spr=478421.39 (656.22%).
 
 ## Output Artifacts
 - `data/processed/wbs_tree_interactive.json`
 - `data/processed/wbs_tree_field_darajat.json`
 - `data/processed/wbs_tree_field_salak.json`
+- `data/processed/wbs_tree_field_wayang_windu.json`
 - `reports/wbs_tree_interactive.html`

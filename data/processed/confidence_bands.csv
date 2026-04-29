@@ -1,7 +1,8 @@
 field,bucket_id,classification,interval_method,lower_bound_usd,upper_bound_usd,center_usd,source_count
-DARAJAT,campaign_tied,campaign_tied,empirical_p10_p90,0.000000,456148.576000,30742.325000,32
-DARAJAT,hybrid,hybrid,empirical_p10_p90,0.000000,335200.168000,31035.415000,78
-DARAJAT,well_tied,well_tied,empirical_p10_p90,0.000000,475912.271000,55540.340000,320
-SALAK,campaign_tied,campaign_tied,empirical_p10_p90,285.525000,428918.506000,18406.035000,14
-SALAK,hybrid,hybrid,empirical_p10_p90,0.000000,308165.162000,65544.910000,47
-SALAK,well_tied,well_tied,empirical_p10_p90,0.000000,410064.642000,37796.480000,233
+DARAJAT,campaign_tied,campaign_tied,empirical_p10_p90,5049.740000,1337803.550000,122872.650000,81
+DARAJAT,well_tied,well_tied,empirical_p10_p90,0.000000,577880.000000,53644.740000,371
+SALAK,campaign_tied,campaign_tied,empirical_p10_p90,179.264000,1055023.542000,137200.990000,58
+SALAK,well_tied,well_tied,empirical_p10_p90,0.000000,437306.961000,37772.975000,292
+WAYANG_WINDU,campaign_tied,campaign_tied,empirical_p10_p90,112.340000,330865.540000,72283.430000,31
+WAYANG_WINDU,hybrid,hybrid,empirical_p10_p90,10639.572000,148268.328000,32466.060000,25
+WAYANG_WINDU,well_tied,well_tied,empirical_p10_p90,0.000000,528247.021000,76511.045000,234

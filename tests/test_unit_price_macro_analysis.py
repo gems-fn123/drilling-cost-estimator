@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MACRO_REFERENCE = ROOT / "data" / "reference" / "macro_series_2019_2026.csv"
 MACRO_FACTORS = ROOT / "data" / "processed" / "unit_price_macro_factors.csv"
 MACRO_WEIGHTS = ROOT / "data" / "processed" / "unit_price_macro_weights.csv"
+MACRO_CLUSTER_WEIGHTS = ROOT / "data" / "processed" / "unit_price_macro_cluster_weights.csv"
 MACRO_REPORT = ROOT / "reports" / "unit_price_macro_correlation.md"
 
 
@@ -88,11 +89,45 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
         self.assertTrue(inflation_rows)
         self.assertTrue(all(row["weight_eligible"] == "no" for row in inflation_rows))
 
+    def test_macro_cluster_layer_is_written(self) -> None:
+        with MACRO_CLUSTER_WEIGHTS.open(encoding="utf-8", newline="") as handle:
+            weight_rows = list(csv.DictReader(handle))
+
+        required_weight = {
+            "scope_type",
+            "field",
+            "pricing_basis",
+            "wbs_cluster",
+            "factor_name",
+            "field_coverage_count",
+            "field_count_floor",
+            "field_count_peak",
+            "support_status",
+        }
+        self.assertTrue(required_weight.issubset(weight_rows[0].keys()))
+
+        cluster_keys = {row["wbs_cluster"] for row in weight_rows if row["scope_type"] == "pooled_wbs_cluster"}
+        self.assertIn("material ll | casing", cluster_keys)
+        self.assertIn("services | contract rig", cluster_keys)
+
+        operational_cluster_rows = [
+            row
+            for row in weight_rows
+            if row["scope_type"] == "pooled_wbs_cluster"
+            and row["support_status"] == "operational"
+            and row["weight_eligible"] == "yes"
+        ]
+        self.assertTrue(operational_cluster_rows)
+        self.assertTrue(all(row["balance_method"] == "equal_field_mean" for row in operational_cluster_rows))
+        self.assertTrue(all(int(row["field_coverage_count"]) >= 2 for row in operational_cluster_rows))
+        self.assertTrue(all(int(row["observation_year_count"]) >= 4 for row in operational_cluster_rows))
+
     def test_macro_report_is_written(self) -> None:
         self.assertTrue(MACRO_REPORT.exists())
         text = MACRO_REPORT.read_text(encoding="utf-8")
         self.assertIn("Recommended Operational Weights", text)
         self.assertIn("Source Package", text)
+        self.assertIn("Clustered WBS Depth Layer", text)
 
 
 if __name__ == "__main__":

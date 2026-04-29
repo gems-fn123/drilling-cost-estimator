@@ -22,7 +22,13 @@ from src.modeling.phase5_estimation_core import (
     build_validation_artifacts,
     estimate_campaign,
 )
-from src.modeling.unit_price_macro_analysis import MACRO_FACTORS_PATH, MACRO_WEIGHTS_PATH
+from src.modeling.unit_price_macro_analysis import (
+    MACRO_CLUSTER_WEIGHTS_PATH,
+    MACRO_FACTORS_PATH,
+    MACRO_REPORT_PATH,
+    MACRO_WEIGHTS_PATH,
+    main as build_unit_price_macro_analysis,
+)
 from src.modeling.unit_price_npt_analysis import NPT_CONTRIBUTION_SUMMARY, NPT_PENALTY_REFERENCE
 from src.modeling.unit_price_well_analysis import SERVICE_TIME_BANDS, UNIT_PRICE_BENCHMARK, UNIT_PRICE_WELL_PROFILE
 from src.modeling.wbs_tree_diagram import (
@@ -31,6 +37,7 @@ from src.modeling.wbs_tree_diagram import (
     WBS_TREE_HTML,
     WBS_TREE_REPORT,
     WBS_TREE_SALAK_JSON,
+    WBS_TREE_WW_JSON,
     build_wbs_tree_artifacts,
 )
 
@@ -66,6 +73,12 @@ def _artifact_entry(path: Path) -> dict:
     return entry
 
 
+def _ensure_unit_price_macro_outputs() -> None:
+    required = [MACRO_FACTORS_PATH, MACRO_WEIGHTS_PATH, MACRO_CLUSTER_WEIGHTS_PATH, MACRO_REPORT_PATH]
+    if not all(path.exists() for path in required):
+        build_unit_price_macro_analysis()
+
+
 def run_streamlined_etl(
     *,
     group_by: str = "family",
@@ -79,6 +92,7 @@ def run_streamlined_etl(
         synthetic_policy=synthetic_policy,
     )
     wbs_tree_summary = build_wbs_tree_artifacts()
+    _ensure_unit_price_macro_outputs()
 
     artifacts = [
         HISTORICAL_MART,
@@ -97,11 +111,14 @@ def run_streamlined_etl(
         SERVICE_TIME_BANDS,
         MACRO_FACTORS_PATH,
         MACRO_WEIGHTS_PATH,
+        MACRO_CLUSTER_WEIGHTS_PATH,
+        MACRO_REPORT_PATH,
         NPT_CONTRIBUTION_SUMMARY,
         NPT_PENALTY_REFERENCE,
         WBS_TREE_COMBINED_JSON,
         WBS_TREE_DARAJAT_JSON,
         WBS_TREE_SALAK_JSON,
+        WBS_TREE_WW_JSON,
         WBS_TREE_HTML,
         WBS_TREE_REPORT,
     ]
@@ -114,7 +131,7 @@ def run_streamlined_etl(
             "use_synthetic": use_synthetic,
             "synthetic_policy": synthetic_policy if use_synthetic else "not_applied",
         },
-        "field_partition_rule": "DARAJAT and SALAK are processed independently and never pooled.",
+        "field_partition_rule": "DARAJAT, SALAK, and WAYANG_WINDU are processed independently and never pooled.",
         "validation_summary": validation_summary,
         "wbs_tree_summary": wbs_tree_summary,
         "artifacts": [_artifact_entry(path) for path in artifacts],

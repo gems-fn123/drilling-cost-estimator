@@ -1,6 +1,6 @@
 # Dashboard Rebuild Check
 
-Generated: 2026-04-24T10:29:46.255921+00:00
+Generated: 2026-04-29T08:52:00.917933+00:00
 
 Workbook dashboard tabs were not available as flat files in-repo; check uses Data.Summary-derived proxy aggregates.
 

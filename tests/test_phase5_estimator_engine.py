@@ -75,6 +75,25 @@ class TestPhase5EstimatorEngine(unittest.TestCase):
         self.assertTrue(manifest["runtime_toggles"]["external_forecast_applied"])
         self.assertIn("active_day_rate:", manifest["external_adjustment_formula"])
 
+    def test_direct_detail_rows_are_family_grain_without_duplicate_l5_desc(self) -> None:
+        campaign_input = {
+            "year": 2026,
+            "field": "SLK",
+            "no_pads": 1,
+            "no_wells": 1,
+            "no_pad_expansion": 0,
+            "use_external_forecast": True,
+            "use_synthetic_data": False,
+        }
+        wells = [
+            {"well_label": "Well-1", "pad_label": "Pad-1", "depth_ft": 7000, "leg_type": "Standard-J", "drill_rate_mode": "Standard"},
+        ]
+        result = estimate_campaign(campaign_input, wells)
+        direct_rows = [row for row in result["detail_wbs"] if row["component_scope"] == "direct_well_linked" and row["well_label"] == "Well-1"]
+        self.assertGreater(len(direct_rows), 0)
+        l5_desc = [row["l5_desc"] for row in direct_rows]
+        self.assertEqual(len(l5_desc), len(set(l5_desc)))
+
 
 if __name__ == "__main__":
     unittest.main()

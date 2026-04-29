@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build field-separated interactive WBS trees from mapped Data.Summary sample rows."""
+"""Build field-separated interactive WBS trees from dashboard structured cost history."""
 
 from __future__ import annotations
 
@@ -18,14 +18,15 @@ ROOT = Path(__file__).resolve().parents[2]
 PROCESSED = ROOT / "data" / "processed"
 REPORTS = ROOT / "reports"
 
-HISTORICAL_MART = PROCESSED / "historical_cost_mart.csv"
+UNIT_PRICE_HISTORY_MART = PROCESSED / "unit_price_history_mart.csv"
 WBS_TREE_COMBINED_JSON = PROCESSED / "wbs_tree_interactive.json"
 WBS_TREE_DARAJAT_JSON = PROCESSED / "wbs_tree_field_darajat.json"
 WBS_TREE_SALAK_JSON = PROCESSED / "wbs_tree_field_salak.json"
+WBS_TREE_WW_JSON = PROCESSED / "wbs_tree_field_wayang_windu.json"
 WBS_TREE_HTML = REPORTS / "wbs_tree_interactive.html"
 WBS_TREE_REPORT = REPORTS / "wbs_tree_diagram_report.md"
 
-VALID_FIELDS = {"DARAJAT", "SALAK"}
+VALID_FIELDS = {"DARAJAT", "SALAK", "WAYANG_WINDU"}
 
 
 def read_csv(path: Path) -> List[dict]:
@@ -78,6 +79,10 @@ def _field_from_asset(asset: str) -> str:
         return "DARAJAT"
     if token in {"slk", "salak"}:
         return "SALAK"
+    if token in {"ww", "wayangwindu"}:
+        return "WAYANG_WINDU"
+    if token in {"wayang", "windu"}:
+        return "WAYANG_WINDU"
     return ""
 
 
@@ -224,21 +229,55 @@ def _iter_path(row: dict) -> list[tuple[int, str, str]]:
     ]
 
 
-def _mapped_data_summary_rows(rows: List[dict]) -> List[dict]:
+def _unit_price_history_rows_to_tree_rows(rows: List[dict]) -> List[dict]:
     filtered: List[dict] = []
     for row in rows:
         field = (row.get("field") or "").strip().upper()
         if field not in VALID_FIELDS:
             continue
-        if (row.get("source_sheet") or "").strip() != "Data.Summary":
-            continue
-        if not (row.get("campaign_canonical") or "").strip():
+
+        campaign_canonical = (row.get("campaign_canonical") or "").strip()
+        campaign_raw = (row.get("campaign_raw") or "").strip()
+        campaign_label = campaign_canonical or campaign_raw or "UNSPECIFIED_CAMPAIGN"
+
+        l2 = (row.get("level_2") or "").strip()
+        l3 = (row.get("level_3") or "").strip()
+        l4 = (row.get("level_4") or "").strip()
+        l5 = (row.get("level_5") or "").strip()
+        if not all([campaign_label, l2, l3, l4, l5]):
             continue
 
-        path = _iter_path(row)
-        if any(not node_id for _, node_id, _ in path):
-            continue
-        filtered.append(row)
+        actual = _safe_float(row.get("actual_cost_usd", "0"))
+        source_row_id = "|".join(
+            part
+            for part in [
+                (row.get("source_workbook") or "").strip(),
+                (row.get("source_sheet") or "").strip(),
+                (row.get("source_row_key") or "").strip(),
+            ]
+            if part
+        )
+
+        filtered.append(
+            {
+                "field": field,
+                "campaign_canonical": campaign_label,
+                "source_row_id": source_row_id,
+                "source_workbook": (row.get("source_workbook") or "").strip(),
+                "source_sheet": (row.get("source_sheet") or "").strip(),
+                "l1_id": campaign_label,
+                "l1_desc": campaign_label,
+                "l2_id": l2,
+                "l2_desc": l2,
+                "l3_id": l3,
+                "l3_desc": l3,
+                "l4_id": l4,
+                "l4_desc": l4,
+                "l5_id": l5,
+                "l5_desc": l5,
+                "actual_usd": f"{actual:.6f}",
+            }
+        )
     return filtered
 
 
@@ -249,17 +288,31 @@ def _excel_records_to_tree_rows(records: List[dict], source_file: str, source_sh
         if field not in VALID_FIELDS:
             continue
 
-        l1_id = _record_value(record, "L1")
-        l2_id = _record_value(record, "L2")
-        l3_id = _record_value(record, "L3")
-        l4_id = _record_value(record, "L4")
-        l5_id = _record_value(record, "L5")
+        legacy_l1 = _record_value(record, "L1")
+        structured_l2 = _record_value(record, "Level 2")
+        is_legacy_schema = bool(legacy_l1)
+
+        if is_legacy_schema:
+            l1_id = legacy_l1
+            l2_id = _record_value(record, "L2")
+            l3_id = _record_value(record, "L3")
+            l4_id = _record_value(record, "L4")
+            l5_id = _record_value(record, "L5")
+            l5_desc = _record_value(record, "Description", "L5 Description", "L5") or l5_id
+            actual = _safe_float(_record_value(record, "ACTUAL, USD", "ACTUAL USD", "Actual, USD"))
+            campaign_name = _record_value(record, "Campaign", "Drilling Campaign")
+        else:
+            campaign_name = _record_value(record, "Campaign", "Drilling Campaign")
+            l1_id = campaign_name or "UNSPECIFIED_CAMPAIGN"
+            l2_id = structured_l2
+            l3_id = _record_value(record, "Level 3")
+            l4_id = _record_value(record, "Level 4")
+            l5_id = _record_value(record, "Level 5")
+            l5_desc = l5_id
+            actual = _safe_float(_record_value(record, "Actual Cost USD", "ACTUAL COST USD"))
+
         if not all([l1_id, l2_id, l3_id, l4_id, l5_id]):
             continue
-
-        l5_desc = _record_value(record, "Description", "L5 Description", "L5") or l5_id
-        actual = _safe_float(_record_value(record, "ACTUAL, USD", "ACTUAL USD", "Actual, USD"))
-        campaign_name = _record_value(record, "Campaign", "Drilling Campaign")
 
         rows.append(
             {
@@ -439,7 +492,7 @@ def render_wbs_tree_html(payload: dict) -> str:
 </head>
 <body>
     <h1>WBS Flowchart</h1>
-    <p class="subtitle">Mapped Data.Summary rows, split by field.</p>
+    <p class="subtitle">Dashboard Structured.Cost rows, split by field.</p>
     <div class="legend">sum = descendant total. spr = P90 - P10.</div>
   <div class="meta">Generated at UTC: {generated_at}</div>
   <div id="trees"></div>
@@ -507,9 +560,9 @@ def _write_report(payload: dict) -> None:
         f"Generated: {payload['generated_at_utc']}",
         "",
         "## Source Contract",
-        "- Source dataset: `data/processed/historical_cost_mart.csv`",
-        "- Included rows: mapped `Data.Summary` rows with complete L1-L5 path and non-empty `campaign_canonical`.",
-        "- Field handling: DARAJAT and SALAK are built as separate trees.",
+        "- Source dataset: `data/processed/unit_price_history_mart.csv`",
+        "- Included rows: `Structured.Cost` lineage rows with complete campaign + Level 2..5 hierarchy.",
+        "- Field handling: DARAJAT, SALAK, and WAYANG_WINDU are built as separate trees.",
         "",
         "## Field Snapshot",
     ]
@@ -531,6 +584,7 @@ def _write_report(payload: dict) -> None:
             "- `data/processed/wbs_tree_interactive.json`",
             "- `data/processed/wbs_tree_field_darajat.json`",
             "- `data/processed/wbs_tree_field_salak.json`",
+            "- `data/processed/wbs_tree_field_wayang_windu.json`",
             "- `reports/wbs_tree_interactive.html`",
         ]
     )
@@ -539,16 +593,16 @@ def _write_report(payload: dict) -> None:
 
 
 def build_wbs_tree_artifacts() -> dict:
-    source_rows = read_csv(HISTORICAL_MART)
-    rows = _mapped_data_summary_rows(source_rows)
+    source_rows = read_csv(UNIT_PRICE_HISTORY_MART)
+    rows = _unit_price_history_rows_to_tree_rows(source_rows)
 
     payload = _build_payload_from_rows(
         rows,
         {
-            "dataset": HISTORICAL_MART.relative_to(ROOT).as_posix(),
-            "source_sheet_required": "Data.Summary",
+            "dataset": UNIT_PRICE_HISTORY_MART.relative_to(ROOT).as_posix(),
+            "source_sheet_required": "Structured.Cost",
             "campaign_mapping_required": True,
-            "hierarchy_required": "L1-L5 complete",
+            "hierarchy_required": "Campaign + Level 2-5 complete",
         },
     )
 
@@ -561,6 +615,10 @@ def build_wbs_tree_artifacts() -> dict:
         WBS_TREE_SALAK_JSON,
         {"generated_at_utc": payload["generated_at_utc"], "field": "SALAK", "tree": payload["fields"]["SALAK"]},
     )
+    _write_json(
+        WBS_TREE_WW_JSON,
+        {"generated_at_utc": payload["generated_at_utc"], "field": "WAYANG_WINDU", "tree": payload["fields"]["WAYANG_WINDU"]},
+    )
     _write_html(payload)
     _write_report(payload)
 
@@ -568,9 +626,11 @@ def build_wbs_tree_artifacts() -> dict:
         "source_row_count": len(rows),
         "darajat_row_count": payload["fields"]["DARAJAT"]["sample_row_count"],
         "salak_row_count": payload["fields"]["SALAK"]["sample_row_count"],
+        "wayang_windu_row_count": payload["fields"]["WAYANG_WINDU"]["sample_row_count"],
         "combined_json": WBS_TREE_COMBINED_JSON.relative_to(ROOT).as_posix(),
         "darajat_json": WBS_TREE_DARAJAT_JSON.relative_to(ROOT).as_posix(),
         "salak_json": WBS_TREE_SALAK_JSON.relative_to(ROOT).as_posix(),
+        "wayang_windu_json": WBS_TREE_WW_JSON.relative_to(ROOT).as_posix(),
         "interactive_html": WBS_TREE_HTML.relative_to(ROOT).as_posix(),
     }
 
@@ -586,7 +646,16 @@ def build_wbs_tree_from_excel_sheet(excel_path: Path, sheet_name: str = "Data.Su
 
     records = extract_full_table(workbook[sheet_name], ["Asset", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"])
     if not records:
-        raise ValueError(f"No table rows found in sheet '{sheet_name}' with required columns Asset, ACTUAL, USD, L1-L5.")
+        records = extract_full_table(
+            workbook[sheet_name],
+            ["Asset", "Campaign", "Level 2", "Level 3", "Level 4", "Level 5", "Actual Cost USD"],
+        )
+    if not records:
+        raise ValueError(
+            f"No table rows found in sheet '{sheet_name}' with either "
+            "legacy columns (Asset, ACTUAL, USD, L1-L5) or dashboard columns "
+            "(Asset, Campaign, Level 2-5, Actual Cost USD)."
+        )
 
     rows = _excel_records_to_tree_rows(records, excel_path.name, sheet_name)
     if not rows:

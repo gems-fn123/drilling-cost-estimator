@@ -11,7 +11,7 @@ if str(ROOT) not in sys.path:
 
 from src.app.components.calculator_tab import render_calculator_results
 from src.app.components.detail_tab import render_detail_tab
-from src.app.components.input_panel import render_campaign_panel, render_runtime_toggles, render_well_inputs
+from src.app.components.input_panel import render_campaign_panel, render_well_inputs
 from src.app.components.wbs_tree_tab import render_wbs_tree_tab
 from src.modeling.phase5_estimation_core import build_validation_artifacts, estimate_campaign
 
@@ -21,12 +21,12 @@ def main() -> None:
     st.markdown("# DRILLING CAMPAIGN COST ESTIMATOR")
 
     campaign_input = render_campaign_panel()
+    campaign_input.update({"use_external_forecast": True, "use_synthetic_data": False})
 
     tab_calc, tab_detail, tab_tree = st.tabs(["CALCULATOR", "DETAIL WBS ESTIMATOR", "WBS TREE VIEWER"])
 
     with tab_calc:
-        toggles = render_runtime_toggles()
-        campaign_input.update(toggles)
+        st.caption("Defaults: external forecast enabled; synthetic data disabled.")
         well_rows = render_well_inputs(campaign_input["no_wells"], campaign_input["no_pads"])
 
         if st.button("CALCULATE DRILLING COST", type="primary"):
