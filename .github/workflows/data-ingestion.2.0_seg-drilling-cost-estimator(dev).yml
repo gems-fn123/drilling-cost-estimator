@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - data-ingestion.2.0
 
 env:
   PYTHON_VERSION: "3.12"
