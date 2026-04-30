@@ -6,7 +6,7 @@ This branch is prepared for deployment to an **existing** Azure App Service base
 
 - Root entrypoint: `app.py`
 - Dependency manifest: `requirements.txt`
-- Streamlit server config: `.streamlit/config.toml` (port `8000`)
+- Streamlit server config: `.streamlit/config.toml` (Streamlit Cloud default port `8501`; Azure overrides to `8000` via startup command)
 - GitHub Actions pipeline: `.github/workflows/azure-streamlit-deploy.yml`
 - Azure runtime setup script: `scripts/azure_configure_app_service.sh`
 
