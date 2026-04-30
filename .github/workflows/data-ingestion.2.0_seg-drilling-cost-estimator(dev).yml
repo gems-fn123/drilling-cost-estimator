@@ -19,16 +19,33 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: ''
+          python-version: '3.12'
 
-      - name: Install Python dependencies
+      - name: Verify app entrypoint
         run: |
-          python -m venv env
-          .\\env\\Scripts\\activate
-          pip install -r requirements.txt
+          if (!(Test-Path .\\app.py)) {
+            Write-Error "app.py not found at repo root."
+            exit 1
+          }
 
       - name: Zip the application files
-        run: Compress-Archive .\\* app.zip
+        run: |
+          $exclude = @(
+            '.git',
+            '.venv',
+            'env',
+            '__pycache__',
+            '.pytest_cache',
+            '.mypy_cache',
+            '.gitignore',
+            '.devcontainer',
+            '.github',
+            '*.pyc'
+          )
+          $args = @('-a', '-c', '-f', 'app.zip')
+          foreach ($item in $exclude) { $args += "--exclude=$item" }
+          $args += '.'
+          tar @args
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3

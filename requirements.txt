@@ -1,6 +1,5 @@
 streamlit==1.46.1
 pillow>=11.2.1,<12
-streamlit>=1.42.0
 pandas
 openpyxl
 numpy
