@@ -1,3 +1,5 @@
+"""Main Streamlit application – multipage workflow for data upload → modelling."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -9,46 +11,54 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.app.components.calculator_tab import render_calculator_results
-from src.app.components.detail_tab import render_detail_tab
-from src.app.components.input_panel import render_campaign_panel, render_well_inputs
+from src.app.components.build_artifacts_page import render_build_artifacts_page
+from src.app.components.modelling_page import render_modelling_page
+from src.app.components.upload_page import render_upload_page
 from src.app.components.wbs_tree_tab import render_wbs_tree_tab
-from src.modeling.phase5_estimation_core import build_validation_artifacts, estimate_campaign
+
+
+def _page_upload() -> None:
+    render_upload_page()
+
+
+def _page_build_artifacts() -> None:
+    render_build_artifacts_page()
+
+
+def _page_wbs_tree() -> None:
+    st.markdown("# WBS TREE VALIDATION")
+    st.markdown("Inspect the WBS tree hierarchy built from your uploaded data.")
+    render_wbs_tree_tab()
+
+
+def _page_modelling() -> None:
+    render_modelling_page()
+
+
+def _page_audit() -> None:
+    st.markdown("# AUDIT OUTPUT")
+    if st.session_state.get("last_result"):
+        from src.app.components.detail_tab import render_detail_tab
+        render_detail_tab(st.session_state["last_result"])
+    else:
+        st.info("Run a cost estimation in the **Modelling** page first to view audit outputs.")
 
 
 def main() -> None:
     st.set_page_config(page_title="Drilling Campaign Cost Estimator", layout="wide")
-    st.markdown("# DRILLING CAMPAIGN COST ESTIMATOR")
 
-    campaign_input = render_campaign_panel()
-    campaign_input.update({"use_external_forecast": True, "use_synthetic_data": False})
+    pages = {
+        "Workflow": [
+            st.Page(_page_upload, title="Upload Data", icon="\U0001F4C1"),
+            st.Page(_page_build_artifacts, title="Build Artifacts", icon="\u2699\uFE0F"),
+            st.Page(_page_wbs_tree, title="WBS Tree", icon="\U0001F333"),
+            st.Page(_page_modelling, title="Modelling", icon="\U0001F4CA"),
+            st.Page(_page_audit, title="Audit", icon="\U0001F50D"),
+        ]
+    }
 
-    tab_calc, tab_detail, tab_tree = st.tabs(["CALCULATOR", "DETAIL WBS ESTIMATOR", "WBS TREE VIEWER"])
-
-    with tab_calc:
-        st.caption("Defaults: external forecast enabled; synthetic data disabled.")
-        well_rows = render_well_inputs(campaign_input["no_wells"], campaign_input["no_pads"])
-
-        if st.button("CALCULATE DRILLING COST", type="primary"):
-            try:
-                build_validation_artifacts(refresh_pipeline=False)
-                result = estimate_campaign(campaign_input, well_rows)
-                st.session_state["last_result"] = result
-            except Exception as exc:
-                st.error(f"Validation failed: {exc}")
-                return
-
-        if st.session_state.get("last_result"):
-            render_calculator_results(st.session_state["last_result"])
-
-    with tab_detail:
-        if st.session_state.get("last_result"):
-            render_detail_tab(st.session_state["last_result"])
-        else:
-            st.info("Run calculation first to view detail WBS estimator.")
-
-    with tab_tree:
-        render_wbs_tree_tab()
+    pg = st.navigation(pages)
+    pg.run()
 
 
 if __name__ == "__main__":

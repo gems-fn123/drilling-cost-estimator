@@ -8,3 +8,6 @@ statsmodels
 scikit-learn
 plotly
 xlsxwriter
+xlrd
+msoffcrypto-tool
+olefile
