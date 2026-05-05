@@ -293,7 +293,7 @@ def build_dashboard_rebuild_outputs(mart_rows: List[dict]) -> None:
         "",
         f"Generated: {datetime.now(timezone.utc).isoformat()}",
         "",
-        "Workbook dashboard tabs were not available as flat files in-repo; check uses Data.Summary-derived proxy aggregates.",
+        "Workbook dashboard tabs are ingested directly from Structured.Cost; check reconciles mart rebuilds against dashboard-derived aggregates.",
         "",
         f"- Rebuilt well total USD: {sum(_safe_float(r['actual_usd']) for r in rebuild_well):,.2f}",
         f"- Proxy workbook well total USD: {sum(_safe_float(r['actual_usd']) for r in workbook_proxy_well):,.2f}",

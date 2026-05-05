@@ -1,6 +1,6 @@
 {
   "field": "DARAJAT",
-  "campaign_label": "DRJ 2023",
+  "campaign_label": "DARAJAT_2023_2024",
   "well_count_reference": 5,
   "source_grain": "Lv5-only (WBS_Level=05)",
   "reference_total_mmusd": "38.00 mm USD",
@@ -11,17 +11,17 @@
   "reconciliation_status": "PASS",
   "l2_breakdown": [
     {
-      "l2_id": "E530-30101-D235301",
+      "l2_id": "Drilling Cost",
       "estimate_usd": 29818205.97,
       "estimate_formatted": "29.82 mm USD"
     },
     {
-      "l2_id": "E530-30203-D235301",
+      "l2_id": "Surface Facilities Cost",
       "estimate_usd": 5605799.39,
       "estimate_formatted": "5.61 mm USD"
     },
     {
-      "l2_id": "E530-30129-D235301",
+      "l2_id": "Support Cost",
       "estimate_usd": 1943104.28,
       "estimate_formatted": "1.94 mm USD"
     }

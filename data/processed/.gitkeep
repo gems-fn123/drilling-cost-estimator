@@ -1,0 +1,65 @@
+# Estimator processed-artifact allowlist
+# Source of truth: files referenced by src/* pipeline code.
+# Refresh flow: upload dashboard workbook -> Build Artifacts.
+# Keep only the files below in this folder; remove ad-hoc logs/temp outputs.
+
+- app_category_matrix.csv
+- app_category_matrix.json
+- app_estimate_audit.csv
+- app_estimate_summary.json
+- app_run_manifest.json
+- backtest_campaign_results.csv
+- backtest_well_results.csv
+- baseline_estimates_darajat.csv
+- baseline_estimates_salak.csv
+- canonical_campaign_mapping.csv
+- canonical_well_mapping.csv
+- confidence_bands.csv
+- cost_mart_coverage_report.csv
+- darajat_5well_lv5_estimate.json
+- dashboard_rebuild_l2_cost.csv
+- dashboard_rebuild_l3_cost.csv
+- dashboard_rebuild_well_cost.csv
+- estimator_method_registry.csv
+- etl_pipeline_endpoint_output.json
+- etl_pipeline_manifest.json
+- historical_cost_mart.csv
+- npt_contribution_summary.csv
+- npt_event_enriched.csv
+- npt_penalty_reference.csv
+- phase4_gate_results.csv
+- phase4_run_manifest.json
+- phase5_app_dataset.csv
+- phase5_monitoring_kpis.csv
+- phase5_operational_manifest.json
+- service_time_band_reference.csv
+- synthetic_campaign_placeholders.csv
+- synthetic_wbs_lv5_placeholders.csv
+- unit_price_benchmark.csv
+- unit_price_history_context.csv
+- unit_price_history_mart.csv
+- unit_price_macro_cluster_weights.csv
+- unit_price_macro_factors.csv
+- unit_price_macro_weights.csv
+- unit_price_well_profile.csv
+- wbs_lv5_classification.csv
+- wbs_lv5_cost_summary_by_classification.csv
+- wbs_lv5_cost_summary_by_field_and_classification.csv
+- wbs_lv5_curated_policy.csv
+- wbs_lv5_driver_reference.csv
+- wbs_lv5_hybrid_tag_recommendation.csv
+- wbs_lv5_master.csv
+- wbs_lv5_review_queue.csv
+- wbs_lv5_rule_coverage.csv
+- wbs_lv5_tag_reference.csv
+- wbs_row_to_campaign_bridge.csv
+- wbs_row_to_well_bridge.csv
+- wbs_tree_field_darajat.json
+- wbs_tree_field_salak.json
+- wbs_tree_field_wayang_windu.json
+- wbs_tree_interactive.json
+- well_alias_lookup.csv
+- well_instance_context.csv
+- well_instance_event_context.csv
+- well_master.csv
+- well_pool_exclusions.csv

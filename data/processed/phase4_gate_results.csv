@@ -1,9 +1,9 @@
 gate_id,gate,threshold,observed,status,detail
 G1,Hierarchy completeness (wbs_lvl1..wbs_lvl5),0 blank rows,0,PASS,Rows with any blank hierarchy column.
 G2,Campaign mapping completeness,0 blank rows,0,PASS,Rows with blank campaign_code or campaign_canonical.
-G3,Field membership validity,"100% in {DARAJAT,SALAK}",822/822,PASS,Master rows with valid field values.
+G3,Field membership validity,"100% in {DARAJAT,SALAK}",848/848,PASS,Master rows with valid field values.
 G4,Classification key uniqueness,0 duplicates,0,PASS,Duplicate classification_key count.
-G5,Classification label validity,"100% in {well_tied,campaign_tied,hybrid}",822/822,PASS,Classification rows with valid class labels.
-G6,Field-specific class coverage reported,mandatory report,Reported,PASS,"{""DARAJAT"": {""campaign_tied"": 32, ""hybrid"": 78, ""well_tied"": 352}, ""SALAK"": {""campaign_tied"": 14, ""hybrid"": 47, ""well_tied"": 299}}"
-G7,Well attribution coverage disclosure,mandatory disclosure if <100%,647/822 populated,KNOWN LIMITATION,Continue with campaign/WBS-grain design when incomplete.
-G8,Event-code coverage disclosure,mandatory disclosure if <100%,0/822 populated,KNOWN LIMITATION,Continue with campaign/WBS-grain design when incomplete.
+G5,Classification label validity,"100% in {well_tied,campaign_tied,hybrid}",144/144,PASS,Classification rows with valid class labels.
+G6,Field-specific class coverage reported,mandatory report,Reported,PASS,"{""DARAJAT"": {""campaign_tied"": 21, ""hybrid"": 15, ""well_tied"": 35}, ""SALAK"": {""campaign_tied"": 21, ""hybrid"": 15, ""well_tied"": 37}}"
+G7,Well attribution coverage disclosure,mandatory disclosure if <100%,681/848 populated,KNOWN LIMITATION,Continue with campaign/WBS-grain design when incomplete.
+G8,Event-code coverage disclosure,mandatory disclosure if <100%,0/848 populated,KNOWN LIMITATION,Continue with campaign/WBS-grain design when incomplete.

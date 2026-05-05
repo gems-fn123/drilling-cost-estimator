@@ -1,6 +1,6 @@
 # Phase 5 App Integration Prerequisites
 
-Date: 2026-04-29
+Date: 2026-05-05
 
 ## Output Contract
 - Source artifact: `data/processed/phase5_app_dataset.csv`
@@ -15,4 +15,4 @@ Date: 2026-04-29
 
 ## Snapshot
 - Fields in current dataset: DARAJAT, SALAK
-- Total app rows: 118
+- Total app rows: 119

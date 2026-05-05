@@ -1,5 +1,5 @@
 {
-  "run_timestamp_utc": "2026-04-29T08:52:00.956625+00:00",
+  "run_timestamp_utc": "2026-05-05T03:30:10.573025+00:00",
   "runtime_toggles": {
     "group_by": "family",
     "use_synthetic": false,
@@ -8,17 +8,17 @@
   "inputs": {
     "wbs_lv5_master": {
       "path": "data/processed/wbs_lv5_master.csv",
-      "sha256": "12504b71367309c983b0928df73e34abf313875f74630480543aa672e51fe378",
-      "row_count": 822
+      "sha256": "61b37aad5296a77e8ab607d3e22cbd55e1d45f218f1050f83a31c7d493401f13",
+      "row_count": 848
     },
     "wbs_lv5_classification": {
       "path": "data/processed/wbs_lv5_classification.csv",
-      "sha256": "66f6276c31a6d64fad37390655138736eebb6c6901c489dacb2f18f94245e3aa",
-      "row_count": 822
+      "sha256": "927eaeedff5a6d1e70f49ba82d32a2a3cc9906b6187de5fd921f7410ff696365",
+      "row_count": 144
     },
     "synthetic_wbs_lv5_placeholders": {
       "path": "data/processed/synthetic_wbs_lv5_placeholders.csv",
-      "sha256": "3918e064f91910c4e4b6f60b245fd51278abeb805daa1e433c74576123c2d3c9",
+      "sha256": "5ecf7cd909d9449ceecf79dc64b5ea3cb094544367a86d7bdc470b91aaa02aa7",
       "rows_used": 0
     },
     "well_pool_exclusions": {

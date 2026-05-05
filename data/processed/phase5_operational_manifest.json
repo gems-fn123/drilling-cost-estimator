@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-29T08:52:00.981308+00:00",
+  "generated_at_utc": "2026-05-05T03:30:10.624462+00:00",
   "phase": "phase5",
   "inputs": [
     "data/processed/baseline_estimates_darajat.csv",
@@ -12,6 +12,6 @@
     "reports/phase5_app_integration_prerequisites.md",
     "reports/phase5_monitoring_skeleton.md"
   ],
-  "app_rows": 118,
+  "app_rows": 119,
   "kpi_rows": 2
 }

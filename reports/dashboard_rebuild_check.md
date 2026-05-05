@@ -1,14 +1,14 @@
 # Dashboard Rebuild Check
 
-Generated: 2026-04-29T08:52:00.917933+00:00
+Generated: 2026-05-05T03:30:10.543347+00:00
 
-Workbook dashboard tabs were not available as flat files in-repo; check uses Data.Summary-derived proxy aggregates.
+Workbook dashboard tabs are ingested directly from Structured.Cost; check reconciles mart rebuilds against dashboard-derived aggregates.
 
-- Rebuilt well total USD: 78,852,982.85
-- Proxy workbook well total USD: 78,852,982.85
+- Rebuilt well total USD: 116,079,081.20
+- Proxy workbook well total USD: 116,079,081.20
 - Absolute well total delta USD: 0.000000
-- Rebuilt L2 total USD: 106,558,960.11
-- Proxy workbook L2 total USD: 106,558,960.11
+- Rebuilt L2 total USD: 176,613,592.01
+- Proxy workbook L2 total USD: 176,613,592.01
 - Absolute L2 total delta USD: 0.000000
 
 ## Notes

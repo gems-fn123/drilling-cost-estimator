@@ -635,7 +635,7 @@ def build_wbs_tree_artifacts() -> dict:
     }
 
 
-def build_wbs_tree_from_excel_sheet(excel_path: Path, sheet_name: str = "Data.Summary") -> dict:
+def build_wbs_tree_from_excel_sheet(excel_path: Path, sheet_name: str = "Structured.Cost") -> dict:
     if not excel_path.exists():
         raise FileNotFoundError(f"Excel file not found: {excel_path}")
 

@@ -6,9 +6,14 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
+
+_BOOTSTRAP_ROOT = Path(__file__).resolve().parents[2]
+if str(_BOOTSTRAP_ROOT) not in sys.path:
+    sys.path.insert(0, str(_BOOTSTRAP_ROOT))
 
 from src.app.build_phase5_operational_assets import APP_DATASET_PATH, MONITORING_KPI_PATH
 from src.modeling.dashboard_historical_mart import HISTORICAL_MART

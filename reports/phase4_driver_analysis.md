@@ -1,6 +1,6 @@
 # Phase 4 Driver-to-Cost Aggregation Report
 
-Generated at: 2026-04-29T08:52:00.955990+00:00
+Generated at: 2026-05-05T03:30:10.572478+00:00
 
 ## Runtime Toggles
 - group_by: `family`
@@ -10,31 +10,31 @@ Generated at: 2026-04-29T08:52:00.955990+00:00
 ## Driver Family Cost Share
 | field | driver_family | cost_total | cost_share |
 |---|---|---:|---:|
-| DARAJAT | campaign_compliance | 341262.42 | 0.005045 |
-| DARAJAT | campaign_logistics | 6144011.39 | 0.090836 |
-| DARAJAT | interpad_move_count | 3173621.89 | 0.04692 |
-| DARAJAT | pad_expansion_flag | 4312134.97 | 0.063752 |
-| DARAJAT | rig_skid_count | 273130.43 | 0.004038 |
-| DARAJAT | shared_support | 921962.6 | 0.013631 |
-| DARAJAT | tie_in_flag | 1824732.53 | 0.026978 |
-| DARAJAT | waste_support | 1044476.17 | 0.015442 |
-| DARAJAT | well_scope | 49603423.95 | 0.733358 |
-| SALAK | campaign_compliance | 120051.27 | 0.003138 |
-| SALAK | campaign_logistics | 2472778.98 | 0.064638 |
-| SALAK | interpad_move_count | 2525023.62 | 0.066004 |
-| SALAK | pad_expansion_flag | 847987.94 | 0.022166 |
-| SALAK | rig_skid_count | 274554.31 | 0.007177 |
-| SALAK | shared_support | 841737.85 | 0.022003 |
-| SALAK | tie_in_flag | 1929753.62 | 0.050443 |
-| SALAK | waste_support | 374227.74 | 0.009782 |
-| SALAK | well_scope | 28869783.4 | 0.754649 |
+| DARAJAT | campaign_compliance | 944176.13 | 0.00858 |
+| DARAJAT | campaign_logistics | 9280285.77 | 0.084336 |
+| DARAJAT | interpad_move_count | 4511425.44 | 0.040998 |
+| DARAJAT | pad_expansion_flag | 10147937.36 | 0.09222 |
+| DARAJAT | rig_skid_count | 273130.43 | 0.002482 |
+| DARAJAT | shared_support | 2995282.36 | 0.02722 |
+| DARAJAT | tie_in_flag | 4298881.38 | 0.039067 |
+| DARAJAT | waste_support | 1044476.17 | 0.009492 |
+| DARAJAT | well_scope | 76544423.66 | 0.695605 |
+| SALAK | campaign_compliance | 1764549.67 | 0.028073 |
+| SALAK | campaign_logistics | 4562375.13 | 0.072584 |
+| SALAK | interpad_move_count | 4246654.47 | 0.067561 |
+| SALAK | pad_expansion_flag | 4285358.23 | 0.068177 |
+| SALAK | rig_skid_count | 515448.58 | 0.0082 |
+| SALAK | shared_support | 1741576.61 | 0.027707 |
+| SALAK | tie_in_flag | 1271679.0 | 0.020231 |
+| SALAK | waste_support | 685186.03 | 0.010901 |
+| SALAK | well_scope | 43783571.26 | 0.696565 |
 
 ## Classification Cost Share
 | field | classification | cost_total | cost_share |
 |---|---|---:|---:|
-| DARAJAT | campaign_tied | 8451712.58 | 0.124954 |
-| DARAJAT | hybrid | 9583619.82 | 0.141688 |
-| DARAJAT | well_tied | 49603423.95 | 0.733358 |
-| SALAK | campaign_tied | 3808795.84 | 0.099561 |
-| SALAK | hybrid | 5577319.49 | 0.14579 |
-| SALAK | well_tied | 28869783.4 | 0.754649 |
+| DARAJAT | campaign_tied | 14264220.43 | 0.129628 |
+| DARAJAT | hybrid | 19231374.61 | 0.174767 |
+| DARAJAT | well_tied | 76544423.66 | 0.695605 |
+| SALAK | campaign_tied | 8753687.44 | 0.139265 |
+| SALAK | hybrid | 10319140.28 | 0.16417 |
+| SALAK | well_tied | 43783571.26 | 0.696565 |

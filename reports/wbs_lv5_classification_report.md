@@ -1,107 +1,103 @@
 # WBS Lv.5 Driver Alignment Report
 
 ## Snapshot
-- This run treats the current `data/raw/*.xlsx` files as the frozen source snapshot for driver alignment.
-- Total Lv.5 source rows processed: **822**
-- Total cost processed (USD): **106,558,960.11**
+- This run treats `20260422_Data for Dashboard.xlsx` as the frozen source snapshot for driver alignment.
+- Total Lv.5 source rows processed: **848**
+- Total cost processed (USD): **176,613,592.01**
 
-## Data.Summary WBS level profile (pre-filter)
-- Level `00`: **3** rows
-- Level `01`: **3** rows
-- Level `02`: **10** rows
-- Level `03`: **96** rows
-- Level `04`: **280** rows
-- Level `05`: **822** rows
-- Level `06`: **65** rows
-- Level `07`: **1146** rows
-- Lv.5 ingestion filter: keep only `WBS_Level=05` (with `WBS.structure.x1` Lv.5 ID fallback).
+## Structured Cost Level Profile (pre-filter)
+- Level `05`: **848** rows
+- Lv.5 ingestion filter: keep only `WBS_Level=05` rows (dashboard normalized).
 
 ## Campaign Mapping Gate
-- In-scope campaign rows mapped: **822 / 822**
-- In-scope labels `DRJ 2022`, `DRJ 2023`, and `SLK 2025` are required to resolve before class assignment.
+- In-scope campaign rows mapped: **646 / 848**
+- In-scope labels are required to resolve before class assignment.
 
 ## Approved Driver Mix
-- `well_tied`: 651 keys (79.1971%), USD 79,137,512.38 (74.2664%)
-- `campaign_tied`: 46 keys (5.5961%), USD 12,260,508.42 (11.5058%)
-- `hybrid`: 125 keys (15.2068%), USD 15,160,939.31 (14.2277%)
+- `well_tied`: 72 keys (50.0000%), USD 124,045,169.25 (70.2353%)
+- `campaign_tied`: 42 keys (29.1667%), USD 23,017,907.87 (13.0329%)
+- `hybrid`: 30 keys (20.8333%), USD 29,550,514.89 (16.7317%)
 
 ## By Field
 - **DARAJAT**
-  `well_tied`: 352 keys (76.1905%), USD 50,001,302.14 (73.4917%)
-  `campaign_tied`: 32 keys (6.9264%), USD 8,451,712.58 (12.4223%)
-  `hybrid`: 78 keys (16.8831%), USD 9,583,619.82 (14.0860%)
+  `well_tied`: 35 keys (49.2958%), USD 76,544,423.66 (69.5605%)
+  `campaign_tied`: 21 keys (29.5775%), USD 14,264,220.43 (12.9628%)
+  `hybrid`: 15 keys (21.1268%), USD 19,231,374.61 (17.4767%)
 - **SALAK**
-  `well_tied`: 299 keys (83.0556%), USD 29,136,210.24 (75.6346%)
-  `campaign_tied`: 14 keys (3.8889%), USD 3,808,795.84 (9.8872%)
-  `hybrid`: 47 keys (13.0556%), USD 5,577,319.49 (14.4781%)
+  `well_tied`: 37 keys (50.6849%), USD 47,500,745.59 (71.3508%)
+  `campaign_tied`: 21 keys (28.7671%), USD 8,753,687.44 (13.1489%)
+  `hybrid`: 15 keys (20.5479%), USD 10,319,140.28 (15.5004%)
 
 ## Review Status
-- Unresolved keys: **0**
-- Material review keys (>= USD 500,000): **56**
+- Unresolved keys: **7**
+- Material review keys (>= USD 500,000): **59**
 
 ## Material Review List
-- `SALAK|E540-30101-D245401|E540-3010169-D245401|E540-301016903-D245401|E540-30101690306-D245401` | `campaign_tied` | `campaign_logistics` | USD 2,472,778.98
-- `DARAJAT|E530-30101-D235301|E530-3010169-D235301|E530-301016903-D235301|E530-30101690306-D235301` | `campaign_tied` | `campaign_logistics` | USD 2,443,898.79
-- `DARAJAT|E530-30101-D225301|E530-3010169-D225301|E530-301016966-D225301|E530-30101696623-D225301` | `campaign_tied` | `campaign_logistics` | USD 2,200,569.61
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010402-D235301|E530-30101040205-D235301` | `well_tied` | `well_scope` | USD 1,174,500.15
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010402-D235301|E530-30101040209-D235301` | `well_tied` | `well_scope` | USD 1,167,015.34
-- `SALAK|E540-30101-D245401|E540-3010104-D245401|E540-301010461-D245401|E540-30101046101-D245401` | `well_tied` | `well_scope` | USD 1,054,232.96
-- `DARAJAT|E530-30101-D235301|E530-3010169-D235301|E530-301016967-D235301|E530-30101696706-D235301` | `campaign_tied` | `campaign_logistics` | USD 1,041,966.78
-- `DARAJAT|E530-30101-D225301|E530-3010104-D225301|E530-301010402-D225301|E530-30101040205-D225301` | `well_tied` | `well_scope` | USD 1,033,044.74
-- `DARAJAT|E530-30203-D235301|E530-3020386-D235301|E530-302038609-D235301|E530-30203860962-D235301` | `hybrid` | `pad_expansion_flag` | USD 998,367.29
-- `DARAJAT|E530-30101-D235301|E530-3010102-D235301|E530-301010202-D235301|E530-30101020205-D235301` | `well_tied` | `well_scope` | USD 977,166.30
-- `DARAJAT|E530-30101-D235301|E530-3010106-D235301|E530-301010602-D235301|E530-30101060205-D235301` | `well_tied` | `well_scope` | USD 970,902.29
-- `SALAK|E540-30101-D245401|E540-3010108-D245401|E540-301010861-D245401|E540-30101086101-D245401` | `well_tied` | `well_scope` | USD 965,451.40
-- `DARAJAT|E530-30101-D235301|E530-3010105-D235301|E530-301010561-D235301|E530-30101056101-D235301` | `well_tied` | `well_scope` | USD 892,680.61
-- `DARAJAT|E530-30101-D235301|E530-3010103-D235301|E530-301010361-D235301|E530-30101036101-D235301` | `well_tied` | `well_scope` | USD 889,177.81
-- `DARAJAT|E530-30101-D225301|E530-3010105-D225301|E530-301010502-D225301|E530-30101050205-D225301` | `well_tied` | `well_scope` | USD 867,517.38
-- `DARAJAT|E530-30101-D225301|E530-3010103-D225301|E530-301010302-D225301|E530-30101030205-D225301` | `well_tied` | `well_scope` | USD 838,855.14
-- `SALAK|E540-30101-D245401|E540-3010156-D245401|E540-301015601-D245401|E540-30101560123-D245401` | `hybrid` | `interpad_move_count` | USD 830,091.90
-- `DARAJAT|E530-30101-D225301|E530-3010101-D225301|E530-301010102-D225301|E530-30101010205-D225301` | `well_tied` | `well_scope` | USD 821,879.00
-- `DARAJAT|E530-30101-D225301|E530-3010105-D225301|E530-301010502-D225301|E530-30101050209-D225301` | `well_tied` | `well_scope` | USD 798,979.46
-- `DARAJAT|E530-30101-D235301|E530-3010103-D235301|E530-301010302-D235301|E530-30101030205-D235301` | `well_tied` | `well_scope` | USD 783,052.64
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010402-D235301|E530-30101040212-D235301` | `well_tied` | `well_scope` | USD 747,394.50
-- `DARAJAT|E530-30101-D225301|E530-3010104-D225301|E530-301010402-D225301|E530-30101040212-D225301` | `well_tied` | `well_scope` | USD 728,386.40
-- `SALAK|E540-30101-D245401|E540-3010102-D245401|E540-301010261-D245401|E540-30101026101-D245401` | `well_tied` | `well_scope` | USD 725,447.72
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010461-D235301|E530-30101046101-D235301` | `well_tied` | `well_scope` | USD 710,970.27
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010402-D235301|E530-30101040207-D235301` | `well_tied` | `well_scope` | USD 697,896.50
-- `DARAJAT|E530-30101-D225301|E530-3010156-D225301|E530-301015601-D225301|E530-30101560123-D225301` | `hybrid` | `interpad_move_count` | USD 694,657.64
-- `DARAJAT|E530-30101-D225301|E530-3010156-D225301|E530-301015602-D225301|E530-30101560223-D225301` | `hybrid` | `interpad_move_count` | USD 694,133.15
-- `SALAK|E540-30101-D245401|E540-3010104-D245401|E540-301010402-D245401|E540-30101040212-D245401` | `well_tied` | `well_scope` | USD 687,821.17
-- `DARAJAT|E530-30101-D235301|E530-3010105-D235301|E530-301010502-D235301|E530-30101050209-D235301` | `well_tied` | `well_scope` | USD 665,835.97
-- `SALAK|E540-30101-D245401|E540-3010104-D245401|E540-301010402-D245401|E540-30101040245-D245401` | `well_tied` | `well_scope` | USD 658,713.31
-- `DARAJAT|E530-30101-D235301|E530-3010106-D235301|E530-301010602-D235301|E530-30101060207-D235301` | `well_tied` | `well_scope` | USD 637,251.50
-- `SALAK|E540-30101-D245401|E540-3010102-D245401|E540-301010202-D245401|E540-30101020245-D245401` | `well_tied` | `well_scope` | USD 636,198.74
-- `DARAJAT|E530-30101-D225301|E530-3010101-D225301|E530-301010102-D225301|E530-30101010212-D225301` | `well_tied` | `well_scope` | USD 634,852.06
-- `DARAJAT|E530-30101-D235301|E530-3010156-D235301|E530-301015602-D235301|E530-30101560223-D235301` | `hybrid` | `interpad_move_count` | USD 629,396.87
-- `DARAJAT|E530-30101-D235301|E530-3010105-D235301|E530-301010502-D235301|E530-30101050205-D235301` | `well_tied` | `well_scope` | USD 617,565.90
-- `SALAK|E540-30101-D245401|E540-3010106-D245401|E540-301010661-D245401|E540-30101066101-D245401` | `well_tied` | `well_scope` | USD 592,905.89
-- `DARAJAT|E530-30101-D225301|E530-3010102-D225301|E530-301010261-D225301|E530-30101026118-D225301` | `well_tied` | `well_scope` | USD 587,193.81
-- `SALAK|E540-30101-D245401|E540-3010106-D245401|E540-301010602-D245401|E540-30101060205-D245401` | `well_tied` | `well_scope` | USD 586,102.57
-- `DARAJAT|E530-30101-D235301|E530-3010102-D235301|E530-301010202-D235301|E530-30101020209-D235301` | `well_tied` | `well_scope` | USD 582,091.74
-- `DARAJAT|E530-30101-D225301|E530-3010102-D225301|E530-301010202-D225301|E530-30101020205-D225301` | `well_tied` | `well_scope` | USD 577,880.00
-- `SALAK|E540-30101-D245401|E540-3010101-D245401|E540-301010161-D245401|E540-30101016101-D245401` | `well_tied` | `well_scope` | USD 575,229.74
-- `DARAJAT|E530-30101-D235301|E530-3010104-D235301|E530-301010402-D235301|E530-30101040214-D235301` | `well_tied` | `well_scope` | USD 571,655.20
-- `SALAK|E540-30101-D245401|E540-3010102-D245401|E540-301010202-D245401|E540-30101020209-D245401` | `well_tied` | `well_scope` | USD 569,931.80
-- `DARAJAT|E530-30101-D235301|E530-3010102-D235301|E530-301010202-D235301|E530-30101020210-D235301` | `well_tied` | `well_scope` | USD 566,232.97
-- `DARAJAT|E530-30101-D235301|E530-3010156-D235301|E530-301015601-D235301|E530-30101560123-D235301` | `hybrid` | `interpad_move_count` | USD 565,608.62
-- `DARAJAT|E530-30101-D235301|E530-3010105-D235301|E530-301010561-D235301|E530-30101056118-D235301` | `well_tied` | `well_scope` | USD 560,934.25
-- `SALAK|E540-30101-D245401|E540-3010108-D245401|E540-301010802-D245401|E540-30101080212-D245401` | `well_tied` | `well_scope` | USD 556,572.63
-- `DARAJAT|E530-30101-D235301|E530-3010102-D235301|E530-301010261-D235301|E530-30101026101-D235301` | `well_tied` | `well_scope` | USD 555,950.62
-- `SALAK|E540-30101-D245401|E540-3010103-D245401|E540-301010302-D245401|E540-30101030205-D245401` | `well_tied` | `well_scope` | USD 555,095.70
-- `SALAK|E540-30101-D245401|E540-3010106-D245401|E540-301010602-D245401|E540-30101060245-D245401` | `well_tied` | `well_scope` | USD 553,353.44
-- `DARAJAT|E530-30101-D235301|E530-3010105-D235301|E530-301010502-D235301|E530-30101050212-D235301` | `well_tied` | `well_scope` | USD 542,203.17
-- `SALAK|E540-30101-D245401|E540-3010102-D245401|E540-301010202-D245401|E540-30101020210-D245401` | `well_tied` | `well_scope` | USD 539,568.66
-- `SALAK|E540-30101-D245401|E540-3010108-D245401|E540-301010802-D245401|E540-30101080245-D245401` | `well_tied` | `well_scope` | USD 535,788.29
-- `DARAJAT|E530-30101-D225301|E530-3010101-D225301|E530-301010161-D225301|E530-30101016101-D225301` | `well_tied` | `well_scope` | USD 532,953.13
-- `DARAJAT|E530-30101-D235301|E530-3010103-D235301|E530-301010302-D235301|E530-30101030212-D235301` | `well_tied` | `well_scope` | USD 531,994.69
-- `SALAK|E540-30101-D245401|E540-3010156-D245401|E540-301015603-D245401|E540-30101560323-D245401` | `hybrid` | `interpad_move_count` | USD 510,117.08
+- `DARAJAT|Drilling Cost|Well Cost|Services|Contract Rig` | `well_tied` | `well_scope` | USD 15,297,336.06
+- `DARAJAT|Drilling Cost|Rig Mobilization|Rig Mobilization|Rig Mobilization` | `campaign_tied` | `campaign_logistics` | USD 9,280,285.77
+- `DARAJAT|Drilling Cost|Well Cost|Services|Cement, Cementing & Pump Fees` | `well_tied` | `well_scope` | USD 8,564,060.02
+- `DARAJAT|Drilling Cost|Well Cost|Services|Mud, Chemical and Engineering Service` | `well_tied` | `well_scope` | USD 7,513,359.76
+- `DARAJAT|Drilling Cost|Well Cost|Material - LL|Casing` | `well_tied` | `well_scope` | USD 7,271,791.03
+- `SALAK|Drilling Cost|Well Cost|Material - LL|Casing` | `well_tied` | `well_scope` | USD 6,982,930.33
+- `DARAJAT|Drilling Cost|Well Cost|Services|Directional Drilling & Surveys` | `well_tied` | `well_scope` | USD 6,532,895.17
+- `DARAJAT|Drilling Cost|Well Cost|Material - LL|Fuel & Lubricants` | `well_tied` | `well_scope` | USD 5,990,691.93
+- `SALAK|Drilling Cost|Well Cost|Services|Cement, Cementing & Pump Fees` | `well_tied` | `well_scope` | USD 5,875,073.33
+- `SALAK|Drilling Cost|Well Cost|Services|Contract Rig` | `well_tied` | `well_scope` | USD 5,771,257.57
+- `DARAJAT|Drilling Cost|Well Cost|Services|Equipment Rental` | `well_tied` | `well_scope` | USD 5,622,229.63
+- `SALAK|Drilling Cost|Rig Mobilization|Rig Mobilization|Rig Mobilization` | `campaign_tied` | `campaign_logistics` | USD 4,562,375.13
+- `DARAJAT|Drilling Cost|Rig Move|Interpad Move|Rig Move` | `hybrid` | `interpad_move_count` | USD 4,511,425.44
+- `DARAJAT|Surface Facilities Cost|Tie-in|Construction|Installation, Hook Up & Pre-Commisioning` | `hybrid` | `tie_in_flag` | USD 4,298,881.38
+- `SALAK|Drilling Cost|Well Cost|Services|Mud, Chemical and Engineering Service` | `well_tied` | `well_scope` | USD 3,773,120.96
+- `SALAK|Drilling Cost|Well Cost|Services|Directional Drilling & Surveys` | `well_tied` | `well_scope` | USD 3,690,678.63
+- `SALAK|Drilling Cost|Well Cost|Services|Equipment Rental` | `well_tied` | `well_scope` | USD 3,617,368.42
+- `DARAJAT|Surface Facilities Cost|Tie-in|Procurement|Material - LL` | `hybrid` | `pad_expansion_flag` | USD 3,580,812.67
+- `SALAK|Drilling Cost|Well Cost|Services|Drilling Rig O&M` | `well_tied` | `well_scope` | USD 3,415,573.27
+- `DARAJAT|Drilling Cost|Well Cost|Material - LL|Equipment Rental` | `well_tied` | `well_scope` | USD 2,882,722.15
+- `SALAK|Drilling Cost|Rig Move|Interpad Move|Rig Move` | `hybrid` | `interpad_move_count` | USD 2,707,345.06
+- `DARAJAT|Drilling Cost|Well Cost|Services|Bits, Reamer and Core heads` | `well_tied` | `well_scope` | USD 2,687,536.76
+- `SALAK|Drilling Cost|Well Cost|Material - LL|Fuel & Lubricants` | `well_tied` | `well_scope` | USD 2,623,304.29
+- `DARAJAT|Surface Facilities Cost|Road & Pad|Construction|Construction` | `hybrid` | `pad_expansion_flag` | USD 2,298,677.05
+- `SALAK|Surface Facilities Cost|Tie-in|Procurement|Material - LL` | `hybrid` | `pad_expansion_flag` | USD 2,114,871.90
+- `DARAJAT|Surface Facilities Cost|Tie-in|Procurement|Material - Non LL` | `hybrid` | `pad_expansion_flag` | USD 1,717,743.15
+- `SALAK|Drilling Cost|Well Cost|Services|Bits, Reamer and Core heads` | `well_tied` | `well_scope` | USD 1,716,541.00
+- `SALAK|Drilling Cost|LIH|LIH|LIH` | `campaign_tied` | `campaign_compliance` | USD 1,531,986.77
+- `DARAJAT|Support Cost|Drilling Operation Water Support|Drilling Operation Water Support|Drilling Operation Water Support` | `campaign_tied` | `shared_support` | USD 1,525,283.68
+- `DARAJAT|Surface Facilities Cost|Special Requirement Existing Pad|Construction|Construction` | `hybrid` | `pad_expansion_flag` | USD 1,524,802.26
+- `DARAJAT|Drilling Cost|Well Cost|Services|Supervision` | `well_tied` | `well_scope` | USD 1,492,890.61
+- `DARAJAT|Drilling Cost|Well Cost|Services|Land Transportation` | `well_tied` | `well_scope` | USD 1,477,042.52
+- `SALAK|Surface Facilities Cost|Road & Pad|Construction|Construction` | `hybrid` | `pad_expansion_flag` | USD 1,441,148.15
+- `SALAK|Drilling Cost|Well Cost|Services|Others` | `well_tied` | `well_scope` | USD 1,353,239.20
+- `SALAK|Surface Facilities Cost|Tie-in|Construction|Installation, Hook Up & Pre-Commisioning` | `hybrid` | `tie_in_flag` | USD 1,271,679.00
+- `DARAJAT|Support Cost|Well Testing|Well Testing|Well Testing` | `well_tied` | `well_scope` | USD 1,225,274.80
+- `DARAJAT|Surface Facilities Cost|Conductor Casing Installation & Material|Services|Service` | `well_tied` | `well_scope` | USD 1,180,603.34
+- `SALAK|Surface Facilities Cost|Conductor Casing Installation & Material|Conductor Casing Installation & Material|Service` | `well_tied` | `well_scope` | USD 1,165,594.54
+- `DARAJAT|Drilling Cost|Well Cost|Services|Open Hole Electrical Logging Service` | `well_tied` | `well_scope` | USD 1,159,405.15
+- `SALAK|Drilling Cost|Well Cost|Services|Land Transportation` | `well_tied` | `well_scope` | USD 1,072,971.95
+- `DARAJAT|Drilling Cost|Well Cost|Services|Others` | `well_tied` | `well_scope` | USD 1,037,617.94
+- `DARAJAT|Drilling Cost|Well Cost|Services|Casing Installation` | `well_tied` | `well_scope` | USD 980,527.67
+- `SALAK|Drilling Cost|Well Cost|Material - LL|Well Equipment Surface` | `well_tied` | `well_scope` | USD 908,990.86
+- `DARAJAT|Support Cost|SHE|Drill Cutting|Drill Cutting - Transport & Process` | `campaign_tied` | `waste_support` | USD 874,481.83
+- `SALAK|Surface Facilities Cost|Conductor Casing Installation & Material|Service|Service` | `well_tied` | `well_scope` | USD 844,257.09
+- `SALAK|Drilling Cost|Rig Move|Skid Moving|Rig Move` | `hybrid` | `interpad_move_count` | USD 830,091.90
+- `DARAJAT|Surface Facilities Cost|Conductor Casing Installation & Material|Conductor Casing Installation & Material|Service` | `well_tied` | `well_scope` | USD 810,634.08
+- `DARAJAT|Drilling Cost|Well Cost|Services|Mud Logging Service` | `well_tied` | `well_scope` | USD 780,452.75
+- `SALAK|Support Cost|Well Testing|Well Testing|Well Testing` | `well_tied` | `well_scope` | USD 757,000.07
+- `SALAK|Drilling Cost|Well Cost|Services|Casing Installation` | `well_tied` | `well_scope` | USD 749,329.10
+- `DARAJAT|Support Cost|Well Insurance|Well Insurance|Insurance` | `campaign_tied` | `shared_support` | USD 727,056.04
+- `DARAJAT|Support Cost|PGPA & Security|PGPA|PGPA` | `campaign_tied` | `campaign_compliance` | USD 718,108.13
+- `SALAK|Drilling Cost|Rig Move|Services|Rig Move` | `hybrid` | `interpad_move_count` | USD 709,217.51
+- `SALAK|Drilling Cost|Well Cost|Services|Supervision` | `well_tied` | `well_scope` | USD 705,895.95
+- `SALAK|Surface Facilities Cost|Conductor Casing Installation & Material|Conductor Casing Installation & Material|Material` | `well_tied` | `well_scope` | USD 677,988.38
+- `SALAK|Support Cost|SHE|Drill Cutting|Drill Cutting - Transport & Process` | `campaign_tied` | `waste_support` | USD 669,465.12
+- `DARAJAT|Surface Facilities Cost|Conductor Casing Installation & Material|Conductor Casing Installation & Material|Material` | `well_tied` | `well_scope` | USD 579,209.10
+- `DARAJAT|Drilling Cost|Well Cost|Services|API non API Machine Shop Service` | `well_tied` | `well_scope` | USD 574,372.14
+- `DARAJAT|Surface Facilities Cost|Special Requirement Existing Pad|Procurement|Material - LL` | `hybrid` | `pad_expansion_flag` | USD 525,317.39
 
 ## Hybrid Driver Families
-- `interpad_move_count`: 15 keys, USD 5,698,645.51
-- `pad_expansion_flag`: 64 keys, USD 5,160,122.91
-- `tie_in_flag`: 36 keys, USD 3,754,486.15
-- `rig_skid_count`: 10 keys, USD 547,684.74
+- `pad_expansion_flag`: 20 keys, USD 14,433,295.59
+- `interpad_move_count`: 4 keys, USD 8,758,079.91
+- `tie_in_flag`: 2 keys, USD 5,570,560.38
+- `rig_skid_count`: 4 keys, USD 788,579.01
 
 ## Estimator Composition
 - `campaign estimate = sum(well_tied well estimates) + campaign_tied campaign estimate + hybrid scope-based campaign estimate`.

@@ -14,7 +14,6 @@ DRJ-45,DRJ-45,DRJ-45,"[""DRJ S4SSE"", ""DRJ-45"", ""DRJ-45OH"", ""WELL S4 01""]"
 DRJ-46,DRJ-46,DRJ-46,"[""DRJ S4S"", ""DRJ-46"", ""DRJ-46OH"", ""WELL S4 02""]",DARAJAT,E530-30101-D19001,DARAJAT_2019,,,,,in_scope_estimator,,,yes,yes,
 DRJ-47,DRJ-47,DRJ-47,"[""DRJ S4 SW"", ""DRJ-47"", ""DRJ-47OH"", ""WELL S4 03""]",DARAJAT,E530-30101-D19001,DARAJAT_2019,,,,,in_scope_estimator,,,yes,yes,
 DRJ-48,DRJ-48,DRJ-48,"[""DRJ 20 NE"", ""DRJ-48"", ""WELL 20 02""]",DARAJAT,E530-30101-D19001,DARAJAT_2019,,,,,in_scope_estimator,,,yes,yes,
-DRJ-38,DRJ-38,DRJ-38,"[""DRJ-38"", ""DRJ-38RD"", ""SF-ML""]",DARAJAT,E530-30101-D225301,DARAJAT_2022,,,,,in_scope_estimator,,,yes,yes,
 DRJ-38RD,DRJ-38RD,DRJ-38RD,"[""DRJ SF-ML"", ""DRJ-38RD""]",DARAJAT,E530-30101-D225301,DARAJAT_2022,,,,,in_scope_estimator,,,yes,yes,
 DRJ-49,DRJ-49,DRJ-49,"[""DRJ SF-1"", ""DRJ-49"", ""DRJ-49OH"", ""SF-1""]",DARAJAT,E530-30101-D225301,DARAJAT_2022,,,,,in_scope_estimator,,,yes,yes,
 DRJ-50,DRJ-50,DRJ-50,"[""20-1"", ""DRJ 20-1"", ""DRJ-50"", ""DRJ-50OH""]",DARAJAT,E530-30101-D225301,DARAJAT_2022,,,,,in_scope_estimator,,,yes,yes,
@@ -25,7 +24,6 @@ DRJ-54,DRJ-54,DRJ-54,"[""DRJ STEAM 2"", ""DRJ-54"", ""DRJ-STEAM 2""]",DARAJAT,E5
 DRJ-55,DRJ-55,DRJ-55,"[""DRJ STEAM 3"", ""DRJ-55"", ""DRJ-STEAM 3""]",DARAJAT,E530-30101-D235301,DARAJAT_2023_2024,,,,,in_scope_estimator,,,yes,yes,
 DRJ-56,DRJ-56,DRJ-56,"[""DRJ STEAM 4"", ""DRJ-56"", ""DRJ-STEAM 4""]",DARAJAT,E530-30101-D235301,DARAJAT_2023_2024,,,,,in_scope_estimator,,,yes,yes,
 DRJ-57,DRJ-57,DRJ-57,"[""DRJ STEAM 5"", ""DRJ-57"", ""DRJ-STEAM 5""]",DARAJAT,E530-30101-D235301,DARAJAT_2023_2024,,,,,in_scope_estimator,,,yes,yes,
-DRJ-STEAM 1,DRJ-STEAM 1,DRJ-STEAM 1,"[""DRJ-STEAM 1""]",DARAJAT,E530-30101-D235301,DARAJAT_2023_2024,,,,,in_scope_estimator,,,yes,no,"Keep in scope, exclude from well-level training until confirmed"
 AWI 16-8,AWI 16-8,AWI 16-8,"[""AWI 16-08"", ""AWI 16-8""]",SALAK,E540-30101-D20001,SALAK_2021,,,,,in_scope_estimator,,,yes,yes,
 AWI 16-9,AWI 16-9,AWI 16-9,"[""AWI 16-09"", ""AWI 16-9""]",SALAK,E540-30101-D20001,SALAK_2021,,,,,in_scope_estimator,,,yes,yes,
 AWI 21-5,AWI 21-5,AWI 21-5,"[""AWI 21-05"", ""AWI 21-5""]",SALAK,E540-30101-D20001,SALAK_2021,,,,,in_scope_estimator,,,yes,yes,

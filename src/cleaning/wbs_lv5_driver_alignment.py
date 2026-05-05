@@ -4,8 +4,13 @@ import csv
 import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+
+_BOOTSTRAP_ROOT = Path(__file__).resolve().parents[2]
+if str(_BOOTSTRAP_ROOT) not in sys.path:
+    sys.path.insert(0, str(_BOOTSTRAP_ROOT))
 
 from src.io.build_canonical_mappings import read_xlsx as read_xlsx_workbook
 
@@ -36,6 +41,10 @@ ALIGNMENT_REPORT = REPORTS_DIR / "wbs_lv5_driver_alignment_report.md"
 DEFINE_QUALITY_REPORT = REPORTS_DIR / "phase2_define_quality_thresholds.md"
 PHASE4_COVERAGE_REPORT = REPORTS_DIR / "phase4_plus_coverage_summary.md"
 DARAJAT_5W_ESTIMATE_PATH = PROCESSED_DIR / "darajat_5well_lv5_estimate.json"
+TAG_REFERENCE_PATH = PROCESSED_DIR / "wbs_lv5_tag_reference.csv"
+
+DASHBOARD_WORKBOOK = "20260422_Data for Dashboard.xlsx"
+DASHBOARD_STRUCTURED_SHEET = "Structured.Cost"
 
 NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
@@ -49,9 +58,18 @@ CAMPAIGN_LABEL_TO_CODE = {
     "SLK 2025": "E540-30101-D245401",
     "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
     "SALAK CAMPAIGN 2021": "E540-30101-D20001",
+    "DRJ - 2019": "E530-30101-D19001",
+    "DRJ - 2022": "E530-30101-D225301",
+    "DRJ - 2024": "E530-30101-D235301",
+    "SLK - 2021": "E540-30101-D20001",
+    "SLK - 2025": "E540-30101-D245401",
+    "WW - 2018": "E500-2-0-8501-185003",
+    "WW - 2021": "E500-30101-D205011",
+    "WAYANG WINDU CAMPAIGN 2018/2019": "E500-2-0-8501-185003",
+    "WAYANG WINDU CAMPAIGN 2020/2021": "E500-30101-D205011",
 }
 
-IN_SCOPE_CAMPAIGN_LABELS = {"DRJ 2022", "DRJ 2023", "SLK 2025"}
+IN_SCOPE_CAMPAIGN_LABELS = {"DRJ 2022", "DRJ 2023", "SLK 2025", "DRJ - 2022", "DRJ - 2024", "SLK - 2025"}
 ALLOWED_CLASSES = {"well_tied", "campaign_tied", "hybrid"}
 CLASS_ORDER = ["well_tied", "campaign_tied", "hybrid", "unresolved"]
 
@@ -165,6 +183,170 @@ def filter_to_lv5_rows(data_summary_rows: list[dict[str, str]], lv5_wbs_ids: set
     return filtered, level_profile
 
 
+def stable_wbs_id(level2: str, level3: str, level4: str, level5: str) -> str:
+    payload = "|".join([clean_text(level2).upper(), clean_text(level3).upper(), clean_text(level4).upper(), clean_text(level5).upper()])
+    digest = hashlib.md5(payload.encode("utf-8")).hexdigest()[:12].upper()
+    head = re.sub(r"[^A-Z0-9]+", "", clean_text(level5).upper())[:12] or "L5"
+    return f"L5_{head}_{digest}"
+
+
+def records_from_structured_cost(wb_dashboard: dict[str, list[list[str]]]) -> list[dict[str, str]]:
+    rows = sheet_to_records(
+        wb_dashboard[DASHBOARD_STRUCTURED_SHEET],
+        required=["Asset", "Campaign", "Level 2", "Level 3", "Level 4", "Level 5", "Well", "Actual Cost USD"],
+    )
+
+    output: list[dict[str, str]] = []
+    for row in rows:
+        level2 = clean_text(row.get("Level 2", ""))
+        level3 = clean_text(row.get("Level 3", ""))
+        level4 = clean_text(row.get("Level 4", ""))
+        level5 = clean_text(row.get("Level 5", ""))
+        if not all([level2, level3, level4, level5]):
+            continue
+
+        output.append(
+            {
+                "Asset": clean_text(row.get("Asset", "")),
+                "Campaign": clean_text(row.get("Campaign", "")),
+                "WBS_Level": LV5_LEVEL_CODE,
+                "WBS_ID": stable_wbs_id(level2, level3, level4, level5),
+                "Description": level5,
+                "ACTUAL, USD": clean_text(row.get("Actual Cost USD", "")),
+                "L1": clean_text(row.get("Campaign", "")),
+                "L2": level2,
+                "L3": level3,
+                "L4": level4,
+                "L5": level5,
+                "Well Name": clean_text(row.get("Well", "")),
+                "_source_excel_row": row.get("_source_excel_row", ""),
+            }
+        )
+    return output
+
+
+def _heuristic_tag_well_or_pad(level3: str, level4: str, level5: str) -> str:
+    combined = f"{clean_text(level3)} {clean_text(level4)} {clean_text(level5)}".lower()
+    if any(token in combined for token in ["well cost", "well service", "directional drilling", "casing", "cement", "mud", "bits"]):
+        return "Well"
+    return "Pad"
+
+
+def build_or_load_lv5_tag_map(data_summary_rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    required_cols = [
+        "wbs_code_raw",
+        "wbs_lvl1",
+        "wbs_lvl2",
+        "wbs_lvl3",
+        "wbs_lvl4",
+        "wbs_lvl5",
+        "tag_well_or_pad",
+        "tag_lvl5",
+        "source",
+    ]
+
+    existing_rows: list[dict[str, str]] = []
+    if TAG_REFERENCE_PATH.exists():
+        existing_rows = read_csv_rows(TAG_REFERENCE_PATH)
+        if all(col in (existing_rows[0].keys() if existing_rows else {}) for col in required_cols):
+            return {
+                clean_text(row.get("wbs_code_raw", "")): {
+                    "LEVEL": LV5_LEVEL_CODE,
+                    "WBS CODE": clean_text(row.get("wbs_code_raw", "")),
+                    "LVL 1": clean_text(row.get("wbs_lvl1", "")),
+                    "LVL 2": clean_text(row.get("wbs_lvl2", "")),
+                    "LVL 3": clean_text(row.get("wbs_lvl3", "")),
+                    "LVL 4": clean_text(row.get("wbs_lvl4", "")),
+                    "LVL 5": clean_text(row.get("wbs_lvl5", "")),
+                    "Tag_Well_or_Pad": clean_text(row.get("tag_well_or_pad", "")),
+                    "Tag_LVL5": clean_text(row.get("tag_lvl5", "")),
+                }
+                for row in existing_rows
+                if clean_text(row.get("wbs_code_raw", ""))
+            }
+
+    legacy_master_by_levels: dict[tuple[str, str, str, str], dict[str, str]] = {}
+    if MASTER_PATH.exists():
+        for row in read_csv_rows(MASTER_PATH):
+            key = (
+                clean_text(row.get("wbs_lvl2", "")).upper(),
+                clean_text(row.get("wbs_lvl3", "")).upper(),
+                clean_text(row.get("wbs_lvl4", "")).upper(),
+                clean_text(row.get("wbs_lvl5", "")).upper(),
+            )
+            if all(key):
+                legacy_master_by_levels[key] = row
+
+    legacy_driver_by_levels: dict[tuple[str, str, str, str], dict[str, str]] = {}
+    if DRIVER_REFERENCE_PATH.exists():
+        for row in read_csv_rows(DRIVER_REFERENCE_PATH):
+            key = (
+                clean_text(row.get("wbs_lvl2", "")).upper(),
+                clean_text(row.get("wbs_lvl3", "")).upper(),
+                clean_text(row.get("wbs_lvl4", "")).upper(),
+                clean_text(row.get("wbs_lvl5", "")).upper(),
+            )
+            if all(key):
+                legacy_driver_by_levels[key] = row
+
+    rows_to_write: list[dict[str, str]] = []
+    tag_map: dict[str, dict[str, str]] = {}
+    for row in data_summary_rows:
+        wbs_code = clean_text(row.get("WBS_ID", ""))
+        if not wbs_code or wbs_code in tag_map:
+            continue
+
+        level_key = (
+            clean_text(row.get("L2", "")).upper(),
+            clean_text(row.get("L3", "")).upper(),
+            clean_text(row.get("L4", "")).upper(),
+            clean_text(row.get("L5", "")).upper(),
+        )
+        legacy_master = legacy_master_by_levels.get(level_key, {})
+        legacy_driver = legacy_driver_by_levels.get(level_key, {})
+
+        tag_lvl5 = clean_text(legacy_master.get("tag_lvl5", "")) or clean_text(legacy_driver.get("wbs_family_tag", "")) or clean_text(row.get("L5", ""))
+        tag_well_or_pad = clean_text(legacy_master.get("tag_well_or_pad", ""))
+        if not tag_well_or_pad:
+            cls = clean_text(legacy_driver.get("estimation_class", "")).lower()
+            if cls == "well_tied":
+                tag_well_or_pad = "Well"
+            elif cls in {"campaign_tied", "hybrid"}:
+                tag_well_or_pad = "Pad"
+            else:
+                tag_well_or_pad = _heuristic_tag_well_or_pad(row.get("L3", ""), row.get("L4", ""), row.get("L5", ""))
+
+        tag_entry = {
+            "LEVEL": LV5_LEVEL_CODE,
+            "WBS CODE": wbs_code,
+            "LVL 1": clean_text(row.get("L1", "")),
+            "LVL 2": clean_text(row.get("L2", "")),
+            "LVL 3": clean_text(row.get("L3", "")),
+            "LVL 4": clean_text(row.get("L4", "")),
+            "LVL 5": clean_text(row.get("L5", "")),
+            "Tag_Well_or_Pad": tag_well_or_pad or "Pad",
+            "Tag_LVL5": tag_lvl5,
+        }
+        tag_map[wbs_code] = tag_entry
+        rows_to_write.append(
+            {
+                "wbs_code_raw": wbs_code,
+                "wbs_lvl1": tag_entry["LVL 1"],
+                "wbs_lvl2": tag_entry["LVL 2"],
+                "wbs_lvl3": tag_entry["LVL 3"],
+                "wbs_lvl4": tag_entry["LVL 4"],
+                "wbs_lvl5": tag_entry["LVL 5"],
+                "tag_well_or_pad": tag_entry["Tag_Well_or_Pad"],
+                "tag_lvl5": tag_entry["Tag_LVL5"],
+                "source": "legacy_processed_reference" if legacy_master or legacy_driver else "dashboard_heuristic",
+            }
+        )
+
+    if rows_to_write:
+        write_csv(TAG_REFERENCE_PATH, rows_to_write, required_cols)
+    return tag_map
+
+
 def map_field(asset_raw: str) -> str:
     value = clean_text(asset_raw).upper()
     if value in {"DRJ", "DARAJAT"}:
@@ -200,7 +382,7 @@ def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> No
         "Reviewed workbook structure and headers for the driver-alignment build.",
         "",
         "## Snapshot Freeze",
-        "- This alignment run treats the current `data/raw/*.xlsx` workbook set as the frozen source snapshot.",
+        f"- This alignment run treats `{DASHBOARD_WORKBOOK}` as the frozen source snapshot.",
         "- Driver alignment remains a classification/reference task only; no statistical driver validation is performed in this layer.",
         "",
         "## Workbook / Sheet Inventory",
@@ -215,20 +397,20 @@ def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> No
     lines.extend(
         [
             "## Authoritative Sources Used",
-            "- **WBS hierarchy:** `20260318_WBS_Dictionary.xlsx` -> `WBS_Dictionary` (`LEVEL`, `LVL 1..5`, WBS tags).",
-            "- **Cost rows:** `20260327_WBS_Data.xlsx` -> `Data.Summary` (`ACTUAL, USD`, WBS path fields).",
-            "- **Campaign scope:** `data/processed/canonical_campaign_mapping.csv` plus explicit label aliases for `DRJ 2022`, `DRJ 2023`, and `SLK 2025`.",
+            f"- **Cost rows:** `{DASHBOARD_WORKBOOK}` -> `{DASHBOARD_STRUCTURED_SHEET}` (`Actual Cost USD`, `Level 2..5`, `Well`).",
+            "- **WBS tags:** `data/processed/wbs_lv5_tag_reference.csv` (built once from prior processed outputs when available, then refreshed dashboard-first).",
+            "- **Campaign scope:** `data/processed/canonical_campaign_mapping.csv` plus explicit label aliases for in-scope campaign labels.",
             "- **Curated driver policy:** `src/cleaning/wbs_lv5_family_policy.csv`.",
             "",
             "## Data Quality Observations",
-            "- `Data.Summary` contains multiple WBS levels; ingestion keeps only `WBS_Level = 05` rows (Lv.5 leaf entries).",
-            "- Campaign labels in `Data.Summary` are short labels (`DRJ 2022`, `DRJ 2023`, `SLK 2025`), so driver alignment resolves them through explicit alias mapping before class assignment.",
+            "- `Structured.Cost` rows are already at Level 5 granularity (`Level 2..5`) and are normalized into a deterministic `WBS_ID` for lineage continuity.",
+            "- Campaign labels are resolved through explicit alias mapping before class assignment.",
             "- `hybrid` is reserved for non-well scope that is estimable from structured campaign design/scope drivers. Missing evidence no longer defaults to `hybrid`.",
             "",
             "## Join Candidates",
-            "- Cost rows -> WBS dictionary via exact `WBS_ID` (`Data.Summary`) to `WBS CODE` (`WBS_Dictionary`).",
+            "- Cost rows -> Lv5 tag reference via deterministic `WBS_ID` and `Level 2..5` path matching.",
             "- Cost rows -> canonical campaign via label alias to official campaign code.",
-            "- Well-level context remains nullable because `Data.Summary` is still campaign/WBS grain rather than row-level well attribution.",
+            "- Well-level context is inferred from `Well` in `Structured.Cost`, `General.Camp.Data`, and `NPT.Data` where applicable.",
         ]
     )
     write_text(INVENTORY_REPORT, "\n".join(lines) + "\n")
@@ -668,17 +850,17 @@ def keyword_fallback(row: dict[str, str]) -> dict[str, str]:
             "review_notes": "Approved via deterministic keyword fallback.",
         }
 
-    well_use, campaign_use = usage_flags_for_class("unresolved")
+    well_use, campaign_use = usage_flags_for_class("campaign_tied")
     return {
-        "classification": "unresolved",
-        "driver_family": "",
+        "classification": "campaign_tied",
+        "driver_family": "shared_support",
         "classification_confidence": "low",
-        "classification_rule_id": "R9_REVIEW_REQUIRED",
-        "classification_rule_text": "No deterministic driver-family evidence matched the current policy or keyword rules.",
+        "classification_rule_id": "R9_FALLBACK_CAMPAIGN_TIED",
+        "classification_rule_text": "No deterministic driver-family evidence matched; defaulted to campaign_tied pending review.",
         "well_estimation_use": well_use,
         "campaign_estimation_use": campaign_use,
         "review_status": "needs_review",
-        "review_notes": "Missing deterministic evidence; hold for adjudication rather than defaulting to hybrid.",
+        "review_notes": "Missing deterministic evidence; defaulted to campaign_tied and queued for adjudication.",
     }
 
 
@@ -748,13 +930,13 @@ def build_master_rows(
         well_base = base_well_canonical(resolved_well_canonical)
         well_instance_id = build_well_instance_id(campaign_canonical, well_base)
 
-        source_row_key = f"20260327_WBS_Data.xlsx|Data.Summary|{row['_source_excel_row']}|{wbs_code}|{campaign_raw}"
+        source_row_key = f"{DASHBOARD_WORKBOOK}|{DASHBOARD_STRUCTURED_SHEET}|{row['_source_excel_row']}|{wbs_code}|{campaign_raw}"
         source_row_id = hashlib.md5(source_row_key.encode("utf-8")).hexdigest()[:16]
 
         master_rows.append(
             {
-                "source_file": "20260327_WBS_Data.xlsx",
-                "source_sheet": "Data.Summary",
+                "source_file": DASHBOARD_WORKBOOK,
+                "source_sheet": DASHBOARD_STRUCTURED_SHEET,
                 "source_row_id": source_row_id,
                 "field": map_field(row.get("Asset", "")),
                 "campaign_raw": campaign_raw,
@@ -1069,22 +1251,22 @@ def build_alignment_report(
         "# WBS Lv.5 Driver Alignment Report",
         "",
         "## Snapshot",
-        "- This run treats the current `data/raw/*.xlsx` files as the frozen source snapshot for driver alignment.",
+        f"- This run treats `{DASHBOARD_WORKBOOK}` as the frozen source snapshot for driver alignment.",
         f"- Total Lv.5 source rows processed: **{len(master_rows)}**",
         f"- Total cost processed (USD): **{total_cost:,.2f}**",
         "",
-        "## Data.Summary WBS level profile (pre-filter)",
+        "## Structured Cost Level Profile (pre-filter)",
     ]
     for level_code, count in sorted(source_level_profile.items()):
         lines.append(f"- Level `{level_code}`: **{count}** rows")
 
     lines.extend(
         [
-            f"- Lv.5 ingestion filter: keep only `WBS_Level={LV5_LEVEL_CODE}` (with `WBS.structure.x1` Lv.5 ID fallback).",
+            f"- Lv.5 ingestion filter: keep only `WBS_Level={LV5_LEVEL_CODE}` rows (dashboard normalized).",
             "",
         "## Campaign Mapping Gate",
         f"- In-scope campaign rows mapped: **{mapped_in_scope} / {len(master_rows)}**",
-        "- In-scope labels `DRJ 2022`, `DRJ 2023`, and `SLK 2025` are required to resolve before class assignment.",
+        "- In-scope labels are required to resolve before class assignment.",
         "",
         "## Approved Driver Mix",
         ]
@@ -1192,11 +1374,11 @@ def build_define_quality_report(master_rows: list[dict[str, str]], class_rows: l
     threshold_rows = [
         ("Hierarchy completeness", "0 rows with blank `wbs_lvl1..wbs_lvl5`", f"{hierarchy_blank} / {total_rows} blank", "PASS" if hierarchy_blank == 0 else "FAIL", "Required for L1->L5 auditability."),
         ("Campaign mapping completeness", "0 rows with blank campaign mapping fields", f"{campaign_blank} / {total_rows} blank", "PASS" if campaign_blank == 0 else "FAIL", "Requires both `campaign_code` and `campaign_canonical`."),
-        ("In-scope campaign alias mapping", "All in-scope labels mapped", f"{in_scope_mapped} / {len(in_scope_rows)} mapped", "PASS" if in_scope_mapped == len(in_scope_rows) else "FAIL", "Checks `DRJ 2022`, `DRJ 2023`, and `SLK 2025`."),
+        ("In-scope campaign alias mapping", "All in-scope labels mapped", f"{in_scope_mapped} / {len(in_scope_rows)} mapped", "PASS" if in_scope_mapped == len(in_scope_rows) else "FAIL", "Checks dashboard campaign aliases for current in-scope campaigns."),
         ("Duplicate classification keys", "0 duplicate `classification_key` values", str(duplicate_classification_keys), "PASS" if duplicate_classification_keys == 0 else "FAIL", "Classification grain is the implemented Lv5 canonical key."),
         ("Duplicate campaign master codes", "0 duplicate `campaign_code` values", str(duplicate_campaign_codes), "PASS" if duplicate_campaign_codes == 0 else "FAIL", "Campaign master must remain one row per canonical campaign code."),
         ("Duplicate well master keys", "0 duplicate (`well_id`, `campaign_code`) pairs", str(duplicate_well_master_keys), "PASS" if duplicate_well_master_keys == 0 else "FAIL", "Well master is one row per canonical well within a campaign."),
-        ("Well attribution coverage", "Report coverage; not a Phase 2 blocker at campaign/WBS grain", f"{well_coverage} / {total_rows} ({pct_str(well_coverage, total_rows)})", "KNOWN LIMITATION", "Current `Data.Summary` grain does not carry direct well attribution for Lv5 rows."),
+        ("Well attribution coverage", "Report coverage; not a Phase 2 blocker at campaign/WBS grain", f"{well_coverage} / {total_rows} ({pct_str(well_coverage, total_rows)})", "KNOWN LIMITATION", "Structured.Cost contains mixed well/general rows; deterministic attribution is reported, not forced."),
         ("Event-code coverage", "Report coverage; not a Phase 2 blocker at campaign/WBS grain", f"{event_coverage} / {total_rows} ({pct_str(event_coverage, total_rows)})", "KNOWN LIMITATION", "Event-code family is defined, but row-addressable values are not present in the current Lv5 build."),
     ]
 
@@ -1245,34 +1427,32 @@ def build_define_quality_report(master_rows: list[dict[str, str]], class_rows: l
             "",
             "## Current Grain Limitation",
             "- `wbs_lv5_master.csv` is complete for hierarchy and campaign mapping, with deterministic well-attribution capture where auditable from `Well Name` and label aliases.",
-            "- `event_code_raw` and `event_code_desc` remain blank in this Define layer because the unscheduled-event workbook is not row-addressable to `Data.Summary` Lv5 cost rows.",
+            "- `event_code_raw` and `event_code_desc` remain blank in this Define layer because NPT context is bridged separately and not asserted as row-level Lv5 attribution.",
             "- These limitations do not block Phase 3 design, but they do constrain later well-level driver validation until a richer source grain is introduced.",
         ]
     )
     return "\n".join(lines) + "\n"
 
 
-def write_salak_2021_scope_investigation(wb_data: dict[str, list[list[str]]], campaign_by_code: dict[str, dict[str, str]]) -> None:
-    data_summary_rows = sheet_to_records(
-        wb_data["Data.Summary"],
-        required=["Asset", "Campaign", "WBS_Level", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
-    )
-    data_summary_rows, _ = filter_to_lv5_rows(data_summary_rows, lv5_wbs_ids_from_structure_sheet(wb_data))
-
+def write_salak_2021_scope_investigation(
+    wb_dashboard: dict[str, list[list[str]]],
+    data_summary_rows: list[dict[str, str]],
+    campaign_by_code: dict[str, dict[str, str]],
+) -> None:
     salak_2021_code = "E540-30101-D20001"
     salak_2021_labels = {
         clean_text(v.get("campaign_name_raw", "")).upper()
         for v in campaign_by_code.values()
         if clean_text(v.get("campaign_code", "")) == salak_2021_code
     }
-    salak_2021_labels.update({"SALAK CAMPAIGN 2021", "SLK 2021"})
+    salak_2021_labels.update({"SALAK CAMPAIGN 2021", "SLK 2021", "SLK - 2021"})
 
     salak_2021_rows = [r for r in data_summary_rows if clean_text(r.get("Campaign", "")).upper() in salak_2021_labels]
     in_scope_rows = [r for r in data_summary_rows if clean_text(r.get("Campaign", "")).upper() in IN_SCOPE_CAMPAIGN_LABELS]
 
     reference_sheets: list[str] = []
-    for sheet, rows in wb_data.items():
-        if sheet == "Data.Summary":
+    for sheet, rows in wb_dashboard.items():
+        if sheet == DASHBOARD_STRUCTURED_SHEET:
             continue
         joined = " ".join(" ".join(r) for r in rows[:250]).upper()
         if "SALAK" in joined and "2021" in joined:
@@ -1285,17 +1465,17 @@ def write_salak_2021_scope_investigation(wb_data: dict[str, list[list[str]]], ca
         "Assess whether SALAK_2021 can be moved from `legacy_reference` to `in_scope` for the Phase 4 pipeline.",
         "",
         "## Evidence",
-        f"- Data.Summary Lv5 cost rows mapped to SALAK_2021 labels: **{len(salak_2021_rows)}**.",
-        f"- Data.Summary Lv5 cost rows for current in-scope labels (`DRJ 2022`, `DRJ 2023`, `SLK 2025`): **{len(in_scope_rows)}**.",
-        f"- Non-Data.Summary sheets with SALAK 2021 references: **{', '.join(sorted(reference_sheets)) or 'none_detected'}**.",
+        f"- Structured.Cost Lv5 cost rows mapped to SALAK_2021 labels: **{len(salak_2021_rows)}**.",
+        f"- Structured.Cost Lv5 cost rows for current in-scope labels (`DRJ - 2022`, `DRJ - 2024`, `SLK - 2025`): **{len(in_scope_rows)}**.",
+        f"- Non-Structured.Cost sheets with SALAK 2021 references: **{', '.join(sorted(reference_sheets)) or 'none_detected'}**.",
         "",
         "## Assessment",
-        "- Current Phase 4 ingestion contract requires cost-bearing Lv5 rows in `Data.Summary`.",
-        "- SALAK_2021 appears as campaign/well reference context outside the active in-scope cost-bearing Lv5 path.",
+        "- Current Phase 4 ingestion contract requires cost-bearing Lv5 rows in `Structured.Cost`.",
+        "- SALAK_2021 appears as campaign scope in the dashboard history and remains available for benchmarking/reporting.",
         "",
         "## Recommendation",
-        "- Keep `SALAK_2021` as **`legacy_reference`** in this phase.",
-        "- Do not promote to `in_scope` and do not synthesize SALAK_2021 cost rows unless authoritative Lv5 cost-bearing rows are available.",
+        "- Keep `SALAK_2021` as dashboard-historical scope for estimator context.",
+        "- Continue field-specific reporting and avoid cross-field pooling without statistical validation.",
     ]
     (REPORTS_DIR / "salak_2021_scope_investigation.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -1307,11 +1487,28 @@ def build_well_instance_context_rows(
     by_campaign: dict[tuple[str, str], set[str]],
     by_field: dict[tuple[str, str], set[str]],
 ) -> list[dict[str, str]]:
-    rows = sheet_to_records(
-        wb_data["WellView.Data"],
-        required=["Asset", "Drilling Campaign", "Well Name SAP", "Actual Depth (ft MD)", "Actual Days (days)", "NPT (days)"],
-        optional=["Well Name Well View"],
-    )
+    source_sheet = "WellView.Data"
+    if "WellView.Data" in wb_data:
+        rows = sheet_to_records(
+            wb_data["WellView.Data"],
+            required=["Asset", "Drilling Campaign", "Well Name SAP", "Actual Depth (ft MD)", "Actual Days (days)", "NPT (days)"],
+            optional=["Well Name Well View"],
+        )
+    else:
+        source_sheet = "General.Camp.Data"
+        rows = sheet_to_records(
+            wb_data["General.Camp.Data"],
+            required=[
+                "Asset",
+                "Campaign",
+                "Well Name Actual",
+                "Well Name SAP",
+                "Actual depth, ft MD",
+                "Drilling Duration, days equivalent",
+                "NPT hours",
+            ],
+            optional=["Well Name Alt 1", "Well Name Alt 2"],
+        )
     manual_deviation_override: dict[str, str] = {}
     if WELL_INSTANCE_CONTEXT_PATH.exists():
         for existing in read_csv_rows(WELL_INSTANCE_CONTEXT_PATH):
@@ -1325,10 +1522,16 @@ def build_well_instance_context_rows(
     out: list[dict[str, str]] = []
     for row in rows:
         field = map_field(row.get("Asset", ""))
-        campaign_map, _ = resolve_campaign_mapping(row.get("Drilling Campaign", ""), campaign_by_name, campaign_by_code)
+        campaign_raw = row.get("Drilling Campaign", "") or row.get("Campaign", "")
+        campaign_map, _ = resolve_campaign_mapping(campaign_raw, campaign_by_name, campaign_by_code)
         campaign_code = clean_text(campaign_map.get("campaign_code", ""))
         campaign_canonical = clean_text(campaign_map.get("campaign_id", ""))
-        alias = normalize_well_alias(row.get("Well Name SAP", "") or row.get("Well Name Well View", ""))
+        alias = normalize_well_alias(
+            row.get("Well Name SAP", "")
+            or row.get("Well Name Well View", "")
+            or row.get("Well Name Actual", "")
+            or row.get("Well Name Alt 1", "")
+        )
 
         campaign_hits = by_campaign.get((campaign_code, compact_for_match(alias)), set()) if campaign_code else set()
         field_hits = by_field.get((field, compact_for_match(alias)), set())
@@ -1337,9 +1540,17 @@ def build_well_instance_context_rows(
         confidence = "high" if len(campaign_hits) == 1 else ("medium" if len(field_hits) == 1 else "low")
         well_base = base_well_canonical(canonical)
         well_instance_id = build_well_instance_id(campaign_canonical, well_base)
-        deviation = classify_deviation_type(alias, row.get("Well Name Well View", ""))
+        notes = row.get("Well Name Well View", "") or row.get("Well Name Alt 1", "") or row.get("Well Name Alt 2", "")
+        deviation = classify_deviation_type(alias, notes)
         if canonical in manual_deviation_override:
             deviation = manual_deviation_override[canonical]
+
+        depth_value = parse_float(row.get("Actual Depth (ft MD)", "") or row.get("Actual depth, ft MD", "0"))
+        days_value = parse_float(row.get("Actual Days (days)", "") or row.get("Drilling Duration, days equivalent", "0"))
+        npt_value = parse_float(row.get("NPT (days)", ""))
+        if npt_value == 0.0:
+            npt_value = parse_float(row.get("NPT hours", "")) / 24.0
+
         out.append(
             {
                 "field": field,
@@ -1347,13 +1558,13 @@ def build_well_instance_context_rows(
                 "well_base_canonical": well_base,
                 "well_instance_id": well_instance_id,
                 "well_canonical": canonical,
-                "actual_depth": f"{parse_float(row.get('Actual Depth (ft MD)', '0')):.6f}",
-                "actual_days": f"{parse_float(row.get('Actual Days (days)', '0')):.6f}",
-                "npt_days": f"{parse_float(row.get('NPT (days)', '0')):.6f}",
+                "actual_depth": f"{depth_value:.6f}",
+                "actual_days": f"{days_value:.6f}",
+                "npt_days": f"{npt_value:.6f}",
                 "deviation_type": deviation,
-                "source_sheet": "WellView.Data",
+                "source_sheet": source_sheet,
                 "confidence": confidence,
-                "notes": clean_text(row.get("Well Name Well View", "")),
+                "notes": clean_text(notes),
             }
         )
     return out
@@ -1364,11 +1575,28 @@ def build_well_instance_event_context_rows(
     by_campaign: dict[tuple[str, str], set[str]],
     by_field: dict[tuple[str, str], set[str]],
 ) -> list[dict[str, str]]:
-    rows = sheet_to_records(
-        wb_data["3. NPT.Data"],
-        required=["Well Name", "Event Reference No.", "Event Type", "Unsch Maj Cat", "Unscheduled Detail", "Dur (Net) (hr)"],
-        optional=["Job Cat"],
-    )
+    source_sheet = "3. NPT.Data"
+    if "3. NPT.Data" in wb_data:
+        rows = sheet_to_records(
+            wb_data["3. NPT.Data"],
+            required=["Well Name", "Event Reference No.", "Event Type", "Unsch Maj Cat", "Unscheduled Detail", "Dur (Net) (hr)"],
+            optional=["Job Cat"],
+        )
+    else:
+        source_sheet = "NPT.Data"
+        rows = sheet_to_records(
+            wb_data["NPT.Data"],
+            required=[
+                "Well Name",
+                "Event Reference No.",
+                "Unsch Maj Cat",
+                "Unscheduled Detail",
+                "Dur (Net) (hr)",
+            ],
+            optional=["Job Cat Drill / Sidetrack / Well Service"],
+        )
+        for row in rows:
+            row["Job Cat"] = clean_text(row.get("Job Cat Drill / Sidetrack / Well Service", ""))
 
     # derive campaign candidates from well_master
     well_master_rows = read_csv_rows(PROCESSED_DIR / "well_master.csv")
@@ -1427,7 +1655,7 @@ def build_well_instance_event_context_rows(
                 "well_instance_id": well_instance_id,
                 "well_canonical": canonical,
                 "event_ref_no": clean_text(row.get("Event Reference No.", "")),
-                "event_type": clean_text(row.get("Event Type", "")),
+                "event_type": clean_text(row.get("Event Type", "")) or "NPT",
                 "event_major_category": clean_text(row.get("Unsch Maj Cat", "")),
                 "event_detail": detail,
                 "event_duration_days": f"{(parse_float(row.get('Dur (Net) (hr)', '0')) / 24.0):.6f}",
@@ -1435,6 +1663,7 @@ def build_well_instance_event_context_rows(
                 "mapping_method": "well_alias_context_bridge",
                 "confidence": confidence,
                 "source_text_used": clean_text(row.get("Well Name", "")),
+                "source_sheet": source_sheet,
             }
         )
     return out
@@ -1479,7 +1708,7 @@ def write_phase4_plus_coverage_summary(
         [
             "",
             "## Notes",
-            "- `3. NPT.Data` is bridged as well-instance event context; direct row-level WBS event fill is not asserted.",
+            "- `NPT.Data` (or legacy `3. NPT.Data` when present) is bridged as well-instance event context; direct row-level WBS event fill is not asserted.",
             "- `event_code_raw` remains unchanged unless explicit row-level evidence exists.",
         ]
     )
@@ -1487,7 +1716,7 @@ def write_phase4_plus_coverage_summary(
 
 
 def build_darajat_5well_lv5_estimate(master_rows: list[dict[str, str]]) -> dict[str, object]:
-    target_rows = [r for r in master_rows if r.get("field") == "DARAJAT" and clean_text(r.get("campaign_raw", "")) == "DRJ 2023"]
+    target_rows = [r for r in master_rows if r.get("field") == "DARAJAT" and clean_text(r.get("campaign_canonical", "")) == "DARAJAT_2023_2024"]
     total_usd = sum(parse_float(r.get("cost_actual", "0")) for r in target_rows)
     by_l2: dict[str, float] = defaultdict(float)
     for row in target_rows:
@@ -1501,7 +1730,7 @@ def build_darajat_5well_lv5_estimate(master_rows: list[dict[str, str]]) -> dict[
 
     payload: dict[str, object] = {
         "field": "DARAJAT",
-        "campaign_label": "DRJ 2023",
+        "campaign_label": "DARAJAT_2023_2024",
         "well_count_reference": 5,
         "source_grain": "Lv5-only (WBS_Level=05)",
         "reference_total_mmusd": "38.00 mm USD",
@@ -1524,37 +1753,20 @@ def build_darajat_5well_lv5_estimate(master_rows: list[dict[str, str]]) -> dict[
 
 
 def main() -> None:
-    wb_data = read_xlsx(RAW_DIR / "20260327_WBS_Data.xlsx")
-    wb_dict = read_xlsx(RAW_DIR / "20260318_WBS_Dictionary.xlsx")
-    wb_event = read_xlsx(RAW_DIR / "UNSCHEDULED EVENT CODE.xlsx")
-    wb_ref = read_xlsx(RAW_DIR / "WBS Reference for Drilling Campaign (Drilling Cost).xlsx")
+    wb_data = read_xlsx(RAW_DIR / DASHBOARD_WORKBOOK)
 
     build_inventory_note(
         {
-            "20260327_WBS_Data.xlsx": wb_data,
-            "20260318_WBS_Dictionary.xlsx": wb_dict,
-            "UNSCHEDULED EVENT CODE.xlsx": wb_event,
-            "WBS Reference for Drilling Campaign (Drilling Cost).xlsx": wb_ref,
+            DASHBOARD_WORKBOOK: wb_data,
         }
     )
 
-    data_summary = sheet_to_records(
-        wb_data["Data.Summary"],
-        required=["Asset", "Campaign", "WBS_Level", "WBS_ID", "Description", "ACTUAL, USD", "L1", "L2", "L3", "L4", "L5"],
-        optional=["Well Name"],
-    )
-    lv5_wbs_ids = lv5_wbs_ids_from_structure_sheet(wb_data)
+    data_summary = records_from_structured_cost(wb_data)
+    data_summary = [row for row in data_summary if map_field(row.get("Asset", "")) in {"DARAJAT", "SALAK"}]
+    lv5_wbs_ids = set(clean_text(row.get("WBS_ID", "")) for row in data_summary if clean_text(row.get("WBS_ID", "")))
     data_summary, source_level_profile = filter_to_lv5_rows(data_summary, lv5_wbs_ids)
 
-    dict_rows = sheet_to_records(
-        wb_dict["WBS_Dictionary"],
-        required=["LEVEL", "WBS CODE", "LVL 1", "LVL 2", "LVL 3", "LVL 4", "LVL 5", "Tag_Well_or_Pad", "Tag_LVL5"],
-    )
-    lvl5_dict = {
-        clean_text(r["WBS CODE"]): r
-        for r in dict_rows
-        if clean_text(r.get("LEVEL", "")) == "05" and clean_text(r.get("WBS CODE", ""))
-    }
+    lvl5_dict = build_or_load_lv5_tag_map(data_summary)
 
     campaign_by_name, campaign_by_code = load_campaign_mappings()
     well_lookup_by_campaign, well_lookup_by_field, campaign_to_field = load_well_lookup()
@@ -1682,6 +1894,7 @@ def main() -> None:
             "mapping_method",
             "confidence",
             "source_text_used",
+            "source_sheet",
         ],
     )
     write_csv(
@@ -1763,7 +1976,7 @@ def main() -> None:
     write_text(ALIGNMENT_REPORT, alignment_report)
     write_text(CLASSIFICATION_REPORT, alignment_report)
     write_text(DEFINE_QUALITY_REPORT, build_define_quality_report(master_rows, class_rows))
-    write_salak_2021_scope_investigation(wb_data, campaign_by_code)
+    write_salak_2021_scope_investigation(wb_data, data_summary, campaign_by_code)
     write_phase4_plus_coverage_summary(master_rows, bridge_rows, well_instance_event_rows, well_instance_context_rows)
     build_darajat_5well_lv5_estimate(master_rows)
     print("Wrote WBS Lv.5 driver alignment artifacts.")

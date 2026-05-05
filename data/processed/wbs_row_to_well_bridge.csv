@@ -1,823 +1,849 @@
 source_row_id,well_raw,well_canonical,mapping_method,mapping_confidence,mapping_source,exclude_from_estimator_pool,pool_exclusion_reason,requires_manual_review
-6b141e8c0262e5d2,,,none,low,wbs_lv5_master,no,,yes
-9063c89c751d123f,,,none,low,wbs_lv5_master,no,,yes
-4081b267ba8f50ed,,,none,low,wbs_lv5_master,no,,yes
-61ad12a6dca200b7,,,none,low,wbs_lv5_master,no,,yes
-436d7e11af4bf201,,,none,low,wbs_lv5_master,no,,yes
-4b6f73b1244b893a,,,none,low,wbs_lv5_master,no,,yes
-4c8a5410ea861673,,,none,low,wbs_lv5_master,no,,yes
-b09fe6aac2cb5986,,,none,low,wbs_lv5_master,no,,yes
-34c240028562d1e0,,,none,low,wbs_lv5_master,no,,yes
-b714f1dd66f9f955,,,none,low,wbs_lv5_master,no,,yes
-98534b2782ddfe6b,,,none,low,wbs_lv5_master,no,,yes
-db7b460149006e97,,,none,low,wbs_lv5_master,no,,yes
-a627bfa8a66f0523,,,none,low,wbs_lv5_master,no,,yes
-d6199b2a1c7a21d3,,,none,low,wbs_lv5_master,no,,yes
-b853c2d9eb969017,,,none,low,wbs_lv5_master,no,,yes
-347e7ceffe56a856,,,none,low,wbs_lv5_master,no,,yes
-b8b7dd42ef564761,,,none,low,wbs_lv5_master,no,,yes
-040054f525d837b0,,,none,low,wbs_lv5_master,no,,yes
-e212cad996274b64,,,none,low,wbs_lv5_master,no,,yes
-637bb248e260c19f,,,none,low,wbs_lv5_master,no,,yes
-c5887442b82c14c7,,,none,low,wbs_lv5_master,no,,yes
-25637daec875ecab,,,none,low,wbs_lv5_master,no,,yes
-23becbd551cd7d47,,,none,low,wbs_lv5_master,no,,yes
-17a5c7a6215bd9a9,,,none,low,wbs_lv5_master,no,,yes
-95ad7423a81e6c5d,,,none,low,wbs_lv5_master,no,,yes
-eceef48b626badd7,,,none,low,wbs_lv5_master,no,,yes
-d45f2290158c52cb,,,none,low,wbs_lv5_master,no,,yes
-e8eade7a86f25d77,,,none,low,wbs_lv5_master,no,,yes
-b1620117dd85d7b6,,,none,low,wbs_lv5_master,no,,yes
-041537d4c9eeb283,,,none,low,wbs_lv5_master,no,,yes
-e3d7968923100012,,,none,low,wbs_lv5_master,no,,yes
-7e62be60683ba05c,,,none,low,wbs_lv5_master,no,,yes
-519fbba7b5265313,well_9,AWI 9-10,ordered_label_map,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-aa11938743df9ef4,well_9,AWI 9-10,ordered_label_map,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-be73129ed9e51130,well_8,AWI 9-11,ordered_label_map,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-3664ae21b332f18e,well_8,AWI 9-11,ordered_label_map,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-20d5629d534b145a,well_7,AWI 2-6,ordered_label_map,high,wbs_lv5_master,no,,no
-c6a6a9e56568d60a,well_7,AWI 2-6,ordered_label_map,high,wbs_lv5_master,no,,no
-2beb94ea30072008,well_6,AWI 2-7 ML,ordered_label_map,high,wbs_lv5_master,no,,no
-b731ee7747eb419c,well_6,AWI 2-7 ML,ordered_label_map,high,wbs_lv5_master,no,,no
-a79eec22651f4f7c,well_5,AWI 23-2,ordered_label_map,high,wbs_lv5_master,no,,no
-5f1d6eac6bf4ece4,well_5,AWI 23-2,ordered_label_map,high,wbs_lv5_master,no,,no
-ad0a5c95a630855b,well_4,AWI 23-1,ordered_label_map,high,wbs_lv5_master,no,,no
-a7e30c029e3b76f6,well_4,AWI 23-1,ordered_label_map,high,wbs_lv5_master,no,,no
-e1f8ffffb982fa2e,well_3,AWI 3-9,ordered_label_map,high,wbs_lv5_master,no,,no
-1603ccd3de09e4e9,well_3,AWI 3-9,ordered_label_map,high,wbs_lv5_master,no,,no
-a78ea4a5e2d77e9e,well_2,AWI 21-7,ordered_label_map,high,wbs_lv5_master,no,,no
-15d0ed0f52e00108,well_2,AWI 21-7,ordered_label_map,high,wbs_lv5_master,no,,no
-d715f6ec24ad0590,well_1,AWI 21-8,ordered_label_map,high,wbs_lv5_master,no,,no
-0eadd811fa68b247,well_1,AWI 21-8,ordered_label_map,high,wbs_lv5_master,no,,no
-f811a7481e5cda02,,,none,low,wbs_lv5_master,no,,yes
-0b77b13601079144,,,none,low,wbs_lv5_master,no,,yes
-787acd1207bf8631,,,none,low,wbs_lv5_master,no,,yes
-e9610dee688ebdda,,,none,low,wbs_lv5_master,no,,yes
-8485f188bc044ba0,,,none,low,wbs_lv5_master,no,,yes
-e48d165490a380a7,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-87ec1069bcda7c96,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-55f2a894ef2b0095,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-f9294e81d5eabe3d,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-094748c31b077310,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-cfe2f132ec8cae13,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-e454a18995bd270f,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-6eecae8bc916fdee,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-98edbea722b58903,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-8f52e606fd2da0b6,,,none,low,wbs_lv5_master,no,,yes
-6c3704cccf78b320,,,none,low,wbs_lv5_master,no,,yes
-b3e3dbe8b5e06c28,,,none,low,wbs_lv5_master,no,,yes
-7965644760512910,,,none,low,wbs_lv5_master,no,,yes
-cf07c0e450ee19d2,,,none,low,wbs_lv5_master,no,,yes
-ab1f0b5295af7076,,,none,low,wbs_lv5_master,no,,yes
-3aeccd72286522dc,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-91fe31561102a91a,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-6f881315b7c09065,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-e62f2bb63b87afc0,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-4633db882e6d77b8,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-398dead57bd1e668,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-ae55e2cfe450b62a,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-2338d4a507488ce2,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-37bb8194c2f1dd0e,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-897ae4c034b77d9a,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-31d2285deb2d3ddf,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-bbb278330dfa5068,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-2a3e419ceb2ccf9b,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-2722cfea820d6da8,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-bd27d4d69c741a85,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-9b7ff7d6b17a0182,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-e53bf1123e698356,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-9d27f86bb34c599b,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-df54bbc48a4d1df2,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-eb1621d3f5a6b3cf,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-6cd69206a95f3adf,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-c3f6a2123bf4935d,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-35f069aac3a7bcbc,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-f851fad33831e2b5,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-a32b5f98a27801d1,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-785af77f31a1f9ea,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-d033dfa5c42588bb,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-2757d1dc9de2ba26,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-4899ee0c72d2f51c,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-00fa0a3b8881247c,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-b37387c52f764f3c,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-529c039c4b93a8af,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-a30abd8a8c22020e,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-a8952e631fe839be,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-4a71b4d6f4385730,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-d65d0c804182d976,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-bca3090c9426cc64,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-1fa32080d576794b,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-4cf05d86ea4b0d05,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-ef80938a4db07960,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-49083c6af64b1548,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-80fce25220cdcfbf,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-ae147b1a035aef07,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-2ab233aefdd093d4,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-f6609c6e0f389252,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-2a4e6163ab1a970b,AWI 9-10RD,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-82c6be3b68fde65e,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-b0448dfb51067bd3,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-ac273ae4e4933c00,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-2f6f04b5b6e64dc6,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-c7cfc1b9e075ba40,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-3dc4f8632e5ed185,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-935501a2976fe032,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-dba6f4fde87affea,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-23f8b0b05b50f9cc,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-d25f4cc3ba8ca504,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-ba99c195b09dd609,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-6c88e8ba6d01c5d1,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-f90a70f20181fd46,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-667181f1e3938bed,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-6440d79c3319e4a3,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-da457e798bb3d6e0,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-fe38a61c5d3c2e81,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-9ded9ff558fa3413,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-66ef5ae18addaa80,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-4805cfdbf2037f44,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-db6a9d923089b36e,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-7d1be1238c69ccde,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-0f083a33715bdf34,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-61f8db1b806deaa9,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-5e61a85a1dfb55d5,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-60f14aa9b617ae13,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-705a5d807f5950fd,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-43bb737c985b374d,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
-5f1f4c1e7a603546,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-83359dc40549e32a,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-17ce744629ada959,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-e4cb404b3e3cf124,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-e3b6f5930d110381,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-d7b9f0bff9245e2d,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-ca68e5161ef51b63,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-544ad4efc8ac4cac,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-36026d9ed307150d,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-20906f254baac969,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-24948a9334fcfcb6,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-4e5d970553ca8213,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-435ddfd364c985f1,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-ea9a9e7602296b2b,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-c8f23c3a5a003358,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-88c857f7a503c8d8,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-95358c5126005455,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-07dab00784cd51eb,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-8f2365f3a9515d53,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-62d31ae6f32193d0,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-fa29344884181bc2,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-00a8449f618eb29b,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-9e5c3477bea1068b,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-51ae5993d29324ed,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-b56ef7663a3e55d8,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-5c117e6a89d13c37,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-bc4fc48442b24001,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-88188ab837bf0041,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
-041d9d7730f9e6b8,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-fe15432a4032f767,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-559ba470408b5a86,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-f0f0a7f5401ce76d,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-d8af77df9d546792,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-85b46a935e01bd3c,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-c3bcaf5d73066023,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-feed89960d1bde66,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-8f6b513b8d4db59f,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-f22bd754897466a4,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-af865c1959f28961,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-26832665a010e0b2,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-922de604f23f744f,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-0e3d38415101c5ad,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-0bee126540612d71,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-794267222bf307e5,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-3bdbcc6ff9570c73,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-96f480bd9fde8c35,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-a30296788d0225bf,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-d5d251d42368d593,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-64050153e586f2ef,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-ad2b7f75677cff53,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-41c959cb88492732,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-7089bdb5bdfc7a14,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-b8361396f07b9dea,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-4a774fed707dfd5e,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-556cde89f2e5be90,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-ff25a2cc53749bb4,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
-8fb23efe59cafe1d,,,none,low,wbs_lv5_master,no,,yes
-622e6eee3b9e5979,,,none,low,wbs_lv5_master,no,,yes
-7d602ba69d642ec2,,,none,low,wbs_lv5_master,no,,yes
-29b79aa765e88e2e,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-cfe36af0913796f0,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-74ebfae299b04f52,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-1f6647caee70a34e,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-cb60b91a09001fd1,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-e85af90e5fd2e6f3,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-e33b8c31b1eb1842,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-11693e2a36eafb66,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-b2fbfde104b07ac2,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-d9bfd8908775d7f7,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-e4973721e24653c8,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-f5370c1f3bc13c27,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-73585e9ecaac2228,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-a17fe9bd8917ef65,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-06a85a9840e8118b,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-2670cfc9091eeb47,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-98ad41163f6185b4,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-b4a280ae5f704838,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-0c95f373177f4d9b,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-bbeaae4f0def3b56,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-ce6a937cf36289c9,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-5e4b98a09e509ecb,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-c1e8193e42168326,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-2016e482ae4a55e4,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-656c8d5d69cda367,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-8d97dee2857ab443,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-5fa0939e033a9550,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-08e5b2eb8926cb09,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
-75cc2103dc1b63bc,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-e5877336a66e24cb,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-b42bfc272d4296ae,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-466ae469e46e17f7,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-1e2ef85ab0e104c4,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-7e4327de8a4a560d,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-412dc4f348101b94,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-7837e868c7f9b4ab,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-c53f78b765a39974,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-3fc9775a9ed2ddfa,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-b49f6f29e0231ff5,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-bfae14ab3ba1cf22,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-0c1dd06109407ef6,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-fd9a37253be9e046,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-a8dd1b91d30d045f,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-9654f2346dab0053,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-38b2d0826ebee10c,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-2088c70abbdc452a,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-558984c7368e4666,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-591c3a7ae7fea8d2,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-0f249a900031ce32,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-7720dc9ad158b80b,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-b4c5808002b441cf,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-635a3f4a8ab936cd,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-c1218ac17da3865f,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-2413c4db41fd2c08,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-f3d5d92f89df761c,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-856cb615989e753d,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
-3ecc5262bc1216ba,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-aac0dc92f5430fe2,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-085096f82d9f4e5d,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-6fde651ff54d979a,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-0f7ed14c0f0f7f9a,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-3a083731e690e277,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-c0d8a7849053efa3,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-b1f8819035860f16,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-eff36191063895cd,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-a6204db5d87fcf96,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-528500468e6909ae,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-8c89f4a8912fb7da,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-6dc1495a9b56e4d1,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-e13b50ee56cc0e7f,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-679e1e4e19a3bbbc,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-6dba271142714e68,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-e5b705a25cf22309,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-7b14478b25dcf498,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-b8d02c476ae52924,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-b882ad03dab2e38c,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-ed9721a5279df341,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-07e49d52be777e13,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-9818eb24ec25dd0b,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-7c12cebde085c5e3,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-9cc572ac65d96570,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-3450ec378535c146,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-f481ce3139fd07e4,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-63650d1a743a2486,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
-62bb577cf7444da3,,,none,low,wbs_lv5_master,no,,yes
-6c28dff699b0f165,,,none,low,wbs_lv5_master,no,,yes
-e2d008e967c2c7b5,,,none,low,wbs_lv5_master,no,,yes
-38c91d14f957db76,,,none,low,wbs_lv5_master,no,,yes
-9c0a594d14512e6d,,,none,low,wbs_lv5_master,no,,yes
-1bddab6d940898cf,,,none,low,wbs_lv5_master,no,,yes
-b969ece1f3186d3d,,,none,low,wbs_lv5_master,no,,yes
-de4eee0f4917ee85,,,none,low,wbs_lv5_master,no,,yes
-c86b2254b22192df,,,none,low,wbs_lv5_master,no,,yes
-f3a9ef45c0471e40,,,none,low,wbs_lv5_master,no,,yes
-8e33b7c35901cbb7,,,none,low,wbs_lv5_master,no,,yes
-c3bb5fd3b58a14eb,,,none,low,wbs_lv5_master,no,,yes
-fdec5631a1254cab,,,none,low,wbs_lv5_master,no,,yes
-bac2a43a9dcabc7e,,,none,low,wbs_lv5_master,no,,yes
-d6b1e61ffec33019,,,none,low,wbs_lv5_master,no,,yes
-20b9a66f0240b42d,,,none,low,wbs_lv5_master,no,,yes
-6a7477df590d5a64,,,none,low,wbs_lv5_master,no,,yes
-9c09865644f2c167,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-9a773022f9d375f4,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-69c2c0a9442ad842,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-52cad447112d351d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-607671defa0abdd3,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-8df9fe2ec7e594ed,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-ff60ce2c19671580,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-78e12a95ada0116c,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-6d382efca8f4fb02,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-7eaf88328c1017d9,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-8984b8c07e63e975,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-dd9dde83d191cfa6,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-143bffb9e56c7e23,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-de0d3436ec2c2f6d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-d12d1e1a9602922d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-9636920deaa459ac,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-ecfd63746bea4ae7,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-97eca59a8a7e1bf8,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-31605ef6071412ff,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-84ae705942ff9db7,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-4bee8431beb2c37d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-ed5d1084b3561c27,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-72268d2ebb4826b4,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-096b784a7b3a7b5f,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-94b882e6abcf79f6,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-19ece6a9cf06f5e7,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-9e7cf4221f07e284,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-33ceca576e3a6b5a,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
-58d6cfcc9ed8743c,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-0949eb3ada27a8a6,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-6e4bade546bc2d08,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-e13f4b995dc1303e,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-22087e67fed9b95c,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-42b8c32fff0409f6,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-e93a8705b2f656ff,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-d4f67b8fb67d770c,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-fa615f99790b7f9a,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-9dc3be5f05413b77,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-0234b0c7e4dd58ad,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-0bbfe6c8616983b0,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-255ccf9918ea5a85,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-50052a07cf5638f8,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-76fab8cb78cc04a0,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-4bcf0d3a2c6d0224,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-94ab570e77c636e6,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-b4133e3d49a05475,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-4731b053573b8a0a,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-2d8cda8d237deb8a,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-a0e699a29de6ba34,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-74d3297134cf1aec,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-46371bf13ce01224,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-b9f215ea2eb2c466,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-e646771241187d12,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-131339e010aeea7e,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-eab0a1ad1c329201,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-bc161a6f6d84cab1,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
-e9ca88f9a17a5b02,,,none,low,wbs_lv5_master,no,,yes
-47358f4f07a0a40b,,,none,low,wbs_lv5_master,no,,yes
-7968890c415a94e0,,,none,low,wbs_lv5_master,no,,yes
-9a33b42e2378a2eb,,,none,low,wbs_lv5_master,no,,yes
-6cc4143d88aa8573,,,none,low,wbs_lv5_master,no,,yes
-83a79ed1ee8a7249,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-7eabd78eafb11817,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-cd69bc35e4e73830,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-1d5888010c1810c7,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-af52669206f42463,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-4b2e1487f67320f6,,,none,low,wbs_lv5_master,no,,yes
-eaf71af92f2f8cdb,,,none,low,wbs_lv5_master,no,,yes
-f3a37b985a815b3e,,,none,low,wbs_lv5_master,no,,yes
-0edf710ce60ff01c,,,none,low,wbs_lv5_master,no,,yes
-c518ffa211219d1b,,,none,low,wbs_lv5_master,no,,yes
-62dfced3de7ea9c8,,,none,low,wbs_lv5_master,no,,yes
-955dc045ba712e6e,,,none,low,wbs_lv5_master,no,,yes
-545ff9cdf0b7edd5,,,none,low,wbs_lv5_master,no,,yes
-e08f639f924a5094,,,none,low,wbs_lv5_master,no,,yes
-397f230697a94179,,,none,low,wbs_lv5_master,no,,yes
-d121cc017e051077,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-a9d6f1320c80f8dc,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-08024626fd10dcac,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-b464aeb76ac778d2,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-63bc6f80ba21b8ae,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-2f4ac888a899f84a,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-2188ff411aacaa2d,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-0c5ab36057f7c148,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-5c95b74944757725,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-5666feec283f20b3,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-b6a2fede956e5259,,,none,low,wbs_lv5_master,no,,yes
-bc951499d74e8687,,,none,low,wbs_lv5_master,no,,yes
-561f55f618e1e9c8,,,none,low,wbs_lv5_master,no,,yes
-a84b7042a55db519,,,none,low,wbs_lv5_master,no,,yes
-5db7de959c46aa55,,,none,low,wbs_lv5_master,no,,yes
-5a1866cfdaaf00dd,,,none,low,wbs_lv5_master,no,,yes
-947d95cab25a6b09,,,none,low,wbs_lv5_master,no,,yes
-692ab7562b6a6f07,,,none,low,wbs_lv5_master,no,,yes
-8f3e5f8020066aa4,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-c0c3eb3601c944ff,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-5d2c8cc15fbbbd81,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-d6c3ca18226c68f9,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-de6682f2a406a102,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-ccaab2497ae585e8,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-b241a9b9c5bf4802,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-860ad915e5d50d59,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-2c8abfd6992dbc92,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-420a052bfbe67d29,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-428df549ba4edd2b,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-f264010d7d9897eb,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-10cc5565b19314e2,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-51356a5984488d8e,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-346873e741919d9a,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-7db4e6ad4c589752,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-44084c6fe421fda5,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-399f5a2020ab5e05,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-f822d23a8434f7cf,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-0a1db56484a57ad0,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-d635fcf303c0130b,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-4cef057f7477e39d,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-3c88b85be168f842,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-1cb00e1e03dc45d9,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-9207e412906a7216,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-13207560c150b57e,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-e23faca012e45b66,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-79da9137009c8c62,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-a08f6f4cfa9cbaa2,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-b2b4e3bc7bcefedc,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-11d146b2ea737f90,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-e0ad293810d11b81,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-c763e388a26f3f6f,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-b86a914bf59a41c2,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-fc9e73829c884931,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-236331070ada2770,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-f806c959f4771b4c,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-b874dc9244f7bcbb,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-dc7cdf16ae3f55f5,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-b445f08d366661e2,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-be22ad657e278f34,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-ca516b1f9025be34,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-f57894322d51d420,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-00d471ab530afdc9,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-ca9616fad923f19b,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-44fac203aaa1d5d2,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-32dc043ee5af25e8,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-d212584a5df1638d,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-8bb2af9740199ced,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-5c17ef9223e905e7,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-877f429b8728d607,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-1e3a4ce32a1b2d17,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-d70188a5a5b74f13,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-3b69548fab03ea95,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-72ecfc4aea323ff7,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-7c3cbdc91aeb51ce,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-cf18e34dae182c64,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-841e1be443adb2fd,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-5c05d29a3147978c,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-c451279833c4f36f,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-665681ff009fe937,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-db25f59875fa3ab7,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-6944e1b43207f716,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-c617a3847b42daf5,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-d76d7106b736d2ab,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-397087b297af4405,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-e08239c5b80e8ee4,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-06f94392ac9fc6ae,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-147189bb0d8f8f22,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-268b2d1f4abeff1e,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-26f1b49ecd39ab61,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-cc9b843dc3d50633,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-b6ae39f95d3ad3aa,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-31c85e9f780da709,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-91ef87dee1c8db75,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-ee04a288fb3f7ec0,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-1c2c19572cbc3488,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-b8a2c62d4fa8298b,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-41abbe7d20db9f12,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-d9b4d23ede71e723,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-8803fcc9a1c20a4e,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-0cda524fadc8dbcc,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-9159b455f0e8f439,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-a968faae2363d19d,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-19b10d6d4162a591,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-b07caed7ab452d5b,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-3b038d480b5e4eb5,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-96b12b5bde63e40c,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-05b5c4b7bc8cb799,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-cf189eab7754a2df,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-596fa98253f51871,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-2bd0cd2c753b7ec9,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-edac1f65402e2805,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-46f97ef6ef6ce903,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-0803619e559aa70c,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-58c61f5b8215188d,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-4ece6132f5e2dd2f,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-aee1a2534dbe998e,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-89afabcd1785d286,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-ce765db1d903ab04,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-491368fa6ff60938,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-691d2f84244d2ad6,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-8428b3fdd67bfb37,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-7a2899c4d61d134c,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-87bd6db798ed45f6,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-9ae08d9dc522f3dc,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-c73c7a6e415cbb07,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-fca5c59f6919f393,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-80065f86c1265c99,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-d9ba7e0feaeb4684,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-f9f90b509c796d43,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-ad6568ebaaebe32a,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-994150dffc5c9b9c,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-53bc7eaaa21148d5,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-ac14974d257d84a6,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-e78749524d7b8517,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-e23ae2fde28ab918,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-9dba519237859de0,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-c19747a5a9ffa7c4,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-489ddd5ed605c28f,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-6ec984aad4e9d102,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-cbcdfd212a8d3104,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-db3ac73eb314ae71,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-3483f6ec3c1006d0,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-97c375ff4f2700e6,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-79324d8e8004b0d4,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-c56718e05ae24f4d,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-67d704f7d7369ea2,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-10a4a1b78eeb6dd7,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-8f4bc5ecc177ef2b,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-cd675e3cc6c02037,SF-ML,DRJ-38,campaign_alias_match,high,wbs_lv5_master,no,,no
-2a749f7255c03bb8,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-f97aea2391c66ed4,,,none,low,wbs_lv5_master,no,,yes
-d30d79eb0fadfc87,,,none,low,wbs_lv5_master,no,,yes
-b77a9070ed986c40,,,none,low,wbs_lv5_master,no,,yes
-6f691e1bd0f81928,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-2e6fcbfd9e22f84c,,,none,low,wbs_lv5_master,no,,yes
-8d013430cf6edfa4,,,none,low,wbs_lv5_master,no,,yes
-2739368996fb75d0,,,none,low,wbs_lv5_master,no,,yes
-ddd3bab487df0a31,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-2e477446225bb9cf,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-be1523e1e57a1022,,,none,low,wbs_lv5_master,no,,yes
-86da8c006c28cc81,,,none,low,wbs_lv5_master,no,,yes
-c8b9d5d1643a1c3d,,,none,low,wbs_lv5_master,no,,yes
-4f00f907d5a29e5f,,,none,low,wbs_lv5_master,no,,yes
-d76f7cfa3a4f9d03,,,none,low,wbs_lv5_master,no,,yes
-5be2f4af5daff902,,,none,low,wbs_lv5_master,no,,yes
-f38d3e4ddf0e4fb8,,,none,low,wbs_lv5_master,no,,yes
-7f57edf927d19db0,,,none,low,wbs_lv5_master,no,,yes
-48b4f3d0f5c939cd,,,none,low,wbs_lv5_master,no,,yes
-814c1911f583e0a8,,,none,low,wbs_lv5_master,no,,yes
-49db40481c385d0e,,,none,low,wbs_lv5_master,no,,yes
-bd39be1d8a7a82b9,,,none,low,wbs_lv5_master,no,,yes
-7ee3dff6743140fe,,,none,low,wbs_lv5_master,no,,yes
-447e80d5e04e9372,,,none,low,wbs_lv5_master,no,,yes
-ec7b9c26a5b33efb,,,none,low,wbs_lv5_master,no,,yes
-56e06641422b1b11,,,none,low,wbs_lv5_master,no,,yes
-963216b7eeb46962,,,none,low,wbs_lv5_master,no,,yes
-1e1d99be6d0d1c02,,,none,low,wbs_lv5_master,no,,yes
-aeaefdc28cf5ccbf,,,none,low,wbs_lv5_master,no,,yes
-66368f0fcf05ec6d,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-dcf4e6d8d69070ff,SF-1,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
-cd6319872c4d76bf,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-d95cdda1cb8217b7,20-1,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
-0150c85809ed3baf,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-f92bd2858437b9ae,14-2,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
-2fa39f8d321ee8a5,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-84236bceb42d2f9c,14-1,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
-1d2abcf253b1f13e,,,none,low,wbs_lv5_master,no,,yes
-e08e6da7a142a419,,,none,low,wbs_lv5_master,no,,yes
-7673510e41bc9773,,,none,low,wbs_lv5_master,no,,yes
-a338bc248357db91,,,none,low,wbs_lv5_master,no,,yes
-b1935ddd53a7d2f1,,,none,low,wbs_lv5_master,no,,yes
-d1f1af5904e892a4,,,none,low,wbs_lv5_master,no,,yes
-0eb691353e3e1988,,,none,low,wbs_lv5_master,no,,yes
-307dba715fc2ac32,,,none,low,wbs_lv5_master,no,,yes
-0891a6e7bb7058d6,,,none,low,wbs_lv5_master,no,,yes
-8a4039e383e9632b,,,none,low,wbs_lv5_master,no,,yes
-f7cd7925de79c4ed,,,none,low,wbs_lv5_master,no,,yes
-d89b8b5327ccf1ca,,,none,low,wbs_lv5_master,no,,yes
-541e2d6a0a380b87,,,none,low,wbs_lv5_master,no,,yes
-db5e18181f1fcc53,,,none,low,wbs_lv5_master,no,,yes
-71d6d63be9c86c76,,,none,low,wbs_lv5_master,no,,yes
-e64644c8318a99f0,,,none,low,wbs_lv5_master,no,,yes
-e85afa54583fec84,,,none,low,wbs_lv5_master,no,,yes
-1c328a1a6b3c8f04,,,none,low,wbs_lv5_master,no,,yes
-d6bd4a98d5dadf85,,,none,low,wbs_lv5_master,no,,yes
-353400f1e60d0ff8,,,none,low,wbs_lv5_master,no,,yes
-d1f1765e0d178625,,,none,low,wbs_lv5_master,no,,yes
-8f7b42f59b254618,,,none,low,wbs_lv5_master,no,,yes
-5677f81822d6462e,,,none,low,wbs_lv5_master,no,,yes
-1cb17463cd584d19,,,none,low,wbs_lv5_master,no,,yes
-7d7b3a2ef6e52959,,,none,low,wbs_lv5_master,no,,yes
-5f80f01d2f521e21,,,none,low,wbs_lv5_master,no,,yes
-36457b51414da5f2,,,none,low,wbs_lv5_master,no,,yes
-a38efb2f95135552,,,none,low,wbs_lv5_master,no,,yes
-952233873dfa48d7,,,none,low,wbs_lv5_master,no,,yes
-64a357b60e6b8964,,,none,low,wbs_lv5_master,no,,yes
-1151bd68f5928e87,,,none,low,wbs_lv5_master,no,,yes
-ac248ddf160d2b21,,,none,low,wbs_lv5_master,no,,yes
-48f5bfc628c4ed20,,,none,low,wbs_lv5_master,no,,yes
-c83a9992a261549f,,,none,low,wbs_lv5_master,no,,yes
-850f02d3af1ab4e3,,,none,low,wbs_lv5_master,no,,yes
-a7d1d345f7747c2d,,,none,low,wbs_lv5_master,no,,yes
-c1c4f13590274c15,,,none,low,wbs_lv5_master,no,,yes
-3a3a2af3b20d7f2f,,,none,low,wbs_lv5_master,no,,yes
-fbc7609a156f1d76,,,none,low,wbs_lv5_master,no,,yes
-ea6996ffb4a55a31,,,none,low,wbs_lv5_master,no,,yes
-ae062c67b8fabd96,,,none,low,wbs_lv5_master,no,,yes
-1ed195b20b193595,,,none,low,wbs_lv5_master,no,,yes
-627ea325c482f81f,,,none,low,wbs_lv5_master,no,,yes
-dc971d2af26f527b,,,none,low,wbs_lv5_master,no,,yes
-cf614435fb498b71,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-574f0dcdba92e9c9,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-86bb6332b8aff34f,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-388db746eb5879c7,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-42f3737064a712f7,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-0db64a3e1e18c92c,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-5422e3d12297d79a,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-3b76ffe208d9b0bb,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-5a0c4cd540afc3a2,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-1679a96f6c799ec8,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-a0d2ffbf8bbf3e28,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-765d8dbdbaf59d1d,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-dba3a70920091a9b,,,none,low,wbs_lv5_master,no,,yes
-e23feb17a746ccae,,,none,low,wbs_lv5_master,no,,yes
-f1b9ae67696dfa6a,,,none,low,wbs_lv5_master,no,,yes
-2c9f1ced4271bef8,,,none,low,wbs_lv5_master,no,,yes
-28872086e810391b,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-3a8860c742b29fa1,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-363b6a85e3b4fe49,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-676a2533f16f40a6,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-12e87d7a7433767d,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-6553861890ba44d8,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-0d82b2af3c99e97f,,,none,low,wbs_lv5_master,no,,yes
-39931051a5137fbf,,,none,low,wbs_lv5_master,no,,yes
-6623e4d107d36954,,,none,low,wbs_lv5_master,no,,yes
-0a4855f4326d9a0f,,,none,low,wbs_lv5_master,no,,yes
-85fbe3e46176cc28,,,none,low,wbs_lv5_master,no,,yes
-ec5a9f9fc925c656,,,none,low,wbs_lv5_master,no,,yes
-73356686346ba149,,,none,low,wbs_lv5_master,no,,yes
-7d0995dd8f935747,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-df28ab3407348932,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-8aec3068b17d52ee,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-68df4a2fcba0f1c2,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-2dc036642cd12c6d,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-1c0d55d889589172,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-d4b71a13d2a37190,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-92e1897bece8cfa4,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-e4483a0a1e393ef1,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-d6d5b792e20b752e,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-c94f52d3f6725f32,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-104107a1e870e243,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-7857d4d4aeb80e1d,,,none,low,wbs_lv5_master,no,,yes
-2d7abed93e17b9db,,,none,low,wbs_lv5_master,no,,yes
-86709e8fe7af7d0e,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-0e5c3202cce8a952,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-bd69b80a4f428a39,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-edaf45588aaed347,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-5bb51791ecbc4867,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-fed03f8cef467d90,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-aad5d4d5ef6a508b,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-f666a40a8359e317,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-f8659f1cec64f113,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-15f764eee15d96fc,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-699c1f38c54ad879,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-b89b9a07a9362d55,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-b244fd77c07a836b,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-672f3777eadc2a2a,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-3ef3509c86d41c75,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-e3facbad05328fdd,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-75bd1ff0c3ea5113,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-a5b6fd6254acabf2,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-64806439b839f6b9,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-c58c2409614d85a6,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-c4a064c23284904a,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-a67968d99c788ae5,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-a14fd5d7f0bb642e,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-39b2121e50068428,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-4e07d750f5e7eafd,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-81bc34ff01a4d641,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-6fefc2201dc1577e,DRJ-STEAM 6,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
-dbd76042dcff719a,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-e66e26523e229433,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-3fb1fcc9be72381b,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-2fe951ac44949697,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-8598987d6c4a54d1,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-31622a76db4a35b8,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-8e34dc83de65e204,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-61ff05e05b959df8,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-173ea2c712424a6b,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-00ee241410d05939,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-c9ddf0afbe043ab5,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-20579d3429006ca3,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-b8221f85aecef2b8,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-6ffbd8fd42997537,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-721a176004cba591,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-ec4ae1289a6c4f87,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-aee53619f756481b,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-8bb11c4818f6bc4e,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-7d605c208b4a49c7,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-1408dc8ad40829aa,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-c3e5361b5e2fbe2b,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-29364182c40ee638,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-f2b8928a159a2621,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-dd9bc3604678aaf8,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-02c696431784cebc,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-5bd0d748d069e354,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-9fb4926f28a572f9,DRJ-STEAM 5,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
-4b30fd18445f334a,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-24e36242beebf3c3,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-e198e1b3056c5b90,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-87a21247ac466a27,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-7591a760d0d20900,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-7b76ecd798a0ec66,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-31c7543d7dc39a7b,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-010444fef83ee91c,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-af5ebffd53bf10dc,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-d3358c19549484cb,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-a937679537fe9d58,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-7a670c3bc624a2d8,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-ebd3ea6dab29292f,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-3d22bc92add1e40e,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-c8a8a617520020fe,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-c59930421fd3ed60,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-8f65cd9ec74bbc16,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-e27c21974e3ea830,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-b7d66ec1ec47a3ad,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-64de1e9d6a5a1dfb,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-bb28ace859be5e22,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-10b0fc211e274a8e,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-e501e4a09d3ff094,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-6063c6e48c29cb07,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-89f6115cf9087e74,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-18968de5bac166cc,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-f4cccff4a224dc08,DRJ-STEAM 4,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
-dd16e698bdb607ae,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-de0518c71d961fe3,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-e9e13eda017dfc14,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-1235b0e9603df166,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-35dba0d72de5f91f,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-30aeeab233b723b6,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-531ea8b8d7b4e94e,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-b13cadfd6193724b,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-d5343db397db3577,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-7757610e040610fd,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-7ba5999d643eba6e,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-a9dec94351c7ecf8,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-5b4ba3cbd885997a,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-434e1b532efe238e,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-af4245d826ee1b90,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-e888780e7040f2d8,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-e3f9efb7e750d196,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-709140be4a00da76,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-0b3304c4f95aa14b,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-6ba70439cf0614e8,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-ff14d4b99171512c,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-0ca59fc7b16db4de,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-1e4820f3d55aea3b,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-a84135957d184d18,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-861733cfdfabb0fe,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-466fb5c00bd51535,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-a129140224aac69c,DRJ-STEAM 3,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
-69b18c7fe9ac1422,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-74ce499901d3bc0d,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-7f351cecf0ec68b5,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-28a288c3ebc5e205,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-0059dad80be9d6c6,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-067a9b3db0cddf0b,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-bd0f93d0b8dcd55d,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-15fa1f1d254248ee,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-b0443150ce9a52bf,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-98616b9d903ca262,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-794e8d66a445e274,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-a58675649a0cc469,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-4d8dcf54de1d8573,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-d3018121c812aeb2,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-c68a6c0941fe048b,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-8b1198240cf7db04,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-17f79a2e50c4e70a,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-21d7234abfdd9bdc,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-5dffda15501f8441,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-792192dd0c321b6f,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-c16a1cfb6b68a64a,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-7dd7b640b91d91bc,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-2cfd970ecd4ab280,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-bdde3014b6e3e361,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-46d973cc9546da35,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-8160b4b0fbd616c3,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-3c823a112ca40081,DRJ-STEAM 2,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
-3bd86974e83f2613,,,none,low,wbs_lv5_master,no,,yes
-14c206d25065ea9a,,,none,low,wbs_lv5_master,no,,yes
-22f1ebb132f3f93c,,,none,low,wbs_lv5_master,no,,yes
-b94c424c979d4d47,,,none,low,wbs_lv5_master,no,,yes
-3bb92304014e5dfa,,,none,low,wbs_lv5_master,no,,yes
-29104911e92607e6,,,none,low,wbs_lv5_master,no,,yes
-32afce248672bfad,,,none,low,wbs_lv5_master,no,,yes
-4f070a573bdcbd74,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-4781834500a3bc72,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-9baa9cfb3e012ac1,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-531bb67208cfdf2c,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-311e67369efea12a,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-04fe1de075d3177c,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-8a486698cae1e704,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-e9c1cebb69e152ac,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-ad58d6df5b5862d9,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-b99a9409243800dd,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-86576c49e28b89b6,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-ff109bd77a5b840b,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-9563f09b50c39b01,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-e7231976794614e5,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-e6c2659b3e28ecc0,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-d4dcc0f391557433,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-2ad81d09a3bf0450,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-915144f2e5093872,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-506849c7734a40f8,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-6f7d2aad0cc89134,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-9ce6cfff3acc9266,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-682d3c067bd6ac37,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-04214a468f58824a,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-89500fab94989b17,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-1cc8d5bf6af55ede,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-61c7659e5a231b83,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
-2bcd231e1874374a,DRJ-STEAM 1,DRJ-STEAM 1,campaign_alias_match,high,wbs_lv5_master,yes,non_canonical_alias_pending_review,no
+274032449f2fdd0a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+046fdf644c9034b9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b92d710f0ba24dbf,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+1ca4914fb1fbdb73,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+b7e2472b5051c51d,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+9615d635fd0e3dc5,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+476b995f89890eac,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+706dc193fbd95ac6,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+fc8a21a182f087ab,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+a531c6b26d609d8e,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+ce047c6ba375871a,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+227ceee0de0ab543,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+4307c57e654c7cf9,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+f6a5a608b9be3710,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+d5fcb77146f67f7a,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+493d76e4259dfb59,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+1f37cd387f33a341,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+48e00ffc2f1bdb86,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+219c35a7862921a4,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+19cd72b899e65d78,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+ae595cf425c1d341,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+6735a1f5f8b09ff0,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+d99f07f7845e22d2,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+9cf8b6fb6dc9ec29,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+eefe6af1bfaeac89,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+7c5995b4e5fa2038,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+fb5f933d438c58ab,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+c32da909fb8093cd,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+5c476928e40926ea,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+090b861008b04907,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+cc335577a5263f23,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+082c809a746250fc,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+a93c5d9cb3a7aad4,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+4b901808aeb70c48,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+6429349a5cbb729c,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+3b2d196f2601ac34,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+21dc30194a0e6831,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+e64716c6d6b9cdb2,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+2bc5c0319a0f3ae7,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+34b08db1dae4c70a,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+a798f633357e4a86,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+51cbb980caa4fb43,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+80dbd506555b9d23,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+be154b8fa1301507,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+393ea739272f7126,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+4361d990c31c6c35,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+f88c402dc266faba,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+0dafefe7b6f84844,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+7cbb202fd9497082,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+a746838b4c859fb2,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+aaafb7694222d352,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+b765a62c126fd94c,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+e651dcd6a063831e,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+5a9853102865a724,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+5e94b4ebe5cf20f8,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+f31186dc02ff09bc,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+93dde9e699cd6985,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+a9c52d5aedf8c4a6,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+5ecada2b581197c2,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+3ce8908265609f8b,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+d44c294a150a9b38,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+750dd5bc87596482,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+f1deb71e427013e8,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+70432cd52dec3bbb,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+f14f0fb2b2312d63,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+3ae51a235d4d5667,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+359c2b58c712fc8b,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+e467c943b89a9ddc,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+cc88cbb9a177817a,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+cc536261ff84b150,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+4503e91f2800f46e,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+0ea01b8b459fe343,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c23b9e6a24ee2893,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+b7f71e904e3b9d77,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+d7779f3f51f92e59,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+56ac803f0caa8d81,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+7604e762064c67d2,DRJ-44OH,DRJ-44,campaign_alias_match,high,wbs_lv5_master,no,,no
+5eb9c2c8ff327a31,DRJ-45OH,DRJ-45,campaign_alias_match,high,wbs_lv5_master,no,,no
+1d4a02ff1b755c12,DRJ-46OH,DRJ-46,campaign_alias_match,high,wbs_lv5_master,no,,no
+f459b818127d8eb0,DRJ-47OH,DRJ-47,campaign_alias_match,high,wbs_lv5_master,no,,no
+ed9e3a336840d13a,DRJ-48,DRJ-48,campaign_alias_match,high,wbs_lv5_master,no,,no
+c149acac288a92a3,GENERAL,,none,low,wbs_lv5_master,no,,yes
+24d7c93db55dd579,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b3f7297905a0433c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e454f200daa11fc9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+6f0d2219c58770b9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+267f883d65618ba7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+70c6942ea4e8a699,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7e8374c83e983610,GENERAL,,none,low,wbs_lv5_master,no,,yes
+616d6d8649fb25f2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f48c9432b26234e4,GENERAL,,none,low,wbs_lv5_master,no,,yes
+75c67ae41bc2f4b0,GENERAL,,none,low,wbs_lv5_master,no,,yes
+6f4d6a34edaf6655,GENERAL,,none,low,wbs_lv5_master,no,,yes
+81e42eb55d099226,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7020d104a90456b8,GENERAL,,none,low,wbs_lv5_master,no,,yes
+cab678200aa33c3b,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+4601872520665aa8,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+be6de71bb7ed3ea8,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+3a95c48d80c014f7,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+8f71e9c2d685b10b,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+2b971c8cf4e2cdc8,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+36cf0186a14e5c92,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+cae6d3dacac90799,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+f794e62c2ffe6a65,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+2ec9b9dbdf8bff06,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+9a535afd3a441e40,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+c42d6f456e5fb69f,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+6a82c18172c1c1eb,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+0b7adc714695be59,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+17a3b59fcae1e738,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+d230ee2e70390790,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+edd9bac006a999ed,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+76fc933bbe467f3c,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+e644ee9f379422b8,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+49593d75f97645b8,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+2c19451e4a61f131,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+6c89d2166f4488e3,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+8d3d2d30057ed301,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+4f77f86526b48370,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+c516fee2b0d3e5ea,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+5d1421275d69d7aa,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+2019a4b8ef394571,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+fabf96dd64b0e7e4,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+5b727815a12d5300,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+5529c91c990e104c,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+05df7b35a4b0aca6,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+9e1c65601caa4846,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+e4013948fa877f48,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+43e21af0cc4528ae,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+dc03558ca2e2c56c,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+342b1050869d8ecd,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+78f21f21b8eea086,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+17a31c7fe190dce6,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+8d58592a7ec89e46,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+ba2542359a83410f,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+c79f32a42259bee2,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+00d27deec06db411,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+0fecd75545061994,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+92621273ddc3ea9c,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+caef718e546b6f5f,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+51c08245ca5ac6df,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+1b1b85d20730053e,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+8bc1b8a44a9c8865,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+b1c248f756ce1047,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+121c57f4a719a03b,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+465a5322a9a34b50,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+2f7e0ed15d3390d4,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+b1992eb1f02fd7a2,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+32af679bd927eca2,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+5fdaa1717c530b2d,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+4f3e5a43644a0aa2,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+0d525ce244fe9717,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+6097371045e257e9,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+405143bb5d6a17c9,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+8ea8a75655e9fd4c,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+8eb2179b62a59dfd,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+242f4fe7dad5c1a9,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+3ee99ef3978cf41a,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+aa84ee99d4a07de2,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+5e534c9e29ccaba8,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+e3a6a044599f41aa,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+36620d8e65784345,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+f45a276cc230eb71,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+b67f90f010207dbb,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+43cbe341756a7417,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+deeb1354b6afdd5c,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+c48f8d5b24439cc0,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+8c826af26f5e4940,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+5ccdacade2d5a611,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+5e3e999812daaf33,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+3cfcf7966373f3c2,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+5b96c3177ec7c933,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+c7ea05f9c3934598,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+95450c5ada3e7d3f,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+4a9c82d15f78058c,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+67eca2310fcc08d4,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+b90e6335484c2035,AWI 16-08,AWI 16-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+e91f2a070914c316,AWI 16-09,AWI 16-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+39cdfc179ad2c220,AWI 21-05,AWI 21-5,campaign_alias_match,high,wbs_lv5_master,no,,no
+0e89a969928dedf8,AWI 21-06,AWI 21-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+cd6197eb68738d49,AWI 9-10,AWI 9-10,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+9e9f7c9885640266,GENERAL,,none,low,wbs_lv5_master,no,,yes
+30cc9c8227a3201f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+da52d24bb49811f9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+5566a757e2d68ad5,GENERAL,,none,low,wbs_lv5_master,no,,yes
+48c9b1fcc6990164,GENERAL,,none,low,wbs_lv5_master,no,,yes
+364c86f35f2c045d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+9c0f609a9e42c6eb,GENERAL,,none,low,wbs_lv5_master,no,,yes
+a4447af2c9900cb9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+4d7cdaaec742d3ac,GENERAL,,none,low,wbs_lv5_master,no,,yes
+72bc159c5c09f7df,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b51a8e09f0d679f9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+8d3eb1a2893b30d2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+2cd937b763ebfe33,GENERAL,,none,low,wbs_lv5_master,no,,yes
+55f14301014852cf,GENERAL,,none,low,wbs_lv5_master,no,,yes
+a877c698bcfcbb88,GENERAL,,none,low,wbs_lv5_master,no,,yes
+985cf864e747845d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+8119116e3e779654,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7272b6b6f3aeade8,GENERAL,,none,low,wbs_lv5_master,no,,yes
+294233cb3ade1e94,GENERAL,,none,low,wbs_lv5_master,no,,yes
+11f301e691f7f063,GENERAL,,none,low,wbs_lv5_master,no,,yes
+fdee2b439ee5d6b2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+70b474ced7fb632f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+449ec2f37b8e2111,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f39d418eb953efb7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+1b4de2a73d455b6d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+fe3cb458b808ea15,GENERAL,,none,low,wbs_lv5_master,no,,yes
+246b665fb48a5d23,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+42734b96ba7e11bc,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+6ab867548e533ff4,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+af4ec18b7f09ca70,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+4e5cbfca142b9511,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+b9d14d0cced62b97,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+27c9f849ff832917,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+c0251d193d32497a,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+db956f01436af6e5,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+53287088564b268c,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+ac51d3d073fbbc5a,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+adcf31422773326a,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+d2b4079c82e72d23,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+aa2f9c1160a80d18,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+fc826087609c5b35,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+d6dca9e00f07bde0,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b24d6d23550a1176,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+84c356977a06334e,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+1fb2bad2a258ed33,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+2da0aea4ac260831,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+5ecb4635ebf86622,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+e55473fef446fea0,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+a0722af6c650bdb0,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+ab61a0a3e32a4d53,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+f51447b975144d26,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+aa8518019e9ea859,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+8ba39aebaa214e3c,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+dd46209d9a860fda,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+e39717b393f4cc44,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+39a1fac0ffd24b1f,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+b844cd6fc177bbc4,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+1c7b5f40b228be64,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+98800a8ebd555086,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+6d447cf8e59d978d,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+508b29b9b6991e79,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+84962e362fdfd73a,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+be77967240836de5,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+12fc4f8c7abcd411,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+10e2b019fb4508ba,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+078266f17fa3bae3,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+2c53baadb03b6847,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+97d843700a56fbcc,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+ba7303745b0a572d,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+103e20b7952d2ef2,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+feffe32735ef9cbf,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+1d85a0f46d321a05,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+175ca901621d632e,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+cf2ddb28e33386c9,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+971823f55ee22518,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+5bed859b05894639,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+3d491a8e582d7cf6,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+a5afe8e04a032283,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+b76295c94050df05,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+a42a08028677e2b6,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+d8bf48ae0a360e1e,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+9096d9dec3528110,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+5364045cd6a9a290,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+e1cf8c1f0b1bb768,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+85753fb6912a5c92,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+e684a5a20480d4ec,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+6dfca7128f0e528c,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+d02710a8c86fecbd,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+cb3bed6f71939bf2,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+6c3d44b7fde2d3ce,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+0c3520c30ae9ce58,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+7951bd484e6cf8ee,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+a079127f1f7813c3,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+b386cee0fce65093,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+3584cfd96a8bfec4,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+f45d3bbe2dd9cc7a,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+f79b569082f5c088,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+7558bc0c16e787c9,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+5aec2a186a18b78a,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+e667786d8d6434fd,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+999ef67de2a89426,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+b09acb16896a0927,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b81297a6bb5a4bb0,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+9706a48468daa509,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+5ec30c9b3f6ea75c,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+ae6a706eae175fb1,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+8e2a2c45ea2336ed,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b4ff4ee071630e80,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+87c38e1bae189023,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+9ae62e88478acdb4,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+da5f41af83eff104,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+6bfe2a4de17db758,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b76cd6e6d4b3f824,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+02406bfdfa316660,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+139dc028a93288ca,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+c0b0647b306b642a,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+02c779f9783898be,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+c351fe34578f2c52,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+92b892cf04ce4cae,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+8b4f02c8cfc6d753,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+930f39f9633d0065,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+7f6b52ad457c3b0c,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+414fe947fdc16bcc,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+88641a10206ae506,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+6c2ea51f25062260,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+3ac6a898b8937e28,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+0253c95a8b69eb37,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+8f24a922fce1de3e,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+a9c63e1f018da544,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+ac54054f19812ee9,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+70fdef3bf2030980,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+aa64fbc7eb1004e3,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+461197e88f9003d0,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+b58ae2824bd434d7,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+c70ac23718838d03,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+e321099abdd97f44,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+e04601c69486f103,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b982938b13030680,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+323d14c873622c64,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+12dbca7078eb3b87,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+caa75935a3a97c91,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+acf81829a4c766f0,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+cc99278393c21018,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+807c0710b1cb3744,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+8a66dbdf1fd71797,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+1c941d9628f3f46b,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+981cbb20f8a991fc,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+85cfc9ce55e6c8d6,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+e31349fca8548b70,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+db6bdad682512177,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+d92fbcd2b6aa0b1e,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+11a36a1b9b4f3ded,DRJ-38RD,DRJ-38RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+2d0cd6a58dde90fb,DRJ-49OH,DRJ-49,campaign_alias_match,high,wbs_lv5_master,no,,no
+e51ca3b8800c9be1,DRJ-50OH,DRJ-50,campaign_alias_match,high,wbs_lv5_master,no,,no
+47d0c39c74b4f85d,DRJ-51OH,DRJ-51,campaign_alias_match,high,wbs_lv5_master,no,,no
+c5435b07cce847c1,DRJ-52OH,DRJ-52,campaign_alias_match,high,wbs_lv5_master,no,,no
+e4baaaae47449598,GENERAL,,none,low,wbs_lv5_master,no,,yes
+cce7d42de8b450e5,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3f60bab0d5fdc70b,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3e83848b0d439560,GENERAL,,none,low,wbs_lv5_master,no,,yes
+bb529c823ce1c604,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f8332f1a36711333,GENERAL,,none,low,wbs_lv5_master,no,,yes
+9b9dfc34e60ed3a5,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7971df95f53285ed,GENERAL,,none,low,wbs_lv5_master,no,,yes
+735dc68de4590fbf,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b63c405d1e38bae3,GENERAL,,none,low,wbs_lv5_master,no,,yes
+847fd2c46ad367c2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+96c38633513f11bd,GENERAL,,none,low,wbs_lv5_master,no,,yes
+6ec61972ae98c026,GENERAL,,none,low,wbs_lv5_master,no,,yes
+977ecffb83c20246,GENERAL,,none,low,wbs_lv5_master,no,,yes
+97c148e4a85c44f6,GENERAL,,none,low,wbs_lv5_master,no,,yes
+176f37bdb55678b6,GENERAL,,none,low,wbs_lv5_master,no,,yes
+1c258e930a22eb51,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f813738740314df1,GENERAL,,none,low,wbs_lv5_master,no,,yes
+737c78b57b212cfb,GENERAL,,none,low,wbs_lv5_master,no,,yes
+50e298089defaa8b,GENERAL,,none,low,wbs_lv5_master,no,,yes
+1bc040498321bbb0,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f7006d6a6a18c57e,GENERAL,,none,low,wbs_lv5_master,no,,yes
+eafba4c9bea4420c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+fbd848f65ff078b3,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c2ae4d7601902daa,GENERAL,,none,low,wbs_lv5_master,no,,yes
+9c00aa7688574384,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3213e1e33038f42a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+037162803bfbcc80,GENERAL,,none,low,wbs_lv5_master,no,,yes
+373dae5b0016e57c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c211f2168e51e163,GENERAL,,none,low,wbs_lv5_master,no,,yes
+0deebe3b4a6bd1a5,GENERAL,,none,low,wbs_lv5_master,no,,yes
+78e94958632320f2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7771ed3b8af67087,GENERAL,,none,low,wbs_lv5_master,no,,yes
+794d452946fe396f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+07b29fd68941de1b,GENERAL,,none,low,wbs_lv5_master,no,,yes
+85427f8c4e388630,GENERAL,,none,low,wbs_lv5_master,no,,yes
+8aa5d13b8701440e,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+fca274ff2015a525,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+9fd38aac09017363,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+9ffac331f317a25d,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+efbfbfa8a592a5dc,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+792895c77fc5ca65,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e6c19108edb64067,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+e84812ac73176de3,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+579e34de25deb643,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+b55c8be242acf68a,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+442f3ea361f6537c,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+88b2e4026d81c7ff,GENERAL,,none,low,wbs_lv5_master,no,,yes
+79ba9ac79b5e5a9d,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+442b958e0e6055b8,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+3a9896437defc9b2,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+bd4769e25a779a43,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+264bc1a112c37428,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+7e0a728333df74a2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+a367ff90e78b2046,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+f3539bfde9a4558b,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+10cde5d46120cfcc,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+ec6dae19041ed56b,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+c4cb13ac9282cb60,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+7df5a884dbab07b7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+bb2475560ca1a0dc,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+04b704ec7e62e6d1,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+be22f73185abe036,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+6cad5279e2e77ce4,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+bdc3671b8dda5773,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+fed716b5436cc891,GENERAL,,none,low,wbs_lv5_master,no,,yes
+15eb95b3076960a6,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+b12df3dc08f1d660,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+817b98c2a231d519,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+06938dbdba5d1f67,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+ef60ebe1cb116441,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+fc96b37289f564cc,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f024ed71f2d9c398,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+5a7931524df63a7e,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+a5ed74aa41765723,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+38005898776c6121,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+8922b3e060a106be,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+0056f1dcdb8e46de,GENERAL,,none,low,wbs_lv5_master,no,,yes
+93d4f712329f43d7,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+db0e9bab213ad4d4,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+20bebbeedc9e5951,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+888798bc8901aeeb,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+51e32390b45f02dc,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+1556e5e5f609b7aa,GENERAL,,none,low,wbs_lv5_master,no,,yes
+2061c725379c3d1b,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+8250360b6c53eac3,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+f28fa6a0a010e600,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+284972c2595033fd,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+739be4dd829cfeb3,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+1b92a55088b1d730,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f45b44e7fd2d46bc,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+323874e3cbbc54ba,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+692cea1494ff6c4c,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+467dd2bf70138407,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+cc285246c5b74da6,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+96579a4bd172dba7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+890b9f649d0b86bf,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+ee12cba5c6156736,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+80c2592a6c667bde,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+8056fa751e86945d,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+2e0c85109acab207,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+802834966584e761,GENERAL,,none,low,wbs_lv5_master,no,,yes
+14f00154fe7f4149,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+e96439adbc3de4cf,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+f46319543bec9e2a,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+467fa8e5e28f025e,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+059e91426e18718e,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+6d07e900ca1c0b74,GENERAL,,none,low,wbs_lv5_master,no,,yes
+cbc9c48520412866,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+e028a8e4a01d4a19,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+b15fac3147527cd5,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+52e59a706186520b,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+eea93bed4b04ba5c,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+18514c9ef81382ee,GENERAL,,none,low,wbs_lv5_master,no,,yes
+47becbd3456a135d,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+8b7aeb9e096d242d,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+a527645bcfd042d8,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+37c5a7ebda2cd81b,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+8e1ea96b59b50789,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+9b28389ebb512fc2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+bab65dd8892ff7f3,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+260b91ffbfa71c2a,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+e1b42fc05974c195,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+a8a18051bb79b6b0,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+67175a2464bc232a,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+f1f83edfcbdf8c54,GENERAL,,none,low,wbs_lv5_master,no,,yes
+a0b750fd5a157f3e,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+11e62f1e085e3681,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+796748362de6839e,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+2c42ddf502b68922,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+ab790ffebbf326b0,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+cbb1f0cdf4debd8d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3b7b2a165eb226a7,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+85fec68327d93ebc,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+f2c64ffb7f0081a3,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+938d8af00af15f3a,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+9062ceaa2f088c8d,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+7b17b67ed78e182c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c2aa485e385c3843,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+95522cc3c87c9956,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+fd2c09683643bd9d,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+e48fba90f73fc6ed,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+0ad7233ef1650154,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+9041ab34d688d7f2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+a5b58ea0bff1d6e8,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+8e12371cf8a76f8d,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+b84243c2fab2a477,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+1f9de71b7e40e3ec,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+52684b26b477eac4,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+65a3705bd7cf2cf2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3e3b9ed4b9da9818,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+d58caee5a7c3954c,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+a2636d6f3879b836,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+19c0fb74d6e2cbfc,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+8f7f5e1a792b2786,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+850859e4dbf061d4,GENERAL,,none,low,wbs_lv5_master,no,,yes
+4651fd0fee3d817e,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+c2a8540b9db9d7f1,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+12532600f7d8aa92,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+3f2c1b95db67caf4,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+afcce9538ef9bd92,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+437efeb2a78a548e,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3d080ed000fca9a3,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+bb373b0fb48822b2,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+9a7055d2a48b5192,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+6ce95e295820e07a,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+253b81766162edb8,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+7a63436393997a9a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+dbc347d312c3f427,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+07e8c5eff836b46b,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+c89ea8f7598e9c24,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+7ef680c1f2710b00,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+85d8891f36d2b1fd,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+1cda5684bb021d1e,GENERAL,,none,low,wbs_lv5_master,no,,yes
+2b68e373a2a97f5b,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+6e07ee2d21ddcb75,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+8dc76b27377fcde9,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+1e32b4d5053cdc95,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+bdf9348466400e00,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+a3c137c9f691d8e3,GENERAL,,none,low,wbs_lv5_master,no,,yes
+83631641a382ef5a,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+85b46e3880e20baf,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+605f0ab892f3ec10,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+a0baa3301937cbcb,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+566dc39d98158be1,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+4106816264480bf2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+138e60053a0a5180,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+07f4382273d51aee,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+8ed01de61315de49,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+38a9b5b52c9e7cf1,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+6c801bfb57c53a2c,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+6b2d9f4e1262836a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7bb641449dd87e2a,DRJ-53,DRJ-53,campaign_alias_match,high,wbs_lv5_master,no,,no
+b752fbc5312554ea,DRJ-54,DRJ-54,campaign_alias_match,high,wbs_lv5_master,no,,no
+1fe379805f36b4c7,DRJ-55,DRJ-55,campaign_alias_match,high,wbs_lv5_master,no,,no
+b24a43ac26695f72,DRJ-56,DRJ-56,campaign_alias_match,high,wbs_lv5_master,no,,no
+e2c337eac9fb0605,DRJ-57,DRJ-57,campaign_alias_match,high,wbs_lv5_master,no,,no
+fcb14c9e6e1b0edc,GENERAL,,none,low,wbs_lv5_master,no,,yes
+4bddd1e19abfad15,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e4393096a5fc3043,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b23210be03c5fad4,GENERAL,,none,low,wbs_lv5_master,no,,yes
+d89008a88aacabb7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+1e23f4791ffa68b9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+0f56a5d27d7a1e3d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+026dfdd68b3d2e85,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e96dff8c7fcf3d16,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c778f09ce85248f9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b9e830c96b8aec02,GENERAL,,none,low,wbs_lv5_master,no,,yes
+36faff348ad77968,GENERAL,,none,low,wbs_lv5_master,no,,yes
+6903efbcf3901b30,GENERAL,,none,low,wbs_lv5_master,no,,yes
+46d08283fc1b7bc7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+6368b90ce0ac3ac7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+dd1b92cc19a4d6be,GENERAL,,none,low,wbs_lv5_master,no,,yes
+4c2597670ca1e4a1,GENERAL,,none,low,wbs_lv5_master,no,,yes
+9bcb8c1309417f26,GENERAL,,none,low,wbs_lv5_master,no,,yes
+4228ea4af12ff794,GENERAL,,none,low,wbs_lv5_master,no,,yes
+adf5cf92848c7e1d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+d1b6b048a655c43a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b9c45591a92218af,GENERAL,,none,low,wbs_lv5_master,no,,yes
+454e6dfea4444df7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+5428384f97ab732b,GENERAL,,none,low,wbs_lv5_master,no,,yes
+b69d4c30585c71bd,GENERAL,,none,low,wbs_lv5_master,no,,yes
+989739ce10a6648b,GENERAL,,none,low,wbs_lv5_master,no,,yes
+61fdc5b63b9b3aaa,GENERAL,,none,low,wbs_lv5_master,no,,yes
+cfb48abb46d6f3b1,GENERAL,,none,low,wbs_lv5_master,no,,yes
+45edcc44d2f4987c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+ebcc9663b127227c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+5c135ef3e2cf9472,GENERAL,,none,low,wbs_lv5_master,no,,yes
+9156e37ce0b4abb2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+612b43ce26e2d50c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e5145d51886d3664,GENERAL,,none,low,wbs_lv5_master,no,,yes
+d1b574c46494c11f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+3e322eca2347b34f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+0ea9cdf038d52087,GENERAL,,none,low,wbs_lv5_master,no,,yes
+8453deda7a04bf95,GENERAL,,none,low,wbs_lv5_master,no,,yes
+cd5aef7a56831a13,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+424035d0cf6fa489,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+32e240a774f843ef,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+80bafafb48be79a5,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+f53c3394b2ff58c5,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+fad0493decabc525,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+b7dec62f47f51e25,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+590cf371ca61f7cd,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+f179e81b8b4058ff,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+decacd7fd7bb1dd6,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+3597a00ee19941c2,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+cec5a1e111a14482,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+6d3eb17849eeb19a,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+95c370b2cb0c951c,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+83e844249ecf72b8,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+7e4619d91989de7d,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+ce300eb06a41309d,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+c3e833212805b8b1,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+dd9a627dd2bb9dcd,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+5d83c0797a532e2a,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+d6814ecc9a8662b0,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+f4135570f1877fb7,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+c07598a453c60bb6,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+bdf8970530132de4,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+d3f7a569ba7ff00e,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+172f9ed9cf59a293,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+f98f4aa4c47df955,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+dfa678246ea5d595,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+2f0c739d05cd0fd8,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+f3c3909f5d7e3ff9,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+4786af9659977cd8,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+c174866cbcb806cb,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+fd87919afc33797b,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+a55b24db08e8587f,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+e6d727d345fa0c33,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+9351b4aef11e9f85,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+ddd72f5b7a410908,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+e1cc38bb3207e357,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+23f5dcd6c3c5387f,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+e5687b4d713ff401,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+281ab2ce21c589bc,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+359631ec22157b11,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+9763ecc51b5bb3fe,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+23019e2aa05a4698,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+8e89edd550a1a50a,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+4e2c863f42068330,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+d11002025fdcb9f6,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+cd4630d71c3b0924,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+a3c2f5166cdac005,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+58ab257e993f075d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+d3c6691602f62b6a,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+7ed47785ce13a3f1,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+b834789f5d23b02d,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+13f8bcb91dda0eb1,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+bfbb1692268604b1,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+5e4066b0fa03f181,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+1ab4c99c95543218,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+96e64f3eb29f43e1,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+61d0222a39ddced6,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+853afbfb08d774e1,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+32ce5507e6be242a,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+e6184b508e53cc21,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+b883e5be902ab7d6,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+8a4192cf33d5d03e,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+3c73b78c7d97c2a8,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+3d112a05c2edd38e,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+e37ca6a2a21d3b8e,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+059022eab121662d,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+761b2c46a016747e,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+468f02b03aa94372,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+fde8a4c47ac731ad,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+8586ddff9c200862,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+2320a228a4fb1c9c,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+af08c8cd52374981,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+09a49912a491709f,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+6777c4789f693863,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+04438616a7fb419a,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+22ccae4fec09bcc1,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+ff90a6369db308e3,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+62b52ba129362357,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+5eaca9938b28e736,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+76b245db6ffecaa9,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+33ce805e7f9a1b27,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+518885b21aff02f4,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+e206f5b7ca27c5af,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+e7543adf56e5387e,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+6cb884a394931dcc,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+d36bcd1496bc1973,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+0f1cc8804b02fd6b,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+e2e497d2144c5644,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+6dc74256fd1b47d6,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+02711e7d888ac4d9,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+b3c83af91ffb84a6,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+be78c0ad0ccd5a08,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+60cc44e9c5632f0b,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+997418211db28508,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+13b3f6be03c67e2b,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+517bed6edd359e66,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+882f2022f31e4306,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+2ef5983ba85e2d39,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+99bad0302707c348,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+d7d5a377282579ad,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+e5b5c937d8b5aff0,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+fef4736389493741,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+609809ef702dbffd,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+c10df2fd87829f48,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+1fa0da0c68b20922,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+c2e34053332f1e85,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+e69bf79773899f9b,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+26ff33bb7afeae5c,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+506860d2f12edbcd,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+2db4556ed9148fdd,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+7293f58d9f83e091,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+d638ca310db59355,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+925ef9fc3abd0629,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+789b58caf83117cc,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+a2254cc5400849cb,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+d682a7190288b88e,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+44022d22687b6ea6,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+e40e4c9e44185b6c,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+ef18a0f4334bd7b8,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+b6e03e2e41298ea2,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+de52afbb7037afd4,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+d51e7042a6f6dfea,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+f81ff31836d4a082,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+d701cbaa31897cc2,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+20f22afa1b5df79c,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+3e3031604307f59b,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+b9189620aa94e422,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+028d3d299062c34e,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+819728475d13134a,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+7fb57f7084b31ab4,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+cb5ff81244a083cc,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+ca7910f7c4853f58,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+176d0f91e559a50f,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+36f1e1e3d13a40af,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+264870ea851631f6,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+eca81c05408c161a,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+5612b71433eda2ea,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+0ddfb4e5541bf92e,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+acb6c88f6508a149,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+f3dc50c048cade7a,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+a0a40f8b2cb2a6f6,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+010ee8e6148e4d64,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+e1496627b5ff0e83,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+1c476c623ec0c7b3,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+00a9e1a62b2ccf6e,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+b57edf68783b6797,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+47018d32aa6b402e,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+100d5c4a41803b56,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+4f9d0a2621221b3b,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+6d3c6873be00bfb2,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+4f7b21525d0ae187,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+9eb9a001e1441e51,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+0dd837d355a21caa,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+d0bc49926ce4db13,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+7fdfecb80d16832f,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+c3f49d88abc74309,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+06c9091c2d2208f4,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+beb23f1b7e026caf,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+9c9e54ff7523a17d,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+df42681224a57c06,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+9d4cfa76c1970b74,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+ec12c39319398cab,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+8cb3f00c2713bf25,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+3e51a822138f6f01,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+2a95de8c6b8dfa57,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+6d0c069d89d5136c,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+948dc6f33780fbda,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+c2d0d16d7f675647,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+31c940f3a8530af1,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+b7fcfcfac1dea62b,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+cb9379454c8eafb9,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+454ae500e75e3745,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+2d61af9ec8e2a474,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+52aeed62d4bc6d42,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+c865b1191964d97b,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+1c4e76cc6acc80b1,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+0eb5524416d4632e,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+9a1ad85904387c8a,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+38d403a0e15e11c6,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+112712f929b3995f,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+e8b0766e3240b35c,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+6b440cf36960d5dc,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+97cea65733d62d02,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+b39d223ef6deb1fd,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+7af875a09a179477,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+e891386867ec9568,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+60601f4557745da7,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+95781f176c9b6551,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+4fd367dd3b238b16,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+152bc4dab320ea56,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+b5b1c03ecbf9c1de,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+71bdfe0d40c62deb,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+7b263fdbb079b557,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+1f0de970500e10d5,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+7595df9bdfa7cae6,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+f43e81bd0702d61c,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+e8b14994aff16732,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+f9393d49278e7c83,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+8a4b108ab568b0ed,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+c341f88d0d6d0706,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+5f54b4638b88228f,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+519510c6e51b9e4d,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+40cbc5097ee32c42,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+cecba5dda624fc42,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+e3ba2d54a844d22b,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+471754f45c19ba0f,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+3efdf36b125a5771,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+95c1b8fdc8083c50,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+0f6c9800049b3c06,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+62890e3a0679f218,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+831c69470e240a74,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+357f44d9b7a48418,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+620c674fc8bf7e7e,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+cdb655cdc5d84655,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+43bd02751aea8c52,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+6796a3661a4189be,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+46b1a4c885abe3d2,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+c291813cd0cb9f63,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+b8202142a135a06a,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+cbf0cfa65e50dcec,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+2da4a690dfa46f93,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+d9502a3311e95d0d,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+f3d316b6608faed5,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+be9020cbbb6101d3,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+a8a800da2212c343,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+2e89147fe3a16b28,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+6ec231ba08e5e2a4,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+03067a718bad34f1,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+1140fef4f2d14b03,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+9d907a23f56593d9,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+7190b8d72e88075d,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+ecbbeea2b04f6e2a,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+728b63a71dda4f11,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+5a28286fcaddeb17,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+3e43bc6717ca58aa,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+896265170c91de21,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+8a954949fb0a4868,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+b76efc726d80c8e5,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+419abd34ea7dfcf6,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+7eaf0b8c1227d577,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+cdb0ae37294be8fb,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+83b7703f3c0c72dd,AWI 21-7,AWI 21-7,campaign_alias_match,high,wbs_lv5_master,no,,no
+11cb0ec5f6a66512,AWI 21-8,AWI 21-8,campaign_alias_match,high,wbs_lv5_master,no,,no
+a7e5c28ca10e0911,AWI 23-1,AWI 23-1,campaign_alias_match,high,wbs_lv5_master,no,,no
+5b225883bbb7a847,AWI 23-2,AWI 23-2,campaign_alias_match,high,wbs_lv5_master,no,,no
+2414efa99d5908ab,AWI 2-6,AWI 2-6,campaign_alias_match,high,wbs_lv5_master,no,,no
+94b4d62aee9cfb53,AWI 2-7 ML,AWI 2-7 ML,campaign_alias_match,high,wbs_lv5_master,no,,no
+295c022813937665,AWI 3-9,AWI 3-9,campaign_alias_match,high,wbs_lv5_master,no,,no
+7f9068d300cf1b4a,AWI 9-10 RD,AWI 9-10 RD,campaign_alias_match,high,wbs_lv5_master,no,,no
+e68fb438529267a4,AWI 9-11,AWI 9-11,campaign_alias_match,high,wbs_lv5_master,yes,incomplete_spend_pending_closeout,no
+551bae027bf57c03,GENERAL,,none,low,wbs_lv5_master,no,,yes
+11f8e144dbcfb6d8,GENERAL,,none,low,wbs_lv5_master,no,,yes
+ac4bedde01a4e3d6,GENERAL,,none,low,wbs_lv5_master,no,,yes
+f0cafc12d96fc9a2,GENERAL,,none,low,wbs_lv5_master,no,,yes
+bb23bb2a62b2fb2f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+213d334aeb897514,GENERAL,,none,low,wbs_lv5_master,no,,yes
+d04e8db2837266ff,GENERAL,,none,low,wbs_lv5_master,no,,yes
+74485db7908bbc1a,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e9dfeda9505479de,GENERAL,,none,low,wbs_lv5_master,no,,yes
+43862cef6eaa4580,GENERAL,,none,low,wbs_lv5_master,no,,yes
+52f49af686c15289,GENERAL,,none,low,wbs_lv5_master,no,,yes
+e48243ead3c7cef4,GENERAL,,none,low,wbs_lv5_master,no,,yes
+1fc47a03289283af,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c73fb6925dd61efa,GENERAL,,none,low,wbs_lv5_master,no,,yes
+c9467b6ee98e0e72,GENERAL,,none,low,wbs_lv5_master,no,,yes
+d723bffeeefb085f,GENERAL,,none,low,wbs_lv5_master,no,,yes
+daec7e11b1571002,GENERAL,,none,low,wbs_lv5_master,no,,yes
+119ea56160d0959c,GENERAL,,none,low,wbs_lv5_master,no,,yes
+711030e83e51a1c3,GENERAL,,none,low,wbs_lv5_master,no,,yes
+868633354f1b0cb7,GENERAL,,none,low,wbs_lv5_master,no,,yes
+79e9a53264ca025d,GENERAL,,none,low,wbs_lv5_master,no,,yes
+7e6e159fea3ff3e9,GENERAL,,none,low,wbs_lv5_master,no,,yes
+61a3d47cb98aadaf,GENERAL,,none,low,wbs_lv5_master,no,,yes
+ffe6cfe7da85a91b,GENERAL,,none,low,wbs_lv5_master,no,,yes

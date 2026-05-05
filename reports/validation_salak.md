@@ -1,12 +1,12 @@
 # Validation Report - SALAK
 
-Generated: 2026-04-29T08:52:00.922020+00:00
+Generated: 2026-05-05T03:30:10.548068+00:00
 
 Backtest mode: historical median peer baseline (no regression claim).
 
-- Wells backtested: 7
-- MAE (USD): 1,075,441.65
-- MAPE (%): 30.15
-- Bias (USD): 48,035.90
+- Wells backtested: 12
+- MAE (USD): 1,064,091.88
+- MAPE (%): 582.36
+- Bias (USD): -224,483.18
 - Interval coverage: not produced (point-estimate baseline only).
 - Excluded wells from estimator/backtest pool: AWI 9-10, AWI 9-11

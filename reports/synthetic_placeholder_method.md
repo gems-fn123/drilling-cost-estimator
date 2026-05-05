@@ -18,7 +18,7 @@ This staging layer is placeholder-only for future old/new campaign integration a
 
 ## Output counts
 - synthetic campaign rows: **6**
-- synthetic WBS Lv.5 placeholder rows: **1748**
+- synthetic WBS Lv.5 placeholder rows: **1382**
 
 ## Notes
 - Non-cost structural fields are copied from nearest same-field real campaign templates.

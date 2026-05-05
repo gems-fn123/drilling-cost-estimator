@@ -1,0 +1,86 @@
+wbs_code_raw,wbs_lvl1,wbs_lvl2,wbs_lvl3,wbs_lvl4,wbs_lvl5,tag_well_or_pad,tag_lvl5,source
+L5_RIGMOBILIZAT_E8101733E50A,DRJ - 2019,Drilling Cost,Rig Mobilization,Rig Mobilization,Rig Mobilization,Pad,Rig Mobilization,dashboard_heuristic
+L5_RIGMOVE_7E7F91647177,DRJ - 2019,Drilling Cost,Rig Move,Interpad Move,Rig Move,Pad,Rig Move,dashboard_heuristic
+L5_CASING_2A8D1226ADCE,DRJ - 2019,Drilling Cost,Well Cost,Material - LL,Casing,Well,Casing,dashboard_heuristic
+L5_EQUIPMENTREN_3CEA9244EDB8,DRJ - 2019,Drilling Cost,Well Cost,Material - LL,Equipment Rental,Well,Equipment Rental,dashboard_heuristic
+L5_FUELLUBRICAN_144D0D6112B2,DRJ - 2019,Drilling Cost,Well Cost,Material - LL,Fuel & Lubricants,Well,Fuel & Lubricants,dashboard_heuristic
+L5_WELLEQUIPMEN_955980FBCA86,DRJ - 2019,Drilling Cost,Well Cost,Material - LL,Well Equipment Surface,Well,Well Equipment Surface,dashboard_heuristic
+L5_BITSREAMERAN_D4729FDC7304,DRJ - 2019,Drilling Cost,Well Cost,Services,"Bits, Reamer and Core heads",Well,"Bits, Reamer and Core heads",dashboard_heuristic
+L5_CASINGINSTAL_9EFB58F46291,DRJ - 2019,Drilling Cost,Well Cost,Services,Casing Installation,Well,Casing Installation,dashboard_heuristic
+L5_CEMENTCEMENT_760B295A23A8,DRJ - 2019,Drilling Cost,Well Cost,Services,"Cement, Cementing & Pump Fees",Well,"Cement, Cementing & Pump Fees",dashboard_heuristic
+L5_CONTRACTRIG_BB2F3983198B,DRJ - 2019,Drilling Cost,Well Cost,Services,Contract Rig,Well,Contract Rig,dashboard_heuristic
+L5_DIRECTIONALD_5164EE32F81F,DRJ - 2019,Drilling Cost,Well Cost,Services,Directional Drilling & Surveys,Well,Directional Drilling & Surveys,dashboard_heuristic
+L5_DRILLINGSAFE_59A45941EF50,DRJ - 2019,Drilling Cost,Well Cost,Services,"Drilling Safety, Health & Environment",Well,"Drilling Safety, Health & Environment",dashboard_heuristic
+L5_LANDTRANSPOR_60671A6AE57F,DRJ - 2019,Drilling Cost,Well Cost,Services,Land Transportation,Well,Land Transportation,dashboard_heuristic
+L5_MUDLOGGINGSE_57964E92EEB4,DRJ - 2019,Drilling Cost,Well Cost,Services,Mud Logging Service,Well,Mud Logging Service,dashboard_heuristic
+L5_MUDCHEMICALA_55302B7D91CD,DRJ - 2019,Drilling Cost,Well Cost,Services,"Mud, Chemical and Engineering Service",Well,"Mud, Chemical and Engineering Service",dashboard_heuristic
+L5_OPENHOLEELEC_ECEB5C088E3B,DRJ - 2019,Drilling Cost,Well Cost,Services,Open Hole Electrical Logging Service,Well,Open Hole Electrical Logging Service,dashboard_heuristic
+L5_OTHERS_5927B98C2A7C,DRJ - 2019,Drilling Cost,Well Cost,Services,Others,Well,Others,dashboard_heuristic
+L5_SERVICELINES_6384121BE5DD,DRJ - 2019,Drilling Cost,Well Cost,Services,Service Lines & Communication,Well,Service Lines & Communication,dashboard_heuristic
+L5_SUPERVISION_1E85EC06D28C,DRJ - 2019,Drilling Cost,Well Cost,Services,Supervision,Well,Supervision,dashboard_heuristic
+L5_DRILLINGOPER_433A456F1198,DRJ - 2019,Support Cost,Drilling Operation Water Support,Drilling Operation Water Support,Drilling Operation Water Support,Pad,Drilling Operation Water Support,dashboard_heuristic
+L5_PGPA_02B3BEBD142A,DRJ - 2019,Support Cost,PGPA & Security,PGPA,PGPA,Pad,PGPA,dashboard_heuristic
+L5_INSURANCE_ADC70E45474C,DRJ - 2019,Support Cost,Well Insurance,Well Insurance,Insurance,Pad,Insurance,dashboard_heuristic
+L5_WELLTESTING_C4F8CB14C525,DRJ - 2019,Support Cost,Well Testing,Well Testing,Well Testing,Pad,Well Testing,dashboard_heuristic
+L5_WELLSITEGEOL_CAA44246C21A,DRJ - 2019,Support Cost,Wellsite Geologist (WSG),Wellsite Geologist (WSG),Wellsite Geologist (WSG),Pad,Wellsite Geologist (WSG),dashboard_heuristic
+L5_SERVICE_D3B11C044121,DRJ - 2019,Surface Facilities Cost,Conductor Casing Installation & Material,Services,Service,Well,Service,dashboard_heuristic
+L5_CONSTRUCTION_91A0CA33406F,DRJ - 2019,Surface Facilities Cost,Special Requirement Existing Pad,Construction,Construction,Pad,Construction,dashboard_heuristic
+L5_INSTALLATION_8E899BB0D737,DRJ - 2019,Surface Facilities Cost,Tie-in,Construction,"Installation, Hook Up & Pre-Commisioning",Pad,"Installation, Hook Up & Pre-Commisioning",dashboard_heuristic
+L5_MATERIALLL_42A7051367BF,DRJ - 2019,Surface Facilities Cost,Tie-in,Procurement,Material - LL,Pad,Material - LL,dashboard_heuristic
+L5_MATERIALNONL_9BD6173C948D,DRJ - 2019,Surface Facilities Cost,Tie-in,Procurement,Material - Non LL,Pad,Material - Non LL,dashboard_heuristic
+L5_LIH_2F16E3988B82,SLK - 2021,Drilling Cost,LIH,LIH,LIH,Pad,LIH,dashboard_heuristic
+L5_RIGSKID_CC38DEFC5975,SLK - 2021,Drilling Cost,Rig Skid,Rig Skid,Rig Skid,Pad,Rig Skid,dashboard_heuristic
+L5_OTHERS_064C1A508431,SLK - 2021,Drilling Cost,Well Cost,Material - LL,Others,Well,Others,dashboard_heuristic
+L5_EQUIPMENTREN_E5E510DABF22,SLK - 2021,Drilling Cost,Well Cost,Services,Equipment Rental,Well,Equipment Rental,dashboard_heuristic
+L5_OTHERTRANSPO_0DDC477E6326,SLK - 2021,Drilling Cost,Well Cost,Services,Other Transportation,Well,Other Transportation,dashboard_heuristic
+L5_OTHER_EB249B3C9CA1,SLK - 2021,Support Cost,Drilling Facilities Support,Drilling Facilities Support,Other,Pad,Other,dashboard_heuristic
+L5_DRILLINGFACI_67379F0D3BF6,SLK - 2021,Support Cost,Drilling Facilities Support,Drilling Operation Water Support,Drilling Facilities Support,Pad,Drilling Facilities Support,dashboard_heuristic
+L5_INTERNETANDI_C7D8F43FEB7D,SLK - 2021,Support Cost,IT & Communication,Internet and IT Support Service,Internet and IT Support Service,Pad,Internet and IT Support Service,dashboard_heuristic
+L5_OTHER_B07B4CEACDD3,SLK - 2021,Support Cost,PGPA & Security,PGPA & Security,Other,Pad,Other,dashboard_heuristic
+L5_PGPASECURITY_BD8D79D85745,SLK - 2021,Support Cost,PGPA & Security,PGPA & Security,PGPA & Security,Pad,PGPA & Security,dashboard_heuristic
+L5_PROJECTMANAG_4DB6C647E865,SLK - 2021,Support Cost,Project Management Cost,Project Management Cost,Project Management Cost,Pad,Project Management Cost,dashboard_heuristic
+L5_DRILLCUTTING_9D2B9583750A,SLK - 2021,Support Cost,SHE,Drill Cutting,Drill Cutting - Transport & Process,Pad,Drill Cutting - Transport & Process,dashboard_heuristic
+L5_SAMPLINGANDL_3E6029B1DA08,SLK - 2021,Support Cost,SHE,Environmental Monitoring,Sampling and Lab Analysis,Pad,Sampling and Lab Analysis,dashboard_heuristic
+L5_HAZARDOUSWAS_D98FDD1D2E6E,SLK - 2021,Support Cost,SHE,Hazardous Waste,Hazardous Waste,Pad,Hazardous Waste,dashboard_heuristic
+L5_ENVIRONMENTP_55ACA1549A2F,SLK - 2021,Support Cost,SHE,SHE Permit,Environment Permit,Pad,Environment Permit,dashboard_heuristic
+L5_OTHERS_42347B0BC5EC,SLK - 2021,Support Cost,SHE,SHE Permit,Others,Pad,Others,dashboard_heuristic
+L5_OTHERS_C92B9F066270,SLK - 2021,Surface Facilities Cost,Conductor Casing Installation & Material,Conductor Casing Installation & Material,Others,Well,Others,dashboard_heuristic
+L5_SERVICE_28521C0CF065,SLK - 2021,Surface Facilities Cost,Conductor Casing Installation & Material,Service,Service,Well,Service,dashboard_heuristic
+L5_CONSTRUCTION_5160D9ECDC21,SLK - 2021,Surface Facilities Cost,Road & Pad,Construction,Construction,Pad,Construction,dashboard_heuristic
+L5_MATERIALLL_6AF7DEB98EC5,SLK - 2021,Surface Facilities Cost,Road & Pad,Procurement,Material - LL,Pad,Material - LL,dashboard_heuristic
+L5_EXPLOSIVE_B63E9765B3B9,DRJ - 2022,Drilling Cost,Explosive,Explosive,Explosive,Pad,Explosive,dashboard_heuristic
+L5_RIGSKID_D29042A5FD31,DRJ - 2022,Drilling Cost,Rig Skid,Skid Moving,Rig Skid,Pad,Rig Skid,dashboard_heuristic
+L5_ASSETTRANSFE_6578B2A3AFF6,DRJ - 2022,Drilling Cost,Well Cost,Material - LL,Asset Transfer,Well,Asset Transfer,dashboard_heuristic
+L5_CONSUMABLES_60509DDA461F,DRJ - 2022,Drilling Cost,Well Cost,Material - Non LL,Consumables,Well,Consumables,dashboard_heuristic
+L5_APINONAPIMAC_67AEEE2EF0C8,DRJ - 2022,Drilling Cost,Well Cost,Services,API non API Machine Shop Service,Well,API non API Machine Shop Service,dashboard_heuristic
+L5_CORING_554623F9B631,DRJ - 2022,Drilling Cost,Well Cost,Services,Coring,Well,Coring,dashboard_heuristic
+L5_EXPLOSIVEHAN_0C4886516DC0,DRJ - 2022,Drilling Cost,Well Cost,Services,Explosive Handling & Permitting,Well,Explosive Handling & Permitting,dashboard_heuristic
+L5_NDTINSPECTIO_32279826FD65,DRJ - 2022,Drilling Cost,Well Cost,Services,NDT Inspection,Well,NDT Inspection,dashboard_heuristic
+L5_RIGINSPECTIO_3077A218A5CD,DRJ - 2022,Drilling Cost,Well Cost,Services,Rig Inspection,Well,Rig Inspection,dashboard_heuristic
+L5_VEHICLEINSPE_F9BAD411C5E0,DRJ - 2022,Drilling Cost,Well Cost,Services,Vehicle Inspection,Well,Vehicle Inspection,dashboard_heuristic
+L5_WELDINGSERVI_F1CDD62D18B7,DRJ - 2022,Drilling Cost,Well Cost,Services,Welding Service,Well,Welding Service,dashboard_heuristic
+L5_DRILLINGFACI_8DB93FFA0566,DRJ - 2022,Support Cost,Drilling Facilities Support,Drilling Facilities Support,Drilling Facilities Support,Pad,Drilling Facilities Support,dashboard_heuristic
+L5_HARDWARESUPP_EB23708B1625,DRJ - 2022,Support Cost,IT & Communication,Hardware Supply,Hardware Supply,Pad,Hardware Supply,dashboard_heuristic
+L5_SECURITY_CF262C034003,DRJ - 2022,Support Cost,PGPA & Security,Security,Security,Pad,Security,dashboard_heuristic
+L5_HEAVYEQUIPME_9D325E4004B3,DRJ - 2022,Support Cost,SHE,Drill Cutting,Heavy Equipment for Drill Cutting,Pad,Heavy Equipment for Drill Cutting,dashboard_heuristic
+L5_ENVIRONMENTA_C1381ADA89A3,DRJ - 2022,Support Cost,SHE,Environmental Monitoring,Environmental Monitoring,Pad,Environmental Monitoring,dashboard_heuristic
+L5_IPAL_EAACA091D036,DRJ - 2022,Support Cost,SHE,Environmental Monitoring,IPAL,Pad,IPAL,dashboard_heuristic
+L5_ANDALALIN_D0D3A3EEA8A4,DRJ - 2022,Support Cost,SHE,SHE Permit,Andalalin,Pad,Andalalin,dashboard_heuristic
+L5_MATERIAL_5D2B50C23D79,DRJ - 2022,Surface Facilities Cost,Conductor Casing Installation & Material,Material,Material,Well,Material,dashboard_heuristic
+L5_ENGINEERING_C542F3C5FF3C,DRJ - 2022,Surface Facilities Cost,Road & Pad,Engineering,Engineering,Pad,Engineering,dashboard_heuristic
+L5_MATERIALNONL_8824490F3082,DRJ - 2022,Surface Facilities Cost,Road & Pad,Procurement,Material - Non LL,Pad,Material - Non LL,dashboard_heuristic
+L5_ENGINEERING_A23217F7FB3D,DRJ - 2022,Surface Facilities Cost,Special Requirement Existing Pad,Engineering,Engineering,Pad,Engineering,dashboard_heuristic
+L5_MATERIALLL_DADED0EF9B55,DRJ - 2022,Surface Facilities Cost,Special Requirement Existing Pad,Procurement,Material - LL,Pad,Material - LL,dashboard_heuristic
+L5_MATERIALNONL_6BE06706DE96,DRJ - 2022,Surface Facilities Cost,Special Requirement Existing Pad,Procurement,Material - Non LL,Pad,Material - Non LL,dashboard_heuristic
+L5_ENGINEERING_33DB79A41BF2,DRJ - 2022,Surface Facilities Cost,Tie-in,Engineering,Engineering,Pad,Engineering,dashboard_heuristic
+L5_CASINGREPAIR_D58293835161,DRJ - 2024,Drilling Cost,Well Cost,Material - LL,Casing Repair & Modif,Well,Casing Repair & Modif,dashboard_heuristic
+L5_HARDWARESUPP_310F457279EF,DRJ - 2024,Support Cost,IT & Communication,Drilling Facilities Support,Hardware Supply,Pad,Hardware Supply,dashboard_heuristic
+L5_PERMITTING_D5E8D08D0924,DRJ - 2024,Support Cost,Permitting (IPPKH/IPJLPB),Hardware Supply,Permitting,Pad,Permitting,dashboard_heuristic
+L5_MATERIAL_8A666B47FE7D,DRJ - 2024,Surface Facilities Cost,Conductor Casing Installation & Material,Conductor Casing Installation & Material,Material,Well,Material,dashboard_heuristic
+L5_SERVICE_5B78EFE7A3E1,DRJ - 2024,Surface Facilities Cost,Conductor Casing Installation & Material,Conductor Casing Installation & Material,Service,Well,Service,dashboard_heuristic
+L5_CONTINGENCY_1BF6FF432955,SLK - 2025,Contingency,Contingency,Contingency,Contingency,Pad,Contingency,dashboard_heuristic
+L5_LOGGINGCOST_776144CF9DEE,SLK - 2025,Drilling Cost,Logging Cost,Logging Cost,Logging Cost,Pad,Logging Cost,dashboard_heuristic
+L5_RIGMOVE_A18244B2B147,SLK - 2025,Drilling Cost,Rig Move,Services,Rig Move,Pad,Rig Move,dashboard_heuristic
+L5_RIGMOVE_0C32EB3C1446,SLK - 2025,Drilling Cost,Rig Move,Skid Moving,Rig Move,Pad,Rig Move,dashboard_heuristic
+L5_DRILLINGRIGO_E1135A7EAE78,SLK - 2025,Drilling Cost,Well Cost,Services,Drilling Rig O&M,Well,Drilling Rig O&M,dashboard_heuristic
+L5_NEWRIGPAVEME_133FAB365DAA,SLK - 2025,Surface Facilities Cost,New Rig Pavement,Construction,New Rig Pavement,Pad,New Rig Pavement,dashboard_heuristic
