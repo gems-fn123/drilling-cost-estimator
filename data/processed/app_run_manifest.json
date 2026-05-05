@@ -1,7 +1,7 @@
 {
-  "run_timestamp": "2026-04-29T08:52:49.137761+00:00",
+  "run_timestamp": "2026-05-05T02:51:38.503747+00:00",
   "field": "SALAK",
-  "scenario_id": "SALAK_2026_1w",
+  "scenario_id": "SALAK_2026_3w",
   "estimate_type": "unit_price_benchmark_anchored",
   "runtime_toggles": {
     "external_forecast_requested": true,
@@ -11,8 +11,8 @@
   "external_adjustment_formula": "active_day_rate: 0.223048*(brent_usd_bbl_2026/brent_usd_bbl_2025) + 0.598362*(indonesia_cpi_index_2026/indonesia_cpi_index_2025) + 0.178590*(steel_commodity_proxy_usd_ton_2026/steel_commodity_proxy_usd_ton_2025); depth_rate: 0.361759*(brent_usd_bbl_2026/brent_usd_bbl_2025) + 0.352115*(indonesia_cpi_index_2026/indonesia_cpi_index_2025) + 0.286126*(steel_commodity_proxy_usd_ton_2026/steel_commodity_proxy_usd_ton_2025); per_well_job: fallback_historical_only_no_macro_weights_for_per_well_job; campaign_scope_benchmark: 0.327101*(brent_usd_bbl_2026/brent_usd_bbl_2025) + 0.049304*(indonesia_cpi_index_2026/indonesia_cpi_index_2025) + 0.623595*(steel_commodity_proxy_usd_ton_2026/steel_commodity_proxy_usd_ton_2025)",
   "allocation_basis": "Within-category direct well subtotal weights with equal split fallback for categories without direct well rows.",
   "reconciliation": {
-    "campaign_total_usd": 18282093.741953027,
-    "detail_total_usd": 18282093.741955,
+    "campaign_total_usd": 27904410.85295598,
+    "detail_total_usd": 27904410.852960996,
     "status": "PASS"
   },
   "outputs": {

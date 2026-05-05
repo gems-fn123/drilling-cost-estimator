@@ -139,6 +139,60 @@ def _copy_to_raw(file_path: Path) -> Path:
     return dest
 
 
+def _read_sheets_for_validation(file_path: Path) -> Optional[dict[str, list[list[str]]]]:
+    """Read all sheets from an Excel file for validation. Returns None if unreadable."""
+    try:
+        with file_path.open("rb") as f:
+            magic = f.read(4)
+
+        actual_path = file_path
+
+        if magic == OLE_MAGIC:
+            decrypted = _decrypt_ole_to_temp(file_path)
+            if decrypted:
+                actual_path = decrypted
+            else:
+                return None  # DRM encrypted, can't validate
+
+        # Read with openpyxl
+        import openpyxl
+        wb = openpyxl.load_workbook(str(actual_path), read_only=True, data_only=True)
+        sheets_data: dict[str, list[list[str]]] = {}
+        for sheet_name in wb.sheetnames:
+            ws = wb[sheet_name]
+            rows = []
+            for i, row in enumerate(ws.iter_rows(values_only=True)):
+                if i >= 50:  # Only read first 50 rows for header detection
+                    break
+                rows.append([str(cell).strip() if cell is not None else "" for cell in row])
+            sheets_data[sheet_name] = rows
+        wb.close()
+
+        if actual_path != file_path and actual_path.exists():
+            actual_path.unlink()
+
+        return sheets_data
+    except Exception:
+        return None
+
+
+def _unreadable_validation_result(entry: dict):
+    """Create a validation result for an unreadable file."""
+    from src.app.components.data_validation import FileValidationResult
+    return FileValidationResult(
+        file_name=entry["name"],
+        file_path=entry["path"],
+        readable=False,
+        error_message=(
+            f"File `{entry['name']}` could not be read for validation. "
+            "It may be DRM-encrypted or in an unsupported format. "
+            "Please upload an unencrypted .xlsx file."
+        ),
+        detected_type="unreadable",
+        pipeline_ready=False,
+    )
+
+
 def render_upload_page() -> None:
     st.markdown("# DATA UPLOAD")
     st.markdown(
@@ -227,6 +281,58 @@ def render_upload_page() -> None:
 
     st.divider()
 
+    # Data contract validation
+    st.subheader("Data Validation")
+    st.caption("Checking uploaded files against expected data contracts...")
+
+    from src.app.components.data_validation import validate_csv_file, validate_excel_file
+
+    validation_results = []
+    all_pipeline_ready = True
+
+    for entry in staged_files:
+        if entry["extension"] == ".csv":
+            vr = validate_csv_file(entry["path"])
+        else:
+            # Read file sheets for validation
+            sheets_data = _read_sheets_for_validation(entry["path"])
+            if sheets_data is not None:
+                vr = validate_excel_file(entry["path"], sheets_data)
+            else:
+                vr = _unreadable_validation_result(entry)
+        validation_results.append(vr)
+        if not vr.pipeline_ready:
+            all_pipeline_ready = False
+
+    # Display validation results
+    for vr in validation_results:
+        if vr.pipeline_ready:
+            status_icon = "\u2705"
+            detected_label = f"({vr.detected_type})" if vr.detected_type else ""
+            st.markdown(f"{status_icon} **{vr.file_name}** — Pipeline ready {detected_label}")
+        else:
+            status_icon = "\u274C"
+            st.markdown(f"{status_icon} **{vr.file_name}** — Not recognized")
+
+        # Show sheet-level details in expander
+        if vr.sheet_results:
+            with st.expander(f"Validation details for {vr.file_name}", expanded=not vr.pipeline_ready):
+                for sr in vr.sheet_results:
+                    if sr.headers_valid:
+                        st.markdown(f"  \u2713 `{sr.sheet_name}` — {sr.row_count} rows | {sr.description}")
+                    elif sr.found:
+                        st.markdown(f"  \u2717 `{sr.sheet_name}` — Missing headers: {', '.join(sr.missing_headers)}")
+                    else:
+                        st.markdown(f"  \u2014 `{sr.sheet_name}` — Sheet not found")
+
+        for warning in vr.warnings:
+            st.warning(warning)
+
+        if vr.error_message:
+            st.error(vr.error_message)
+
+    st.divider()
+
     # Preview section
     st.subheader("Preview")
     for entry in staged_files:
@@ -238,6 +344,12 @@ def render_upload_page() -> None:
     st.divider()
 
     # Confirm and load button
+    if not all_pipeline_ready:
+        st.warning(
+            "Some files did not pass validation. You can still load them, "
+            "but the pipeline may fail or produce incomplete results."
+        )
+
     if st.button("CONFIRM & LOAD DATA", type="primary", disabled=not selections_valid):
         with st.spinner("Copying files to raw data directory..."):
             for entry in staged_files:
@@ -247,6 +359,7 @@ def render_upload_page() -> None:
         st.session_state["upload_sheet_selections"] = {
             entry["name"]: entry["selected_sheet"] for entry in staged_files
         }
+        st.session_state["validation_results"] = validation_results
         st.success(
             f"Loaded {len(staged_files)} file(s) into raw data directory. "
             "Proceed to **Build Artifacts** to generate modelling inputs."

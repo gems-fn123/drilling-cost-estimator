@@ -2,14 +2,14 @@
   "field": "SALAK",
   "input_year": 2026,
   "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_cost_family_distribution_and_campaign_scope_analogs",
-  "total_campaign_cost_mmusd": 18.282093741953027,
-  "total_campaign_cost_formatted": "18.28 mm USD",
-  "total_campaign_cost_usd": 18282093.741953027,
-  "well_component_usd": 4811158.555501485,
-  "well_component_formatted": "4.81 mm USD",
+  "total_campaign_cost_mmusd": 27.90441085295598,
+  "total_campaign_cost_formatted": "27.90 mm USD",
+  "total_campaign_cost_usd": 27904410.85295598,
+  "well_component_usd": 14433475.666504456,
+  "well_component_formatted": "14.43 mm USD",
   "hybrid_component_usd": 0,
   "hybrid_component_formatted": "0.00 mm USD",
-  "campaign_tied_component_usd": 13470935.186451541,
+  "campaign_tied_component_usd": 13470935.186451543,
   "campaign_tied_component_formatted": "13.47 mm USD",
   "reconciliation_status": "PASS",
   "historical_anchor_year": 2025,
@@ -17,8 +17,8 @@
   "l2_cost_breakdown": [
     {
       "l2_id": "Drilling Cost",
-      "estimate_usd": 11298490.944470447,
-      "estimate_formatted": "11.30 mm USD"
+      "estimate_usd": 20920808.055473406,
+      "estimate_formatted": "20.92 mm USD"
     },
     {
       "l2_id": "Surface Facilities Cost",
@@ -39,22 +39,30 @@
   "category_matrix": [
     {
       "Cost Category": "Drilling",
-      "Well-1": 11.298,
+      "Well-1": 6.974,
+      "Well-2": 6.974,
+      "Well-3": 6.974,
       "Error (MMUSD) / MAPE (%)": "12.39 / 51.5%"
     },
     {
       "Cost Category": "Support",
-      "Well-1": 2.133,
+      "Well-1": 0.711,
+      "Well-2": 0.711,
+      "Well-3": 0.711,
       "Error (MMUSD) / MAPE (%)": "0.65 / 39.4%"
     },
     {
       "Cost Category": "Surface Facility",
-      "Well-1": 4.85,
+      "Well-1": 1.617,
+      "Well-2": 1.617,
+      "Well-3": 1.617,
       "Error (MMUSD) / MAPE (%)": "0.92 / 22.5%"
     },
     {
       "Cost Category": "Contingency",
       "Well-1": 0.0,
+      "Well-2": 0.0,
+      "Well-3": 0.0,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],
