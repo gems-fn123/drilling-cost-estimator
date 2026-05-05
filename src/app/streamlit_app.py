@@ -1,4 +1,4 @@
-"""Main Streamlit application – multipage workflow for data upload → modelling."""
+"""Main Streamlit application – multipage workflow for data upload → estimator."""
 
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ def _page_audit() -> None:
         from src.app.components.detail_tab import render_detail_tab
         render_detail_tab(st.session_state["last_result"])
     else:
-        st.info("Run a cost estimation in the **Modelling** page first to view audit outputs.")
+        st.info("Run a cost estimation in the **Estimator** page first to view audit outputs.")
 
 
 def main() -> None:
@@ -52,7 +52,7 @@ def main() -> None:
             st.Page(_page_upload, title="Upload Data", icon="\U0001F4C1"),
             st.Page(_page_build_artifacts, title="Build Artifacts", icon="\u2699\uFE0F"),
             st.Page(_page_wbs_tree, title="WBS Tree", icon="\U0001F333"),
-            st.Page(_page_modelling, title="Modelling", icon="\U0001F4CA"),
+            st.Page(_page_modelling, title="Estimator", icon="\U0001F4CA"),
             st.Page(_page_audit, title="Audit", icon="\U0001F50D"),
         ]
     }

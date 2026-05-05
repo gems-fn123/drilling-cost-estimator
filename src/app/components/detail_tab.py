@@ -21,6 +21,24 @@ def render_detail_tab(result: dict) -> None:
         "is empirical spread ((P90-P10)/median*100) over grouped historical peers."
     )
 
+    with st.expander("Estimator method and output schema", expanded=False):
+        st.markdown(
+            "- Method: direct unit-price benchmark with anchor-year cost-family distribution and campaign-scope analogs.\n"
+            "- Active uncertainty: empirical spread from field-specific grouped historical peers.\n"
+            "- The summary contract keeps totals, reconciliation, and anchor-year metadata together.\n"
+            "- The detail contract keeps row-grain lineage, WBS family tags, source wells, and support explanations."
+        )
+        st.dataframe(
+            [
+                {"output": "campaign_summary", "contains": "Totals, reconciliation status, anchor year, L2 breakdown, matrix note."},
+                {"output": "detail_wbs", "contains": "One row per L5 estimate with lineage, uncertainty, and support text."},
+                {"output": "audit_rows", "contains": "Export-ready row contract with audit_key and source_row_ids."},
+                {"output": "run_manifest", "contains": "Runtime toggles, formulas, and artifact provenance."},
+            ],
+            width="stretch",
+            hide_index=True,
+        )
+
     enriched_rows = []
     for row in detail_rows:
         unc_pct = float(row.get("uncertainty_pct", 0.0))
@@ -55,13 +73,13 @@ def render_detail_tab(result: dict) -> None:
             }
         )
 
-    st.dataframe(enriched_rows, use_container_width=True, hide_index=True)
+    st.dataframe(enriched_rows, width="stretch", hide_index=True)
 
     total = sum(r["estimate_usd"] for r in detail_rows)
     st.caption(f"Detail row sum USD: {total:,.2f}")
 
     with st.expander("Audit Preview"):
-        st.dataframe(result["audit_rows"], use_container_width=True, hide_index=True)
+        st.dataframe(result["audit_rows"], width="stretch", hide_index=True)
 
     audit_buffer = io.StringIO()
     if result["audit_rows"]:

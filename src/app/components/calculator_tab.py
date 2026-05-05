@@ -32,13 +32,13 @@ def render_calculator_results(result: dict) -> None:
             }
             for r in result["well_outputs"]
         ],
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 
     st.subheader("Cost Category Matrix")
     st.caption("Matrix cells are displayed in MMUSD. Shared `campaign_tied` / `hybrid` rows stay shared in the detail audit and are allocated to wells here for presentation only.")
-    st.dataframe(summary.get("category_matrix", []), use_container_width=True, hide_index=True)
+    st.dataframe(summary.get("category_matrix", []), width="stretch", hide_index=True)
     if summary.get("category_matrix_note"):
         st.caption(summary["category_matrix_note"])
 

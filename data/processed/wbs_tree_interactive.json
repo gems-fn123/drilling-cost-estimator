@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-05T03:30:10.664599+00:00",
+  "generated_at_utc": "2026-05-05T06:35:58.719745+00:00",
   "source_contract": {
     "dataset": "data/processed/unit_price_history_mart.csv",
     "source_sheet_required": "Structured.Cost",

@@ -63,7 +63,7 @@ def render() -> None:
             }
             for r in field_app_rows
         ],
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
     )
 

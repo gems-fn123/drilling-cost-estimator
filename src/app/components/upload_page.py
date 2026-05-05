@@ -66,7 +66,7 @@ def _preview_excel_sheet(file_path: Path, sheet_name: str) -> None:
 
         if rows:
             st.markdown(f"**{sheet_name}** — Preview (first {len(rows)} rows)")
-            st.dataframe(rows, use_container_width=True, hide_index=True)
+            st.dataframe(rows, width="stretch", hide_index=True)
     except Exception as exc:
         st.warning(f"Could not preview `{sheet_name}`: {exc}")
 
