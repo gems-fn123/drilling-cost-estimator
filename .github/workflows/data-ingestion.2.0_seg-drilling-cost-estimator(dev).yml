@@ -28,29 +28,36 @@ jobs:
             exit 1
           }
 
-      - name: Zip the application files
+      - name: Prepare deployment package
         run: |
-          $exclude = @(
-            '.git',
-            '.venv',
-            'env',
-            '__pycache__',
-            '.pytest_cache',
-            '.mypy_cache',
-            '.gitignore',
-            '.devcontainer',
-            '.github',
-            '*.pyc'
-          )
-          $args = @('-a', '-c', '-f', 'app.zip')
-          foreach ($item in $exclude) { $args += "--exclude=$item" }
-          $args += '.'
-          tar @args
+          $staging = Join-Path $PWD 'deploy'
+          if (Test-Path $staging) {
+            Remove-Item $staging -Recurse -Force
+          }
+
+          New-Item -ItemType Directory -Path $staging | Out-Null
+          New-Item -ItemType Directory -Path (Join-Path $staging 'data') | Out-Null
+
+          Copy-Item .\app.py, .\requirements.txt -Destination $staging
+          Copy-Item .\.streamlit -Destination $staging -Recurse
+          Copy-Item .\src -Destination $staging -Recurse
+          Copy-Item .\data\processed -Destination (Join-Path $staging 'data') -Recurse
+
+          if (Test-Path .\reports) {
+            Copy-Item .\reports -Destination $staging -Recurse
+          }
+
+          if (Test-Path .\app.zip) {
+            Remove-Item .\app.zip -Force
+          }
+
+          Compress-Archive -Path "$staging\*" -DestinationPath .\app.zip -Force
+          Remove-Item $staging -Recurse -Force
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'seg-drilling-cost-estimator'
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           slot-name: 'dev'
           package: '.\\app.zip'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F26B8B52FD0463D9F58499C58583D5D }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
