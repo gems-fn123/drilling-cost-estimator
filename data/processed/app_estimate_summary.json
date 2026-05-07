@@ -2,14 +2,14 @@
   "field": "SALAK",
   "input_year": 2026,
   "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_cost_family_distribution_and_campaign_scope_analogs",
-  "total_campaign_cost_mmusd": 27.90441085295598,
-  "total_campaign_cost_formatted": "27.90 mm USD",
-  "total_campaign_cost_usd": 27904410.85295598,
-  "well_component_usd": 14433475.666504456,
-  "well_component_formatted": "14.43 mm USD",
+  "total_campaign_cost_mmusd": 35.464802868744044,
+  "total_campaign_cost_formatted": "35.46 mm USD",
+  "total_campaign_cost_usd": 35464802.868744045,
+  "well_component_usd": 21993867.682292502,
+  "well_component_formatted": "21.99 mm USD",
   "hybrid_component_usd": 0,
   "hybrid_component_formatted": "0.00 mm USD",
-  "campaign_tied_component_usd": 13470935.186451543,
+  "campaign_tied_component_usd": 13470935.186451541,
   "campaign_tied_component_formatted": "13.47 mm USD",
   "reconciliation_status": "PASS",
   "historical_anchor_year": 2025,
@@ -17,8 +17,8 @@
   "l2_cost_breakdown": [
     {
       "l2_id": "Drilling Cost",
-      "estimate_usd": 20920808.055473406,
-      "estimate_formatted": "20.92 mm USD"
+      "estimate_usd": 28481200.071261458,
+      "estimate_formatted": "28.48 mm USD"
     },
     {
       "l2_id": "Surface Facilities Cost",
@@ -39,23 +39,29 @@
   "category_matrix": [
     {
       "Cost Category": "Drilling",
-      "Well-1": 6.974,
-      "Well-2": 6.974,
-      "Well-3": 6.974,
+      "Well-1": 5.785,
+      "Well-2": 5.785,
+      "Well-3": 5.34,
+      "Well-4": 5.785,
+      "Well-5": 5.785,
       "Error (MMUSD) / MAPE (%)": "12.39 / 51.5%"
     },
     {
       "Cost Category": "Support",
-      "Well-1": 0.711,
-      "Well-2": 0.711,
-      "Well-3": 0.711,
+      "Well-1": 0.427,
+      "Well-2": 0.427,
+      "Well-3": 0.427,
+      "Well-4": 0.427,
+      "Well-5": 0.427,
       "Error (MMUSD) / MAPE (%)": "0.65 / 39.4%"
     },
     {
       "Cost Category": "Surface Facility",
-      "Well-1": 1.617,
-      "Well-2": 1.617,
-      "Well-3": 1.617,
+      "Well-1": 0.97,
+      "Well-2": 0.97,
+      "Well-3": 0.97,
+      "Well-4": 0.97,
+      "Well-5": 0.97,
       "Error (MMUSD) / MAPE (%)": "0.92 / 22.5%"
     },
     {
@@ -63,9 +69,14 @@
       "Well-1": 0.0,
       "Well-2": 0.0,
       "Well-3": 0.0,
+      "Well-4": 0.0,
+      "Well-5": 0.0,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],
   "category_matrix_note": "Matrix values are presentation-layer MMUSD totals. Shared rows remain campaign-scoped in detail output and are allocated to wells only for matrix display.",
-  "uncertainty_definition": "uncertainty_pct = ((p90_usd - p10_usd) / median_usd) * 100 using field-specific grouped historical peers."
+  "uncertainty_definition": "uncertainty_pct = ((p90_usd - p10_usd) / median_usd) * 100 using field-specific grouped historical peers.",
+  "ape_mmusd": 10.11763216171359,
+  "mape_pct": 46.813978133533126,
+  "ape_mape_display": "10.12 MM.USD / 46.8%"
 }

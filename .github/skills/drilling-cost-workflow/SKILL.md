@@ -1,16 +1,16 @@
 ---
 name: drilling-cost-workflow
-description: "Use for drilling-cost-estimator repo tasks involving ingestion, canonicalization, hierarchy validation, field-specific analysis, auditable reports, or phase-gated workflow decisions."
+description: "Use for drilling-cost-estimator repo tasks involving ingestion, canonicalization, hierarchy validation, field-specific or cross-field analysis, auditable reports, or phase-gated workflow decisions."
 argument-hint: "Task or files to inspect"
 user-invocable: true
 disable-model-invocation: false
 ---
 
-# Drilling Cost Workflow
+# Drilling Cost Workflow (Expanded Scope)
 
 ## What This Skill Does
-- Keeps work aligned to the repository phase sequence and data contracts.
-- Applies the field-specific rule: DARAJAT and SALAK stay separate unless there is explicit justification to combine them.
+- Keeps work aligned to the repository phase sequence, data contracts, and any expanded project scope.
+- Applies the field-specific rule: DARAJAT and SALAK stay separate unless there is explicit justification to combine them, and ensures new scope areas follow the same rigor.
 - Prevents premature modeling during ingestion, classification, or schema-definition work.
 - Preserves auditability by tying outputs back to source rows, canonical contracts, and the assumptions register.
 
@@ -19,12 +19,12 @@ disable-model-invocation: false
 - Canonical schema, well mapping, or campaign mapping work
 - WBS hierarchy validation and data quality checks
 - Report updates, assumptions register updates, and phase-gate decisions
-- Any task that needs separate DARAJAT and SALAK handling
+- Any task that needs separate DARAJAT and SALAK handling, or applies to new/expanded project scope
 
 ## Procedure
 1. Read the repository instructions first: [AGENTS.md](../../../AGENTS.md), [MASTER_INSTRUCTIONS.md](../../../MASTER_INSTRUCTIONS.md), and [docs/AGENT.md](../../../docs/AGENT.md).
 2. Identify the current phase and confirm whether the task belongs in Discover, Define, Design, Develop, Demonstrate, or Deploy.
-3. Check whether the work is field-specific and keep DARAJAT and SALAK separate unless the task explicitly justifies pooling.
+3. Check whether the work is field-specific, cross-field, or part of an expanded scope, and keep DARAJAT and SALAK separate unless the task explicitly justifies pooling.
 4. Inspect the smallest set of files needed and prefer targeted changes over broad refactors.
 5. If the task crosses a phase boundary or lacks evidence, stop and report the gap instead of guessing.
 

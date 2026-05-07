@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
+from difflib import SequenceMatcher
 from pathlib import Path
 from statistics import mean
 from typing import Dict, List, Tuple
@@ -99,13 +100,46 @@ def normalize_wbs_cluster_component(value: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def build_wbs_cluster_key(level_4: str, level_5: str) -> str:
-    parts: List[str] = []
-    for raw in (level_4, level_5):
-        token = normalize_wbs_cluster_component(raw)
-        if token and (not parts or parts[-1] != token):
-            parts.append(token)
-    return " | ".join(parts)
+def _cluster_level4_description(level_4: str, level_5: str = "") -> str:
+    label = normalize_wbs_cluster_component(level_4)
+    if label:
+        return label
+    return normalize_wbs_cluster_component(level_5)
+
+
+def _build_fuzzy_l4_cluster_map(history_rows: List[dict], *, threshold: float = 0.86) -> dict[str, str]:
+    unique_labels = {
+        _cluster_level4_description(row.get("level_4", ""), row.get("level_5", ""))
+        for row in history_rows
+    }
+    canonical_labels: List[str] = []
+    cluster_map: dict[str, str] = {}
+
+    for label in sorted((item for item in unique_labels if item), key=lambda item: (-len(item), item)):
+        best_label = ""
+        best_score = 0.0
+        for canonical_label in canonical_labels:
+            score = SequenceMatcher(None, label, canonical_label).ratio()
+            if score > best_score:
+                best_score = score
+                best_label = canonical_label
+
+        if best_label and best_score >= threshold:
+            cluster_map[label] = best_label
+        else:
+            canonical_labels.append(label)
+            cluster_map[label] = label
+
+    return cluster_map
+
+
+def build_wbs_cluster_key(level_4: str, level_5: str, cluster_map: dict[str, str] | None = None) -> str:
+    label = _cluster_level4_description(level_4, level_5)
+    if not label:
+        return ""
+    if cluster_map:
+        return cluster_map.get(label, label)
+    return label
 
 
 def pearson(xs: List[float], ys: List[float]) -> float | None:
@@ -218,6 +252,7 @@ def aggregate_yearly_unit_prices(history_rows: List[dict]) -> dict[Tuple[str, st
 
 def aggregate_yearly_wbs_cluster_prices(history_rows: List[dict]) -> dict[Tuple[str, str, str, str, int], dict]:
     active_exclusions = load_active_exclusions()
+    cluster_map = _build_fuzzy_l4_cluster_map(history_rows)
     field_buckets: dict[Tuple[str, str, str, int], dict] = {}
 
     for row in history_rows:
@@ -227,7 +262,7 @@ def aggregate_yearly_wbs_cluster_prices(history_rows: List[dict]) -> dict[Tuple[
 
         pricing_basis = row.get("pricing_basis", "")
         field = row.get("field", "")
-        cluster_key = build_wbs_cluster_key(row.get("level_4", ""), row.get("level_5", ""))
+        cluster_key = build_wbs_cluster_key(row.get("level_4", ""), row.get("level_5", ""), cluster_map=cluster_map)
         if not cluster_key:
             continue
 
@@ -700,7 +735,7 @@ def write_report(macro_rows: List[dict], weight_rows: List[dict], cluster_weight
         "- Brent series uses `POILBRE`.",
         "- Indonesia inflation context uses `PCPI` and `PCPIPCH`.",
         "- Steel commodity input uses `PIORECR` iron ore as a steel-input proxy because a direct annual steel-HRC series was not available in the official annual files used here.",
-        "- The deeper WBS cluster layer uses normalized `level_4 | level_5` paths and equal-field yearly averaging so one field cannot dominate the signal.",
+        "- The deeper WBS cluster layer uses fuzzy-matched Level 4 descriptions, with Level 5 acting only as a fallback when Level 4 is missing, so campaign structure drift stays inside the same audit bucket.",
         "",
         "## Operational Rule",
         "- Operational forecast weights are computed on the **pooled pricing-basis yearly series** only.",

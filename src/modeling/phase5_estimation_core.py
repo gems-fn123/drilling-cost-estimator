@@ -89,6 +89,19 @@ def _safe_int(text: str, default: int = 0) -> int:
         return default
 
 
+def _safe_bool(value: object, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return default
+    text = str(value).strip().lower()
+    if text in {"1", "true", "yes", "on"}:
+        return True
+    if text in {"0", "false", "no", "off"}:
+        return False
+    return default
+
+
 def _normalize_key(value: str) -> str:
     collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
     return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
@@ -248,6 +261,20 @@ def _load_macro_weight_rows(pricing_basis: str) -> List[dict]:
     ]
 
 
+def _macro_reference_override_index(reference_settings: List[dict] | None, pricing_basis: str) -> Dict[str, dict]:
+    if not reference_settings:
+        return {}
+
+    overrides: Dict[str, dict] = {}
+    for row in reference_settings:
+        if str(row.get("pricing_basis", "")).strip() != pricing_basis:
+            continue
+        factor_name = str(row.get("factor_name", "")).strip()
+        if factor_name:
+            overrides[factor_name] = row
+    return overrides
+
+
 def _load_field_base_years() -> Dict[str, int]:
     _ensure_unit_price_support_outputs()
     base_years: Dict[str, int] = {}
@@ -294,7 +321,13 @@ def _estimated_active_days(field: str, depth_ft: int, drill_rate_mode: str) -> f
     return max(8.0, pace_days_per_1000ft * (depth_ft / 1000.0))
 
 
-def _macro_adjustment_for_basis(enabled: bool, field: str, target_year: int, pricing_basis: str) -> Tuple[float, bool, str]:
+def _macro_adjustment_for_basis(
+    enabled: bool,
+    field: str,
+    target_year: int,
+    pricing_basis: str,
+    macro_reference_settings: List[dict] | None = None,
+) -> Tuple[float, bool, str]:
     if not enabled:
         return 1.0, False, "disabled_by_user"
 
@@ -310,18 +343,27 @@ def _macro_adjustment_for_basis(enabled: bool, field: str, target_year: int, pri
     if not weight_rows:
         return 1.0, False, f"fallback_historical_only_no_macro_weights_for_{pricing_basis}"
 
+    override_lookup = _macro_reference_override_index(macro_reference_settings, pricing_basis)
+
     factor = 0.0
     parts: List[str] = []
     for row in weight_rows:
         factor_name = row["factor_name"]
-        weight = _safe_float(row["forecast_weight"])
+        override_row = override_lookup.get(factor_name, {})
+        if override_row and not _safe_bool(override_row.get("use_reference", True), default=True):
+            continue
+
+        weight_source = override_row.get("suggested_weight", row["forecast_weight"]) if override_row else row["forecast_weight"]
+        weight = _safe_float(weight_source)
         base_value = _safe_float(macro_by_year[base_year].get(factor_name, "0"))
-        target_value = _safe_float(macro_by_year[target_year].get(factor_name, "0"))
+        target_source = override_row.get("reference_value", macro_by_year[target_year].get(factor_name, "0")) if override_row else macro_by_year[target_year].get(factor_name, "0")
+        target_value = _safe_float(target_source)
         if weight <= 0.0 or base_value <= 0.0 or target_value <= 0.0:
             continue
         ratio = target_value / base_value
         factor += weight * ratio
-        parts.append(f"{weight:.6f}*({factor_name}_{target_year}/{factor_name}_{base_year})")
+        target_label = f"override_{factor_name}" if override_row else f"{factor_name}_{target_year}"
+        parts.append(f"{weight:.6f}*({target_label}/{factor_name}_{base_year})")
 
     if factor <= 0.0 or not parts:
         return 1.0, False, f"fallback_historical_only_invalid_macro_ratio_for_{pricing_basis}"
@@ -388,6 +430,7 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
         "pad_expansion_count": pad_exp,
         "use_external_forecast": bool(campaign_input.get("use_external_forecast", False)),
         "use_synthetic_data": bool(campaign_input.get("use_synthetic_data", False)),
+        "macro_reference_settings": list(campaign_input.get("macro_reference_settings", []) or []),
     }, normalized_wells
 
 
@@ -829,24 +872,28 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         field,
         normalized_campaign["campaign_start_year"],
         "active_day_rate",
+        normalized_campaign.get("macro_reference_settings"),
     )
     depth_factor_macro, depth_applied, depth_formula = _macro_adjustment_for_basis(
         normalized_campaign["use_external_forecast"],
         field,
         normalized_campaign["campaign_start_year"],
         "depth_rate",
+        normalized_campaign.get("macro_reference_settings"),
     )
     per_job_factor, per_job_applied, per_job_formula = _macro_adjustment_for_basis(
         normalized_campaign["use_external_forecast"],
         field,
         normalized_campaign["campaign_start_year"],
         "per_well_job",
+        normalized_campaign.get("macro_reference_settings"),
     )
     shared_factor, shared_applied, shared_formula = _macro_adjustment_for_basis(
         normalized_campaign["use_external_forecast"],
         field,
         normalized_campaign["campaign_start_year"],
         "campaign_scope_benchmark",
+        normalized_campaign.get("macro_reference_settings"),
     )
     ext_applied = active_applied or depth_applied or per_job_applied or shared_applied
     ext_formula = (
@@ -1015,6 +1062,26 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     )
     APP_CATEGORY_MATRIX_JSON.write_text(json.dumps(category_matrix_payload, indent=2) + "\n", encoding="utf-8")
 
+    benchmark_ape_weight = 0.0
+    benchmark_mape_weight = 0.0
+    benchmark_weight_sum = 0.0
+    for row in category_matrix_payload.get("rows", []):
+        try:
+            row_total = float(row.get("row_total_usd", 0.0) or 0.0)
+        except (TypeError, ValueError):
+            row_total = 0.0
+        benchmark = row.get("benchmark") or {}
+        try:
+            mae_value = float(benchmark.get("mae_mmusd", 0.0) or 0.0)
+            mape_value = float(benchmark.get("mape_pct", 0.0) or 0.0)
+        except (TypeError, ValueError):
+            continue
+        if row_total <= 0.0:
+            continue
+        benchmark_ape_weight += mae_value * row_total
+        benchmark_mape_weight += mape_value * row_total
+        benchmark_weight_sum += row_total
+
     scenario_id = f"{field}_{normalized_campaign['campaign_start_year']}_{normalized_campaign['well_count']}w"
     audit_rows = []
     for row in detail_rows:
@@ -1067,6 +1134,13 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
         "category_matrix": category_matrix_rows,
         "category_matrix_note": "Matrix values are presentation-layer MMUSD totals. Shared rows remain campaign-scoped in detail output and are allocated to wells only for matrix display.",
         "uncertainty_definition": "uncertainty_pct = ((p90_usd - p10_usd) / median_usd) * 100 using field-specific grouped historical peers.",
+        "ape_mmusd": (benchmark_ape_weight / benchmark_weight_sum) if benchmark_weight_sum > 0.0 else None,
+        "mape_pct": (benchmark_mape_weight / benchmark_weight_sum) if benchmark_weight_sum > 0.0 else None,
+        "ape_mape_display": (
+            f"{(benchmark_ape_weight / benchmark_weight_sum):.2f} MM.USD / {(benchmark_mape_weight / benchmark_weight_sum):.1f}%"
+            if benchmark_weight_sum > 0.0
+            else "n/a"
+        ),
     }
     APP_SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
