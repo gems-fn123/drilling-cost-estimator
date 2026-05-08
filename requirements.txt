@@ -1,6 +1,6 @@
-streamlit==1.46.1
-streamlit-echarts>=0.6.0
-pillow>=11.2.1,<12
+streamlit
+streamlit-echarts
+pillow
 pandas
 openpyxl
 numpy
