@@ -5,8 +5,6 @@ from __future__ import annotations
 
 import logging
 import re
-import subprocess
-import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import mean, median
@@ -50,7 +48,8 @@ def ensure_dependencies() -> None:
     ]
     if not missing:
         return
-    subprocess.run([sys.executable, "src/modeling/unit_price_well_analysis.py"], cwd=ROOT, check=True)
+    from src.modeling.unit_price_well_analysis import main as _build_well
+    _build_well()
 
 
 def load_active_exclusions() -> set[tuple[str, str]]:

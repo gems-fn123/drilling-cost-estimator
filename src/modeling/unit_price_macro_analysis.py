@@ -5,8 +5,6 @@ from __future__ import annotations
 
 import logging
 import re
-import subprocess
-import sys
 from collections import defaultdict
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -108,7 +106,8 @@ def build_wbs_cluster_key(level_4: str, level_5: str, cluster_map: dict[str, str
 def ensure_history_mart() -> None:
     if UNIT_PRICE_HISTORY_MART.exists():
         return
-    subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
+    from src.modeling.unit_price_history_pipeline import main as _build_history
+    _build_history()
 
 
 def load_active_exclusions() -> set[tuple[str, str]]:

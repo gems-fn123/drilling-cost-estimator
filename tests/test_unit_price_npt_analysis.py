@@ -16,8 +16,8 @@ REPORT = ROOT / "reports" / "unit_price_npt_contribution.md"
 class TestUnitPriceNptAnalysis(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/modeling/unit_price_well_analysis.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/modeling/unit_price_npt_analysis.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_well_analysis"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_npt_analysis"], cwd=ROOT, check=True)
 
     def test_enriched_events_are_written(self) -> None:
         with ENRICHED.open(encoding="utf-8", newline="") as handle:

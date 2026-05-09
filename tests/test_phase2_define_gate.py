@@ -19,8 +19,8 @@ QUALITY_REPORT = ROOT / "reports" / "phase2_define_quality_thresholds.md"
 class TestPhase2DefineGate(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/cleaning/build_wbs_lv5_classification.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.io.build_canonical_mappings"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.cleaning.build_wbs_lv5_classification"], cwd=ROOT, check=True)
 
     def read_csv(self, path: Path) -> list[dict[str, str]]:
         with path.open(encoding="utf-8") as fh:

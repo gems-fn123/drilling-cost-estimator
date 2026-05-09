@@ -17,8 +17,8 @@ REPORT = ROOT / "reports" / "unit_price_well_analysis.md"
 class TestUnitPriceWellAnalysis(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/modeling/unit_price_well_analysis.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_history_pipeline"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_well_analysis"], cwd=ROOT, check=True)
 
     def test_well_context_contains_active_operational_days(self) -> None:
         with CONTEXT.open(encoding="utf-8", newline="") as handle:

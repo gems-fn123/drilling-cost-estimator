@@ -4,8 +4,6 @@
 from __future__ import annotations
 
 import logging
-import subprocess
-import sys
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median
@@ -29,7 +27,8 @@ STANDARD_ASSUMPTION = "Standard-J"
 def ensure_history_outputs() -> None:
     if UNIT_PRICE_HISTORY_MART.exists() and UNIT_PRICE_HISTORY_CONTEXT.exists():
         return
-    subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
+    from src.modeling.unit_price_history_pipeline import main as _build_history
+    _build_history()
 
 
 def load_active_exclusions() -> dict[tuple[str, str], dict]:

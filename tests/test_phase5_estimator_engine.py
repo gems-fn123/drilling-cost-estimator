@@ -23,7 +23,7 @@ VAL_SALAK = ROOT / "reports" / "validation_salak.md"
 class TestPhase5EstimatorEngine(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/modeling/build_phase5_validation_artifacts.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.build_phase5_validation_artifacts"], cwd=ROOT, check=True)
         campaign_input = {
             "year": 2026,
             "field": "SLK",

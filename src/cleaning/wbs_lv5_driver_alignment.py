@@ -370,16 +370,14 @@ def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> No
 
 
 def load_policy_rows() -> list[dict[str, str]]:
-    with POLICY_INPUT_PATH.open(encoding="utf-8", newline="") as fh:
-        rows = list(csv.DictReader(fh))
+    rows = read_csv(POLICY_INPUT_PATH)
     for row in rows:
         row["policy_priority"] = str(int(clean_text(row.get("policy_priority", "999")) or "999"))
     return sorted(rows, key=lambda r: int(r["policy_priority"]))
 
 
 def load_campaign_mappings() -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
-    with (PROCESSED_DIR / "canonical_campaign_mapping.csv").open(encoding="utf-8") as fh:
-        campaign_rows = list(csv.DictReader(fh))
+    campaign_rows = read_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv")
     campaign_by_name = {normalize_token(r["campaign_name_raw"]): r for r in campaign_rows if clean_text(r.get("campaign_name_raw", ""))}
     campaign_by_code = {clean_text(r["campaign_code"]): r for r in campaign_rows if clean_text(r.get("campaign_code", ""))}
     return campaign_by_name, campaign_by_code
@@ -515,39 +513,36 @@ def load_well_lookup() -> tuple[dict[tuple[str, str], set[str]], dict[tuple[str,
     campaign_to_field: dict[str, str] = {}
 
     # campaign-specific aliases
-    with (PROCESSED_DIR / "canonical_well_mapping.csv").open(encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            alias = normalize_well_alias(row.get("well_alias", ""))
-            canonical = normalize_well_alias(row.get("well_canonical", ""))
-            campaign_code = clean_text(row.get("campaign_code", ""))
-            if not alias or not canonical:
-                continue
-            if campaign_code:
-                by_campaign[(campaign_code, compact_for_match(alias))].add(canonical)
-                by_campaign[(campaign_code, compact_for_match_loose(alias))].add(canonical)
+    for row in read_csv(PROCESSED_DIR / "canonical_well_mapping.csv"):
+        alias = normalize_well_alias(row.get("well_alias", ""))
+        canonical = normalize_well_alias(row.get("well_canonical", ""))
+        campaign_code = clean_text(row.get("campaign_code", ""))
+        if not alias or not canonical:
+            continue
+        if campaign_code:
+            by_campaign[(campaign_code, compact_for_match(alias))].add(canonical)
+            by_campaign[(campaign_code, compact_for_match_loose(alias))].add(canonical)
 
     # field fallback aliases
-    with (PROCESSED_DIR / "well_master.csv").open(encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            campaign_code = clean_text(row.get("campaign_code", ""))
-            field = clean_text(row.get("field", ""))
-            canonical = normalize_well_alias(row.get("well_canonical", ""))
-            if campaign_code and field:
-                campaign_to_field[campaign_code] = field
-            if field and canonical:
-                by_field[(field, compact_for_match(canonical))].add(canonical)
-                by_field[(field, compact_for_match_loose(canonical))].add(canonical)
+    for row in read_csv(PROCESSED_DIR / "well_master.csv"):
+        campaign_code = clean_text(row.get("campaign_code", ""))
+        field = clean_text(row.get("field", ""))
+        canonical = normalize_well_alias(row.get("well_canonical", ""))
+        if campaign_code and field:
+            campaign_to_field[campaign_code] = field
+        if field and canonical:
+            by_field[(field, compact_for_match(canonical))].add(canonical)
+            by_field[(field, compact_for_match_loose(canonical))].add(canonical)
 
-    with (PROCESSED_DIR / "well_alias_lookup.csv").open(encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            alias = normalize_well_alias(row.get("well_alias", ""))
-            canonical = normalize_well_alias(row.get("well_canonical", ""))
-            if not alias or not canonical:
-                continue
-            # assign to all matching campaign fields from well_master fallback
-            for field in {"DARAJAT", "SALAK"}:
-                by_field[(field, compact_for_match(alias))].add(canonical)
-                by_field[(field, compact_for_match_loose(alias))].add(canonical)
+    for row in read_csv(PROCESSED_DIR / "well_alias_lookup.csv"):
+        alias = normalize_well_alias(row.get("well_alias", ""))
+        canonical = normalize_well_alias(row.get("well_canonical", ""))
+        if not alias or not canonical:
+            continue
+        # assign to all matching campaign fields from well_master fallback
+        for field in {"DARAJAT", "SALAK"}:
+            by_field[(field, compact_for_match(alias))].add(canonical)
+            by_field[(field, compact_for_match_loose(alias))].add(canonical)
     return by_campaign, by_field, campaign_to_field
 
 

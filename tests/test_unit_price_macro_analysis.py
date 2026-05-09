@@ -17,8 +17,8 @@ MACRO_REPORT = ROOT / "reports" / "unit_price_macro_correlation.md"
 class TestUnitPriceMacroAnalysis(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/modeling/unit_price_macro_analysis.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_history_pipeline"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_macro_analysis"], cwd=ROOT, check=True)
 
     def test_macro_reference_contains_required_columns(self) -> None:
         with MACRO_REFERENCE.open(encoding="utf-8", newline="") as handle:
