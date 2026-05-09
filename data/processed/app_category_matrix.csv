@@ -1,5 +1,5 @@
-Cost Category,Well-1,Well-2,Well-3,Well-4,Well-5,Error (MMUSD) / MAPE (%)
-Drilling,5.785,5.785,5.34,5.785,5.785,12.39 / 51.5%
-Support,0.427,0.427,0.427,0.427,0.427,0.65 / 39.4%
-Surface Facility,0.97,0.97,0.97,0.97,0.97,0.92 / 22.5%
-Contingency,0.0,0.0,0.0,0.0,0.0,n/a: fewer than 2 historical contingency campaign observations in SALAK
+Cost Category,Well-1,Well-2,Error (MMUSD) / MAPE (%)
+Drilling,7.77,10.629,12.39 / 51.5%
+Support,1.152,1.152,0.65 / 39.4%
+Surface Facility,2.619,2.619,0.92 / 22.5%
+Contingency,0.0,0.0,n/a: fewer than 2 historical contingency campaign observations in SALAK

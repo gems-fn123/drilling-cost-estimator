@@ -1,6 +1,6 @@
 # Validation Report - DARAJAT
 
-Generated: 2026-05-05T03:30:10.547549+00:00
+Generated: 2026-05-09T17:12:26.035833+00:00
 
 Backtest mode: historical median peer baseline (no regression claim).
 

@@ -2,33 +2,33 @@
   "field": "SALAK",
   "input_year": 2026,
   "estimation_methodology": "unit_price_direct_benchmark_with_anchor_year_cost_family_distribution_and_campaign_scope_analogs",
-  "total_campaign_cost_mmusd": 35.464802868744044,
-  "total_campaign_cost_formatted": "35.46 mm USD",
-  "total_campaign_cost_usd": 35464802.868744045,
-  "well_component_usd": 21993867.682292502,
-  "well_component_formatted": "21.99 mm USD",
+  "total_campaign_cost_mmusd": 25.941625818915536,
+  "total_campaign_cost_formatted": "25.94 mm USD",
+  "total_campaign_cost_usd": 25941625.818915535,
+  "well_component_usd": 11393015.817547869,
+  "well_component_formatted": "11.39 mm USD",
   "hybrid_component_usd": 0,
   "hybrid_component_formatted": "0.00 mm USD",
-  "campaign_tied_component_usd": 13470935.186451541,
-  "campaign_tied_component_formatted": "13.47 mm USD",
+  "campaign_tied_component_usd": 14548610.001367664,
+  "campaign_tied_component_formatted": "14.55 mm USD",
   "reconciliation_status": "PASS",
   "historical_anchor_year": 2025,
   "historical_anchor_well_count": 8,
   "l2_cost_breakdown": [
     {
       "l2_id": "Drilling Cost",
-      "estimate_usd": 28481200.071261458,
-      "estimate_formatted": "28.48 mm USD"
+      "estimate_usd": 18399334.79763435,
+      "estimate_formatted": "18.40 mm USD"
     },
     {
       "l2_id": "Surface Facilities Cost",
-      "estimate_usd": 4850276.800978966,
-      "estimate_formatted": "4.85 mm USD"
+      "estimate_usd": 5238298.945057284,
+      "estimate_formatted": "5.24 mm USD"
     },
     {
       "l2_id": "Support Cost",
-      "estimate_usd": 2133325.996503613,
-      "estimate_formatted": "2.13 mm USD"
+      "estimate_usd": 2303992.076223903,
+      "estimate_formatted": "2.30 mm USD"
     },
     {
       "l2_id": "Contingency",
@@ -39,44 +39,32 @@
   "category_matrix": [
     {
       "Cost Category": "Drilling",
-      "Well-1": 5.785,
-      "Well-2": 5.785,
-      "Well-3": 5.34,
-      "Well-4": 5.785,
-      "Well-5": 5.785,
+      "Well-1": 7.77,
+      "Well-2": 10.629,
       "Error (MMUSD) / MAPE (%)": "12.39 / 51.5%"
     },
     {
       "Cost Category": "Support",
-      "Well-1": 0.427,
-      "Well-2": 0.427,
-      "Well-3": 0.427,
-      "Well-4": 0.427,
-      "Well-5": 0.427,
+      "Well-1": 1.152,
+      "Well-2": 1.152,
       "Error (MMUSD) / MAPE (%)": "0.65 / 39.4%"
     },
     {
       "Cost Category": "Surface Facility",
-      "Well-1": 0.97,
-      "Well-2": 0.97,
-      "Well-3": 0.97,
-      "Well-4": 0.97,
-      "Well-5": 0.97,
+      "Well-1": 2.619,
+      "Well-2": 2.619,
       "Error (MMUSD) / MAPE (%)": "0.92 / 22.5%"
     },
     {
       "Cost Category": "Contingency",
       "Well-1": 0.0,
       "Well-2": 0.0,
-      "Well-3": 0.0,
-      "Well-4": 0.0,
-      "Well-5": 0.0,
       "Error (MMUSD) / MAPE (%)": "n/a: fewer than 2 historical contingency campaign observations in SALAK"
     }
   ],
   "category_matrix_note": "Matrix values are presentation-layer MMUSD totals. Shared rows remain campaign-scoped in detail output and are allocated to wells only for matrix display.",
   "uncertainty_definition": "uncertainty_pct = ((p90_usd - p10_usd) / median_usd) * 100 using field-specific grouped historical peers.",
-  "ape_mmusd": 10.11763216171359,
-  "mape_pct": 46.813978133533126,
-  "ape_mape_display": "10.12 MM.USD / 46.8%"
+  "ape_mmusd": 9.033741122251115,
+  "mape_pct": 44.576890039069866,
+  "ape_mape_display": "9.03 MM.USD / 44.6%"
 }
