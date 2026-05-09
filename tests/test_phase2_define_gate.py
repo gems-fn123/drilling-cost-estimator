@@ -82,7 +82,7 @@ class TestPhase2DefineGate(unittest.TestCase):
 
         in_scope_rows = [row for row in rows if row["estimator_scope"] == "in_scope"]
         self.assertTrue(in_scope_rows)
-        self.assertTrue(all(row["field"] in {"DARAJAT", "SALAK"} for row in in_scope_rows))
+        self.assertTrue(all(row["field"] in {"DARAJAT", "SALAK", "WAYANG_WINDU"} for row in in_scope_rows))
         self.assertTrue(all(row["campaign_wbs_code"] == row["campaign_code"] for row in in_scope_rows))
 
     def test_phase2_quality_metrics_hold(self) -> None:

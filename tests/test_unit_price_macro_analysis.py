@@ -107,8 +107,8 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
         self.assertTrue(required_weight.issubset(weight_rows[0].keys()))
 
         cluster_keys = {row["wbs_cluster"] for row in weight_rows if row["scope_type"] == "pooled_wbs_cluster"}
-        self.assertIn("material ll | casing", cluster_keys)
-        self.assertIn("services | contract rig", cluster_keys)
+        self.assertIn("conductor casing installation material", cluster_keys)
+        self.assertIn("services", cluster_keys)
 
         operational_cluster_rows = [
             row

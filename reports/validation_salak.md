@@ -1,6 +1,6 @@
 # Validation Report - SALAK
 
-Generated: 2026-05-09T17:12:26.035913+00:00
+Generated: 2026-05-09T17:49:04.051745+00:00
 
 Backtest mode: historical median peer baseline (no regression claim).
 

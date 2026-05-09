@@ -1,6 +1,6 @@
 # Dashboard Rebuild Check
 
-Generated: 2026-05-09T17:12:26.033903+00:00
+Generated: 2026-05-09T17:49:04.049146+00:00
 
 Workbook dashboard tabs are ingested directly from Structured.Cost; check reconciles mart rebuilds against dashboard-derived aggregates.
 
