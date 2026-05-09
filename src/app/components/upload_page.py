@@ -11,12 +11,10 @@ import streamlit as st
 from streamlit_echarts import st_echarts
 
 from src.app.components.echarts_utils import build_stacked_bar_chart_options
+from src.config import DASHBOARD_WORKBOOK, RAW_DIR, ROOT
 
-ROOT = Path(__file__).resolve().parents[3]
 UPLOAD_DIR = ROOT / "data" / "uploads"
-RAW_DIR = ROOT / "data" / "raw"
-
-DASHBOARD_WORKBOOK_NAME = "20260422_Data for Dashboard.xlsx"
+DASHBOARD_WORKBOOK_NAME = DASHBOARD_WORKBOOK
 SUPPORTED_EXTENSIONS = {".xlsx"}
 
 

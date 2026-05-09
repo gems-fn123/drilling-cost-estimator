@@ -1,23 +1,20 @@
 from __future__ import annotations
 
-import csv
 import hashlib
 import json
+import logging
 import re
-import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-_BOOTSTRAP_ROOT = Path(__file__).resolve().parents[2]
-if str(_BOOTSTRAP_ROOT) not in sys.path:
-    sys.path.insert(0, str(_BOOTSTRAP_ROOT))
-
+from src.config import CAMPAIGN_LABEL_TO_CODE, DASHBOARD_WORKBOOK, PROCESSED, RAW_DIR, REPORTS, ROOT
 from src.io.build_canonical_mappings import read_xlsx as read_xlsx_workbook
+from src.utils import parse_float, read_csv, write_csv
 
-ROOT = Path(__file__).resolve().parents[2]
-RAW_DIR = ROOT / "data" / "raw"
-PROCESSED_DIR = ROOT / "data" / "processed"
-REPORTS_DIR = ROOT / "reports"
+log = logging.getLogger(__name__)
+
+PROCESSED_DIR = PROCESSED
+REPORTS_DIR = REPORTS
 
 POLICY_INPUT_PATH = ROOT / "src" / "cleaning" / "wbs_lv5_family_policy.csv"
 CURATED_POLICY_OUTPUT_PATH = PROCESSED_DIR / "wbs_lv5_curated_policy.csv"
@@ -43,31 +40,10 @@ PHASE4_COVERAGE_REPORT = REPORTS_DIR / "phase4_plus_coverage_summary.md"
 DARAJAT_5W_ESTIMATE_PATH = PROCESSED_DIR / "darajat_5well_lv5_estimate.json"
 TAG_REFERENCE_PATH = PROCESSED_DIR / "wbs_lv5_tag_reference.csv"
 
-DASHBOARD_WORKBOOK = "20260422_Data for Dashboard.xlsx"
 DASHBOARD_STRUCTURED_SHEET = "Structured.Cost"
-
-NS_MAIN = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
-NS_PKG = {"p": "http://schemas.openxmlformats.org/package/2006/relationships"}
 
 MATERIAL_REVIEW_THRESHOLD = 500000.0
 LV5_LEVEL_CODE = "05"
-
-CAMPAIGN_LABEL_TO_CODE = {
-    "DRJ 2022": "E530-30101-D225301",
-    "DRJ 2023": "E530-30101-D235301",
-    "SLK 2025": "E540-30101-D245401",
-    "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
-    "SALAK CAMPAIGN 2021": "E540-30101-D20001",
-    "DRJ - 2019": "E530-30101-D19001",
-    "DRJ - 2022": "E530-30101-D225301",
-    "DRJ - 2024": "E530-30101-D235301",
-    "SLK - 2021": "E540-30101-D20001",
-    "SLK - 2025": "E540-30101-D245401",
-    "WW - 2018": "E500-2-0-8501-185003",
-    "WW - 2021": "E500-30101-D205011",
-    "WAYANG WINDU CAMPAIGN 2018/2019": "E500-2-0-8501-185003",
-    "WAYANG WINDU CAMPAIGN 2020/2021": "E500-30101-D205011",
-}
 
 IN_SCOPE_CAMPAIGN_LABELS = {"DRJ 2022", "DRJ 2023", "SLK 2025", "DRJ - 2022", "DRJ - 2024", "SLK - 2025"}
 ALLOWED_CLASSES = {"well_tied", "campaign_tied", "hybrid"}
@@ -100,16 +76,6 @@ def col_index(cell_ref: str) -> int:
     for ch in letters:
         idx = idx * 26 + (ord(ch) - 64)
     return idx - 1
-
-
-def parse_float(value: str | None) -> float:
-    text = clean_text(value).replace(",", "")
-    if not text:
-        return 0.0
-    try:
-        return float(text)
-    except ValueError:
-        return 0.0
 
 
 def read_xlsx(path: Path) -> dict[str, list[list[str]]]:
@@ -247,7 +213,7 @@ def build_or_load_lv5_tag_map(data_summary_rows: list[dict[str, str]]) -> dict[s
 
     existing_rows: list[dict[str, str]] = []
     if TAG_REFERENCE_PATH.exists():
-        existing_rows = read_csv_rows(TAG_REFERENCE_PATH)
+        existing_rows = read_csv(TAG_REFERENCE_PATH)
         if all(col in (existing_rows[0].keys() if existing_rows else {}) for col in required_cols):
             return {
                 clean_text(row.get("wbs_code_raw", "")): {
@@ -267,7 +233,7 @@ def build_or_load_lv5_tag_map(data_summary_rows: list[dict[str, str]]) -> dict[s
 
     legacy_master_by_levels: dict[tuple[str, str, str, str], dict[str, str]] = {}
     if MASTER_PATH.exists():
-        for row in read_csv_rows(MASTER_PATH):
+        for row in read_csv(MASTER_PATH):
             key = (
                 clean_text(row.get("wbs_lvl2", "")).upper(),
                 clean_text(row.get("wbs_lvl3", "")).upper(),
@@ -279,7 +245,7 @@ def build_or_load_lv5_tag_map(data_summary_rows: list[dict[str, str]]) -> dict[s
 
     legacy_driver_by_levels: dict[tuple[str, str, str, str], dict[str, str]] = {}
     if DRIVER_REFERENCE_PATH.exists():
-        for row in read_csv_rows(DRIVER_REFERENCE_PATH):
+        for row in read_csv(DRIVER_REFERENCE_PATH):
             key = (
                 clean_text(row.get("wbs_lvl2", "")).upper(),
                 clean_text(row.get("wbs_lvl3", "")).upper(),
@@ -356,22 +322,9 @@ def map_field(asset_raw: str) -> str:
     return value
 
 
-def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(fh, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
 def write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
-
-
-def read_csv_rows(path: Path) -> list[dict[str, str]]:
-    with path.open(encoding="utf-8", newline="") as fh:
-        return list(csv.DictReader(fh))
 
 
 def build_inventory_note(workbooks: dict[str, dict[str, list[list[str]]]]) -> None:
@@ -1331,8 +1284,8 @@ def pct_str(part: int, total: int) -> str:
 
 
 def build_define_quality_report(master_rows: list[dict[str, str]], class_rows: list[dict[str, str]]) -> str:
-    campaign_rows = read_csv_rows(PROCESSED_DIR / "canonical_campaign_mapping.csv")
-    well_rows = read_csv_rows(PROCESSED_DIR / "well_master.csv")
+    campaign_rows = read_csv(PROCESSED_DIR / "canonical_campaign_mapping.csv")
+    well_rows = read_csv(PROCESSED_DIR / "well_master.csv")
 
     total_rows = len(master_rows)
     hierarchy_blank = sum(
@@ -1511,7 +1464,7 @@ def build_well_instance_context_rows(
         )
     manual_deviation_override: dict[str, str] = {}
     if WELL_INSTANCE_CONTEXT_PATH.exists():
-        for existing in read_csv_rows(WELL_INSTANCE_CONTEXT_PATH):
+        for existing in read_csv(WELL_INSTANCE_CONTEXT_PATH):
             canonical = normalize_well_alias(existing.get("well_canonical", ""))
             if not canonical:
                 continue
@@ -1599,7 +1552,7 @@ def build_well_instance_event_context_rows(
             row["Job Cat"] = clean_text(row.get("Job Cat Drill / Sidetrack / Well Service", ""))
 
     # derive campaign candidates from well_master
-    well_master_rows = read_csv_rows(PROCESSED_DIR / "well_master.csv")
+    well_master_rows = read_csv(PROCESSED_DIR / "well_master.csv")
     campaign_by_well: dict[str, set[str]] = defaultdict(set)
     field_by_campaign: dict[str, str] = {}
     for wm in well_master_rows:
@@ -1613,7 +1566,7 @@ def build_well_instance_event_context_rows(
     # allow manual context updates to flow into NPT event context mapping
     deviation_by_well: dict[str, str] = {}
     if WELL_INSTANCE_CONTEXT_PATH.exists():
-        for context_row in read_csv_rows(WELL_INSTANCE_CONTEXT_PATH):
+        for context_row in read_csv(WELL_INSTANCE_CONTEXT_PATH):
             canonical = normalize_well_alias(context_row.get("well_canonical", ""))
             if not canonical:
                 continue

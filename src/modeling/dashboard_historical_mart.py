@@ -3,18 +3,18 @@
 
 from __future__ import annotations
 
-import csv
 import json
-import re
+import logging
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
 from typing import Dict, Iterable, List, Tuple
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+from src.config import PROCESSED, REPORTS, ROOT
+from src.utils import normalize_key, parse_float, read_csv, write_csv
+
+log = logging.getLogger(__name__)
 
 WBS_MASTER = PROCESSED / "wbs_lv5_master.csv"
 WBS_CLASS = PROCESSED / "wbs_lv5_classification.csv"
@@ -37,28 +37,6 @@ BACKTEST_WELL = PROCESSED / "backtest_well_results.csv"
 BACKTEST_CAMPAIGN = PROCESSED / "backtest_campaign_results.csv"
 VAL_DAR = REPORTS / "validation_darajat.md"
 VAL_SAL = REPORTS / "validation_salak.md"
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def _safe_float(v: str) -> float:
-    return float((v or "0").replace(",", ""))
-
-
-def _normalize_text(value: str) -> str:
-    collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
-    return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
 
 
 def _years(text: str) -> List[str]:
@@ -155,9 +133,9 @@ def build_historical_cost_mart() -> List[dict]:
         )
         class_row = classes.get(key, {})
         family_tag = (class_row.get("wbs_family_tag") or row.get("tag_lvl5") or row.get("wbs_label_raw") or "").strip()
-        family_group_key = _normalize_text(family_tag) or "unknown_family"
+        family_group_key = normalize_key(family_tag) or "unknown_family"
 
-        actual = _safe_float(row.get("cost_actual", "0"))
+        actual = parse_float(row.get("cost_actual", "0"))
         mart_rows.append(
             {
                 "classification_key": key,
@@ -237,7 +215,7 @@ def build_historical_cost_mart() -> List[dict]:
     for field, rows in sorted(grouped.items()):
         total = len(rows)
         mapped = sum(1 for r in rows if r["well_canonical"])
-        unmapped_actual = sum(_safe_float(r["actual_usd"]) for r in rows if not r["well_canonical"])
+        unmapped_actual = sum(parse_float(r["actual_usd"]) for r in rows if not r["well_canonical"])
         coverage.append(
             {
                 "field": field,
@@ -257,7 +235,7 @@ def _group_sum(rows: Iterable[dict], keys: List[str], value_col: str) -> List[di
     sums = defaultdict(float)
     for row in rows:
         k = tuple(row.get(col, "") for col in keys)
-        sums[k] += _safe_float(row.get(value_col, "0"))
+        sums[k] += parse_float(row.get(value_col, "0"))
     out = []
     for k, v in sums.items():
         rec = {col: k[idx] for idx, col in enumerate(keys)}
@@ -285,8 +263,8 @@ def build_dashboard_rebuild_outputs(mart_rows: List[dict]) -> None:
     )
     workbook_proxy_l2 = _group_sum(master, ["field", "campaign_canonical", "wbs_lvl2", "wbs_lvl2"], "cost_actual")
 
-    well_diff = abs(sum(_safe_float(r["actual_usd"]) for r in rebuild_well) - sum(_safe_float(r["actual_usd"]) for r in workbook_proxy_well))
-    l2_diff = abs(sum(_safe_float(r["actual_usd"]) for r in rebuild_l2) - sum(_safe_float(r["actual_usd"]) for r in workbook_proxy_l2))
+    well_diff = abs(sum(parse_float(r["actual_usd"]) for r in rebuild_well) - sum(parse_float(r["actual_usd"]) for r in workbook_proxy_well))
+    l2_diff = abs(sum(parse_float(r["actual_usd"]) for r in rebuild_l2) - sum(parse_float(r["actual_usd"]) for r in workbook_proxy_l2))
 
     lines = [
         "# Dashboard Rebuild Check",
@@ -295,11 +273,11 @@ def build_dashboard_rebuild_outputs(mart_rows: List[dict]) -> None:
         "",
         "Workbook dashboard tabs are ingested directly from Structured.Cost; check reconciles mart rebuilds against dashboard-derived aggregates.",
         "",
-        f"- Rebuilt well total USD: {sum(_safe_float(r['actual_usd']) for r in rebuild_well):,.2f}",
-        f"- Proxy workbook well total USD: {sum(_safe_float(r['actual_usd']) for r in workbook_proxy_well):,.2f}",
+        f"- Rebuilt well total USD: {sum(parse_float(r['actual_usd']) for r in rebuild_well):,.2f}",
+        f"- Proxy workbook well total USD: {sum(parse_float(r['actual_usd']) for r in workbook_proxy_well):,.2f}",
         f"- Absolute well total delta USD: {well_diff:,.6f}",
-        f"- Rebuilt L2 total USD: {sum(_safe_float(r['actual_usd']) for r in rebuild_l2):,.2f}",
-        f"- Proxy workbook L2 total USD: {sum(_safe_float(r['actual_usd']) for r in workbook_proxy_l2):,.2f}",
+        f"- Rebuilt L2 total USD: {sum(parse_float(r['actual_usd']) for r in rebuild_l2):,.2f}",
+        f"- Proxy workbook L2 total USD: {sum(parse_float(r['actual_usd']) for r in workbook_proxy_l2):,.2f}",
         f"- Absolute L2 total delta USD: {l2_diff:,.6f}",
         "",
         "## Notes",
@@ -329,14 +307,14 @@ def build_backtest_outputs(mart_rows: List[dict]) -> None:
     for field, rows in by_field.items():
         for row in rows:
             peers = [
-                _safe_float(x["actual_usd"])
+                parse_float(x["actual_usd"])
                 for x in rows
                 if x["campaign_start_year"] and x["campaign_start_year"] < row["campaign_start_year"]
             ]
             if not peers:
-                peers = [_safe_float(x["actual_usd"]) for x in rows if x is not row]
-            pred = median(peers) if peers else _safe_float(row["actual_usd"])
-            actual = _safe_float(row["actual_usd"])
+                peers = [parse_float(x["actual_usd"]) for x in rows if x is not row]
+            pred = median(peers) if peers else parse_float(row["actual_usd"])
+            actual = parse_float(row["actual_usd"])
             err = pred - actual
             backtest_rows.append(
                 {
@@ -357,12 +335,12 @@ def build_backtest_outputs(mart_rows: List[dict]) -> None:
 
     campaign_roll = _group_sum(backtest_rows, ["field", "campaign_canonical", "campaign_start_year"], "actual_usd")
     pred_roll = _group_sum(backtest_rows, ["field", "campaign_canonical", "campaign_start_year"], "predicted_usd")
-    pred_map = {(r["field"], r["campaign_canonical"], r["campaign_start_year"]): _safe_float(r["actual_usd"]) for r in pred_roll}
+    pred_map = {(r["field"], r["campaign_canonical"], r["campaign_start_year"]): parse_float(r["actual_usd"]) for r in pred_roll}
 
     campaign_rows = []
     for row in campaign_roll:
         key = (row["field"], row["campaign_canonical"], row["campaign_start_year"])
-        actual = _safe_float(row["actual_usd"])
+        actual = parse_float(row["actual_usd"])
         pred = pred_map.get(key, 0.0)
         err = pred - actual
         campaign_rows.append(
@@ -383,9 +361,9 @@ def build_backtest_outputs(mart_rows: List[dict]) -> None:
         rows = [r for r in backtest_rows if r["field"] == field]
         if not rows:
             continue
-        mae = sum(_safe_float(r["abs_error_usd"]) for r in rows) / len(rows)
+        mae = sum(parse_float(r["abs_error_usd"]) for r in rows) / len(rows)
         mape = sum(float(r["ape_pct"]) for r in rows) / len(rows)
-        bias = sum(_safe_float(r["error_usd"]) for r in rows) / len(rows)
+        bias = sum(parse_float(r["error_usd"]) for r in rows) / len(rows)
         lines = [
             f"# Validation Report - {field}",
             "",

@@ -10,32 +10,32 @@ Enhancements in this revision:
 from __future__ import annotations
 
 import argparse
-import csv
 import hashlib
 import json
-import re
+import logging
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
 from typing import Dict, Iterable, List, Tuple
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED_DIR = ROOT / "data" / "processed"
-REPORTS_DIR = ROOT / "reports"
+from src.config import PROCESSED, REPORTS, ROOT
+from src.utils import normalize_key, parse_float, percentile, read_csv, write_csv
 
-MASTER_PATH = PROCESSED_DIR / "wbs_lv5_master.csv"
-CLASSIFICATION_PATH = PROCESSED_DIR / "wbs_lv5_classification.csv"
-SYNTHETIC_LV5_PATH = PROCESSED_DIR / "synthetic_wbs_lv5_placeholders.csv"
-WELL_POOL_EXCLUSIONS_PATH = PROCESSED_DIR / "well_pool_exclusions.csv"
+log = logging.getLogger(__name__)
 
-GATE_RESULTS_PATH = PROCESSED_DIR / "phase4_gate_results.csv"
-BASELINE_DARAJAT_PATH = PROCESSED_DIR / "baseline_estimates_darajat.csv"
-BASELINE_SALAK_PATH = PROCESSED_DIR / "baseline_estimates_salak.csv"
-RUN_MANIFEST_PATH = PROCESSED_DIR / "phase4_run_manifest.json"
+MASTER_PATH = PROCESSED / "wbs_lv5_master.csv"
+CLASSIFICATION_PATH = PROCESSED / "wbs_lv5_classification.csv"
+SYNTHETIC_LV5_PATH = PROCESSED / "synthetic_wbs_lv5_placeholders.csv"
+WELL_POOL_EXCLUSIONS_PATH = PROCESSED / "well_pool_exclusions.csv"
 
-GATE_REPORT_PATH = REPORTS_DIR / "phase4_gate_preflight_report.md"
-DRIVER_REPORT_PATH = REPORTS_DIR / "phase4_driver_analysis.md"
+GATE_RESULTS_PATH = PROCESSED / "phase4_gate_results.csv"
+BASELINE_DARAJAT_PATH = PROCESSED / "baseline_estimates_darajat.csv"
+BASELINE_SALAK_PATH = PROCESSED / "baseline_estimates_salak.csv"
+RUN_MANIFEST_PATH = PROCESSED / "phase4_run_manifest.json"
+
+GATE_REPORT_PATH = REPORTS / "phase4_gate_preflight_report.md"
+DRIVER_REPORT_PATH = REPORTS / "phase4_driver_analysis.md"
 
 VALID_FIELDS = {"DARAJAT", "SALAK"}
 VALID_CLASSIFICATIONS = {"well_tied", "campaign_tied", "hybrid"}
@@ -61,11 +61,6 @@ def parse_args() -> argparse.Namespace:
         help="When --use-synthetic is enabled, include only training-approved rows or all placeholders.",
     )
     return parser.parse_args()
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
 
 
 def load_well_pool_exclusions(path: Path) -> Dict[Tuple[str, str], str]:
@@ -97,31 +92,6 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def parse_cost(value: str) -> float:
-    text = (value or "").strip()
-    if not text:
-        return 0.0
-    return float(text.replace(",", ""))
-
-
-def percentile(values: Iterable[float], pct: float) -> float:
-    arr = sorted(values)
-    if not arr:
-        return 0.0
-    if len(arr) == 1:
-        return arr[0]
-    idx = (len(arr) - 1) * pct
-    lo = int(idx)
-    hi = min(lo + 1, len(arr) - 1)
-    frac = idx - lo
-    return arr[lo] * (1 - frac) + arr[hi] * frac
-
-
-def normalize_text(value: str) -> str:
-    collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
-    return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
-
-
 def build_classification_maps(classification_rows: List[dict]) -> Tuple[Dict[str, dict], Dict[Tuple[str, str], str], Dict[Tuple[str, str], str]]:
     key_map = {row["classification_key"]: row for row in classification_rows}
 
@@ -132,7 +102,7 @@ def build_classification_maps(classification_rows: List[dict]) -> Tuple[Dict[str
 
     for row in classification_rows:
         field = (row.get("field") or "").strip()
-        family = normalize_text(row.get("wbs_family_tag", ""))
+        family = normalize_key(row.get("wbs_family_tag", ""))
         if not field or not family:
             continue
         votes[(field, family)][(row.get("classification") or "").strip()] += 1
@@ -253,7 +223,7 @@ def evaluate_gates(master_rows: List[dict], classification_rows: List[dict]) -> 
 
 def derive_group_key(row: dict, class_row: dict | None, group_by: str) -> Tuple[str, str, str, str]:
     field = (row.get("field") or "").strip()
-    family_tag = normalize_text((class_row or {}).get("wbs_family_tag", "") or row.get("tag_lvl5", ""))
+    family_tag = normalize_key((class_row or {}).get("wbs_family_tag", "") or row.get("tag_lvl5", ""))
     classification = (class_row or {}).get("classification", "").strip() or "unclassified"
     driver_family = (class_row or {}).get("driver_family", "").strip() or "unknown_driver"
 
@@ -262,7 +232,7 @@ def derive_group_key(row: dict, class_row: dict | None, group_by: str) -> Tuple[
         return field, group_key, classification, driver_family
 
     # family grain for cross-campaign-year mapping within field
-    group_key = family_tag or normalize_text((row.get("wbs_label_raw") or "").strip()) or "unknown_family"
+    group_key = family_tag or normalize_key((row.get("wbs_label_raw") or "").strip()) or "unknown_family"
     return field, group_key, classification, driver_family
 
 
@@ -284,7 +254,7 @@ def convert_synthetic_rows(
         if field not in VALID_FIELDS:
             continue
 
-        family_key = normalize_text(row.get("L5_Group", "") or row.get("Description", ""))
+        family_key = normalize_key(row.get("L5_Group", "") or row.get("Description", ""))
         classification = family_to_class.get((field, family_key), "unclassified")
         driver_family = family_to_driver.get((field, family_key), "unknown_driver")
 
@@ -293,11 +263,11 @@ def convert_synthetic_rows(
             {
                 "field": field,
                 "group_by": group_by,
-                "group_key": (row.get("WBS_ID") or "").strip() if group_by == "lv5" else (family_key or normalize_text(family_label) or "unknown_family"),
+                "group_key": (row.get("WBS_ID") or "").strip() if group_by == "lv5" else (family_key or normalize_key(family_label) or "unknown_family"),
                 "classification": classification,
                 "driver_family": driver_family,
                 "campaign_code": (row.get("Campaign") or "").strip(),
-                "cost_actual": parse_cost(row.get("ACTUAL, USD", "0")),
+                "cost_actual": parse_float(row.get("ACTUAL, USD", "0")),
                 "is_synthetic": "yes",
             }
         )
@@ -335,7 +305,7 @@ def build_analysis_rows(
                 "classification": classification,
                 "driver_family": driver_family,
                 "campaign_code": (row.get("campaign_code") or "").strip(),
-                "cost_actual": parse_cost(row.get("cost_actual", "0")),
+                "cost_actual": parse_float(row.get("cost_actual", "0")),
                 "is_synthetic": "no",
             }
         )
@@ -418,17 +388,6 @@ def build_driver_summary(analysis_rows: List[dict]) -> Dict[str, List[dict]]:
         )
 
     return result
-
-
-def write_csv(path: Path, rows: List[dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if not rows:
-        path.write_text("", encoding="utf-8")
-        return
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(rows)
 
 
 def write_gate_report(gates: List[dict], master_rows: List[dict], classification_rows: List[dict], args: argparse.Namespace) -> None:

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import csv
 import importlib
 import sys
 import traceback
@@ -15,11 +14,8 @@ from src.app.components.echarts_utils import (
     build_dual_axis_line_chart_options,
     build_heatmap_chart_options,
 )
-
-ROOT = Path(__file__).resolve().parents[3]
-PROCESSED = ROOT / "data" / "processed"
-RAW_DIR = ROOT / "data" / "raw"
-DASHBOARD_WORKBOOK_NAME = "20260422_Data for Dashboard.xlsx"
+from src.config import DASHBOARD_WORKBOOK, PROCESSED, RAW_DIR, ROOT
+from src.utils import parse_float, read_csv
 SYNTHETIC_CAMPAIGN_PATH = PROCESSED / "synthetic_campaign_placeholders.csv"
 SYNTHETIC_LV5_PATH = PROCESSED / "synthetic_wbs_lv5_placeholders.csv"
 MACRO_WEIGHTS_PATH = PROCESSED / "unit_price_macro_weights.csv"
@@ -46,7 +42,7 @@ PRICING_BASIS_UNITS = {
 
 
 def _dashboard_workbook_path() -> Path:
-    return RAW_DIR / DASHBOARD_WORKBOOK_NAME
+    return RAW_DIR / DASHBOARD_WORKBOOK
 
 
 def _load_fresh_module(module_name: str):
@@ -57,26 +53,16 @@ def _load_fresh_module(module_name: str):
     return module
 
 
-def _read_csv_rows(path: Path) -> list[dict[str, str]]:
-    if not path.exists():
-        return []
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def _as_float(value: str) -> float:
-    try:
-        return float(str(value or "0").replace(",", ""))
-    except ValueError:
-        return 0.0
+def _read_csv_rows(path: Path) -> list[dict]:
+    return read_csv(path) if path.exists() else []
 
 
 def _top_rows(rows: list[dict[str, str]], *, limit: int = 5) -> list[dict[str, str]]:
     return sorted(
         rows,
         key=lambda row: (
-            _as_float(row.get("forecast_weight", "0")),
-            _as_float(row.get("abs_nominal_correlation", "0")),
+            parse_float(row.get("forecast_weight", "0")),
+            parse_float(row.get("abs_nominal_correlation", "0")),
         ),
         reverse=True,
     )[:limit]
@@ -91,7 +77,7 @@ def _build_heatmap_points(rows: list[dict[str, str]], x_labels: list[str], y_lab
         y_label = row.get("heatmap_row_label", "")
         if x_label not in x_index or y_label not in y_index:
             continue
-        points.append([x_index[x_label], y_index[y_label], _as_float(row.get("pearson_r_nominal", "0"))])
+        points.append([x_index[x_label], y_index[y_label], parse_float(row.get("pearson_r_nominal", "0"))])
     return points
 
 
@@ -134,15 +120,15 @@ def _top_cluster_combo_rows(rows: list[dict[str, str]], *, limit: int = 8) -> li
             continue
         current = combo_best.get(combo_key)
         score = (
-            _as_float(row.get("forecast_weight", "0")),
-            _as_float(row.get("abs_nominal_correlation", "0")),
+            parse_float(row.get("forecast_weight", "0")),
+            parse_float(row.get("abs_nominal_correlation", "0")),
         )
         if current is None:
             combo_best[combo_key] = row
             continue
         current_score = (
-            _as_float(current.get("forecast_weight", "0")),
-            _as_float(current.get("abs_nominal_correlation", "0")),
+            parse_float(current.get("forecast_weight", "0")),
+            parse_float(current.get("abs_nominal_correlation", "0")),
         )
         if score > current_score:
             combo_best[combo_key] = row
@@ -150,8 +136,8 @@ def _top_cluster_combo_rows(rows: list[dict[str, str]], *, limit: int = 8) -> li
     ranked = sorted(
         combo_best.values(),
         key=lambda row: (
-            _as_float(row.get("forecast_weight", "0")),
-            _as_float(row.get("abs_nominal_correlation", "0")),
+            parse_float(row.get("forecast_weight", "0")),
+            parse_float(row.get("abs_nominal_correlation", "0")),
         ),
         reverse=True,
     )
@@ -169,7 +155,7 @@ def _pooled_pricing_history_by_year(history_rows: list[dict[str, str]], macro_mo
         if year <= 0:
             continue
 
-        cost = _as_float(row.get("actual_cost_usd", "0"))
+        cost = parse_float(row.get("actual_cost_usd", "0"))
         field = str(row.get("field", "")).strip()
         campaign = str(row.get("campaign_canonical", "")).strip()
 
@@ -183,9 +169,9 @@ def _pooled_pricing_history_by_year(history_rows: list[dict[str, str]], macro_mo
             if (field, macro_mod.normalize_exclusion_well(well)) in active_exclusions:
                 continue
             if pricing_basis == "active_day_rate":
-                quantity = _as_float(row.get("active_operational_days", "0"))
+                quantity = parse_float(row.get("active_operational_days", "0"))
             elif pricing_basis == "depth_rate":
-                quantity = _as_float(row.get("actual_depth_ft", "0"))
+                quantity = parse_float(row.get("actual_depth_ft", "0"))
             elif pricing_basis == "per_well_job":
                 quantity = 1.0
             else:
@@ -235,7 +221,7 @@ def _pooled_cluster_history_by_year(history_rows: list[dict[str, str]], macro_mo
             continue
 
         field = str(row.get("field", "")).strip()
-        cost = _as_float(row.get("actual_cost_usd", "0"))
+        cost = parse_float(row.get("actual_cost_usd", "0"))
 
         if pricing_basis == "campaign_scope_benchmark":
             quantity = 1.0
@@ -246,9 +232,9 @@ def _pooled_cluster_history_by_year(history_rows: list[dict[str, str]], macro_mo
             if (field, macro_mod.normalize_exclusion_well(well)) in active_exclusions:
                 continue
             if pricing_basis == "active_day_rate":
-                quantity = _as_float(row.get("active_operational_days", "0"))
+                quantity = parse_float(row.get("active_operational_days", "0"))
             elif pricing_basis == "depth_rate":
-                quantity = _as_float(row.get("actual_depth_ft", "0"))
+                quantity = parse_float(row.get("actual_depth_ft", "0"))
             elif pricing_basis == "per_well_job":
                 quantity = 1.0
             else:
@@ -305,7 +291,7 @@ def _render_synthetic_explainer() -> None:
 
 def _render_operational_history_charts(macro_mod, operational_specs: list[dict[str, str]], history_rows: list[dict[str, str]], macro_rows: list[dict[str, str]]) -> None:
     macro_lookup = {
-        int(row["year"]): {factor: _as_float(row.get(factor, "0")) for factor in macro_mod.ALL_FACTORS}
+        int(row["year"]): {factor: parse_float(row.get(factor, "0")) for factor in macro_mod.ALL_FACTORS}
         for row in macro_rows
         if str(row.get("year", "")).strip()
     }
@@ -357,7 +343,7 @@ def _render_operational_history_charts(macro_mod, operational_specs: list[dict[s
 
 def _render_cluster_history_charts(macro_mod, cluster_specs: list[dict[str, str]], history_rows: list[dict[str, str]], macro_rows: list[dict[str, str]]) -> None:
     macro_lookup = {
-        int(row["year"]): {factor: _as_float(row.get(factor, "0")) for factor in macro_mod.ALL_FACTORS}
+        int(row["year"]): {factor: parse_float(row.get(factor, "0")) for factor in macro_mod.ALL_FACTORS}
         for row in macro_rows
         if str(row.get("year", "")).strip()
     }

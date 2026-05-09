@@ -3,8 +3,7 @@
 
 from __future__ import annotations
 
-import csv
-import math
+import logging
 import re
 import subprocess
 import sys
@@ -14,15 +13,11 @@ from pathlib import Path
 from statistics import mean
 from typing import Dict, List, Tuple
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
+from src.config import PROCESSED, REFERENCE_DIR, REPORTS, ROOT
 from src.modeling.unit_price_history_pipeline import UNIT_PRICE_HISTORY_MART
+from src.utils import format_float, normalize_exclusion_well, parse_float, pearson, read_csv, write_csv
 
-REFERENCE_DIR = ROOT / "data" / "reference"
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+log = logging.getLogger(__name__)
 
 MACRO_REFERENCE_PATH = REFERENCE_DIR / "macro_series_2019_2026.csv"
 MACRO_FACTORS_PATH = PROCESSED / "unit_price_macro_factors.csv"
@@ -56,38 +51,6 @@ STEEL_PROXY_NOTE = (
     "Annual direct steel-HRC series was not available in the official annual IMF/WB datasets used here, "
     "so the analysis uses IMF `PIORECR` iron ore as the auditable steel-input proxy."
 )
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def parse_float(value: str) -> float:
-    text = str(value or "").replace(",", "").strip()
-    if not text:
-        return 0.0
-    return float(text)
-
-
-def normalize_exclusion_well(well: str) -> str:
-    text = str(well or "").strip().upper()
-    text = re.sub(r"([ -])(RD|ML|OH)$", "", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def format_float(value: float | None) -> str:
-    if value is None:
-        return ""
-    return f"{value:.6f}"
 
 
 def markdown_table_cell(value: str) -> str:
@@ -140,20 +103,6 @@ def build_wbs_cluster_key(level_4: str, level_5: str, cluster_map: dict[str, str
     if cluster_map:
         return cluster_map.get(label, label)
     return label
-
-
-def pearson(xs: List[float], ys: List[float]) -> float | None:
-    if len(xs) < 3 or len(xs) != len(ys):
-        return None
-
-    mean_x = sum(xs) / len(xs)
-    mean_y = sum(ys) / len(ys)
-    num = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
-    den_x = math.sqrt(sum((x - mean_x) ** 2 for x in xs))
-    den_y = math.sqrt(sum((y - mean_y) ** 2 for y in ys))
-    if den_x == 0.0 or den_y == 0.0:
-        return None
-    return num / (den_x * den_y)
 
 
 def ensure_history_mart() -> None:

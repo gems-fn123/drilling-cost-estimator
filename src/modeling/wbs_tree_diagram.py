@@ -3,20 +3,20 @@
 
 from __future__ import annotations
 
-import csv
 import html
 import json
+import logging
 import re
 from datetime import datetime, timezone
 from itertools import count
 from pathlib import Path
 from typing import Iterable, List
 
+from src.config import PROCESSED, REPORTS, ROOT, VALID_FIELDS
 from src.io.build_canonical_mappings import extract_full_table, read_xlsx
+from src.utils import parse_float, percentile, read_csv, write_json
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+log = logging.getLogger(__name__)
 
 UNIT_PRICE_HISTORY_MART = PROCESSED / "unit_price_history_mart.csv"
 WBS_TREE_COMBINED_JSON = PROCESSED / "wbs_tree_interactive.json"
@@ -25,24 +25,6 @@ WBS_TREE_SALAK_JSON = PROCESSED / "wbs_tree_field_salak.json"
 WBS_TREE_WW_JSON = PROCESSED / "wbs_tree_field_wayang_windu.json"
 WBS_TREE_HTML = REPORTS / "wbs_tree_interactive.html"
 WBS_TREE_REPORT = REPORTS / "wbs_tree_diagram_report.md"
-
-VALID_FIELDS = {"DARAJAT", "SALAK", "WAYANG_WINDU"}
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def _safe_float(value: str) -> float:
-    text = (value or "0").replace(",", "").strip()
-    if not text:
-        return 0.0
-    try:
-        return float(text)
-    except ValueError:
-        return 0.0
-
 
 def _format_usd_compact(value: float) -> str:
     abs_value = abs(value)
@@ -54,19 +36,6 @@ def _format_usd_compact(value: float) -> str:
     if abs_value >= 1_000:
         return f"{sign}{abs_value / 1_000:.2f}K"
     return f"{sign}{abs_value:,.2f}"
-
-
-def _percentile(values: Iterable[float], pct: float) -> float:
-    arr = sorted(values)
-    if not arr:
-        return 0.0
-    if len(arr) == 1:
-        return arr[0]
-    idx = (len(arr) - 1) * pct
-    lo = int(idx)
-    hi = min(lo + 1, len(arr) - 1)
-    frac = idx - lo
-    return arr[lo] * (1 - frac) + arr[hi] * frac
 
 
 def _normalize_token(value: str) -> str:
@@ -247,7 +216,7 @@ def _unit_price_history_rows_to_tree_rows(rows: List[dict]) -> List[dict]:
         if not all([campaign_label, l2, l3, l4, l5]):
             continue
 
-        actual = _safe_float(row.get("actual_cost_usd", "0"))
+        actual = parse_float(row.get("actual_cost_usd", "0"))
         source_row_id = "|".join(
             part
             for part in [
@@ -299,7 +268,7 @@ def _excel_records_to_tree_rows(records: List[dict], source_file: str, source_sh
             l4_id = _record_value(record, "L4")
             l5_id = _record_value(record, "L5")
             l5_desc = _record_value(record, "Description", "L5 Description", "L5") or l5_id
-            actual = _safe_float(_record_value(record, "ACTUAL, USD", "ACTUAL USD", "Actual, USD"))
+            actual = parse_float(_record_value(record, "ACTUAL, USD", "ACTUAL USD", "Actual, USD"))
             campaign_name = _record_value(record, "Campaign", "Drilling Campaign")
         else:
             campaign_name = _record_value(record, "Campaign", "Drilling Campaign")
@@ -309,7 +278,7 @@ def _excel_records_to_tree_rows(records: List[dict], source_file: str, source_sh
             l4_id = _record_value(record, "Level 4")
             l5_id = _record_value(record, "Level 5")
             l5_desc = l5_id
-            actual = _safe_float(_record_value(record, "Actual Cost USD", "ACTUAL COST USD"))
+            actual = parse_float(_record_value(record, "Actual Cost USD", "ACTUAL COST USD"))
 
         if not all([l1_id, l2_id, l3_id, l4_id, l5_id]):
             continue
@@ -338,7 +307,7 @@ def _excel_records_to_tree_rows(records: List[dict], source_file: str, source_sh
 
 
 def _add_row_to_tree(root: dict, row: dict) -> None:
-    value = _safe_float(row.get("actual_usd", "0"))
+    value = parse_float(row.get("actual_usd", "0"))
     campaign = (row.get("campaign_canonical") or "").strip()
     source_row_id = (row.get("source_row_id") or "").strip()
     source_workbook = (row.get("source_workbook") or "").strip()
@@ -378,9 +347,9 @@ def _finalize_node(node: dict) -> dict:
     source_workbooks = sorted(node.pop("_source_workbooks"))
 
     sum_usd = sum(values)
-    median_usd = _percentile(values, 0.50)
-    p10_usd = _percentile(values, 0.10)
-    p90_usd = _percentile(values, 0.90)
+    median_usd = percentile(values, 0.50)
+    p10_usd = percentile(values, 0.10)
+    p90_usd = percentile(values, 0.90)
     spread_usd = max(0.0, p90_usd - p10_usd)
     spread_pct = (spread_usd / median_usd * 100.0) if median_usd else 0.0
 
@@ -447,11 +416,6 @@ def _build_payload_from_rows(rows: List[dict], source_contract: dict) -> dict:
         "source_contract": source_contract,
         "fields": fields,
     }
-
-
-def _write_json(path: Path, payload: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
 def render_wbs_tree_html(payload: dict) -> str:
@@ -606,16 +570,16 @@ def build_wbs_tree_artifacts() -> dict:
         },
     )
 
-    _write_json(WBS_TREE_COMBINED_JSON, payload)
-    _write_json(
+    write_json(WBS_TREE_COMBINED_JSON, payload)
+    write_json(
         WBS_TREE_DARAJAT_JSON,
         {"generated_at_utc": payload["generated_at_utc"], "field": "DARAJAT", "tree": payload["fields"]["DARAJAT"]},
     )
-    _write_json(
+    write_json(
         WBS_TREE_SALAK_JSON,
         {"generated_at_utc": payload["generated_at_utc"], "field": "SALAK", "tree": payload["fields"]["SALAK"]},
     )
-    _write_json(
+    write_json(
         WBS_TREE_WW_JSON,
         {"generated_at_utc": payload["generated_at_utc"], "field": "WAYANG_WINDU", "tree": payload["fields"]["WAYANG_WINDU"]},
     )

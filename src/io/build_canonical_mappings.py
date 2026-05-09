@@ -1,18 +1,22 @@
 from __future__ import annotations
 
-import csv
 import json
+import logging
 import re
 import zipfile
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[2]
-RAW_DIR = ROOT / "data" / "raw"
-PROCESSED_DIR = ROOT / "data" / "processed"
-REPORT_PATH = ROOT / "reports" / "well_master_build_report.md"
-SYNTH_REPORT_PATH = ROOT / "reports" / "synthetic_placeholder_method.md"
-SCOPE_REPORT_PATH = ROOT / "reports" / "unit_price_scope_coverage.md"
+from src.config import CAMPAIGN_LABEL_TO_CODE, PROCESSED, RAW_DIR, REPORTS, ROOT
+from src.utils import read_csv, write_csv
+
+log = logging.getLogger(__name__)
+
+PROCESSED_DIR = PROCESSED
+REPORTS_DIR = REPORTS
+REPORT_PATH = REPORTS / "well_master_build_report.md"
+SYNTH_REPORT_PATH = REPORTS / "synthetic_placeholder_method.md"
+SCOPE_REPORT_PATH = REPORTS / "unit_price_scope_coverage.md"
 
 CAMPAIGN_MAPPING_FIELDS = [
     "campaign_code",
@@ -127,22 +131,6 @@ WELL_ALIAS_PAIRS = [
     ("AWI 9-10RD", "AWI 9-10"),
 ]
 
-CAMPAIGN_LABEL_TO_CODE = {
-    "DRJ 2022": "E530-30101-D225301",
-    "DRJ 2023": "E530-30101-D235301",
-    "SLK 2025": "E540-30101-D245401",
-    "DARAJAT CAMPAIGN 2019": "E530-30101-D19001",
-    "SALAK CAMPAIGN 2021": "E540-30101-D20001",
-    "DRJ - 2019": "E530-30101-D19001",
-    "DRJ - 2022": "E530-30101-D225301",
-    "DRJ - 2024": "E530-30101-D235301",
-    "SLK - 2021": "E540-30101-D20001",
-    "SLK - 2025": "E540-30101-D245401",
-    "WW - 2018": "E500-2-0-8501-185003",
-    "WW - 2021": "E500-30101-D205011",
-    "WAYANG WINDU CAMPAIGN 2018/2019": "E500-2-0-8501-185003",
-    "WAYANG WINDU CAMPAIGN 2020/2021": "E500-30101-D205011",
-}
 
 SYNTHETIC_CAMPAIGNS = [
     {"synthetic_campaign_id": "SLK_2020", "field": "SALAK", "target_year": 2020},
@@ -913,9 +901,8 @@ def enrich_canonical_well_mapping_order_metadata() -> None:
         for well, seq, label in SALAK_2025_ORDER
     }
 
-    with path.open("r", newline="", encoding="utf-8") as handle:
-        rows = list(csv.DictReader(handle))
-        fieldnames = list(rows[0].keys()) if rows else []
+    rows = read_csv(path)
+    fieldnames = list(rows[0].keys()) if rows else []
 
     for extra in ["well_sequence_in_campaign", "well_order_label", "well_order_basis", "well_order_note"]:
         if extra not in fieldnames:
@@ -941,12 +928,6 @@ def enrich_canonical_well_mapping_order_metadata() -> None:
     write_csv(path, rows, fieldnames)
 
 
-def write_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str] | None = None) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames or list(rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(rows)
 
 
 def write_report(stats: dict[str, int], master_rows: list[dict[str, str]], lookup_rows: list[dict[str, str]]) -> None:

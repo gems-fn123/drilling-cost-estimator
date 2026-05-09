@@ -3,8 +3,7 @@
 
 from __future__ import annotations
 
-import csv
-import math
+import logging
 import re
 import subprocess
 import sys
@@ -13,15 +12,12 @@ from pathlib import Path
 from statistics import mean, median
 from typing import List
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
+from src.config import PROCESSED, REPORTS, ROOT
 from src.modeling.unit_price_history_pipeline import UNIT_PRICE_HISTORY_CONTEXT
 from src.modeling.unit_price_well_analysis import UNIT_PRICE_BENCHMARK
+from src.utils import format_float, normalize_exclusion_well, parse_float, pearson, percentile, read_csv, write_csv
 
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+log = logging.getLogger(__name__)
 
 WELL_INSTANCE_CONTEXT = PROCESSED / "well_instance_context.csv"
 WELL_INSTANCE_EVENT_CONTEXT = PROCESSED / "well_instance_event_context.csv"
@@ -33,66 +29,6 @@ NPT_PENALTY_REFERENCE = PROCESSED / "npt_penalty_reference.csv"
 NPT_REPORT = REPORTS / "unit_price_npt_contribution.md"
 
 FIELDS = ["DARAJAT", "SALAK", "WAYANG_WINDU"]
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def parse_float(value: str) -> float:
-    text = str(value or "").replace(",", "").strip()
-    if not text:
-        return 0.0
-    return float(text)
-
-
-def format_float(value: float | None) -> str:
-    if value is None:
-        return ""
-    return f"{value:.6f}"
-
-
-def percentile(values: List[float], pct: float) -> float:
-    arr = sorted(values)
-    if not arr:
-        return 0.0
-    if len(arr) == 1:
-        return arr[0]
-    idx = (len(arr) - 1) * pct
-    lo = int(math.floor(idx))
-    hi = int(math.ceil(idx))
-    frac = idx - lo
-    if lo == hi:
-        return arr[lo]
-    return arr[lo] * (1.0 - frac) + arr[hi] * frac
-
-
-def pearson(xs: List[float], ys: List[float]) -> float | None:
-    if len(xs) < 3 or len(xs) != len(ys):
-        return None
-    mean_x = sum(xs) / len(xs)
-    mean_y = sum(ys) / len(ys)
-    num = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
-    den_x = math.sqrt(sum((x - mean_x) ** 2 for x in xs))
-    den_y = math.sqrt(sum((y - mean_y) ** 2 for y in ys))
-    if den_x == 0.0 or den_y == 0.0:
-        return None
-    return num / (den_x * den_y)
-
-
-def normalize_exclusion_well(well: str) -> str:
-    text = str(well or "").strip().upper()
-    text = re.sub(r"([ -])(RD|ML|OH)$", "", text)
-    return re.sub(r"\s+", " ", text).strip()
 
 
 def infer_field_from_well_name(well: str) -> str:
