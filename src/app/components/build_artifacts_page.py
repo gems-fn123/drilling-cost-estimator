@@ -580,6 +580,10 @@ def render_build_artifacts_page() -> None:
             build_macro = _load_fresh_module("src.modeling.unit_price_macro_analysis").main
             build_macro()
 
+            progress_bar.progress(65, text="Building section speed reference...")
+            build_section_speed = _load_fresh_module("src.modeling.section_speed_pipeline").main
+            build_section_speed()
+
             progress_bar.progress(70, text="Building WBS tree...")
             build_wbs_tree_artifacts = _load_fresh_module("src.modeling.wbs_tree_diagram").build_wbs_tree_artifacts
             build_wbs_tree_artifacts()

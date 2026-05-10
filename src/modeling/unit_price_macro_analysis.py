@@ -36,18 +36,18 @@ CLUSTER_MIN_OPERATIONAL_YEARS = 4
 WEIGHT_ELIGIBLE_FACTORS = (
     "brent_usd_bbl",
     "indonesia_cpi_index",
-    "steel_commodity_proxy_usd_ton",
+    "steel_hrc_composite_usd_ton",
 )
-ALL_FACTORS = WEIGHT_ELIGIBLE_FACTORS + ("indonesia_inflation_pct",)
+ALL_FACTORS = WEIGHT_ELIGIBLE_FACTORS
 FACTOR_LABELS = {
     "brent_usd_bbl": "Brent oil price",
     "indonesia_cpi_index": "Indonesia CPI index",
-    "indonesia_inflation_pct": "Indonesia inflation rate",
-    "steel_commodity_proxy_usd_ton": "Steel proxy commodity price",
+    "steel_hrc_composite_usd_ton": "Steel (HRC composite, USD/t)",
 }
 STEEL_PROXY_NOTE = (
-    "Annual direct steel-HRC series was not available in the official annual IMF/WB datasets used here, "
-    "so the analysis uses IMF `PIORECR` iron ore as the auditable steel-input proxy."
+    "World Bank Pink Sheet Steel Products composite (HRC, CRC, rebar average, USD/MT). "
+    "Casing (OCTG) steel pricing tracks HRC composite more directly than iron ore. "
+    "Source: World Bank Global Economic Monitor Commodities (PSTEEL series), annual averages."
 )
 
 
@@ -329,12 +329,11 @@ def build_factor_rows(history_rows: List[dict], macro_rows: List[dict]) -> List[
                     "unit_price_real_2026_usd": unit_price_real,
                     "brent_usd_bbl": macro["brent_usd_bbl"],
                     "indonesia_cpi_index": macro["indonesia_cpi_index"],
-                    "indonesia_inflation_pct": macro["indonesia_inflation_pct"],
-                    "steel_commodity_proxy_usd_ton": macro["steel_commodity_proxy_usd_ton"],
+                    "steel_hrc_composite_usd_ton": macro["steel_hrc_composite_usd_ton"],
                     "steel_proxy_name": macro["steel_proxy_name"],
                     "cpi_discount_factor_to_2026": macro["cpi_discount_factor_to_2026"],
                     "brent_real_2026_usd_bbl": f"{parse_float(macro['brent_usd_bbl']) * discount_factor:.6f}",
-                    "steel_commodity_proxy_real_2026_usd_ton": f"{parse_float(macro['steel_commodity_proxy_usd_ton']) * discount_factor:.6f}",
+                    "steel_hrc_composite_real_2026_usd_ton": f"{parse_float(macro['steel_hrc_composite_usd_ton']) * discount_factor:.6f}",
                     "source_note": macro["source_note"],
                     "source_url": macro["source_url"],
                 }
@@ -411,12 +410,11 @@ def build_cluster_factor_rows(history_rows: List[dict], macro_rows: List[dict]) 
                     "field_balanced_unit_price_real_2026_usd": field_balanced_unit_price_real,
                     "brent_usd_bbl": macro["brent_usd_bbl"],
                     "indonesia_cpi_index": macro["indonesia_cpi_index"],
-                    "indonesia_inflation_pct": macro["indonesia_inflation_pct"],
-                    "steel_commodity_proxy_usd_ton": macro["steel_commodity_proxy_usd_ton"],
+                    "steel_hrc_composite_usd_ton": macro["steel_hrc_composite_usd_ton"],
                     "steel_proxy_name": macro["steel_proxy_name"],
                     "cpi_discount_factor_to_2026": macro["cpi_discount_factor_to_2026"],
                     "brent_real_2026_usd_bbl": f"{parse_float(macro['brent_usd_bbl']) * discount_factor:.6f}",
-                    "steel_commodity_proxy_real_2026_usd_ton": f"{parse_float(macro['steel_commodity_proxy_usd_ton']) * discount_factor:.6f}",
+                    "steel_hrc_composite_real_2026_usd_ton": f"{parse_float(macro['steel_hrc_composite_usd_ton']) * discount_factor:.6f}",
                     "source_note": macro["source_note"],
                     "source_url": macro["source_url"],
                 }
@@ -479,8 +477,8 @@ def build_weight_rows(factor_rows: List[dict]) -> List[dict]:
             if factor_name == "brent_usd_bbl":
                 discounted_series = [parse_float(row["brent_real_2026_usd_bbl"]) for row in overlap]
                 discounted_results[factor_name] = pearson(unit_price_real, discounted_series)
-            elif factor_name == "steel_commodity_proxy_usd_ton":
-                discounted_series = [parse_float(row["steel_commodity_proxy_real_2026_usd_ton"]) for row in overlap]
+            elif factor_name == "steel_hrc_composite_usd_ton":
+                discounted_series = [parse_float(row["steel_hrc_composite_real_2026_usd_ton"]) for row in overlap]
                 discounted_results[factor_name] = pearson(unit_price_real, discounted_series)
             else:
                 discounted_results[factor_name] = None
@@ -527,7 +525,7 @@ def build_weight_rows(factor_rows: List[dict]) -> List[dict]:
                     "abs_nominal_correlation": format_float(abs(nominal_value) if nominal_value is not None else None),
                     "forecast_weight": f"{forecast_weight:.6f}",
                     "weight_basis": weight_basis,
-                    "steel_proxy_note": STEEL_PROXY_NOTE if factor_name == "steel_commodity_proxy_usd_ton" else "",
+                    "steel_proxy_note": STEEL_PROXY_NOTE if factor_name == "steel_hrc_composite_usd_ton" else "",
                 }
             )
 
@@ -565,8 +563,8 @@ def build_cluster_weight_rows(factor_rows: List[dict]) -> List[dict]:
             if factor_name == "brent_usd_bbl":
                 discounted_series = [parse_float(row["brent_real_2026_usd_bbl"]) for row in overlap]
                 discounted_results[factor_name] = pearson(cluster_unit_price_real, discounted_series)
-            elif factor_name == "steel_commodity_proxy_usd_ton":
-                discounted_series = [parse_float(row["steel_commodity_proxy_real_2026_usd_ton"]) for row in overlap]
+            elif factor_name == "steel_hrc_composite_usd_ton":
+                discounted_series = [parse_float(row["steel_hrc_composite_real_2026_usd_ton"]) for row in overlap]
                 discounted_results[factor_name] = pearson(cluster_unit_price_real, discounted_series)
             else:
                 discounted_results[factor_name] = None
@@ -619,7 +617,7 @@ def build_cluster_weight_rows(factor_rows: List[dict]) -> List[dict]:
                     "abs_nominal_correlation": format_float(abs(nominal_value) if nominal_value is not None else None),
                     "forecast_weight": f"{forecast_weight:.6f}",
                     "weight_basis": weight_basis,
-                    "steel_proxy_note": STEEL_PROXY_NOTE if factor_name == "steel_commodity_proxy_usd_ton" else "",
+                    "steel_proxy_note": STEEL_PROXY_NOTE if factor_name == "steel_hrc_composite_usd_ton" else "",
                 }
             )
 
@@ -681,8 +679,8 @@ def write_report(macro_rows: List[dict], weight_rows: List[dict], cluster_weight
         "- Source: **IMF World Economic Outlook (April 2026)** annual dataset, published **April 15, 2026**.",
         f"- Reference URL: `{macro_rows[0]['source_url']}`.",
         "- Brent series uses `POILBRE`.",
-        "- Indonesia inflation context uses `PCPI` and `PCPIPCH`.",
-        "- Steel commodity input uses `PIORECR` iron ore as a steel-input proxy because a direct annual steel-HRC series was not available in the official annual files used here.",
+        "- Indonesia CPI level uses IMF `PCPI`. Indonesia inflation rate (`PCPIPCH`) is retained in the reference file but excluded from operational weighting (it is collinear with CPI level and adds no independent signal).",
+        "- Steel input uses **World Bank Pink Sheet Steel Products composite** (HRC, CRC, rebar average, USD/MT) as the direct casing cost proxy. This replaces the prior iron-ore (`PIORECR`) proxy, which is an upstream input, not a finished-steel price.",
         "- The deeper WBS cluster layer uses fuzzy-matched Level 4 descriptions, with Level 5 acting only as a fallback when Level 4 is missing, so campaign structure drift stays inside the same audit bucket.",
         "",
         "## Operational Rule",

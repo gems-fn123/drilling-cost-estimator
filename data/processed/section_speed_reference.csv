@@ -1,0 +1,10 @@
+field,section_group,section_group_label,canonical_sizes,phases_included,field_observation_count,winsorization_method,band_source,estimator_confidence,fast_days,standard_days,careful_days,note
+DARAJAT,intermediate_17_5,"Intermediate (17.5"")",17.5,"DRILL,CSGCMT",15,p25_p75,field_specific,medium,2.90,4.48,6.10,n=15 field obs; 25th/75th percentile applied.
+SALAK,intermediate_17_5,"Intermediate (17.5"")",17.5,"DRILL,CSGCMT",13,p25_p75_low_confidence,pooled_all_fields,low,2.00,3.33,4.60,n=13 field obs (< 15); pooled all-field n=43 used for bands.
+WAYANG_WINDU,intermediate_17_5,"Intermediate (17.5"")",17.5,"DRILL,CSGCMT",15,p25_p75,field_specific,medium,2.22,3.42,3.96,n=15 field obs; 25th/75th percentile applied.
+DARAJAT,production_12_25,"Production (12.25"" and below)","12.25, 9.875, 8.5, 7.875","DRILL,CSGCMT",15,p25_p75,field_specific,medium,6.84,8.55,17.22,n=15 field obs; 25th/75th percentile applied.
+SALAK,production_12_25,"Production (12.25"" and below)","12.25, 9.875, 8.5, 7.875","DRILL,CSGCMT",13,p25_p75_low_confidence,pooled_all_fields,low,4.96,7.04,12.28,n=13 field obs (< 15); pooled all-field n=43 used for bands.
+WAYANG_WINDU,production_12_25,"Production (12.25"" and below)","12.25, 9.875, 8.5, 7.875","DRILL,CSGCMT",15,p25_p75,field_specific,medium,6.19,7.29,14.29,n=15 field obs; 25th/75th percentile applied.
+DARAJAT,surface_26,"Surface (26"" and larger)","26, 30, 36","DRILL,CSGCMT",15,p25_p75,field_specific,medium,2.15,3.23,5.86,n=15 field obs; 25th/75th percentile applied.
+SALAK,surface_26,"Surface (26"" and larger)","26, 30, 36","DRILL,CSGCMT",13,p25_p75_low_confidence,pooled_all_fields,low,2.11,2.46,3.78,n=13 field obs (< 15); pooled all-field n=43 used for bands.
+WAYANG_WINDU,surface_26,"Surface (26"" and larger)","26, 30, 36","DRILL,CSGCMT",15,p25_p75,field_specific,medium,2.05,2.85,4.12,n=15 field obs; 25th/75th percentile applied.

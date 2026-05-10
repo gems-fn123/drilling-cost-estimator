@@ -55,6 +55,12 @@ CATEGORY_ORDER = ["Drilling", "Support", "Surface Facility", "Contingency"]
 CATEGORY_ERROR_COLUMN = "Error (MMUSD) / MAPE (%)"
 
 
+PAD_BENCHMARK_USD: dict[str, float] = {
+    "Standard": 800_000.0,
+    "Major": 1_680_000.0,
+}
+
+
 @dataclass
 class WellInput:
     well_label: str
@@ -63,6 +69,7 @@ class WellInput:
     depth_bucket_ft: int
     leg_type: str
     drill_rate_mode: str
+    cellar_type: str = "new"
 
 
 def _classification_from_pricing_basis(pricing_basis: str, well_canonical: str) -> str:
@@ -344,12 +351,17 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
     if len(well_rows) != no_wells:
         raise ValueError("Well row count must equal No. Wells")
 
+    pad_job_size = str(campaign_input.get("pad_job_size", "Standard") or "Standard").strip()
+    if pad_job_size not in PAD_BENCHMARK_USD:
+        pad_job_size = "Standard"
+
     normalized_wells: List[WellInput] = []
     for idx, row in enumerate(well_rows, start=1):
         depth = _normalize_depth(int(row["depth_ft"]))
         mode = row["drill_rate_mode"]
         if mode not in RATE_FACTOR:
             raise ValueError(f"Invalid well inputs at row {idx}")
+        cellar = str(row.get("cellar_type", "new") or "new").strip().lower()
         normalized_wells.append(
             WellInput(
                 well_label=row.get("well_label", f"Well-{idx}"),
@@ -358,9 +370,11 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
                 depth_bucket_ft=depth,
                 leg_type="Standard-J",
                 drill_rate_mode=mode,
+                cellar_type=cellar if cellar in {"new", "existing"} else "new",
             )
         )
 
+    new_cellar_count = sum(1 for w in normalized_wells if w.cellar_type == "new")
     return {
         "field_input": field,
         "field_canonical": FIELD_MAP[field],
@@ -368,6 +382,9 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
         "pad_count": no_pads,
         "well_count": no_wells,
         "pad_expansion_count": pad_exp,
+        "pad_job_size": pad_job_size,
+        "new_cellar_count": new_cellar_count,
+        "existing_cellar_count": no_wells - new_cellar_count,
         "use_external_forecast": bool(campaign_input.get("use_external_forecast", False)),
         "use_synthetic_data": bool(campaign_input.get("use_synthetic_data", False)),
         "macro_reference_settings": list(campaign_input.get("macro_reference_settings", []) or []),
@@ -985,6 +1002,48 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
             }
         )
 
+    # Pad scope add-on: Standard is the baseline already captured in templates.
+    # Major triggers an explicit delta above the Standard benchmark.
+    pad_job_size = normalized_campaign.get("pad_job_size", "Standard")
+    new_cellar_count = normalized_campaign.get("new_cellar_count", normalized_campaign["well_count"])
+    new_cellar_fraction = new_cellar_count / max(normalized_campaign["well_count"], 1)
+    standard_benchmark = PAD_BENCHMARK_USD["Standard"]
+    major_benchmark = PAD_BENCHMARK_USD["Major"]
+    pad_add_on_usd = (major_benchmark - standard_benchmark) * new_cellar_fraction if pad_job_size == "Major" else 0.0
+    if pad_add_on_usd > 0.0:
+        detail_rows.append(
+            {
+                "audit_key": "",
+                "well_label": "CAMPAIGN_SHARED",
+                "component_scope": "pad_scope_add_on",
+                "classification": "campaign_tied",
+                "l2_id": "Surface Facility",
+                "l3_id": "Road & Pad",
+                "l4_id": "Road & Pad Construction",
+                "l5_id": "Road & Pad – Major Scope Uplift",
+                "l5_desc": "Road & Pad – Major Scope Uplift",
+                "wbs_family_tag": "road & pad - major scope uplift",
+                "family_group_key": "road_pad_major_scope_uplift",
+                "estimate_usd": pad_add_on_usd,
+                "uncertainty_pct": 30.0,
+                "uncertainty_type": "benchmark_range",
+                "estimation_method": "pad_scope_benchmark_delta",
+                "driver_family": "campaign_scope",
+                "source_field_campaign_years": "historical_pad_range",
+                "source_wells": "",
+                "source_row_ids": "",
+                "source_row_count": 0,
+                "support_explanation": (
+                    f"Major pad uplift: delta above Standard benchmark "
+                    f"(${major_benchmark/1e6:.2f}M − ${standard_benchmark/1e6:.2f}M) × "
+                    f"new_cellar_fraction={new_cellar_fraction:.2f} ({new_cellar_count}/{normalized_campaign['well_count']} new cellars). "
+                    f"Standard cost is captured in historical campaign-tied templates."
+                ),
+                "synthetic_rows_used": 0,
+                "external_adjustment_applied": ext_applied,
+            }
+        )
+
     total_cost = sum(r["estimate_usd"] for r in detail_rows)
     by_l2 = defaultdict(float)
     for r in detail_rows:
@@ -1093,6 +1152,14 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
             "external_forecast_requested": normalized_campaign["use_external_forecast"],
             "external_forecast_applied": ext_applied,
             "synthetic_data_requested": normalized_campaign["use_synthetic_data"],
+        },
+        "pad_scope": {
+            "pad_job_size": pad_job_size,
+            "new_cellar_count": new_cellar_count,
+            "existing_cellar_count": normalized_campaign.get("existing_cellar_count", 0),
+            "new_cellar_fraction": round(new_cellar_fraction, 4),
+            "pad_add_on_usd": round(pad_add_on_usd, 2),
+            "pad_add_on_mmusd": round(pad_add_on_usd / 1_000_000.0, 4),
         },
         "external_adjustment_formula": ext_formula,
         "allocation_basis": "Within-category direct well subtotal weights with equal split fallback for categories without direct well rows.",
