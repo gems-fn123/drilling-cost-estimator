@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-05T03:30:10.683303+00:00",
+  "generated_at_utc": "2026-05-10T01:13:07.546442+00:00",
   "pipeline": "streamlined_etl_v1",
   "runtime_toggles": {
     "group_by": "family",
@@ -75,18 +75,18 @@
     {
       "path": "data/processed/app_estimate_audit.csv",
       "exists": true,
-      "size_bytes": 103045,
-      "row_count": 112
+      "size_bytes": 41656,
+      "row_count": 56
     },
     {
       "path": "data/processed/app_estimate_summary.json",
       "exists": true,
-      "size_bytes": 2385
+      "size_bytes": 2247
     },
     {
       "path": "data/processed/app_run_manifest.json",
       "exists": true,
-      "size_bytes": 1641
+      "size_bytes": 1806
     },
     {
       "path": "data/processed/unit_price_well_profile.csv",
@@ -109,67 +109,67 @@
     {
       "path": "data/processed/unit_price_macro_factors.csv",
       "exists": true,
-      "size_bytes": 44291,
+      "size_bytes": 45943,
       "row_count": 112
     },
     {
       "path": "data/processed/unit_price_macro_weights.csv",
       "exists": true,
-      "size_bytes": 13341,
-      "row_count": 56
+      "size_bytes": 11642,
+      "row_count": 42
     },
     {
       "path": "data/processed/unit_price_macro_cluster_weights.csv",
       "exists": true,
-      "size_bytes": 100004,
-      "row_count": 320
+      "size_bytes": 35633,
+      "row_count": 102
     },
     {
       "path": "reports/unit_price_macro_correlation.md",
       "exists": true,
-      "size_bytes": 29879
+      "size_bytes": 17773
     },
     {
       "path": "data/processed/npt_contribution_summary.csv",
       "exists": true,
-      "size_bytes": 16022,
-      "row_count": 162
+      "size_bytes": 14728,
+      "row_count": 149
     },
     {
       "path": "data/processed/npt_penalty_reference.csv",
       "exists": true,
-      "size_bytes": 5645,
-      "row_count": 36
+      "size_bytes": 5200,
+      "row_count": 33
     },
     {
       "path": "data/processed/wbs_tree_interactive.json",
       "exists": true,
-      "size_bytes": 916333
+      "size_bytes": 897196
     },
     {
       "path": "data/processed/wbs_tree_field_darajat.json",
       "exists": true,
-      "size_bytes": 388793
+      "size_bytes": 380242
     },
     {
       "path": "data/processed/wbs_tree_field_salak.json",
       "exists": true,
-      "size_bytes": 285888
+      "size_bytes": 279589
     },
     {
       "path": "data/processed/wbs_tree_field_wayang_windu.json",
       "exists": true,
-      "size_bytes": 203328
+      "size_bytes": 199040
     },
     {
       "path": "reports/wbs_tree_interactive.html",
       "exists": true,
-      "size_bytes": 17027
+      "size_bytes": 16949
     },
     {
       "path": "reports/wbs_tree_diagram_report.md",
       "exists": true,
-      "size_bytes": 924
+      "size_bytes": 904
     }
   ]
 }

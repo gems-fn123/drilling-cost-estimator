@@ -17,7 +17,7 @@ HISTORY_MART = ROOT / "data" / "processed" / "unit_price_history_mart.csv"
 class TestUnitPriceHistoryScope(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.io.build_canonical_mappings"], cwd=ROOT, check=True)
 
     def test_campaign_mapping_contains_all_requested_campaigns(self) -> None:
         with CAMPAIGN_MAP.open(encoding="utf-8", newline="") as handle:
@@ -72,8 +72,8 @@ class TestUnitPriceHistoryScope(unittest.TestCase):
 class TestUnitPriceHistoryMart(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.io.build_canonical_mappings"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_history_pipeline"], cwd=ROOT, check=True)
 
     def test_unit_price_history_mart_has_three_fields(self) -> None:
         with HISTORY_MART.open(encoding="utf-8", newline="") as handle:

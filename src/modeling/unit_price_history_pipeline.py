@@ -3,28 +3,21 @@
 
 from __future__ import annotations
 
-import csv
+import logging
 import re
-import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
+from src.config import CAMPAIGN_LABEL_TO_CODE, DASHBOARD_WORKBOOK, PROCESSED, RAW_DIR
 from src.io.build_canonical_mappings import (
-    CAMPAIGN_LABEL_TO_CODE,
-    DASHBOARD_WORKBOOK,
-    RAW_DIR,
     clean_text,
     extract_full_table,
     normalize_well,
     read_xlsx,
 )
+from src.utils import parse_float, read_csv, write_csv
 
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+log = logging.getLogger(__name__)
 
 CAMPAIGN_MAP = PROCESSED / "canonical_campaign_mapping.csv"
 WELL_MASTER = PROCESSED / "well_master.csv"
@@ -32,29 +25,6 @@ WELL_ALIAS = PROCESSED / "well_alias_lookup.csv"
 
 UNIT_PRICE_HISTORY_MART = PROCESSED / "unit_price_history_mart.csv"
 UNIT_PRICE_HISTORY_CONTEXT = PROCESSED / "unit_price_history_context.csv"
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def parse_float(value: str) -> float:
-    text = clean_text(value).replace(",", "")
-    if not text:
-        return 0.0
-    try:
-        return float(text)
-    except ValueError:
-        return 0.0
 
 
 def normalize_field(asset: str) -> str:

@@ -3,24 +3,17 @@
 
 from __future__ import annotations
 
-import csv
-import math
-import re
-import subprocess
-import sys
+import logging
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median
 from typing import List
 
-ROOT = Path(__file__).resolve().parents[2]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
+from src.config import PROCESSED, REPORTS, ROOT
 from src.modeling.unit_price_history_pipeline import UNIT_PRICE_HISTORY_CONTEXT, UNIT_PRICE_HISTORY_MART
+from src.utils import normalize_exclusion_well, parse_float, percentile, read_csv, write_csv
 
-PROCESSED = ROOT / "data" / "processed"
-REPORTS = ROOT / "reports"
+log = logging.getLogger(__name__)
 
 UNIT_PRICE_WELL_PROFILE = PROCESSED / "unit_price_well_profile.csv"
 UNIT_PRICE_BENCHMARK = PROCESSED / "unit_price_benchmark.csv"
@@ -31,51 +24,11 @@ WELL_POOL_EXCLUSIONS = PROCESSED / "well_pool_exclusions.csv"
 STANDARD_ASSUMPTION = "Standard-J"
 
 
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def parse_float(value: str) -> float:
-    text = str(value or "").replace(",", "").strip()
-    if not text:
-        return 0.0
-    return float(text)
-
-
-def normalize_exclusion_well(well: str) -> str:
-    text = str(well or "").strip().upper()
-    text = re.sub(r"([ -])(RD|ML|OH)$", "", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def percentile(values: List[float], pct: float) -> float:
-    arr = sorted(values)
-    if not arr:
-        return 0.0
-    if len(arr) == 1:
-        return arr[0]
-    idx = (len(arr) - 1) * pct
-    lo = int(math.floor(idx))
-    hi = int(math.ceil(idx))
-    frac = idx - lo
-    if lo == hi:
-        return arr[lo]
-    return arr[lo] * (1.0 - frac) + arr[hi] * frac
-
-
 def ensure_history_outputs() -> None:
     if UNIT_PRICE_HISTORY_MART.exists() and UNIT_PRICE_HISTORY_CONTEXT.exists():
         return
-    subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
+    from src.modeling.unit_price_history_pipeline import main as _build_history
+    _build_history()
 
 
 def load_active_exclusions() -> dict[tuple[str, str], dict]:

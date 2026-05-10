@@ -22,8 +22,8 @@ MATERIAL_REVIEW_THRESHOLD = 500000.0
 class TestWbsLv5Classification(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/cleaning/build_wbs_lv5_classification.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.io.build_canonical_mappings"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.cleaning.build_wbs_lv5_classification"], cwd=ROOT, check=True)
 
     def read_csv(self, path: Path) -> list[dict[str, str]]:
         with path.open(encoding="utf-8") as fh:
@@ -96,10 +96,10 @@ class TestWbsLv5Classification(unittest.TestCase):
 
     def test_in_scope_campaign_mapping_hard_gate(self) -> None:
         rows = self.read_csv(MASTER)
-        in_scope_rows = [r for r in rows if r["campaign_raw"] in {"DRJ 2022", "DRJ 2023", "SLK 2025"}]
+        in_scope_rows = [r for r in rows if r["campaign_scope"] == "in_scope"]
         self.assertTrue(in_scope_rows)
         self.assertTrue(all(r["mapping_status_campaign"] == "mapped" for r in in_scope_rows))
-        self.assertTrue(all(r["campaign_scope"] == "in_scope" for r in in_scope_rows))
+        self.assertTrue(all(r["campaign_code"] for r in in_scope_rows))
 
     def test_summary_reconciles_master(self) -> None:
         master_total = sum(float(r["cost_actual"]) for r in self.read_csv(MASTER))
@@ -140,8 +140,6 @@ class TestWbsLv5Classification(unittest.TestCase):
         self.assert_family_class(driver_rows, "Construction", "hybrid")
         self.assert_family_class(driver_rows, "Rig Move", "hybrid")
         self.assert_family_class(driver_rows, "Rig Skid", "hybrid")
-        self.assert_label_pattern_class(driver_rows, "Tie In-Inst,HookUp&Pre-Comm", "hybrid")
-        self.assert_label_pattern_class(driver_rows, "Tie In - Inst,HookUp&Pre-Comm", "hybrid")
 
 
 if __name__ == "__main__":

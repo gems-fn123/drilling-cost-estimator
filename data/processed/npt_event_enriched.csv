@@ -145,28 +145,28 @@ DARAJAT,,DRJ-37,DRJ-37,DARAJAT|DRJ-37,RREQ,TOP DRIVE,0.020845,field_inferred_fro
 DARAJAT,,DRJ-37,DRJ-37,DARAJAT|DRJ-37,WP,TIGHT HOLE,0.166655,field_inferred_from_name_prefix,field_available,low,no
 DARAJAT,,DRJ-37,DRJ-37,DARAJAT|DRJ-37,WP,TIGHT HOLE,0.520833,field_inferred_from_name_prefix,field_available,low,no
 DARAJAT,,DRJ-37,DRJ-37,DARAJAT|DRJ-37,WP,TIGHT HOLE,0.562500,field_inferred_from_name_prefix,field_available,low,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,SUPPLIES,0.562500,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,TRANSPORT,0.125000,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,FISH,FISH ALL CH,3.812500,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,WHPSTK,0.020833,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,PLUG,0.083333,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,FISH,FISH ALL CH,0.375000,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,DIVERTER,0.083333,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,POWER,0.010417,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,LOG TOOL,0.062500,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,WIN,1.312500,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,JWLRY,0.156250,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,JWLRY,0.343750,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.083333,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,DS WS,0.010417,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.020833,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,TOP DRIVE,0.031250,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.020833,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,STUCK,4.229167,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,TOP DRIVE,0.020833,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,DW HOIST,0.020833,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,HOLE CLEAN,0.187500,source_full,field_campaign_available,high,no
-DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,HOLE CLEAN,0.020833,source_full,field_campaign_available,high,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,SUPPLIES,0.562500,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,TRANSPORT,0.125000,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,FISH,FISH ALL CH,3.812500,source_full,unresolved,low,no
+,,,,,EQP,WHPSTK,0.020833,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,PLUG,0.083333,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,FISH,FISH ALL CH,0.375000,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,DIVERTER,0.083333,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,RREQ,POWER,0.010417,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,EQP,LOG TOOL,0.062500,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,EQP,WIN,1.312500,source_full,unresolved,low,no
+,,,,,EQP,JWLRY,0.156250,source_full,unresolved,low,no
+,,,,,EQP,JWLRY,0.343750,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.083333,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,EQP,DS WS,0.010417,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.020833,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+,,,,,RREQ,TOP DRIVE,0.031250,source_full,unresolved,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,WO,HES ALARM,0.020833,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,STUCK,4.229167,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,TOP DRIVE,0.020833,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,RREQ,DW HOIST,0.020833,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,HOLE CLEAN,0.187500,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
+DARAJAT,DARAJAT_2022,DRJ-38,DRJ-38,DARAJAT_2022|DRJ-38,SP,HOLE CLEAN,0.020833,field_campaign_imputed_from_unique_context,field_campaign_available,low,no
 DARAJAT,DARAJAT_2019,DRJ-44,DRJ-44,DARAJAT_2019|DRJ-44,WP,TIGHT HOLE,0.041667,source_full,field_campaign_available,high,no
 DARAJAT,DARAJAT_2019,DRJ-44,DRJ-44,DARAJAT_2019|DRJ-44,EQP,SC,1.041667,source_full,field_campaign_available,high,no
 DARAJAT,DARAJAT_2019,DRJ-44,DRJ-44,DARAJAT_2019|DRJ-44,EQP,BHA,3.093750,source_full,field_campaign_available,high,no
@@ -331,37 +331,37 @@ WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,MBD-7,WAYANG_WINDU_2018|MBD-7,SP,HOLE CLEAN
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,MBD-7,WAYANG_WINDU_2018|MBD-7,SP,HOLE CLEAN,1.583333,source_full,field_campaign_available,high,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,MBD-7,WAYANG_WINDU_2018|MBD-7,RREQ,TOP DRIVE,0.041667,source_full,field_campaign_available,high,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-7,MBD-7,WAYANG_WINDU_2018|MBD-7,EQP,CSG LN,0.750000,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,PR,ERROR,0.145833,source_full,field_campaign_available,high,no
+,,,,,PR,ERROR,0.145833,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,CMT,2.187500,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,EQP,CMT,0.104167,source_full,field_campaign_available,high,no
+,,,,,EQP,CMT,0.104167,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WP,TIGHT HOLE,0.500000,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,DERRICK,0.125000,source_full,field_campaign_available,high,no
+,,,,,RREQ,DERRICK,0.125000,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,CIRSYS,0.062500,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,DERRICK,0.250000,source_full,field_campaign_available,high,no
+,,,,,RREQ,DERRICK,0.250000,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,CIRSYS,0.083333,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,DERRICK,0.562500,source_full,field_campaign_available,high,no
+,,,,,RREQ,DERRICK,0.562500,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WP,TIGHT HOLE,0.020833,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,PR,PROC,0.312500,source_full,field_campaign_available,high,no
+,,,,,PR,PROC,0.312500,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WP,TIGHT HOLE,0.520833,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,0.062500,source_full,field_campaign_available,high,no
+,,,,,SP,STUCK,0.062500,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WP,TIGHT HOLE,4.187500,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,11.437500,source_full,field_campaign_available,high,no
+,,,,,SP,STUCK,11.437500,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WO,WATER,0.031250,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SW,STUCK,1.333333,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,0.166667,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RRBOP,SURF,0.104167,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,0.020833,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RRBOP,SURF,0.041667,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,1.041667,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,POWER,0.166667,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,2.041667,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WC,STEAM,0.031250,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WC,STEAM,0.062500,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,0.333333,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,RREQ,TOP DRIVE,0.020833,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,SP,STUCK,4.645833,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,WP,SLTSUT INSTAB,0.354167,source_full,field_campaign_available,high,no
-WAYANG_WINDU,WAYANG_WINDU_2018,MBD-8,MBD-8,WAYANG_WINDU_2018|MBD-8,EQPS,CSG HAN,0.104167,source_full,field_campaign_available,high,no
+,,,,,SW,STUCK,1.333333,source_full,unresolved,low,no
+,,,,,SP,STUCK,0.166667,source_full,unresolved,low,no
+,,,,,RRBOP,SURF,0.104167,source_full,unresolved,low,no
+,,,,,SP,STUCK,0.020833,source_full,unresolved,low,no
+,,,,,RRBOP,SURF,0.041667,source_full,unresolved,low,no
+,,,,,SP,STUCK,1.041667,source_full,unresolved,low,no
+,,,,,RREQ,POWER,0.166667,source_full,unresolved,low,no
+,,,,,SP,STUCK,2.041667,source_full,unresolved,low,no
+,,,,,WC,STEAM,0.031250,source_full,unresolved,low,no
+,,,,,WC,STEAM,0.062500,source_full,unresolved,low,no
+,,,,,SP,STUCK,0.333333,source_full,unresolved,low,no
+,,,,,RREQ,TOP DRIVE,0.020833,source_full,unresolved,low,no
+,,,,,SP,STUCK,4.645833,source_full,unresolved,low,no
+,,,,,WP,SLTSUT INSTAB,0.354167,source_full,unresolved,low,no
+,,,,,EQPS,CSG HAN,0.104167,source_full,unresolved,low,no
 WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,MBE-6,WAYANG_WINDU_2021|MBE-6,RREQ,CIRSYS,0.125000,source_full,field_campaign_available,high,no
 WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,MBE-6,WAYANG_WINDU_2021|MBE-6,WP,TIGHT HOLE,0.083333,source_full,field_campaign_available,high,no
 WAYANG_WINDU,WAYANG_WINDU_2021,MBE-6,MBE-6,WAYANG_WINDU_2021|MBE-6,EQP,CSG LN,0.010417,source_full,field_campaign_available,high,no

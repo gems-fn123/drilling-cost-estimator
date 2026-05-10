@@ -19,8 +19,8 @@ QUALITY_REPORT = ROOT / "reports" / "phase2_define_quality_thresholds.md"
 class TestPhase2DefineGate(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/io/build_canonical_mappings.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/cleaning/build_wbs_lv5_classification.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.io.build_canonical_mappings"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.cleaning.build_wbs_lv5_classification"], cwd=ROOT, check=True)
 
     def read_csv(self, path: Path) -> list[dict[str, str]]:
         with path.open(encoding="utf-8") as fh:
@@ -82,7 +82,7 @@ class TestPhase2DefineGate(unittest.TestCase):
 
         in_scope_rows = [row for row in rows if row["estimator_scope"] == "in_scope"]
         self.assertTrue(in_scope_rows)
-        self.assertTrue(all(row["field"] in {"DARAJAT", "SALAK"} for row in in_scope_rows))
+        self.assertTrue(all(row["field"] in {"DARAJAT", "SALAK", "WAYANG_WINDU"} for row in in_scope_rows))
         self.assertTrue(all(row["campaign_wbs_code"] == row["campaign_code"] for row in in_scope_rows))
 
     def test_phase2_quality_metrics_hold(self) -> None:

@@ -11,44 +11,28 @@ Outputs:
 
 from __future__ import annotations
 
-import csv
 import json
+import logging
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED_DIR = ROOT / "data" / "processed"
-REPORTS_DIR = ROOT / "reports"
+from src.config import PROCESSED, REPORTS, ROOT
+from src.utils import read_csv, relpath, write_csv
 
-BASELINE_DARAJAT = PROCESSED_DIR / "baseline_estimates_darajat.csv"
-BASELINE_SALAK = PROCESSED_DIR / "baseline_estimates_salak.csv"
-GATE_RESULTS = PROCESSED_DIR / "phase4_gate_results.csv"
+log = logging.getLogger(__name__)
 
-APP_DATASET_PATH = PROCESSED_DIR / "phase5_app_dataset.csv"
-MONITORING_KPI_PATH = PROCESSED_DIR / "phase5_monitoring_kpis.csv"
-MANIFEST_PATH = PROCESSED_DIR / "phase5_operational_manifest.json"
+BASELINE_DARAJAT = PROCESSED / "baseline_estimates_darajat.csv"
+BASELINE_SALAK = PROCESSED / "baseline_estimates_salak.csv"
+GATE_RESULTS = PROCESSED / "phase4_gate_results.csv"
 
-APP_REPORT_PATH = REPORTS_DIR / "phase5_app_integration_prerequisites.md"
-MONITORING_REPORT_PATH = REPORTS_DIR / "phase5_monitoring_skeleton.md"
+APP_DATASET_PATH = PROCESSED / "phase5_app_dataset.csv"
+MONITORING_KPI_PATH = PROCESSED / "phase5_monitoring_kpis.csv"
+MANIFEST_PATH = PROCESSED / "phase5_operational_manifest.json"
 
-
-def _relpath(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
+APP_REPORT_PATH = REPORTS / "phase5_app_integration_prerequisites.md"
+MONITORING_REPORT_PATH = REPORTS / "phase5_monitoring_skeleton.md"
 
 
 def load_baseline_rows() -> List[dict]:
@@ -168,8 +152,8 @@ def write_manifest(app_rows: List[dict], kpi_rows: List[dict]) -> None:
     payload = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "phase": "phase5",
-        "inputs": [_relpath(BASELINE_DARAJAT), _relpath(BASELINE_SALAK), _relpath(GATE_RESULTS)],
-        "outputs": [_relpath(APP_DATASET_PATH), _relpath(MONITORING_KPI_PATH), _relpath(APP_REPORT_PATH), _relpath(MONITORING_REPORT_PATH)],
+        "inputs": [relpath(BASELINE_DARAJAT, ROOT), relpath(BASELINE_SALAK, ROOT), relpath(GATE_RESULTS, ROOT)],
+        "outputs": [relpath(APP_DATASET_PATH, ROOT), relpath(MONITORING_KPI_PATH, ROOT), relpath(APP_REPORT_PATH, ROOT), relpath(MONITORING_REPORT_PATH, ROOT)],
         "app_rows": len(app_rows),
         "kpi_rows": len(kpi_rows),
     }

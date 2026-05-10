@@ -3,16 +3,20 @@
 
 from __future__ import annotations
 
-import csv
 import hashlib
 import json
-import re
+import logging
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
 from typing import Dict, Iterable, List, Tuple
+
+from src.config import FIELD_MAP, PROCESSED, ROOT
+from src.utils import extract_year, normalize_key, parse_float, percentile, read_csv, safe_bool, safe_int, write_csv
+
+log = logging.getLogger(__name__)
 
 from src.app.build_phase5_operational_assets import main as build_phase5_operational_assets
 from src.cleaning.wbs_lv5_driver_alignment import main as build_wbs_lv5_alignment
@@ -36,9 +40,6 @@ from src.modeling.unit_price_well_analysis import (
     main as build_unit_price_well_analysis,
 )
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED = ROOT / "data" / "processed"
-
 CONFIDENCE_BANDS = PROCESSED / "confidence_bands.csv"
 METHOD_REGISTRY = PROCESSED / "estimator_method_registry.csv"
 APP_RUN_MANIFEST = PROCESSED / "app_run_manifest.json"
@@ -48,11 +49,16 @@ APP_CATEGORY_MATRIX_CSV = PROCESSED / "app_category_matrix.csv"
 APP_CATEGORY_MATRIX_JSON = PROCESSED / "app_category_matrix.json"
 WELL_POOL_EXCLUSIONS = PROCESSED / "well_pool_exclusions.csv"
 
-FIELD_MAP = {"DRJ": "DARAJAT", "SLK": "SALAK", "WW": "WAYANG_WINDU"}
 RATE_FACTOR = {"Standard": 1.0, "Fast": 0.92, "Careful": 1.12}
 LEG_FACTOR = {"Standard-J": 1.0}
 CATEGORY_ORDER = ["Drilling", "Support", "Surface Facility", "Contingency"]
 CATEGORY_ERROR_COLUMN = "Error (MMUSD) / MAPE (%)"
+
+
+PAD_BENCHMARK_USD: dict[str, float] = {
+    "Standard": 800_000.0,
+    "Major": 1_680_000.0,
+}
 
 
 @dataclass
@@ -63,53 +69,7 @@ class WellInput:
     depth_bucket_ft: int
     leg_type: str
     drill_rate_mode: str
-
-
-def read_csv(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def write_csv(path: Path, rows: List[dict], columns: List[str]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns)
-        writer.writeheader()
-        writer.writerows(rows)
-
-
-def _safe_float(text: str) -> float:
-    return float(str(text or "0").replace(",", ""))
-
-
-def _safe_int(text: str, default: int = 0) -> int:
-    try:
-        return int(str(text))
-    except (TypeError, ValueError):
-        return default
-
-
-def _safe_bool(value: object, default: bool = False) -> bool:
-    if isinstance(value, bool):
-        return value
-    if value is None:
-        return default
-    text = str(value).strip().lower()
-    if text in {"1", "true", "yes", "on"}:
-        return True
-    if text in {"0", "false", "no", "off"}:
-        return False
-    return default
-
-
-def _normalize_key(value: str) -> str:
-    collapsed = re.sub(r"\s+", " ", (value or "").strip().lower())
-    return re.sub(r"[^a-z0-9]+", "_", collapsed).strip("_")
-
-
-def _extract_year(text: str) -> int:
-    match = re.search(r"(20\d{2})", str(text or ""))
-    return int(match.group(1)) if match else 0
+    cellar_type: str = "new"
 
 
 def _classification_from_pricing_basis(pricing_basis: str, well_canonical: str) -> str:
@@ -153,7 +113,7 @@ def _to_estimator_history_row(row: dict, exclusions: Dict[Tuple[str, str], str])
     field = (row.get("field") or "").strip()
     campaign_canonical = (row.get("campaign_canonical") or "").strip()
     campaign_raw = (row.get("campaign_raw") or "").strip()
-    campaign_year = _safe_int(row.get("campaign_year"), 0) or _extract_year(campaign_canonical) or _extract_year(campaign_raw)
+    campaign_year = safe_int(row.get("campaign_year"), 0) or extract_year(campaign_canonical) or extract_year(campaign_raw)
     source_workbook = (row.get("source_workbook") or "").strip()
     source_sheet = (row.get("source_sheet") or "").strip()
     source_row_key = (row.get("source_row_key") or "").strip()
@@ -163,7 +123,7 @@ def _to_estimator_history_row(row: dict, exclusions: Dict[Tuple[str, str], str])
     l3 = (row.get("level_3") or "").strip()
     l4 = (row.get("level_4") or "").strip()
     l5 = (row.get("level_5") or "").strip() or l4 or l3 or l2 or "Unknown Cost Family"
-    family_group_key = _normalize_key(l5) or "unknown_cost_family"
+    family_group_key = normalize_key(l5) or "unknown_cost_family"
     well_canonical = (row.get("well_canonical") or "").strip()
     classification = _classification_from_pricing_basis(row.get("pricing_basis", ""), well_canonical)
     exclusion_reason = exclusions.get((field.upper(), well_canonical.upper()), "") if well_canonical else ""
@@ -242,7 +202,7 @@ def _load_service_time_band_index() -> Dict[str, dict]:
 def _load_macro_reference_index() -> Dict[int, dict]:
     _ensure_unit_price_support_outputs()
     return {
-        _safe_int(row["year"]): row
+        safe_int(row["year"]): row
         for row in read_csv(MACRO_REFERENCE_PATH)
     }
 
@@ -281,7 +241,7 @@ def _load_field_base_years() -> Dict[str, int]:
     for row in read_csv(UNIT_PRICE_WELL_PROFILE):
         if row.get("exclude_from_estimator_pool") == "yes":
             continue
-        year = _safe_int(row.get("campaign_year"), 0)
+        year = safe_int(row.get("campaign_year"), 0)
         if year <= 0:
             continue
         field = row["field"]
@@ -292,9 +252,9 @@ def _load_field_base_years() -> Dict[str, int]:
 def _benchmark_uncertainty_pct(benchmark_row: dict | None) -> float:
     if not benchmark_row:
         return 0.0
-    median_value = _safe_float(benchmark_row.get("median_value", "0"))
-    p10_value = _safe_float(benchmark_row.get("p10_value", "0"))
-    p90_value = _safe_float(benchmark_row.get("p90_value", "0"))
+    median_value = parse_float(benchmark_row.get("median_value", "0"))
+    p10_value = parse_float(benchmark_row.get("p10_value", "0"))
+    p90_value = parse_float(benchmark_row.get("p90_value", "0"))
     if median_value <= 0.0:
         return 0.0
     return min(200.0, ((p90_value - p10_value) / median_value) * 100.0)
@@ -310,10 +270,10 @@ def _representative_pace_days_per_1000ft(field: str, drill_rate_mode: str) -> fl
         "Standard": "standard_p50_days_per_1000ft",
         "Careful": "careful_p50_days_per_1000ft",
     }[drill_rate_mode]
-    value = _safe_float(row.get(key, "0"))
+    value = parse_float(row.get(key, "0"))
     if value > 0.0:
         return value
-    return _safe_float(row.get("standard_p50_days_per_1000ft", "0")) or 3.5
+    return parse_float(row.get("standard_p50_days_per_1000ft", "0")) or 3.5
 
 
 def _estimated_active_days(field: str, depth_ft: int, drill_rate_mode: str) -> float:
@@ -350,14 +310,14 @@ def _macro_adjustment_for_basis(
     for row in weight_rows:
         factor_name = row["factor_name"]
         override_row = override_lookup.get(factor_name, {})
-        if override_row and not _safe_bool(override_row.get("use_reference", True), default=True):
+        if override_row and not safe_bool(override_row.get("use_reference", True), default=True):
             continue
 
         weight_source = override_row.get("suggested_weight", row["forecast_weight"]) if override_row else row["forecast_weight"]
-        weight = _safe_float(weight_source)
-        base_value = _safe_float(macro_by_year[base_year].get(factor_name, "0"))
+        weight = parse_float(weight_source)
+        base_value = parse_float(macro_by_year[base_year].get(factor_name, "0"))
         target_source = override_row.get("reference_value", macro_by_year[target_year].get(factor_name, "0")) if override_row else macro_by_year[target_year].get(factor_name, "0")
-        target_value = _safe_float(target_source)
+        target_value = parse_float(target_source)
         if weight <= 0.0 or base_value <= 0.0 or target_value <= 0.0:
             continue
         ratio = target_value / base_value
@@ -369,19 +329,6 @@ def _macro_adjustment_for_basis(
         return 1.0, False, f"fallback_historical_only_invalid_macro_ratio_for_{pricing_basis}"
 
     return factor, True, " + ".join(parts)
-
-
-def _percentile(values: Iterable[float], pct: float) -> float:
-    arr = sorted(values)
-    if not arr:
-        return 0.0
-    if len(arr) == 1:
-        return arr[0]
-    idx = (len(arr) - 1) * pct
-    lo = int(idx)
-    hi = min(lo + 1, len(arr) - 1)
-    frac = idx - lo
-    return arr[lo] * (1 - frac) + arr[hi] * frac
 
 
 def _normalize_depth(depth_ft: int) -> int:
@@ -404,12 +351,17 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
     if len(well_rows) != no_wells:
         raise ValueError("Well row count must equal No. Wells")
 
+    pad_job_size = str(campaign_input.get("pad_job_size", "Standard") or "Standard").strip()
+    if pad_job_size not in PAD_BENCHMARK_USD:
+        pad_job_size = "Standard"
+
     normalized_wells: List[WellInput] = []
     for idx, row in enumerate(well_rows, start=1):
         depth = _normalize_depth(int(row["depth_ft"]))
         mode = row["drill_rate_mode"]
         if mode not in RATE_FACTOR:
             raise ValueError(f"Invalid well inputs at row {idx}")
+        cellar = str(row.get("cellar_type", "new") or "new").strip().lower()
         normalized_wells.append(
             WellInput(
                 well_label=row.get("well_label", f"Well-{idx}"),
@@ -418,9 +370,11 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
                 depth_bucket_ft=depth,
                 leg_type="Standard-J",
                 drill_rate_mode=mode,
+                cellar_type=cellar if cellar in {"new", "existing"} else "new",
             )
         )
 
+    new_cellar_count = sum(1 for w in normalized_wells if w.cellar_type == "new")
     return {
         "field_input": field,
         "field_canonical": FIELD_MAP[field],
@@ -428,6 +382,9 @@ def normalize_inputs(campaign_input: dict, well_rows: List[dict]) -> Tuple[dict,
         "pad_count": no_pads,
         "well_count": no_wells,
         "pad_expansion_count": pad_exp,
+        "pad_job_size": pad_job_size,
+        "new_cellar_count": new_cellar_count,
+        "existing_cellar_count": no_wells - new_cellar_count,
         "use_external_forecast": bool(campaign_input.get("use_external_forecast", False)),
         "use_synthetic_data": bool(campaign_input.get("use_synthetic_data", False)),
         "macro_reference_settings": list(campaign_input.get("macro_reference_settings", []) or []),
@@ -460,7 +417,7 @@ def _load_field_rows(field: str) -> List[dict]:
 
 
 def _select_anchor_year(rows: List[dict], year: int) -> int:
-    years = sorted({_safe_int(r.get("campaign_start_year"), 0) for r in rows if _safe_int(r.get("campaign_start_year"), 0) > 0})
+    years = sorted({safe_int(r.get("campaign_start_year"), 0) for r in rows if safe_int(r.get("campaign_start_year"), 0) > 0})
     if not years:
         return 0
     return max([y for y in years if y <= year], default=max(years))
@@ -470,12 +427,12 @@ def _select_anchor_rows(rows: List[dict], year: int) -> Tuple[int, List[dict]]:
     anchor_year = _select_anchor_year(rows, year)
     if not anchor_year:
         return anchor_year, rows
-    anchored_rows = [r for r in rows if _safe_int(r.get("campaign_start_year"), 0) == anchor_year]
+    anchored_rows = [r for r in rows if safe_int(r.get("campaign_start_year"), 0) == anchor_year]
     return anchor_year, anchored_rows or rows
 
 
 def _select_peer_rows(rows: List[dict], year: int) -> List[dict]:
-    peer_rows = [r for r in rows if _safe_int(r.get("campaign_start_year"), 0) <= year]
+    peer_rows = [r for r in rows if safe_int(r.get("campaign_start_year"), 0) <= year]
     return peer_rows or rows
 
 
@@ -507,13 +464,13 @@ def _summarize_support_rows(rows: List[dict]) -> dict:
     raw_rows = list(rows)
     unit_totals: Dict[Tuple[str, ...], float] = defaultdict(float)
     for row in raw_rows:
-        unit_totals[_support_unit_id(row)] += _safe_float(row.get("actual_usd", "0"))
+        unit_totals[_support_unit_id(row)] += parse_float(row.get("actual_usd", "0"))
 
     support_values = sorted(unit_totals.values())
     return {
         "median_usd": median(support_values) if support_values else 0.0,
-        "p10_usd": _percentile(support_values, 0.10),
-        "p90_usd": _percentile(support_values, 0.90),
+        "p10_usd": percentile(support_values, 0.10),
+        "p90_usd": percentile(support_values, 0.90),
         "support_unit_count": len(support_values),
         "source_row_count": len(raw_rows),
         "source_wells": sorted({r["well_canonical"] for r in raw_rows if r.get("well_canonical")}),
@@ -565,7 +522,7 @@ def _build_projection_templates(anchor_rows: List[dict], peer_rows: List[dict]) 
     for key, anchor_group in anchor_index.items():
         support_rows = support_index.get(key) or anchor_group
         stats = _summarize_support_rows(support_rows)
-        anchor_total = sum(_safe_float(r.get("actual_usd", "0")) for r in anchor_group)
+        anchor_total = sum(parse_float(r.get("actual_usd", "0")) for r in anchor_group)
 
         l5_desc = _dominant_text(anchor_group, "l5_desc", "Unknown Cost Family")
         l2_desc = _dominant_text(anchor_group, "l2_desc")
@@ -573,7 +530,7 @@ def _build_projection_templates(anchor_rows: List[dict], peer_rows: List[dict]) 
         l4_desc = _dominant_text(anchor_group, "l4_desc")
         driver_family = _dominant_text(anchor_group, "driver_family", "other")
         classification = _dominant_text(anchor_group, "classification", "unclassified")
-        family_group_key = _dominant_text(anchor_group, "family_group_key", _normalize_key(l5_desc) or "unknown_cost_family")
+        family_group_key = _dominant_text(anchor_group, "family_group_key", normalize_key(l5_desc) or "unknown_cost_family")
 
         templates.append(
             {
@@ -631,7 +588,7 @@ def _build_category_benchmarks(peer_rows: List[dict], field: str) -> Dict[str, d
             or row.get("campaign_raw")
             or "unknown_campaign"
         )
-        totals[(field, category, campaign_token, row.get("campaign_start_year", ""))] += _safe_float(row.get("actual_usd", "0"))
+        totals[(field, category, campaign_token, row.get("campaign_start_year", ""))] += parse_float(row.get("actual_usd", "0"))
 
     by_category: Dict[str, List[dict]] = defaultdict(list)
     for (field_name, category, campaign_token, campaign_year), total in totals.items():
@@ -640,7 +597,7 @@ def _build_category_benchmarks(peer_rows: List[dict], field: str) -> Dict[str, d
                 "field": field_name,
                 "category": category,
                 "campaign_token": campaign_token,
-                "campaign_year": _safe_int(campaign_year),
+                "campaign_year": safe_int(campaign_year),
                 "actual_usd": total,
             }
         )
@@ -786,7 +743,7 @@ def _build_category_matrix(detail_rows: List[dict], well_labels: List[str], fiel
 def _write_validation_artifacts(rows: List[dict]) -> dict:
     grouped = defaultdict(list)
     for row in rows:
-        grouped[(row["field"], row["classification"])].append(_safe_float(row["actual_usd"]))
+        grouped[(row["field"], row["classification"])].append(parse_float(row["actual_usd"]))
 
     bands, methods = [], []
     for (field, klass), values in sorted(grouped.items()):
@@ -794,8 +751,8 @@ def _write_validation_artifacts(rows: List[dict]) -> dict:
         if not values:
             continue
         med = median(values)
-        p10 = _percentile(values, 0.10)
-        p90 = _percentile(values, 0.90)
+        p10 = percentile(values, 0.10)
+        p90 = percentile(values, 0.90)
         bands.append(
             {
                 "field": field,
@@ -928,14 +885,14 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     detail_rows, well_outputs = [], []
     distribution_baseline = []
     for template in direct_templates:
-        anchor_total = _safe_float(str(template.get("anchor_total_usd", "0")))
+        anchor_total = parse_float(str(template.get("anchor_total_usd", "0")))
         if anchor_total <= 0.0:
-            anchor_total = _safe_float(template["support_stats"].get("median_usd", "0"))
+            anchor_total = parse_float(template["support_stats"].get("median_usd", "0"))
         distribution_baseline.append((anchor_total, template))
     direct_distribution_total = sum(weight for weight, _ in distribution_baseline)
-    active_day_rate_value = _safe_float(active_day_benchmark["median_value"])
-    depth_rate_value = _safe_float(depth_benchmark["median_value"])
-    per_well_job_value = _safe_float(per_well_job_benchmark["median_value"]) if per_well_job_benchmark else 0.0
+    active_day_rate_value = parse_float(active_day_benchmark["median_value"])
+    depth_rate_value = parse_float(depth_benchmark["median_value"])
+    per_well_job_value = parse_float(per_well_job_benchmark["median_value"]) if per_well_job_benchmark else 0.0
     active_unc_pct = _benchmark_uncertainty_pct(active_day_benchmark)
     depth_unc_pct = _benchmark_uncertainty_pct(depth_benchmark)
     per_job_unc_pct = _benchmark_uncertainty_pct(per_well_job_benchmark)
@@ -1008,7 +965,7 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
     shared_weight = 1.0 + 0.08 * normalized_campaign["pad_expansion_count"]
     for template in shared_templates + fallback_templates:
         stats = template["support_stats"]
-        baseline_value = _safe_float(str(template.get("anchor_total_usd", "0")))
+        baseline_value = parse_float(str(template.get("anchor_total_usd", "0")))
         if baseline_value <= 0.0:
             baseline_value = stats["median_usd"]
         if template["classification"] in {"hybrid", "campaign_tied"}:
@@ -1040,6 +997,48 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
                 "source_row_ids": ", ".join(stats["source_row_ids"][:20]),
                 "source_row_count": stats["source_row_count"],
                 "support_explanation": template["support_explanation"],
+                "synthetic_rows_used": 0,
+                "external_adjustment_applied": ext_applied,
+            }
+        )
+
+    # Pad scope add-on: Standard is the baseline already captured in templates.
+    # Major triggers an explicit delta above the Standard benchmark.
+    pad_job_size = normalized_campaign.get("pad_job_size", "Standard")
+    new_cellar_count = normalized_campaign.get("new_cellar_count", normalized_campaign["well_count"])
+    new_cellar_fraction = new_cellar_count / max(normalized_campaign["well_count"], 1)
+    standard_benchmark = PAD_BENCHMARK_USD["Standard"]
+    major_benchmark = PAD_BENCHMARK_USD["Major"]
+    pad_add_on_usd = (major_benchmark - standard_benchmark) * new_cellar_fraction if pad_job_size == "Major" else 0.0
+    if pad_add_on_usd > 0.0:
+        detail_rows.append(
+            {
+                "audit_key": "",
+                "well_label": "CAMPAIGN_SHARED",
+                "component_scope": "pad_scope_add_on",
+                "classification": "campaign_tied",
+                "l2_id": "Surface Facility",
+                "l3_id": "Road & Pad",
+                "l4_id": "Road & Pad Construction",
+                "l5_id": "Road & Pad – Major Scope Uplift",
+                "l5_desc": "Road & Pad – Major Scope Uplift",
+                "wbs_family_tag": "road & pad - major scope uplift",
+                "family_group_key": "road_pad_major_scope_uplift",
+                "estimate_usd": pad_add_on_usd,
+                "uncertainty_pct": 30.0,
+                "uncertainty_type": "benchmark_range",
+                "estimation_method": "pad_scope_benchmark_delta",
+                "driver_family": "campaign_scope",
+                "source_field_campaign_years": "historical_pad_range",
+                "source_wells": "",
+                "source_row_ids": "",
+                "source_row_count": 0,
+                "support_explanation": (
+                    f"Major pad uplift: delta above Standard benchmark "
+                    f"(${major_benchmark/1e6:.2f}M − ${standard_benchmark/1e6:.2f}M) × "
+                    f"new_cellar_fraction={new_cellar_fraction:.2f} ({new_cellar_count}/{normalized_campaign['well_count']} new cellars). "
+                    f"Standard cost is captured in historical campaign-tied templates."
+                ),
                 "synthetic_rows_used": 0,
                 "external_adjustment_applied": ext_applied,
             }
@@ -1153,6 +1152,14 @@ def estimate_campaign(campaign_input: dict, well_rows: List[dict]) -> dict:
             "external_forecast_requested": normalized_campaign["use_external_forecast"],
             "external_forecast_applied": ext_applied,
             "synthetic_data_requested": normalized_campaign["use_synthetic_data"],
+        },
+        "pad_scope": {
+            "pad_job_size": pad_job_size,
+            "new_cellar_count": new_cellar_count,
+            "existing_cellar_count": normalized_campaign.get("existing_cellar_count", 0),
+            "new_cellar_fraction": round(new_cellar_fraction, 4),
+            "pad_add_on_usd": round(pad_add_on_usd, 2),
+            "pad_add_on_mmusd": round(pad_add_on_usd / 1_000_000.0, 4),
         },
         "external_adjustment_formula": ext_formula,
         "allocation_basis": "Within-category direct well subtotal weights with equal split fallback for categories without direct well rows.",

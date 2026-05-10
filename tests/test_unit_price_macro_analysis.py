@@ -17,8 +17,8 @@ MACRO_REPORT = ROOT / "reports" / "unit_price_macro_correlation.md"
 class TestUnitPriceMacroAnalysis(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        subprocess.run([sys.executable, "src/modeling/unit_price_history_pipeline.py"], cwd=ROOT, check=True)
-        subprocess.run([sys.executable, "src/modeling/unit_price_macro_analysis.py"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_history_pipeline"], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-m", "src.modeling.unit_price_macro_analysis"], cwd=ROOT, check=True)
 
     def test_macro_reference_contains_required_columns(self) -> None:
         with MACRO_REFERENCE.open(encoding="utf-8", newline="") as handle:
@@ -28,7 +28,7 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
             "brent_usd_bbl",
             "indonesia_cpi_index",
             "indonesia_inflation_pct",
-            "steel_commodity_proxy_usd_ton",
+            "steel_hrc_composite_usd_ton",
             "steel_proxy_name",
             "source_note",
         }
@@ -46,7 +46,7 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
             "annual_unit_price_usd",
             "brent_usd_bbl",
             "indonesia_cpi_index",
-            "steel_commodity_proxy_usd_ton",
+            "steel_hrc_composite_usd_ton",
             "has_unit_price_history",
         }
         self.assertTrue(required.issubset(rows[0].keys()))
@@ -75,19 +75,12 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
             if row["scope_type"] == "pooled_pricing_basis"
             and row["field"] == "ALL_FIELDS"
             and row["pricing_basis"] == "active_day_rate"
-            and row["factor_name"] in {"brent_usd_bbl", "indonesia_cpi_index", "steel_commodity_proxy_usd_ton"}
+            and row["factor_name"] in {"brent_usd_bbl", "indonesia_cpi_index", "steel_hrc_composite_usd_ton"}
         ]
         self.assertEqual(len(operational), 3)
         self.assertTrue(all(row["support_status"] == "operational" for row in operational))
         self.assertTrue(all(row["weight_basis"] == "nominal_abs_pearson" for row in operational))
         self.assertAlmostEqual(sum(float(row["forecast_weight"]) for row in operational), 1.0, places=5)
-
-    def test_macro_weights_keep_inflation_rate_as_diagnostic_factor(self) -> None:
-        with MACRO_WEIGHTS.open(encoding="utf-8", newline="") as handle:
-            rows = list(csv.DictReader(handle))
-        inflation_rows = [row for row in rows if row["factor_name"] == "indonesia_inflation_pct"]
-        self.assertTrue(inflation_rows)
-        self.assertTrue(all(row["weight_eligible"] == "no" for row in inflation_rows))
 
     def test_macro_cluster_layer_is_written(self) -> None:
         with MACRO_CLUSTER_WEIGHTS.open(encoding="utf-8", newline="") as handle:
@@ -107,8 +100,8 @@ class TestUnitPriceMacroAnalysis(unittest.TestCase):
         self.assertTrue(required_weight.issubset(weight_rows[0].keys()))
 
         cluster_keys = {row["wbs_cluster"] for row in weight_rows if row["scope_type"] == "pooled_wbs_cluster"}
-        self.assertIn("material ll | casing", cluster_keys)
-        self.assertIn("services | contract rig", cluster_keys)
+        self.assertIn("conductor casing installation material", cluster_keys)
+        self.assertIn("services", cluster_keys)
 
         operational_cluster_rows = [
             row

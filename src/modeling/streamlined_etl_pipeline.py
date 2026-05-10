@@ -4,16 +4,16 @@
 from __future__ import annotations
 
 import argparse
-import csv
 import json
-import sys
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import List
 
-_BOOTSTRAP_ROOT = Path(__file__).resolve().parents[2]
-if str(_BOOTSTRAP_ROOT) not in sys.path:
-    sys.path.insert(0, str(_BOOTSTRAP_ROOT))
+from src.config import PROCESSED, ROOT
+from src.utils import read_csv, relpath, write_json
+
+log = logging.getLogger(__name__)
 
 from src.app.build_phase5_operational_assets import APP_DATASET_PATH, MONITORING_KPI_PATH
 from src.modeling.dashboard_historical_mart import HISTORICAL_MART
@@ -46,35 +46,18 @@ from src.modeling.wbs_tree_diagram import (
     build_wbs_tree_artifacts,
 )
 
-ROOT = Path(__file__).resolve().parents[2]
-PROCESSED = ROOT / "data" / "processed"
-
 PIPELINE_MANIFEST_PATH = PROCESSED / "etl_pipeline_manifest.json"
 PIPELINE_ENDPOINT_OUTPUT_PATH = PROCESSED / "etl_pipeline_endpoint_output.json"
 
 
-def _relpath(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
-
-
-def _read_csv_rows(path: Path) -> List[dict]:
-    with path.open("r", encoding="utf-8", newline="") as handle:
-        return list(csv.DictReader(handle))
-
-
-def _write_json(path: Path, payload: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-
-
 def _artifact_entry(path: Path) -> dict:
     entry = {
-        "path": _relpath(path),
+        "path": relpath(path, ROOT),
         "exists": path.exists(),
         "size_bytes": path.stat().st_size if path.exists() else 0,
     }
     if path.exists() and path.suffix.lower() == ".csv":
-        entry["row_count"] = len(_read_csv_rows(path))
+        entry["row_count"] = len(read_csv(path))
     return entry
 
 
@@ -141,7 +124,7 @@ def run_streamlined_etl(
         "wbs_tree_summary": wbs_tree_summary,
         "artifacts": [_artifact_entry(path) for path in artifacts],
     }
-    _write_json(PIPELINE_MANIFEST_PATH, payload)
+    write_json(PIPELINE_MANIFEST_PATH, payload)
     return payload
 
 
@@ -164,9 +147,9 @@ def run_pipeline_endpoint(
     result = estimate_campaign(campaign_input, well_rows)
     payload = {
         **result,
-        "pipeline_manifest_path": _relpath(PIPELINE_MANIFEST_PATH),
+        "pipeline_manifest_path": relpath(PIPELINE_MANIFEST_PATH, ROOT),
     }
-    _write_json(PIPELINE_ENDPOINT_OUTPUT_PATH, payload)
+    write_json(PIPELINE_ENDPOINT_OUTPUT_PATH, payload)
     return payload
 
 
@@ -200,7 +183,7 @@ def main() -> None:
             use_synthetic=args.use_synthetic,
             synthetic_policy=args.synthetic_policy,
         )
-        _write_json(args.output_json, payload)
+        write_json(args.output_json, payload)
         print(f"Wrote ETL manifest: {args.output_json}")
         return
 
@@ -219,7 +202,7 @@ def main() -> None:
         use_synthetic=args.use_synthetic,
         synthetic_policy=args.synthetic_policy,
     )
-    _write_json(args.output_json, payload)
+    write_json(args.output_json, payload)
     print(f"Wrote endpoint payload: {args.output_json}")
 
 

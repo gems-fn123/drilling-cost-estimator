@@ -14,12 +14,12 @@ from src.app.components.echarts_utils import (
 from src.modeling.phase5_estimation_core import RATE_FACTOR
 from src.modeling.unit_price_macro_analysis import FACTOR_LABELS, MACRO_REFERENCE_PATH, MACRO_WEIGHTS_PATH
 from src.modeling.unit_price_well_analysis import SERVICE_TIME_BANDS
+from src.modeling.section_speed_pipeline import SECTION_SPEED_REFERENCE
 
 REFERENCE_FACTORS = [
     "brent_usd_bbl",
     "indonesia_cpi_index",
-    "indonesia_inflation_pct",
-    "steel_commodity_proxy_usd_ton",
+    "steel_hrc_composite_usd_ton",
 ]
 REFERENCE_BASIS = ["active_day_rate", "depth_rate", "per_well_job"]
 BASIS_LABELS = {
@@ -67,14 +67,14 @@ def _load_macro_reference_defaults() -> pd.DataFrame:
     for pricing_basis in REFERENCE_BASIS:
         for factor_name in REFERENCE_FACTORS:
             suggested_weight = weight_lookup.get((pricing_basis, factor_name), 0.0)
-            if suggested_weight <= 0.0 and factor_name != "indonesia_inflation_pct":
+            if suggested_weight <= 0.0:
                 suggested_weight = 1.0 / 3.0
             rows.append(
                 {
                     "pricing_basis": BASIS_LABELS[pricing_basis],
                     "factor": FACTOR_LABELS[factor_name],
                     "source_year": 2026,
-                    "use_reference": factor_name != "indonesia_inflation_pct",
+                    "use_reference": True,
                     "reference_value": float(reference_row.get(factor_name, 0.0) or 0.0),
                     "suggested_weight": float(suggested_weight),
                 }
@@ -99,33 +99,47 @@ def _format_depth(value: float) -> str:
     return f"{value:,.0f} ft"
 
 
+def _load_section_speed_rows() -> list[dict[str, str]]:
+    if not SECTION_SPEED_REFERENCE.exists():
+        return []
+    return pd.read_csv(SECTION_SPEED_REFERENCE).fillna("").to_dict(orient="records")
+
+
 def _render_service_pace_explainer(field: str | None) -> None:
     st.caption(
-        f"Fast multiplies the active-day component by {RATE_FACTOR['Fast']:.2f}, Standard is {RATE_FACTOR['Standard']:.2f}, and Careful is {RATE_FACTOR['Careful']:.2f}. "
-        "The field bands below come from historical active-operational-days per 1000 ft terciles."
+        f"Fast / Standard / Careful apply a {RATE_FACTOR['Fast']:.2f}× / {RATE_FACTOR['Standard']:.2f}× / {RATE_FACTOR['Careful']:.2f}× "
+        "multiplier on the active-day cost component. "
+        "Section-package bands show total days per section (DRILL + casing job) at each speed tier."
     )
-    rows = _load_service_band_rows()
-    if not rows:
-        st.info("Service pace bands will appear after the build artifacts run and service_time_band_reference.csv is present.")
-        return
 
-    display_rows = [
-        {
-            "field": row.get("field", ""),
-            "fast_rule": row.get("fast_rule", ""),
-            "standard_rule": row.get("standard_rule", ""),
-            "careful_rule": row.get("careful_rule", ""),
-            "observation_count": row.get("observation_count", ""),
-        }
-        for row in rows
-    ]
-    if field:
-        normalized_field = field.upper().strip()
-        filtered = [row for row in display_rows if row["field"].upper() == normalized_field]
-        if filtered:
-            display_rows = filtered
-
-    st.dataframe(display_rows, width="stretch", hide_index=True)
+    section_rows = _load_section_speed_rows()
+    if section_rows:
+        st.markdown("**Section speed package (days per section, DRILL + CSGCMT inclusive)**")
+        if field:
+            field_norm = field.upper().replace("SLK", "SALAK").replace("DRJ", "DARAJAT").replace("WW", "WAYANG_WINDU")
+            filtered = [r for r in section_rows if r.get("field", "").upper() == field_norm]
+            display = filtered if filtered else section_rows
+        else:
+            display = section_rows
+        st.dataframe(
+            [
+                {
+                    "field": r["field"],
+                    "section": r["section_group_label"],
+                    "sizes": r["canonical_sizes"],
+                    "fast_days": r["fast_days"],
+                    "standard_days": r["standard_days"],
+                    "careful_days": r["careful_days"],
+                    "n": r["field_observation_count"],
+                    "confidence": r["estimator_confidence"],
+                }
+                for r in display
+            ],
+            width="stretch",
+            hide_index=True,
+        )
+    else:
+        st.info("Section speed reference will appear after the build artifacts run.")
 
 
 def _render_historical_well_dashboard() -> None:
@@ -292,6 +306,19 @@ def render_campaign_panel() -> dict:
     no_wells = st.sidebar.number_input("No. Wells", min_value=1, max_value=20, value=3, step=1)
     no_pad_expansion = st.sidebar.number_input("No. Pad Expansion", min_value=0, max_value=int(no_pads), value=0, step=1)
 
+    st.sidebar.markdown("**Pad / Surface Works**")
+    pad_job_size = st.sidebar.radio(
+        "Pad job size",
+        ["Standard", "Major"],
+        index=0,
+        help=(
+            "Standard: typical Road & Pad scope (~$800K/campaign). "
+            "Major: significant new construction or slope cut required (~$1.7M/campaign). "
+            "Historical range: $720K–$1.68M across DRJ/SLK campaigns."
+        ),
+        key="pad_job_size",
+    )
+
     macro_reference_settings = _render_macro_reference_sidebar()
 
     return {
@@ -300,6 +327,7 @@ def render_campaign_panel() -> dict:
         "no_pads": int(no_pads),
         "no_wells": int(no_wells),
         "no_pad_expansion": int(no_pad_expansion),
+        "pad_job_size": pad_job_size,
         "macro_reference_settings": macro_reference_settings,
     }
 
@@ -316,7 +344,7 @@ def render_well_inputs(no_wells: int, no_pads: int, field: str | None = None) ->
     rows: List[dict] = []
     for idx in range(1, no_wells + 1):
         st.markdown(f"**Well-{idx}**")
-        c1, c2, c3 = st.columns([1, 1, 1])
+        c1, c2, c3, c4 = st.columns([1, 1, 1, 1])
         with c1:
             pad_label = st.selectbox("Pad", options, key=f"pad_{idx}")
         with c2:
@@ -328,6 +356,14 @@ def render_well_inputs(no_wells: int, no_pads: int, field: str | None = None) ->
             )
         with c3:
             drill_rate_mode = st.selectbox("Service Pace", ["Standard", "Fast", "Careful"], key=f"rate_{idx}")
+        with c4:
+            cellar_type = st.selectbox(
+                "Cellar",
+                ["New Cellar", "Existing Cellar"],
+                index=0,
+                key=f"cellar_{idx}",
+                help="New Cellar: full Road & Pad construction cost applies. Existing Cellar: reuse/modification only (Special Requirement rate).",
+            )
 
         rows.append(
             {
@@ -336,6 +372,7 @@ def render_well_inputs(no_wells: int, no_pads: int, field: str | None = None) ->
                 "depth_ft": int(depth_ft),
                 "leg_type": "Standard-J",
                 "drill_rate_mode": drill_rate_mode,
+                "cellar_type": "new" if cellar_type == "New Cellar" else "existing",
             }
         )
 
